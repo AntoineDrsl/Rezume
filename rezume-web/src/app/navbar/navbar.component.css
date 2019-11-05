@@ -1,0 +1,13 @@
+#title{
+    display: inline-block;
+}
+
+#navbar{
+    display: inline-flex;
+    position: right;
+    list-style: none;
+}
+
+#navbar li{
+    
+}
