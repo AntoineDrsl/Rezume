@@ -1,13 +1,26 @@
-#title{
-    display: inline-block;
-}
-
 #navbar{
-    display: inline-flex;
-    position: right;
-    list-style: none;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-#navbar li{
-    
+#nav-logo{
+    width: 11%;
+    margin-right: 10px;
+}
+
+#nav-title{
+    font-size: 2em;
+}
+
+#nav-menu{
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.menu-item{
+    margin-right: 40px;
 }

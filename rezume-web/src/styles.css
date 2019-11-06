@@ -1,1 +1,38 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'Volte Medium';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Volte Medium'), url('fonts/Volte Medium.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Volte Semibold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Volte Semibold'), url('fonts/Volte Semibold.woff') format('woff');
+}
+
+body{
+    font-family: 'Volte Medium', sans-serif;
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+    font-style: none;
+}
+
+h1, h2, h3, h4{
+    font-family: 'Volte Semibold', sans-serif;
+}
+
+body a{
+    text-decoration: none;
+    color: white;
+}
+
+header{
+    position: fixed;
+    width: 100%;
+    background-color: #33317c;
+    color: white;
+    padding: 0 20px;
+}
