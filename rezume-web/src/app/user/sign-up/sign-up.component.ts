@@ -1,49 +1,53 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/shared/user.service';
 import { NgForm } from '@angular/forms';
-
-import { UserService } from '../../shared/user.service';
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css'],
-  providers: [UserService]
+  styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
+
+
+  showMessage: boolean;
+  serverErrorMessage: string;
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  showSuccessMessage: boolean;
-  serverErrorMessages: string;
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
   }
 
-  onSubmit(form : NgForm) {
+
+  onSubmit(form: NgForm){
     this.userService.postUser(form.value).subscribe(
       res => {
-        this.showSuccessMessage = true;
-        setTimeout(() => this.showSuccessMessage = false, 4000);
-        this.resetForm(form);
+        this.showMessage = true;
+        setTimeout(() => this.showMessage = false, 4000);
       },
       err => {
-        if (err.status == 422) {
-          this.serverErrorMessages = err.error.join('<br/>');
-        } else {
-          this.serverErrorMessages = "Une erreur est survenue";
+        if(err.status === 422){
+          this.serverErrorMessage = err.error.join('</br>');
+        }
+        else{
+          this.serverErrorMessage = 'Something went wrong. Please contact admin.';
         }
       }
+
     );
   }
 
-  resetForm(form: NgForm) {
+
+  resetForm(form: NgForm){
     this.userService.selectedUser = {
-      fullName: '',
+      fullname: '',
       email: '',
       password: ''
     };
     form.resetForm();
-    this.serverErrorMessages = '';
+    this.serverErrorMessage ='';
   }
+
 
 }

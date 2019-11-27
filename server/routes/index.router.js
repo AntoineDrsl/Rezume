@@ -3,7 +3,11 @@ const router = express.Router();
 
 const ctrlUser = require('../controllers/user.controller');
 
-//define URL '/api/register' to call the function register
+const jwtHelp = require('../config/jwtHelper');
+
 router.post('/register', ctrlUser.register);
+router.post('/authenticate', ctrlUser.authenticate);
+router.get('/userProfile', jwtHelp.verifyJwtToken, ctrlUser.userProfile);
+
 
 module.exports = router;
