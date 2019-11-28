@@ -4,12 +4,13 @@
 /* BASIC */
 
 html {
-  background-color: #56baed;
+  background-color: #33317c;
 }
 
 body {
   font-family: "Poppins", sans-serif;
   height: 100vh;
+  margin: 0;
 }
 
 a {
@@ -25,7 +26,6 @@ h2 {
   font-weight: 600;
   text-transform: uppercase;
   display:inline-block;
-  margin: 40px 8px 10px 8px; 
   color: #cccccc;
 }
 
@@ -36,10 +36,10 @@ h2 {
 .wrapper {
   display: flex;
   align-items: center;
-  flex-direction: column; 
+  flex-direction: column;
   justify-content: center;
   width: 100%;
-  min-height: 100%;
+  margin-top: 70px;
   padding: 20px;
 }
 
@@ -66,6 +66,12 @@ h2 {
   border-radius: 0 0 10px 10px;
 }
 
+/* Logo */
+
+.logoRezume{
+  width: 70%;
+  margin: 20px 40px 0 0;
+}
 
 
 /* TABS */
@@ -85,7 +91,7 @@ h2.active {
 
 input[type=button], input[type=submit], input[type=reset]  {
   cursor: pointer;
-  background-color: #56baed;
+  background-color: #33317c;
   border: none;
   color: white;
   padding: 15px 80px;
@@ -107,7 +113,7 @@ input[type=button], input[type=submit], input[type=reset]  {
 }
 
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
-  background-color: #39ace7;
+  background-color: #72679F;
 }
 
 input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
@@ -146,7 +152,7 @@ input[type=text],input[type=password] {
 
 input[type=text]:focus,input[type=password]:focus {
   background-color: #fff;
-  border-bottom: 2px solid #5fbae9;
+  border-bottom: 2px solid #72679F;
 }
 
 input[type=text]:placeholder {
@@ -252,7 +258,7 @@ label.validation-message{
   bottom: -10px;
   width: 0;
   height: 2px;
-  background-color: #56baed;
+  background-color: #72679F;
   content: "";
   transition: width 0.2s;
 }
@@ -271,7 +277,7 @@ label.validation-message{
 
 *:focus {
     outline: none;
-} 
+}
 
 #icon {
   width:60%;
