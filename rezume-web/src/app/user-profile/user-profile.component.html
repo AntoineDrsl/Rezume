@@ -1,7 +1,9 @@
 <table *ngIf="userDetails" class="table-fill">
     <thead>
         <tr>
-            <th colspan="2" class="text-center">User Profile</th>
+            <th colspan="2" class="text-center" *ngIf="userDetails.status === 'student'">Vous êtes connecté en tant qu'étudiant</th>
+            <th colspan="2" class="text-center" *ngIf="userDetails.status === 'company'">Vous êtes connecté en tant qu'entreprise</th>
+            <th colspan="2" class="text-center" *ngIf="userDetails.status === 'admin'">Vous êtes connecté en tant qu'administrateur</th>
         </tr>
     </thead>
     <tbody>
@@ -16,6 +18,10 @@
         <tr>
             <td>Email</td>
             <td>{{userDetails.email}}</td>
+        </tr>
+        <tr>
+            <td>Statut</td>
+            <td>{{userDetails.status}}</td>
         </tr>
         <tr>
             <td colspan="2" class="text-center">
