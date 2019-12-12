@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const passport = require('passport');
 const _ = require('lodash');
 
 const User = mongoose.model('User');
@@ -34,4 +33,16 @@ module.exports.createCV = (req, res, next) => {
             return next(err);
         }
     })
+}
+
+module.exports.uploadImage = (req, res, next) => {
+
+    const file = req.file;
+    console.log(file.filename);
+    if(!file) {
+        const error = new Error('Please  upload a file')
+        error.httpStatusCode = 400
+        return next(error);
+    }
+    res.send(file)
 }
