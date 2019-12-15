@@ -3,6 +3,7 @@ const passport = require('passport');
 const _ = require('lodash');
 
 const User = mongoose.model('User');
+const CV = mongoose.model('cv');
 
 module.exports.register = (req, res, next) => {
     var user = new User();

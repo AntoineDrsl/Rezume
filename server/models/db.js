@@ -9,3 +9,4 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
 });
 
 require('./user.model');
+require('./cv.model');

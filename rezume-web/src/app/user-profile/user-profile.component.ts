@@ -27,4 +27,8 @@ export class UserProfileComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  gotoCvCreation() {
+    this.router.navigate(['/cvcreation']);
+  }
+
 }
