@@ -24,8 +24,9 @@ module.exports.createCV = (req, res, next) => {
     cv._user = req._id;
     cv.age = req.body.age;
     cv.research = req.body.research;
-    cv.experience = req.body.experience;
-    cv.degree = req.body.degree;
+    cv.experiences = req.body.experiences;
+    cv.degrees = req.body.degrees;
+    cv.img_path = `server/uploads/Photo_${req._id}`;
     cv.save((err, doc) => {
         if(!err){
             res.send(doc);
@@ -38,7 +39,6 @@ module.exports.createCV = (req, res, next) => {
 module.exports.uploadImage = (req, res, next) => {
 
     const file = req.file;
-    console.log(file.filename);
     if(!file) {
         const error = new Error('Please  upload a file')
         error.httpStatusCode = 400

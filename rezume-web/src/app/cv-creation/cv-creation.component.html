@@ -1,23 +1,41 @@
-<div class="wrapper">
+<div class="wrapper">    
 
-    <div class="formContent">
-        <h2 class="underlineHover">Création de votre CV</h2>
-        <form #cvCreationForm="ngForm" (ngSubmit)="cvCreationForm.valid && onSubmit(cvCreationForm)">
-            <input type="number" min="0" max="100" #age="ngModel" [(ngModel)]="cvService.selectedCV.age" name="age" placeholder="Votre âge" required [ngClass]="{'invalid-textbox' :cvCreationForm.submitted && !age.valid }">
-                <div *ngIf="cvCreationForm.submitted && !age.valid">
-                    <label class="validation-message">Veuillez entrer votre age</label>
-                </div>
-            <input type="text" #research="ngModel" [(ngModel)]="cvService.selectedCV.research" name="research" placeholder="Votre domaine de recherche" required [ngClass]="{'invalid-textbox' :cvCreationForm.submitted && !research.valid }">
-                <div *ngIf="cvCreationForm.submitted && !research.valid">
-                    <label class="validation-message">Veuillez entrer un secteur de recherche</label>
-                </div>
-            <input type="text" #experience="ngModel" [(ngModel)]="cvService.selectedCV.experience" name="experience" placeholder="Vos expériences (stage ou professionnelles)" [ngClass]="{'invalid-textbox' :cvCreationForm.submitted && !experience.valid }">
-            <input type="text" #degree="ngModel" [(ngModel)]="cvService.selectedCV.degree" name="degree" placeholder="Vos diplômes" [ngClass]="{'invalid-textbox' :cvCreationForm.submitted && !degree.valid }">
-            <input type="file" name="image" (change)="selectImage($event)">
-            <br><br>
-            <button type="submit">Créer mon CV</button>
-        </form>
-    </div>
+    <h2>Créez votre CV</h2>
+    <form [formGroup]="cvForm" (ngSubmit)="onSubmit(cvForm)">
+        <div class="form-group">
+            <label for="age">Votre âge: </label>
+            <input type="number" formControlName="age" class="form-control">
+            <div *ngIf="age.touched && age.invalid">
+                <label class="validation-message">Merci d'entrer votre âge</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="research">Votre recherche: </label>
+            <input type="text" formControlName="research" class="form-control">
+            <div *ngIf="research.touched && research.invalid">
+                <label class="validation-message">Merci d'entrer votre secteur de recherche</label>
+            </div>
+        </div>
+        <fieldset formGroupName="experiences">
+            <legend>Vos expériences | <span style="font-weight: bold; cursor: pointer" (click)="addExperience()">+</span></legend>
+            <div class="input-group" *ngFor="let experienceControl of cvForm.get('experiences').controls; let i = index">
+                <input type="text" class="form-control" [formControlName]="i">
+                <span class="input-group-addon" id="basic-addon2" (click)="deleteExperience(i)" style="cursor: pointer">❌</span>
+            </div>
+        </fieldset>
+        <fieldset formGroupName="degrees">
+            <legend>Vos diplômes | <span style="font-weight: bold; cursor: pointer" (click)="addDegree()">+</span></legend>
+            <div class="input-group" *ngFor="let degreeControl of cvForm.get('degrees').controls; let i = index">
+                <input type="text" class="form-control" [formControlName]="i">
+                <span class="input-group-addon" id="basic-addon2" (click)="deleteDegree(i)" style="cursor: pointer">❌</span>
+            </div>
+        </fieldset>
+        <div class="form-group">
+            <label for="image">Votre photo: </label>
+            <input type="file" formControlName="image" (change)="onFileChange($event)" #fileInput>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
 
 
 <!-- Success message -->

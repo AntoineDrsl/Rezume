@@ -1,6 +1,6 @@
 export class CV {
     age: string;
     research: string;
-    experience: string;
-    degree: string;
+    experiences: Array<String>;
+    degrees: Array<String>;
 }

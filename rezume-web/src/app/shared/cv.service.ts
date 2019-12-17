@@ -12,8 +12,8 @@ export class CvService {
   selectedCV: CV = {
     age: '',
     research: '',
-    experience: '',
-    degree: ''
+    experiences: [''],
+    degrees: ['']
   };
 
   //Attribut à ajouter pour les fonctions ne demandant pas de JWT
