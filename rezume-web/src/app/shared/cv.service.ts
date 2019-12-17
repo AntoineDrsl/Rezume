@@ -7,6 +7,8 @@ import { CV } from './cv.model';
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class CvService {
 
   selectedCV: CV = {
@@ -24,10 +26,19 @@ export class CvService {
     //HTTP methods
 
     postFile(formData) {
-      return this.http.post<any>(environment.apiBaseUrl + '/uploadimage', formData)
+      return this.http.post<any>(environment.apiBaseUrl + '/uploadimage', formData);
     }
 
     postCV(cv: CV) {
-      return this.http.post(environment.apiBaseUrl + '/createcv', cv)
+      return this.http.post(environment.apiBaseUrl + '/createcv', cv);
+    }
+
+    getCV(){
+      return this.http.get(environment.apiBaseUrl + '/getcv');
+    }
+
+    updateCV(cv: CV){
+      // console.log(cv)
+      return this.http.post(environment.apiBaseUrl + '/updatecv', cv);
     }
 }

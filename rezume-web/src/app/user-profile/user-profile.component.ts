@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/user.service';
+import { CvService } from '../shared/cv.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,15 +11,24 @@ import { Router } from '@angular/router';
 export class UserProfileComponent implements OnInit {
 
   userDetails;
+  cvDetails;
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, private cvService: CvService) { }
 
   ngOnInit() {
     this.userService.getUserProfile().subscribe(
-      res=>{
+      res => {
         this.userDetails = res['user'];
       },
-      err=>{}
+      err => {}
+    );
+
+    this.cvService.getCV().subscribe(
+      res => {
+        this.cvDetails = res['cv'];
+        console.log(this.cvDetails);
+      },
+      err => {}
     );
   }
 
@@ -27,8 +37,5 @@ export class UserProfileComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  gotoCvCreation() {
-    this.router.navigate(['/cvcreation']);
-  }
 
 }

@@ -4,6 +4,8 @@ const _ = require('lodash');
 const User = mongoose.model('User');
 const CV = mongoose.model('cv');
 
+mongoose.set('useFindAndModify', false);
+
 module.exports.getIdAndName = (req, res, next) => {
     
     User.findOne({ _id: req._id },
@@ -17,6 +19,22 @@ module.exports.getIdAndName = (req, res, next) => {
     );
 
 }
+
+
+module.exports.getCV = (req, res, next) => {
+    CV.findOne({ _user: req._id},
+        (err, cv) =>{
+            if(!cv) {
+                return res.status(404).json({status: false, message: 'Cv not found'});
+            }
+            else{
+                return res.status(200).json({status: true, cv: _.pick(cv, ['user','age','research', 'experience', 'degree'])})
+            }
+        }
+
+    );
+}
+
 
 module.exports.createCV = (req, res, next) => {
 
@@ -46,3 +64,31 @@ module.exports.uploadImage = (req, res, next) => {
     }
     res.send(file)
 }
+
+module.exports.updateCv = (req, res, next) => {
+
+    var cvUpdate = new CV();
+    cvUpdate._user = req._id;
+    cvUpdate.age = req.body.age;
+    cvUpdate.research = req.body.research;
+    cvUpdate.experience = req.body.experience;
+    cvUpdate.degree = req.body.degree;
+
+
+
+    CV.findOneAndUpdate({ _user: req._id}, {$set: {research:  cvUpdate.research, experience: cvUpdate.experience, degree: cvUpdate.degree, age: cvUpdate.age}},
+        (err, cv) => {
+            if(err){
+
+                return res.status(404).json({status: false, message: 'CV not found or other..'});
+            }
+            else{
+ 
+                return res.status(200).json({ status: true, cvUpdate: _.pick(cvUpdate, ['_id', 'fullName'])});
+            }
+        }
+
+
+    );
+}
+
