@@ -17,3 +17,12 @@ var cvSchema = new mongoose.Schema({
 });
 
 mongoose.model('cv', cvSchema);
+
+
+
+
+
+
+
+
+

@@ -33,6 +33,10 @@ router.get('/userprofile', jwtHelper.verifyJwtToken, ctrlUser.userProfile);
 router.get('/createcv', jwtHelper.verifyJwtToken, ctrlCV.getIdAndName);
 router.post('/createcv', jwtHelper.verifyJwtToken, ctrlCV.createCV);
 
+
+router.get('/getcv', jwtHelper.verifyJwtToken, ctrlCV.getCV);
+
+
 router.post('/uploadimage', jwtHelper.verifyJwtToken, upload.single('file'), ctrlCV.uploadImage)
 
 module.exports = router;

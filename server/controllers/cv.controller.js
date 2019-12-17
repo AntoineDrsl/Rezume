@@ -18,6 +18,22 @@ module.exports.getIdAndName = (req, res, next) => {
 
 }
 
+
+module.exports.getCV = (req, res, next) => {
+    CV.findOne({ _user: req._id},
+        (err, cv) =>{
+            if(!cv) {
+                return res.status(404).json({status: false, message: 'Cv not found'});
+            }
+            else{
+                return res.status(200).json({status: true, cv: _.pick(cv, ['user','age','research', 'experience', 'degree'])})
+            }
+        }
+
+    );
+}
+
+
 module.exports.createCV = (req, res, next) => {
 
     var cv = new CV();
@@ -46,3 +62,6 @@ module.exports.uploadImage = (req, res, next) => {
     }
     res.send(file)
 }
+
+
+

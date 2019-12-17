@@ -20,6 +20,7 @@ import { UserService } from './shared/user.service';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { CvCreationComponent } from './cv-creation/cv-creation.component';
+import { CvUpdateComponent } from './user-profile/cvUpdate/cv-update/cv-update.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CvCreationComponent } from './cv-creation/cv-creation.component';
     SignUpComponent,
     UserProfileComponent,
     SignInComponent,
-    CvCreationComponent
+    CvCreationComponent,
+    CvUpdateComponent
   ],
   imports: [
     BrowserModule,
