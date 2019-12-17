@@ -26,6 +26,7 @@ module.exports.createCV = (req, res, next) => {
     cv.research = req.body.research;
     cv.experience = req.body.experience;
     cv.degree = req.body.degree;
+    cv.img_path = `server/uploads/Photo_${req._id}`;
     cv.save((err, doc) => {
         if(!err){
             res.send(doc);

@@ -11,7 +11,8 @@ var cvSchema = new mongoose.Schema({
     ],
     degree: [
         { type: String }
-    ]
+    ],
+    img_path: String
 }, {
     timestamps: true
 });
