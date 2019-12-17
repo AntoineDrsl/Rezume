@@ -46,7 +46,7 @@ export class CvUpdateComponent implements OnInit {
         console.log('coucou');
         this.showSuccessMessage = true;
         setTimeout(() => this.showSuccessMessage = false, 4000);
-        this.onReset(form);
+        // this.onReset(form);
       },
       err => {
         this.serverErrorMessages = "Une erreur est survenue";
