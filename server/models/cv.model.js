@@ -6,10 +6,10 @@ var cvSchema = new mongoose.Schema({
     },
     age: String,
     research: String,
-    experience: [
+    experiences: [
         { type: String } 
     ],
-    degree: [
+    degrees: [
         { type: String }
     ],
     img_path: String
