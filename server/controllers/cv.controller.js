@@ -73,9 +73,10 @@ module.exports.updateCv = (req, res, next) => {
     cv.research = req.body.research;
     cv.experience = req.body.experience;
     cv.degree = req.body.degree;
+
     
     console.log(cv)
-    CV.findOneAndUpdate({ _user: req._id}, {$set: {research: 'test', experience: 'Bac Rien'}},
+    CV.findOneAndUpdate({ _user: req._id}, {$set: {research: req.body.research, experience: req.body.experience}},
         (err, cv) => {
             if(err){
 
