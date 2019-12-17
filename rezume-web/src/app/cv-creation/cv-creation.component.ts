@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { CvService } from '../shared/cv.service';
 
@@ -21,7 +22,7 @@ export class CvCreationComponent implements OnInit {
     return this.cvForm.get('research');
   }
 
-  constructor(private cvService: CvService) { }
+  constructor(private cvService: CvService, private router: Router) { }
 
   ngOnInit() {
     this.cvForm = new FormGroup({
@@ -79,13 +80,18 @@ export class CvCreationComponent implements OnInit {
     this.cvService.postCV(form.value).subscribe(
       res => {
         this.showSuccessMessage = true;
-        setTimeout(() => this.showSuccessMessage = false, 4000);
+        setTimeout(() => this.showSuccessMessage = false, 2000);
+        setTimeout(() => this.router.navigate(['/userprofile']), 2000);
+        
         form.reset()
       },
       err => {
         this.serverErrorMessages = "Une erreur est survenue";
       }
     )
+
+  
+    
   }
 
 }
