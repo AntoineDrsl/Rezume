@@ -273,7 +273,8 @@ label.validation-message{
 }
 
 #icon {
-  width:50%;
+  width:80%;
+  padding: 10px 20px 10px 0;
 }
 
 * {
