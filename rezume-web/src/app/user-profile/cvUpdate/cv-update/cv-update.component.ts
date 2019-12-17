@@ -23,7 +23,7 @@ export class CvUpdateComponent implements OnInit {
     this.cvService.getCV().subscribe(
       res => {
         this.cvDetails = res['cv'];
-        console.log(this.cvDetails);
+        // console.log(this.cvDetails);
       },
       err => {}
       );
@@ -40,8 +40,10 @@ export class CvUpdateComponent implements OnInit {
   }
 
   onSubmit(form: NgForm){
+    // console.log(form.value)
     this.cvService.updateCV(form.value).subscribe(
       res => {
+        console.log('coucou');
         this.showSuccessMessage = true;
         setTimeout(() => this.showSuccessMessage = false, 4000);
         this.onReset(form);
@@ -53,16 +55,16 @@ export class CvUpdateComponent implements OnInit {
   }
 
 
-  onReset(form: NgForm){
-    this.cvService.selectedCV = {
-      age: '',
-      research: '',
-      experience: '',
-      degree: ''
-    };
-    form.onReset();
+  // onReset(form: NgForm){
+  //   this.cvService.selectedCV = {
+  //     age: '',
+  //     research: '',
+  //     experience: '',
+  //     degree: ''
+  //   };
+  //   form.onReset();
 
-  }
+  // }
 
 
 }

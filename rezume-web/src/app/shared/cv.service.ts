@@ -38,6 +38,7 @@ export class CvService {
     }
 
     updateCV(cv: CV){
+      // console.log(cv)
       return this.http.post(environment.apiBaseUrl + '/updatecv', cv);
     }
 }

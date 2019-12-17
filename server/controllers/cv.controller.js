@@ -67,16 +67,16 @@ module.exports.uploadImage = (req, res, next) => {
 
 module.exports.updateCv = (req, res, next) => {
 
-    var cv = new CV();
-    cv._user = req._id;
-    cv.age = req.body.age;
-    cv.research = req.body.research;
-    cv.experience = req.body.experience;
-    cv.degree = req.body.degree;
+    var cvUpdate = new CV();
+    cvUpdate._user = req._id;
+    cvUpdate.age = req.body.age;
+    cvUpdate.research = req.body.research;
+    cvUpdate.experience = req.body.experience;
+    cvUpdate.degree = req.body.degree;
 
-    
-    console.log(cv)
-    CV.findOneAndUpdate({ _user: req._id}, {$set: {research: req.body.research, experience: req.body.experience}},
+
+
+    CV.findOneAndUpdate({ _user: req._id}, {$set: {research:  cvUpdate.research, experience: cvUpdate.experience, degree: cvUpdate.degree, age: cvUpdate.age}},
         (err, cv) => {
             if(err){
 
@@ -84,7 +84,7 @@ module.exports.updateCv = (req, res, next) => {
             }
             else{
  
-                return res.status(200).json({ status: true, cv: _.pick(cv, ['_id', 'fullName'])});
+                return res.status(200).json({ status: true, cvUpdate: _.pick(cvUpdate, ['_id', 'fullName'])});
             }
         }
 
