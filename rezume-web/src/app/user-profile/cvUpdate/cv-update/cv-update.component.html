@@ -1,1 +1,35 @@
-<p>cv-update works!</p>
+<div class="wrapper">
+
+  <div class="formContent">
+      <h2 class="underlineHover">Modification de votre CV</h2>
+      <form #cvUpdateForm="ngForm" (ngSubmit)="cvUpdateForm.valid && onSubmit(cvUpdateForm)">
+        <input type="number" min="0" max="100" #age="ngModel" [(ngModel)]="cvService.selectedCV.age" name="age" value="{{cvDetails.age}}" required [ngClass]="{'invalid-textbox' :cvUpdateForm.submitted && !age.valid }">
+          <div *ngIf="cvUpdateForm.submitted && !age.valid">
+            <label class="validation-message">Veuillez entrer votre age !</label>
+          </div>
+        <input type="text" #research="ngModel" [(ngModel)]="cvService.selectedCV.research" name="research" value="{{cvDetails.research}}" required [ngClass]="{'invalid-textbox' :cvUpdateForm.submitted && !research.valid }">
+        <div *ngIf="cvUpdateForm.submitted && !research.valid">
+          <label class="validation-message">Veuillez indiquer votre secteur de recherche</label>
+        </div>
+        <input type="text" #experience="ngModel" [(ngModel)]="cvService.selectedCV.experience" name="experience" value="{{cvDetails.experience}}" [ngClass]="{'invalid-textbox' :cvUpdateForm.submitted && !experience.valid }">
+        <input type="text" #degree="ngModel" [(ngModel)]="cvService.selectedCV.degree" name="degree" value="{{cvDetails.degree}}" [ngClass]="{'invalid-textbox' :cvUpdateForm.submitted && !degree.valid }">
+        <!-- <input type="file" name="image" (change)="selectImage($event)"> -->
+        <br><br>
+        <button type="submit">Modifier mon CV</button>
+        <button (click)="onReset(cvUpdateForm)">Enlever tous les champs</button>
+      </form>
+
+  </div>
+
+
+<!-- Success message -->
+<div class="success" *ngIf="showSuccessMessage">
+  Votre CV a été modifié avec succès
+</div>
+
+<!-- Error message -->
+<div class="alert" *ngIf="serverErrorMessages">
+  {{serverErrorMessages}}
+</div>
+
+</div>

@@ -6,6 +6,7 @@ import { SignInComponent } from './user/sign-in/sign-in.component'
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AuthGuard } from './auth/auth.guard';
 import { CvCreationComponent } from './cv-creation/cv-creation.component';
+import { CvUpdateComponent } from './user-profile/cvUpdate/cv-update/cv-update.component';
 
 export const routes: Routes = [
   {
@@ -21,6 +22,9 @@ export const routes: Routes = [
   },
   {
     path: 'cvcreation', component: CvCreationComponent, canActivate:[AuthGuard]
+  },
+  {
+    path: 'cvupdate', component: CvUpdateComponent, canActivate:[AuthGuard]
   },
   {
     path: '', redirectTo: '/login', pathMatch: 'full'

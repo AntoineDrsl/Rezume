@@ -4,6 +4,8 @@ const _ = require('lodash');
 const User = mongoose.model('User');
 const CV = mongoose.model('cv');
 
+mongoose.set('useFindAndModify', false);
+
 module.exports.getIdAndName = (req, res, next) => {
     
     User.findOne({ _id: req._id },
@@ -63,5 +65,29 @@ module.exports.uploadImage = (req, res, next) => {
     res.send(file)
 }
 
+module.exports.updateCv = (req, res, next) => {
 
+    var cv = new CV();
+    cv._user = req._id;
+    cv.age = req.body.age;
+    cv.research = req.body.research;
+    cv.experience = req.body.experience;
+    cv.degree = req.body.degree;
+    
+    console.log(cv)
+    CV.findOneAndUpdate({ _user: req._id}, {$set: {research: 'test', experience: 'Bac Rien'}},
+        (err, cv) => {
+            if(err){
+
+                return res.status(404).json({status: false, message: 'CV not found or other..'});
+            }
+            else{
+ 
+                return res.status(200).json({ status: true, cv: _.pick(cv, ['_id', 'fullName'])});
+            }
+        }
+
+
+    );
+}
 
