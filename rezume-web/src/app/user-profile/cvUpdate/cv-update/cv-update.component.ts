@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { CvService } from '../../../shared/cv.service';
 
@@ -23,9 +24,9 @@ export class CvUpdateComponent implements OnInit {
   get research() {
     return this.cvUpdateForm.get('research');
   }
-  
-  constructor(private cvService: CvService) {}
-  
+
+  constructor(private cvService: CvService, private router: Router) {}
+
   ngOnInit() {
 
     this.cvService.getCV().subscribe(
@@ -34,7 +35,7 @@ export class CvUpdateComponent implements OnInit {
       },
       err => {}
       );
-      
+
     this.cvUpdateForm = new FormGroup({
       age: new FormControl(''),
       research: new FormControl(''),
@@ -83,7 +84,7 @@ export class CvUpdateComponent implements OnInit {
     // Upload de l'image
     const formData = new FormData();
     formData.append('file', this.images);
-    
+
     this.cvService.postFile(formData).subscribe(
       res => {
         this.showSuccessMessage = true;
@@ -97,7 +98,8 @@ export class CvUpdateComponent implements OnInit {
     this.cvService.updateCV(form.value).subscribe(
       res => {
         this.showSuccessMessage = true;
-        setTimeout(() => this.showSuccessMessage = false, 4000);
+        setTimeout(() => this.showSuccessMessage = false, 3000);
+        setTimeout(() => this.router.navigate(['/userprofile']), 4000);
       },
       err => {
         this.serverErrorMessages = "Une erreur est survenue";
