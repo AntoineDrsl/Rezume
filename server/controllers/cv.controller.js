@@ -35,6 +35,19 @@ module.exports.getCV = (req, res, next) => {
     );
 }
 
+module.exports.getSelectedCV = (req, res, next) => {
+    CV.findOne({_id: req._id},
+        (err, cv) =>{
+            if(!cv) {
+                return res.status(404).json({status: false, message: 'Cv not found'});
+            }
+            else{
+                return res.status(200).json({status: true, cv: _.pick(cv, ['user','age','research', 'experiences', 'degrees'])});
+            }
+        }
+    );
+}
+
 
 module.exports.createCV = (req, res, next) => {
 
@@ -73,7 +86,6 @@ module.exports.updateCv = (req, res, next) => {
     cvUpdate.research = req.body.research;
     cvUpdate.experiences = req.body.experiences;
     cvUpdate.degrees = req.body.degrees;
-
 
 
     CV.findOneAndUpdate({ _user: req._id}, {$set: {research:  cvUpdate.research, experiences: cvUpdate.experiences, degrees: cvUpdate.degrees, age: cvUpdate.age}},

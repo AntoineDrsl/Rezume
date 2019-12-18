@@ -36,6 +36,9 @@ router.post('/createcv', jwtHelper.verifyJwtToken, ctrlCV.createCV);
 //on recupere le cv 
 router.get('/getcv', jwtHelper.verifyJwtToken, ctrlCV.getCV);
 
+//on recupere le cv selectionne par l'user
+router.get('/getselectedcv', jwtHelper.verifyJwtToken, ctrlCV.getSelectedCV);
+
 //on update le cv
 router.post('/updatecv', jwtHelper.verifyJwtToken, ctrlCV.updateCv);
 

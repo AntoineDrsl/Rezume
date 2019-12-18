@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UserComponent } from './user/user.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
@@ -9,6 +9,8 @@ import { CvCreationComponent } from './cv-creation/cv-creation.component';
 import { CvUpdateComponent } from './user-profile/cvUpdate/cv-update/cv-update.component';
 import { CvViewComponent } from './user-profile/cv-view/cv-view.component';
 import { GetAllCvComponent } from './get-all-cv/get-all-cv.component';
+import { SelectedCvComponent } from './get-all-cv/selected-cv/selected-cv.component';
+
 
 export const routes: Routes = [
   {
@@ -33,6 +35,9 @@ export const routes: Routes = [
   },
   {
     path: 'cv', component: GetAllCvComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'cvview/:id', component: SelectedCvComponent, canActivate: [AuthGuard]
   },
   {
     path: '', redirectTo: '/login', pathMatch: 'full'
