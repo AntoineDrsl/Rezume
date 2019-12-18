@@ -7,6 +7,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AuthGuard } from './auth/auth.guard';
 import { CvCreationComponent } from './cv-creation/cv-creation.component';
 import { CvUpdateComponent } from './user-profile/cvUpdate/cv-update/cv-update.component';
+import { CvViewComponent } from './user-profile/cv-view/cv-view.component';
 
 export const routes: Routes = [
   {
@@ -18,13 +19,16 @@ export const routes: Routes = [
     children: [{ path: '', component: SignInComponent }]
   },
   {
-    path: 'userprofile', component: UserProfileComponent, canActivate:[AuthGuard]
+    path: 'userprofile', component: UserProfileComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'cvcreation', component: CvCreationComponent, canActivate:[AuthGuard]
+    path: 'cvcreation', component: CvCreationComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'cvupdate', component: CvUpdateComponent, canActivate:[AuthGuard]
+    path: 'cvupdate', component: CvUpdateComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'cvview', component: CvViewComponent, canActivate: [AuthGuard]
   },
   {
     path: '', redirectTo: '/login', pathMatch: 'full'
