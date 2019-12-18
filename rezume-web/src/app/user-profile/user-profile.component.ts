@@ -26,7 +26,6 @@ export class UserProfileComponent implements OnInit {
     this.cvService.getCV().subscribe(
       res => {
         this.cvDetails = res['cv'];
-        console.log(this.cvDetails);
       },
       err => {}
     );

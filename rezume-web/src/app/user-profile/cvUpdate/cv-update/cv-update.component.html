@@ -1,7 +1,7 @@
 <div class="wrapper">
 
   <h2>Modifiez votre CV</h2>
-    <form [formGroup]="cvUpdateForm" (ngSubmit)="onSubmit(cvUpdateForm)">
+    <form [formGroup]="cvUpdateForm" (ngSubmit)="onSubmit(cvUpdateForm)" *ngIf="cvDetails">
         <div class="form-group">
             <label for="age">Votre âge: </label>
             <input type="number" formControlName="age" class="form-control">
