@@ -1,0 +1,7 @@
+
+
+<div *ngFor="let cv of allCv; index as i">
+    <h1>Recherche: {{cv.research}} </h1>
+    <p>Posté le : {{cv.updatedAt}} </p>
+    <input type="button" routerLink="/cvview" value="Consulter ce CV">
+</div>

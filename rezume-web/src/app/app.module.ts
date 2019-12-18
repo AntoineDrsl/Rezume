@@ -22,6 +22,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { CvCreationComponent } from './cv-creation/cv-creation.component';
 import { CvUpdateComponent } from './user-profile/cvUpdate/cv-update/cv-update.component';
 import { CvViewComponent } from './user-profile/cv-view/cv-view.component';
+import { GetAllCvComponent } from './get-all-cv/get-all-cv.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { CvViewComponent } from './user-profile/cv-view/cv-view.component';
     SignInComponent,
     CvCreationComponent,
     CvUpdateComponent,
-    CvViewComponent
+    CvViewComponent,
+    GetAllCvComponent
   ],
   imports: [
     BrowserModule,

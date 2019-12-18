@@ -37,6 +37,10 @@ export class CvService {
       return this.http.get(environment.apiBaseUrl + '/getcv');
     }
 
+    getAllCV(){
+      return this.http.get(environment.apiBaseUrl + '/getallcv');
+    }
+
     updateCV(cv: CV){
       return this.http.post(environment.apiBaseUrl + '/updatecv', cv);
     }

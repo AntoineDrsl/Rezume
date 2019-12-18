@@ -28,7 +28,7 @@ module.exports.getCV = (req, res, next) => {
                 return res.status(404).json({status: false, message: 'Cv not found'});
             }
             else{
-                return res.status(200).json({status: true, cv: _.pick(cv, ['user','age','research', 'experiences', 'degrees'])})
+                return res.status(200).json({status: true, cv: _.pick(cv, ['user','age','research', 'experiences', 'degrees'])});
             }
         }
 
@@ -95,8 +95,6 @@ module.exports.updateCv = (req, res, next) => {
 
 
 module.exports.getAllCv = (req, res, next) =>{
-    
-        
     CV.find(
         {},
         (err, cv) =>{
@@ -110,7 +108,4 @@ module.exports.getAllCv = (req, res, next) =>{
             }
         }
     );
-
-
-
 }
