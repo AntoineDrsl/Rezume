@@ -28,34 +28,42 @@ export class CvUpdateComponent implements OnInit {
   constructor(private cvService: CvService, private router: Router) {}
 
   ngOnInit() {
+    this.getCvAndInitForm();
+  }
+
+  getCvAndInitForm() {
 
     this.cvService.getCV().subscribe(
       res => {
         this.cvDetails = res['cv'];
+        this.initForm();
       },
       err => {}
       );
+  }
+
+  initForm() {
+    let cvAge = this.cvDetails.age
+    let cvResearch = this.cvDetails.research
+    let cvExperiences = this.cvDetails.experiences
+    let expLength = cvExperiences.length
+    let cvDegrees = this.cvDetails.degrees
 
     this.cvUpdateForm = new FormGroup({
-      age: new FormControl(''),
-      research: new FormControl(''),
-      experiences: new FormArray([
-          new FormControl('')
-      ]),
-      degrees: new FormArray([
-        new FormControl('')
-      ]),
+      age: new FormControl(cvAge),
+      research: new FormControl(cvResearch),
+      experiences: new FormArray([]),
+      degrees: new FormArray([]),
       image: new FormControl('')
     });
 
-  }
+    cvExperiences.forEach(experience => {
+      (<FormArray>this.cvUpdateForm.get('experiences')).push(new FormControl(experience));
+    });
 
-  defaultValues() {
-    this.cvUpdateForm.setValue({age: this.cvDetails.age})
-  }
-
-  getCvDetails() {
-    return this.cvDetails;
+    cvDegrees.forEach(degree => {
+      (<FormArray>this.cvUpdateForm.get('degrees')).push(new FormControl(degree));
+    });
   }
 
   addExperience() {
