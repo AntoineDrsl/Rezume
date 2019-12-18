@@ -9,7 +9,8 @@ import { CvService } from '../shared/cv.service';
   styleUrls: ['./cv-creation.component.css']
 })
 export class CvCreationComponent implements OnInit {
-  images
+
+  images;
   showSuccessMessage: boolean;
   serverErrorMessages: string;
 
@@ -75,7 +76,6 @@ export class CvCreationComponent implements OnInit {
 
     // Stockage des infos dans la bdd
 
-    console.log(form.value)
     this.cvService.postCV(form.value).subscribe(
       res => {
         this.showSuccessMessage = true;
