@@ -39,6 +39,11 @@ router.get('/getcv', jwtHelper.verifyJwtToken, ctrlCV.getCV);
 //on update le cv
 router.post('/updatecv', jwtHelper.verifyJwtToken, ctrlCV.updateCv);
 
-router.post('/uploadimage', jwtHelper.verifyJwtToken, upload.single('file'), ctrlCV.uploadImage)
+router.post('/uploadimage', jwtHelper.verifyJwtToken, upload.single('file'), ctrlCV.uploadImage);
+
+
+//on recupere tous les cv dans mongoDB
+router.get('/getallcv', jwtHelper.verifyJwtToken, ctrlCV.getAllCv);
+
 
 module.exports = router;

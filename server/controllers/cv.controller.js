@@ -92,3 +92,25 @@ module.exports.updateCv = (req, res, next) => {
     );
 }
 
+
+
+module.exports.getAllCv = (req, res, next) =>{
+    
+        
+    CV.find(
+        {},
+        (err, cv) =>{
+            if(!cv) {
+                return res.status(500).json({status: false, message: 'Cannot load all CV'});
+            }
+            else{
+                // console.log(cv);
+                
+                return res.status(200).json({status: true, cv});
+            }
+        }
+    );
+
+
+
+}
