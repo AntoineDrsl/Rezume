@@ -61,11 +61,11 @@ export class CvCreationComponent implements OnInit {
   }
 
   onSubmit(form) {
-    
+
     // Upload de l'image
     const formData = new FormData();
     formData.append('file', this.images);
-    
+
     this.cvService.postFile(formData).subscribe(
       res => {
         this.showSuccessMessage = true;
@@ -80,9 +80,9 @@ export class CvCreationComponent implements OnInit {
     this.cvService.postCV(form.value).subscribe(
       res => {
         this.showSuccessMessage = true;
-        setTimeout(() => this.showSuccessMessage = false, 2000);
-        setTimeout(() => this.router.navigate(['/userprofile']), 2000);
-        
+        setTimeout(() => this.showSuccessMessage = false, 3000);
+        setTimeout(() => this.router.navigate(['/userprofile']), 4000);
+
         form.reset()
       },
       err => {
@@ -90,8 +90,8 @@ export class CvCreationComponent implements OnInit {
       }
     )
 
-  
-    
+
+
   }
 
 }

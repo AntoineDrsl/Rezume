@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
 
-//routes 
+//routes
 import { AppRoutingModule } from './app-routing.module';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { SignInComponent } from './user/sign-in/sign-in.component';
@@ -21,6 +21,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { CvCreationComponent } from './cv-creation/cv-creation.component';
 import { CvUpdateComponent } from './user-profile/cvUpdate/cv-update/cv-update.component';
+import { CvViewComponent } from './user-profile/cv-view/cv-view.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CvUpdateComponent } from './user-profile/cvUpdate/cv-update/cv-update.c
     UserProfileComponent,
     SignInComponent,
     CvCreationComponent,
-    CvUpdateComponent
+    CvUpdateComponent,
+    CvViewComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,7 @@ import { CvUpdateComponent } from './user-profile/cvUpdate/cv-update/cv-update.c
     useClass: AuthInterceptor,
     multi: true
   },
-  AuthGuard, 
+  AuthGuard,
   UserService],
   bootstrap: [AppComponent]
 })
