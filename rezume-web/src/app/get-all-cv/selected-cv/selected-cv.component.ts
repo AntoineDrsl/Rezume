@@ -26,7 +26,7 @@ export class SelectedCvComponent implements OnInit {
       err => {
 
       }
-    )
+    );
     // console.log(id);
   }
 

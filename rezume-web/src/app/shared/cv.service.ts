@@ -39,10 +39,9 @@ export class CvService {
 
     // -----------------------------
     // ICI PROBLEME DE LIAISON
-    getSelectedCV(id: string){
+    getSelectedCV(id){
       //Impossible d'envoyer l'id
-      console.log('Envoie de l id impossible, cv.service');
-      return this.http.get(environment.apiBaseUrl + '/getselectedcv');
+      return this.http.get(environment.apiBaseUrl + '/getselectedcv/:id', id);
     }
     // -----------------------------
 
