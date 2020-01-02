@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
 const _ = require('lodash');
+// const express = require('express');
 
 const User = mongoose.model('User');
 const CV = mongoose.model('cv');
+
+
 
 mongoose.set('useFindAndModify', false);
 
@@ -36,8 +39,9 @@ module.exports.getCV = (req, res, next) => {
 }
 
 module.exports.getSelectedCV = (req, res, next) => {
-    console.log('Coucou', req.query.id);
-    CV.findOne({ _id: req.query.id},
+
+    
+    CV.findOne({_id: req.params.id},
         (err, cv) =>{
             if(!cv) {
                 return res.status(404).json({status: false, message: 'Cv not found'});

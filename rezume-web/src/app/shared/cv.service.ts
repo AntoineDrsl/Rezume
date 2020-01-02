@@ -33,24 +33,22 @@ export class CvService {
       return this.http.post(environment.apiBaseUrl + '/createcv', cv);
     }
 
-    getCV(){
+    getCV() {
       return this.http.get(environment.apiBaseUrl + '/getcv');
     }
 
-    // -----------------------------
-    // ICI PROBLEME DE LIAISON
-    getSelectedCV(id){
-      //Impossible d'envoyer l'id
-      return this.http.get(environment.apiBaseUrl + '/getselectedcv/:id', id);
+
+    getSelectedCV(id) {
+      return this.http.get(environment.apiBaseUrl + '/getselectedcv/' + id);
     }
-    // -----------------------------
 
 
-    getAllCV(){
+
+    getAllCV() {
       return this.http.get(environment.apiBaseUrl + '/getallcv');
     }
 
-    updateCV(cv: CV){
+    updateCV(cv: CV) {
       return this.http.post(environment.apiBaseUrl + '/updatecv', cv);
     }
 }

@@ -18,7 +18,6 @@ export class GetAllCvComponent implements OnInit {
     this.cvService.getAllCV().subscribe(
       res => {
         this.allCv = res['cv'];
-        // console.log(this.allCv);
       },
       err => {}
     );

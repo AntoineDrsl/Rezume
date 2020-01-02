@@ -18,16 +18,17 @@ export class SelectedCvComponent implements OnInit {
 
     const id = this.route.snapshot.paramMap.get('id');
 
+
     this.cvService.getSelectedCV(id).subscribe(
       res => {
         this.cvDetails = res["cv"];
         console.log(this.cvDetails);
       },
       err => {
-
+        // console.log('Cv non récupéré');
       }
     );
-    // console.log(id);
+
   }
 
 }
