@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
 const _ = require('lodash');
+// const express = require('express');
 
 const User = mongoose.model('User');
 const CV = mongoose.model('cv');
+
+
 
 mongoose.set('useFindAndModify', false);
 
@@ -28,10 +31,25 @@ module.exports.getCV = (req, res, next) => {
                 return res.status(404).json({status: false, message: 'Cv not found'});
             }
             else{
-                return res.status(200).json({status: true, cv: _.pick(cv, ['user','age','research', 'experiences', 'degrees'])})
+                return res.status(200).json({status: true, cv: _.pick(cv, ['user','age','research', 'experiences', 'degrees'])});
             }
         }
 
+    );
+}
+
+module.exports.getSelectedCV = (req, res, next) => {
+
+    
+    CV.findOne({_id: req.params.id},
+        (err, cv) =>{
+            if(!cv) {
+                return res.status(404).json({status: false, message: 'Cv not found'});
+            }
+            else{
+                return res.status(200).json({status: true, cv: _.pick(cv, ['user','age','research', 'experiences', 'degrees'])});
+            }
+        }
     );
 }
 
@@ -75,7 +93,6 @@ module.exports.updateCv = (req, res, next) => {
     cvUpdate.degrees = req.body.degrees;
 
 
-
     CV.findOneAndUpdate({ _user: req._id}, {$set: {research:  cvUpdate.research, experiences: cvUpdate.experiences, degrees: cvUpdate.degrees, age: cvUpdate.age}},
         (err, cv) => {
             if(err){
@@ -92,3 +109,20 @@ module.exports.updateCv = (req, res, next) => {
     );
 }
 
+
+
+module.exports.getAllCv = (req, res, next) =>{
+    CV.find(
+        {},
+        (err, cv) =>{
+            if(!cv) {
+                return res.status(500).json({status: false, message: 'Cannot load all CV'});
+            }
+            else{
+                // console.log(cv);
+                
+                return res.status(200).json({status: true, cv});
+            }
+        }
+    );
+}

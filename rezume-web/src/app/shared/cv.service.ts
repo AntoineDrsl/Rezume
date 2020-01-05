@@ -33,11 +33,22 @@ export class CvService {
       return this.http.post(environment.apiBaseUrl + '/createcv', cv);
     }
 
-    getCV(){
+    getCV() {
       return this.http.get(environment.apiBaseUrl + '/getcv');
     }
 
-    updateCV(cv: CV){
+
+    getSelectedCV(id) {
+      return this.http.get(environment.apiBaseUrl + '/getselectedcv/' + id);
+    }
+
+
+
+    getAllCV() {
+      return this.http.get(environment.apiBaseUrl + '/getallcv');
+    }
+
+    updateCV(cv: CV) {
       return this.http.post(environment.apiBaseUrl + '/updatecv', cv);
     }
 }

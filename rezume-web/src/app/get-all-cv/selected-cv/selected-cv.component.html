@@ -1,0 +1,29 @@
+<table class="table-fill" *ngIf="cvDetails">
+  <thead>
+      <tr>
+          <th colspan="2" class="text-center">Votre CV :</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Votre age: </td>
+          <td>{{cvDetails.age}}</td>
+      </tr>
+      <tr>
+          <td>Recherche: </td>
+          <td>{{cvDetails.research}}</td>
+      </tr>
+      <tr *ngFor="let experience of cvDetails.experiences">
+          <td>Vos expériences: </td>
+          <td> {{experience}} </td>
+      </tr>
+      <tr *ngFor="let degree of cvDetails.degrees">
+          <td>Vos Diplômes: </td>
+          <td> {{degree}} </td>
+      </tr>
+  </tbody>
+</table>
+
+<p *ngIf="!cvDetails">
+  Aucun CV ne correspond a cet ID.
+</p>

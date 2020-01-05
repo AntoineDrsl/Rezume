@@ -36,9 +36,17 @@ router.post('/createcv', jwtHelper.verifyJwtToken, ctrlCV.createCV);
 //on recupere le cv 
 router.get('/getcv', jwtHelper.verifyJwtToken, ctrlCV.getCV);
 
+//on recupere le cv selectionne par l'user
+router.get('/getselectedcv/:id', jwtHelper.verifyJwtToken, ctrlCV.getSelectedCV);
+
 //on update le cv
 router.post('/updatecv', jwtHelper.verifyJwtToken, ctrlCV.updateCv);
 
-router.post('/uploadimage', jwtHelper.verifyJwtToken, upload.single('file'), ctrlCV.uploadImage)
+router.post('/uploadimage', jwtHelper.verifyJwtToken, upload.single('file'), ctrlCV.uploadImage);
+
+
+//on recupere tous les cv dans mongoDB
+router.get('/getallcv', jwtHelper.verifyJwtToken, ctrlCV.getAllCv);
+
 
 module.exports = router;

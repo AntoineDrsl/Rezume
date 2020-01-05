@@ -12,6 +12,7 @@ export class UserProfileComponent implements OnInit {
 
   userDetails;
   cvDetails;
+  serverErrorMessage: string;
 
   constructor(private userService: UserService, private router: Router, private cvService: CvService) { }
 
@@ -20,7 +21,10 @@ export class UserProfileComponent implements OnInit {
       res => {
         this.userDetails = res['user'];
       },
-      err => {}
+      err => {
+        this.serverErrorMessage = 'User Details couldn\'t be find, you will be redirected to another page.';
+        setTimeout(() => this.router.navigate(['/cvview']), 3000);
+      }
     );
 
     this.cvService.getCV().subscribe(
