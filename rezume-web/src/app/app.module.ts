@@ -24,7 +24,10 @@ import { CvUpdateComponent } from './student-profile/cvUpdate/cv-update/cv-updat
 import { CvViewComponent } from './student-profile/cv-view/cv-view.component';
 import { GetAllCvComponent } from './get-all-cv/get-all-cv.component';
 import { SelectedCvComponent } from './get-all-cv/selected-cv/selected-cv.component';
+import { SignUpStudentComponent } from './student/sign-up/sign-up-student/sign-up-student.component';
+import { SignUpCompanyComponent } from './student/sign-up/sign-up-company/sign-up-company.component';
 import { CompanyProfileComponent } from './company-profile/company-profile.component';
+
 
 @NgModule({
   declarations: [
@@ -38,6 +41,8 @@ import { CompanyProfileComponent } from './company-profile/company-profile.compo
     CvViewComponent,
     GetAllCvComponent,
     SelectedCvComponent,
+    SignUpStudentComponent,
+    SignUpCompanyComponent,
     CompanyProfileComponent
   ],
   imports: [

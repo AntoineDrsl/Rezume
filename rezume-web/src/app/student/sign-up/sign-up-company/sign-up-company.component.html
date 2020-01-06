@@ -1,0 +1,36 @@
+<form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
+  <input type="text" #company_name="ngModel" [(ngModel)]="companyService.selectedCompany.company_name" name="company_name" placeholder="Company name" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !fullName.valid }">
+  <div *ngIf="signUpForm.submitted && !company_name.valid">
+    <label class="validation-message">Veuillez entrer un nom d'entreprise.</label>
+  </div>
+  <input type="text" #email="ngModel" [(ngModel)]="companyService.selectedCompany.email" name="email" placeholder="Email" required [pattern]="emailRegex" [ngClass]="{'invalid-textbox' :signUpForm.submitted && !email.valid }">
+  <div *ngIf="signUpForm.submitted && email.errors">
+    <label *ngIf="email.errors.required" class="validation-message">Veuillez entrer une adresse email.</label>
+    <label *ngIf="email.errors.pattern" class="validation-message">Cette adresse email est invalide.</label>
+  </div>
+  <input type="text" #description="ngModel" [(ngModel)]="companyService.selectedCompany.description" name="description" placeholder="Description de l'entreprise" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !fullName.valid }">
+  <div *ngIf="signUpForm.submitted && !description.valid">
+    <label class="validation-message">Veuillez entrer une description de l'entreprise.</label>
+  </div>
+  <input type="password" #password="ngModel" [(ngModel)]="companyService.selectedCompany.password" name="password" placeholder="Password" required minlength="8" [ngClass]="{'invalid-textbox' :signUpForm.submitted && !password.valid }">
+  <div *ngIf="signUpForm.submitted && password.errors">
+    <label *ngIf="password.errors.required" class="validation-message">Veuillez entrer un mot de passe</label>
+    <label *ngIf="password.errors.minlength" class="validation-message">Votre mot de passe doit contenir au moins 8 caractères</label>
+  </div>
+  <input type="password" #confirmPassword="ngModel" [(ngModel)]="companyService.selectedCompany.confirmPassword" name="confirmPassword" placeholder="Confirm password" required pattern="{{password.value}}" [ngClass]="{'invalid-textbox' :signUpForm.submitted && !confirmPassword.valid }">
+  <div *ngIf="signUpForm.submitted && confirmPassword.errors">
+    <label *ngIf="confirmPassword.errors.required" class="validation-message">Veuillez confirmer votre mot de passe</label>
+    <label *ngIf="confirmPassword.errors.pattern" class="validation-message">Vos mots de passe ne correspondent pas</label>
+  </div>
+  <input type="submit" value="Sign Up">
+</form>
+
+<!-- Success message -->
+<div class="success" *ngIf="showSuccessMessage">
+  Vous êtes inscrit !
+</div>
+
+<!-- Error message -->
+<div class="alert" *ngIf="serverErrorMessages">
+  {{serverErrorMessages}}
+</div>
