@@ -4,6 +4,7 @@ const multer = require('multer');
 
 const ctrlUser = require('../controllers/user.controller');
 const ctrlCV = require('../controllers/cv.controller');
+const ctrlCompany = require('../controllers/company.controller');
 const jwtHelper = require('../config/jwtHelper');
 
 //Définition des variables de stockage
@@ -47,6 +48,14 @@ router.post('/uploadimage', jwtHelper.verifyJwtToken, upload.single('file'), ctr
 
 //on recupere tous les cv dans mongoDB
 router.get('/getallcv', jwtHelper.verifyJwtToken, ctrlCV.getAllCv);
+
+
+//on creer un compte company
+router.post('/registercompany', ctrlCompany.register);
+
+//on recherche un compte entreprise 
+router.post('/authenticatecompany', ctrlCompany.authenticate);
+
 
 
 module.exports = router;
