@@ -186,7 +186,7 @@ label.validation-message{
   height: 50px;
   font-size: 16px;
   text-align: center;
-  padding-bottom: 20px;
+  margin-bottom: 10px;
 }
 .title-cv{
   color: #D5DDE5;

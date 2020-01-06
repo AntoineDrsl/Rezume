@@ -11,7 +11,7 @@
             <h2 class="underlineHover">Quelques infos pour ton CV</h2>
             <form [formGroup]="cvForm" (ngSubmit)="onSubmit(cvForm)">
                 <div class="form-group">
-                    <input type="number" formControlName="age" class="form-control" placeholder="Ton âge">
+                    <input type="number" formControlName="age" class="form-control age" placeholder="Ton âge">
                     <div *ngIf="age.touched && age.invalid">
                         <label class="validation-message">Veuillez entrer votre âge</label>
                     </div>
