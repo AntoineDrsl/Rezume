@@ -3,12 +3,12 @@ import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { Router } from "@angular/router";
 
-import { UserService } from "../shared/user.service";
+import { StudentService } from "../shared/student.service";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-    constructor(private userService: UserService, private router: Router){}
+    constructor(private studentService: StudentService, private router: Router){}
 
     intercept(req: HttpRequest<any>, next: HttpHandler) {
 
@@ -16,7 +16,7 @@ export class AuthInterceptor implements HttpInterceptor {
             return next.handle(req.clone());
         } else {
             const clonedreq = req.clone({
-               headers: req.headers.set("Authorization", "Bearer " + this.userService.getToken()) 
+               headers: req.headers.set("Authorization", "Bearer " + this.studentService.getToken()) 
             });
             return next.handle(clonedreq).pipe(
                 tap(

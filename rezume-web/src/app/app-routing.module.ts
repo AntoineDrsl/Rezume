@@ -1,28 +1,28 @@
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UserComponent } from './user/user.component';
-import { SignUpComponent } from './user/sign-up/sign-up.component';
-import { SignInComponent } from './user/sign-in/sign-in.component'
-import { UserProfileComponent } from './user-profile/user-profile.component';
+import { StudentComponent } from './student/student.component';
+import { SignUpComponent } from './student/sign-up/sign-up.component';
+import { SignInComponent } from './student/sign-in/sign-in.component'
+import { StudentProfileComponent } from './student-profile/student-profile.component';
 import { AuthGuard } from './auth/auth.guard';
 import { CvCreationComponent } from './cv-creation/cv-creation.component';
-import { CvUpdateComponent } from './user-profile/cvUpdate/cv-update/cv-update.component';
-import { CvViewComponent } from './user-profile/cv-view/cv-view.component';
+import { CvUpdateComponent } from './student-profile/cvUpdate/cv-update/cv-update.component';
+import { CvViewComponent } from './student-profile/cv-view/cv-view.component';
 import { GetAllCvComponent } from './get-all-cv/get-all-cv.component';
 import { SelectedCvComponent } from './get-all-cv/selected-cv/selected-cv.component';
 
 
 export const routes: Routes = [
   {
-    path: 'signup', component: UserComponent,
+    path: 'signup', component: StudentComponent,
     children: [{ path: '', component: SignUpComponent }]
   },
   {
-    path: 'login', component: UserComponent,
+    path: 'login', component: StudentComponent,
     children: [{ path: '', component: SignInComponent }]
   },
   {
-    path: 'userprofile', component: UserProfileComponent, canActivate: [AuthGuard]
+    path: 'studentprofile', component: StudentProfileComponent, canActivate: [AuthGuard]
   },
   {
     path: 'cvcreation', component: CvCreationComponent, canActivate: [AuthGuard]
