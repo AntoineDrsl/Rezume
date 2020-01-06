@@ -27,7 +27,6 @@ module.exports.register = (req, res, next) => {
 module.exports.authenticate = (req, res, next) => {
     //On appelle la méthode d'authentification configurée dans passportConfig.js
     passport.authenticate('local', (err, student, info) => {
-        console.log('coucou')
         //Si il y a une erreur on la retourne
         if (err) return res.status(400).json(err);
         //Si student est retourné (seulement si ça réussi), on crée un JsonWebToken grâce à la méthode définie dans student.model.js
