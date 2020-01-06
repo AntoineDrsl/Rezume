@@ -4,6 +4,7 @@ import { StudentComponent } from './student/student.component';
 import { SignUpComponent } from './student/sign-up/sign-up.component';
 import { SignInComponent } from './student/sign-in/sign-in.component'
 import { StudentProfileComponent } from './student-profile/student-profile.component';
+import { CompanyProfileComponent } from './company-profile/company-profile.component';
 import { AuthGuard } from './auth/auth.guard';
 import { CvCreationComponent } from './cv-creation/cv-creation.component';
 import { CvUpdateComponent } from './student-profile/cvUpdate/cv-update/cv-update.component';
@@ -23,6 +24,9 @@ export const routes: Routes = [
   },
   {
     path: 'studentprofile', component: StudentProfileComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'companyprofile', component: CompanyProfileComponent, canActivate: [AuthGuard]
   },
   {
     path: 'cvcreation', component: CvCreationComponent, canActivate: [AuthGuard]
