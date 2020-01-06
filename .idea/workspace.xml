@@ -1,23 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="a00909e6-86f2-49c0-9cf3-8af64a32f04d" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+=======
+    <list default="true" id="01943791-08bc-4cf4-9633-1e1087550c97" name="Default Changelist" comment="" />
+>>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< Updated upstream
   <component name="ComposerSettings">
     <execution>
       <executable />
     </execution>
+=======
+  <component name="FavoritesManager">
+    <favorites_list name="rezume_web" />
+>>>>>>> Stashed changes
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+<<<<<<< Updated upstream
   <component name="ProjectId" id="1U9zpgl3FJs4XvYnYiwYMt2btvU" />
   <component name="PropertiesComponent">
+=======
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="$PROJECT_DIR$/.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectId" id="1V7XBj7FbRlKyHMF3vzjGnKxOz1" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+>>>>>>> Stashed changes
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -26,6 +54,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+<<<<<<< Updated upstream
     <property name="ts.external.directory.path" value="C:\Users\lucas\Documents\GitHub\rezume_web\rezume-web\node_modules\typescript\lib" />
   </component>
   <component name="RunDashboard">
@@ -37,6 +66,18 @@
         <RuleState>
           <option name="name" value="StatusDashboardGroupingRule" />
         </RuleState>
+=======
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+>>>>>>> Stashed changes
       </list>
     </option>
   </component>
@@ -45,6 +86,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+<<<<<<< Updated upstream
       <changelist id="a00909e6-86f2-49c0-9cf3-8af64a32f04d" name="Default Changelist" comment="" />
       <created>1574783783230</created>
       <option name="number" value="Default" />
@@ -53,12 +95,25 @@
       <workItem from="1574783784913" duration="4955000" />
       <workItem from="1574860593628" duration="10000" />
       <workItem from="1576598417625" duration="5355000" />
+=======
+      <changelist id="01943791-08bc-4cf4-9633-1e1087550c97" name="Default Changelist" comment="" />
+      <created>1576604973668</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1576604973668</updated>
+      <workItem from="1576604977010" duration="314000" />
+      <workItem from="1576605360140" duration="769000" />
+      <workItem from="1576606343468" duration="533000" />
+      <workItem from="1576607011005" duration="1570000" />
+      <workItem from="1578224445804" duration="5170000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+<<<<<<< Updated upstream
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -72,4 +127,6 @@
       </map>
     </option>
   </component>
+=======
+>>>>>>> Stashed changes
 </project>
