@@ -16,12 +16,14 @@
                         <label class="validation-message">Veuillez entrer votre âge</label>
                     </div>
                 </div>
+              <hr class="separator-line">
                 <div class="form-group">
                     <input type="text" formControlName="research" class="form-control" placeholder="Ton domaine de recherche">
                     <div *ngIf="research.touched && research.invalid">
                         <label class="validation-message">Veuillez entrer votre secteur de recherche</label>
                     </div>
                 </div>
+              <hr class="separator-line">
                 <div formGroupName="experiences">
                     <legend>Tes expériences | <span style="font-weight: bold; cursor: pointer" (click)="addExperience()">+</span></legend>
                     <div class="input-group" *ngFor="let experienceControl of cvForm.get('experiences').controls; let i = index">
@@ -29,6 +31,7 @@
                         <span class="input-group-addon" id="basic-addon2" (click)="deleteExperience(i)" style="cursor: pointer">❌</span>
                     </div>
                 </div>
+              <hr class="separator-line">
                 <div formGroupName="degrees">
                     <legend>Tes diplômes | <span style="font-weight: bold; cursor: pointer" (click)="addDegree()">+</span></legend>
                     <div class="input-group" *ngFor="let degreeControl of cvForm.get('degrees').controls; let i = index">
@@ -36,6 +39,7 @@
                         <span class="input-group-addon" id="basic-addon2" (click)="deleteDegree(i)" style="cursor: pointer">❌</span>
                     </div>
                 </div>
+              <hr class="separator-line">
                 <div class="form-group">
                     <input id="file" type="file" class="input-file" formControlName="image" (change)="onFileChange($event)" #fileInput>
                     <label for="file" class="label-file">Choisir un fichier</label>
