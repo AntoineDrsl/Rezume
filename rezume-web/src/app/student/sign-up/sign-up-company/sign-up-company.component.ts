@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+
 
 import { CompanyService } from '../../../shared/company.service';
 
@@ -14,7 +16,7 @@ export class SignUpCompanyComponent implements OnInit {
   showSuccessMessage: boolean;
   serverErrorMessages: string;
 
-  constructor(private companyService: CompanyService) { }
+  constructor(private companyService: CompanyService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -25,6 +27,8 @@ export class SignUpCompanyComponent implements OnInit {
         this.showSuccessMessage = true;
         setTimeout(() => this.showSuccessMessage = false, 4000);
         this.resetForm(form);
+        setTimeout(() => this.router.navigate(['/login']), 1000);
+
       },
       err => {
         if (err.status == 422) {
