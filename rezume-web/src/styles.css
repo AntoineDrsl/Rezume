@@ -10,6 +10,7 @@ html {
 body {
   font-family: "Poppins", sans-serif;
   height: 100vh;
+  margin: 0;
 }
 
 a {
@@ -87,7 +88,7 @@ input[type=button], input[type=submit], input[type=reset]  {
   background-color: #33317c;
   border: none;
   color: white;
-  padding: 15px 80px;
+  padding: 20px 80px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -96,7 +97,7 @@ input[type=button], input[type=submit], input[type=reset]  {
   -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
   box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
   -webkit-border-radius: 5px 5px 5px 5px;
-  border-radius: 5px 5px 5px 5px;
+  border-radius: 20px;
   margin: 5px 20px 40px 20px;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
@@ -106,7 +107,8 @@ input[type=button], input[type=submit], input[type=reset]  {
 }
 
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
-  background-color: #72679f;
+  background-color: #E5E4E4;
+  color: #33317c;
 }
 
 input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
@@ -302,17 +304,22 @@ label.validation-message{
   border-radius:3px;
   border-collapse: collapse;
   height: 320px;
-  margin: auto;
-  max-width: 600px;
-  padding:5px;
   width: 100%;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   animation: float 5s infinite;
+}
+.wrapper-bc{
+  background-color: #72679f;
+  height: 100vh;
+}
+.button-cv{
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
 }
 
 th {
   color:#D5DDE5;;
-  background:#1b1e24;
+  background:#33317c;
   border-bottom:4px solid #9ea7af;
   border-right: 1px solid #343a45;
   font-size:23px;
@@ -380,9 +387,6 @@ th.text-left {
   text-align: left;
 }
 
-th.text-center {
-  text-align: center;
-}
 
 th.text-right {
   text-align: right;
@@ -399,3 +403,4 @@ td.text-center {
 td.text-right {
   text-align: right;
 }
+
