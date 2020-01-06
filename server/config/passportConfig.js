@@ -3,15 +3,15 @@ const localStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
 
 var Student = mongoose.model('Student');
+var Company = mongoose.model('Company')
 
 passport.use(
     //On détermine les conditions de connexion (ici, on utilisera le mail plutôt que le username)
     new localStrategy({ usernameField: 'email', passReqToCallback: true},
         (req, username, password, done) => {
             if(req.body.statut == "student") {
-                console.log('coucou')
                 Student.findOne({ email: username },
-                    (err, user) => {
+                    (err, student) => {
                         //Si il y a une erreur on la retourne
                         if (err) {
                             return done(err);
@@ -45,8 +45,7 @@ passport.use(
                         }
                     }
                 );
-            }
-            else {
+            } else {
                 return done(null, false, {message: 'Statut not defined'});
             }
         })

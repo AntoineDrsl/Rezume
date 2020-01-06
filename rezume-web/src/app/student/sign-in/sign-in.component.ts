@@ -23,6 +23,7 @@ export class SignInComponent implements OnInit {
   }
 
   model = {
+    statut : 'student',
     email : '',
     password : ''
   };
@@ -32,9 +33,12 @@ export class SignInComponent implements OnInit {
     this.studentService.login(form.value).subscribe(
       res => {
         //On stock le tocken renvoyé
-        console.log('coucou')
         this.studentService.setToken(res['token']);
-        this.router.navigateByUrl('/studentprofile');
+        if(this.model.statut == "student") {
+          this.router.navigateByUrl('/studentprofile');
+        } else if(this.model.statut == "company") {
+          this.router.navigateByUrl('/companyprofile')
+        }
       },
       err => {
         this.serverErrorMessages = err.error.message;

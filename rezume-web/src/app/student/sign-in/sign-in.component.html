@@ -1,7 +1,12 @@
 <div>
-    <img src="/assets/images/IconeRezume.svg" alt="icon" id="icon">
+    <img src="/assets/images/LogoRezume.svg" alt="icon" id="icon">
 </div>
 <form #signInForm="ngForm" (ngSubmit)="signInForm.valid && onSubmit(signInForm)">
+    <label>Vous êtes: </label>
+    <select name="statut" #statut="ngModel" [(ngModel)]="model.statut" required [ngClass]="{'invalid-textbox' :signInForm.submitted && !statut.valid }">
+        <option value="student">un étudiant</option>
+        <option value="company">une entreprise</option>
+    </select>
     <input type="text" name="email" #email="ngModel" [(ngModel)]="model.email" placeholder="Email" [pattern]="emailRegex" required [ngClass]="{ 'invalid-textbox' : signInForm.submitted && !email.valid }">
         <div *ngIf="signInForm.submitted && email.errors?.pattern">
             <label class="validation-message">Invalid email adress.</label>
