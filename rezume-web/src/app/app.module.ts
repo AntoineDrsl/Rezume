@@ -24,6 +24,7 @@ import { CvUpdateComponent } from './student-profile/cvUpdate/cv-update/cv-updat
 import { CvViewComponent } from './student-profile/cv-view/cv-view.component';
 import { GetAllCvComponent } from './get-all-cv/get-all-cv.component';
 import { SelectedCvComponent } from './get-all-cv/selected-cv/selected-cv.component';
+import { CompanyProfileComponent } from './company-profile/company-profile.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { SelectedCvComponent } from './get-all-cv/selected-cv/selected-cv.compon
     CvUpdateComponent,
     CvViewComponent,
     GetAllCvComponent,
-    SelectedCvComponent
+    SelectedCvComponent,
+    CompanyProfileComponent
   ],
   imports: [
     BrowserModule,

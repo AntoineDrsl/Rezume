@@ -13,7 +13,6 @@ export class SignInComponent implements OnInit {
 
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   serverErrorMessages: string;
-  statut: string;
 
   constructor(private studentService: StudentService, private router: Router) { }
 
@@ -35,7 +34,11 @@ export class SignInComponent implements OnInit {
       res => {
         //On stock le tocken renvoyé
         this.studentService.setToken(res['token']);
-        this.router.navigateByUrl('/studentprofile');
+        if(this.model.statut == "student") {
+          this.router.navigateByUrl('/studentprofile');
+        } else if(this.model.statut == "company") {
+          this.router.navigateByUrl('/companyprofile')
+        }
       },
       err => {
         this.serverErrorMessages = err.error.message;
