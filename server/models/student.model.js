@@ -3,18 +3,22 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 var studentSchema = new mongoose.Schema({
-    fullName: {
+    firstName: {
         type: String,
-        required: 'Full name can\'t be empty'
+        required: 'Fullname cannot be empty'
+    },
+    lastName: {
+        type: String,
+        required: 'Lastname cannot be empty'
     },
     email: {
         type: String,
-        required: 'Email can\'t be empty',
+        required: 'Email cannot be empty',
         unique: true
     },
     password: {
         type: String,
-        required: 'Password can\'t be empty',
+        required: 'Password cannot be empty',
         minlength: [8, 'Password must be atleast 8 character long']
     },
     saltSecret: String

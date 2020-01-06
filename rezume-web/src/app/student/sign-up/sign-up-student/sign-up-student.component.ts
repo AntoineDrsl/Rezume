@@ -37,7 +37,8 @@ export class SignUpStudentComponent implements OnInit {
 
   resetForm(form: NgForm) {
     this.studentService.selectedStudent = {
-      fullName: '',
+      firstName: '',
+      lastName: '',
       email: '',
       password: '',
       confirmPassword: ''
