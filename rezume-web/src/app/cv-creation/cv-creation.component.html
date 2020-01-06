@@ -27,9 +27,15 @@
                [ngClass]="{'invalid-textbox' :cvCreationForm.submitted && !experience.valid }">
         <input type="text" #degree="ngModel" [(ngModel)]="cvService.selectedCV.degree" name="degree"
                placeholder="Tes diplômes" [ngClass]="{'invalid-textbox' :cvCreationForm.submitted && !degree.valid }">
-        <input type="file" name="image" (change)="selectImage($event)">
+        <input id="file" class="input-file" type="file" name="image" (change)="selectImage($event)">
+        <br><br>
+        <label for="file" class="label-file">Choisir un fichier</label>
+
         <br><br>
         <input type="submit" value="Créé ton CV">
+
+
+
       </form>
     </div>
 

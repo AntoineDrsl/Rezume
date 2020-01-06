@@ -67,6 +67,19 @@ h2 {
 }
 
 
+.label-file {
+  cursor: pointer;
+  color: #33317c;
+  font-weight: bold;
+}
+.label-file:hover {
+  color: #25a5c4;
+}
+
+   .input-file {
+     display: none;
+   }
+
 
 /* TABS */
 
