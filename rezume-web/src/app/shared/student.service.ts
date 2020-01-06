@@ -8,11 +8,10 @@ import { Student } from './student.model';
   providedIn: 'root'
 })
 export class StudentService {
-  
+
   selectedStudent: Student = {
     fullName: '',
     email: '',
-    status: '',
     password: '',
     confirmPassword: ''
   };

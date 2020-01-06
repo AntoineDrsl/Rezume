@@ -19,7 +19,7 @@ var companySchema = new mongoose.Schema({
     },
     siret: {
         type: String,
-        required: 'Siret field cannot be empty'
+        // required: 'Siret field cannot be empty'
     },
     favorites: [
         { type: String }

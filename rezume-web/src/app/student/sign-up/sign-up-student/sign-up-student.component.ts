@@ -39,7 +39,6 @@ export class SignUpStudentComponent implements OnInit {
     this.studentService.selectedStudent = {
       fullName: '',
       email: '',
-      status: '',
       password: '',
       confirmPassword: ''
     };

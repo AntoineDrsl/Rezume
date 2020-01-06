@@ -81,7 +81,7 @@ export class CvCreationComponent implements OnInit {
       res => {
         this.showSuccessMessage = true;
         setTimeout(() => this.showSuccessMessage = false, 3000);
-        setTimeout(() => this.router.navigate(['/studentprofile']), 4000);
+        setTimeout(() => this.router.navigate(['/studentprofile']), 1000);
 
         form.reset()
       },
