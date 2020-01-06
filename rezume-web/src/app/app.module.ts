@@ -7,30 +7,30 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 //component imports
 import { AppComponent } from './app.component';
-import { UserComponent } from './user/user.component';
-import { SignUpComponent } from './user/sign-up/sign-up.component';
+import { StudentComponent } from './student/student.component';
+import { SignUpComponent } from './student/sign-up/sign-up.component';
 
 //routes
 import { AppRoutingModule } from './app-routing.module';
-import { UserProfileComponent } from './user-profile/user-profile.component';
-import { SignInComponent } from './user/sign-in/sign-in.component';
-import { UserService } from './shared/user.service';
+import { StudentProfileComponent } from './student-profile/student-profile.component';
+import { SignInComponent } from './student/sign-in/sign-in.component';
+import { StudentService } from './shared/student.service';
 
 //other
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { CvCreationComponent } from './cv-creation/cv-creation.component';
-import { CvUpdateComponent } from './user-profile/cvUpdate/cv-update/cv-update.component';
-import { CvViewComponent } from './user-profile/cv-view/cv-view.component';
+import { CvUpdateComponent } from './student-profile/cvUpdate/cv-update/cv-update.component';
+import { CvViewComponent } from './student-profile/cv-view/cv-view.component';
 import { GetAllCvComponent } from './get-all-cv/get-all-cv.component';
 import { SelectedCvComponent } from './get-all-cv/selected-cv/selected-cv.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent,
+    StudentComponent,
     SignUpComponent,
-    UserProfileComponent,
+    StudentProfileComponent,
     SignInComponent,
     CvCreationComponent,
     CvUpdateComponent,
@@ -51,7 +51,7 @@ import { SelectedCvComponent } from './get-all-cv/selected-cv/selected-cv.compon
     multi: true
   },
   AuthGuard,
-  UserService],
+  StudentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

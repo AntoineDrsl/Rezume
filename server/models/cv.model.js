@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 var cvSchema = new mongoose.Schema({
-    _user: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'User'
+    _student: {
+        type: mongoose.Schema.Types.ObjectId, ref: 'Student'
     },
     age: String,
     research: String,
