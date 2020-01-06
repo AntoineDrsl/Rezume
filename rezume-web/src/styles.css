@@ -40,7 +40,7 @@ h2 {
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  padding: 20px;
+  padding: 70px;
 }
 
 .formContent {
@@ -95,7 +95,7 @@ input[type=button], input[type=submit], input[type=reset]  {
   text-transform: uppercase;
   font-size: 13px;
   -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
-  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  box-shadow: 0 10px 30px 0 rgba(229, 228, 228,0.2);
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 20px;
   margin: 5px 20px 40px 20px;
@@ -162,7 +162,23 @@ label.validation-message{
   color:#ed5558;
 }
 
-
+.age{
+  text-decoration: none;
+  background-color: #f6f6f6;
+  border: none;
+  color: #0d0d0d;
+  width: 200px;
+  height: 50px;
+  font-size: 16px;
+  text-align: center;
+}
+.title-cv{
+  color: #D5DDE5;
+  font-size: 23px;
+  font-weight: 100;
+  padding: 20px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
 
 /* ANIMATIONS */
 
@@ -303,7 +319,6 @@ label.validation-message{
 
 /* Table Styles */
 .table-fill {
-  background:#33317c;
   border-collapse: collapse;
   height: 320px;
   width: 80%;
@@ -312,6 +327,10 @@ label.validation-message{
 .wrapper-bc{
   background-color: #72679f;
   height: 100vh;
+}
+.wrapper-flex{
+  display: flex;
+  justify-content: center;
 }
 .button-cv{
   display: flex;
@@ -388,7 +407,7 @@ td {
   font-weight:300;
   font-size:18px;
   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
- border-right: 1px solid #C1C3D1;
+  border-right: 1px solid #C1C3D1;
 }
 
 td:last-child {

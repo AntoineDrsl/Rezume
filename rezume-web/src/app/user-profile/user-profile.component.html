@@ -1,18 +1,18 @@
 <div class="wrapper-bc">
-  <div>
-    <thead>
-    <img src="/assets/images/IconeRezume.svg" alt="icon" id="icon-profile">
-    <th colspan="2" class="text-center" *ngIf="userDetails.status === 'student'">Vous êtes connecté en tant
-      qu'étudiant
-    </th>
-    <th colspan="2" class="text-center" *ngIf="userDetails.status === 'company'">Vous êtes connecté en tant
-      qu'entreprise
-    </th>
-    <th colspan="2" class="text-center" *ngIf="userDetails.status === 'admin'">Vous êtes connecté en tant
-      qu'administrateur
-    </th>
-    </thead>
-  </div>
+
+  <thead>
+  <img src="/assets/images/IconeRezume.svg" alt="icon" id="icon-profile">
+  <th colspan="2" class="text-center" *ngIf="userDetails.status === 'student'">Vous êtes connecté en tant
+    qu'étudiant
+  </th>
+  <th colspan="2" class="text-center" *ngIf="userDetails.status === 'company'">Vous êtes connecté en tant
+    qu'entreprise
+  </th>
+  <th colspan="2" class="text-center" *ngIf="userDetails.status === 'admin'">Vous êtes connecté en tant
+    qu'administrateur
+  </th>
+  </thead>
+
   <div class="separator">
     <p>Mes informations :</p>
   </div>
