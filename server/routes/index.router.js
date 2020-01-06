@@ -29,6 +29,7 @@ router.post('/authenticate', ctrlStudent.authenticate);
 //Ici on utilise get car on va prendre des infos, pas en envoyer
 //On appelle la fonction verifyJwtToken() de jwtHelper pour sécuriser l'accès à cette page
 router.get('/studentprofile', jwtHelper.verifyJwtToken, ctrlStudent.studentProfile);
+router.get('/companyprofile', jwtHelper.verifyJwtToken, ctrlCompany.companyProfile)
 
 // '/api/createcv'
 router.get('/createcv', jwtHelper.verifyJwtToken, ctrlCV.getIdAndName);

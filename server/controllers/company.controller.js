@@ -22,3 +22,15 @@ module.exports.register = (req, res, next) => {
         }
     });
 }
+
+module.exports.companyProfile = (req, res, next) => {
+    Company.findOne({ _id: req._id },
+        (err, company) => {
+            if (!company) {
+                return res.status(404).json({ status: false, message: 'Company record not found'});
+            } else {
+                return res.status(200).json({ status: true, company: _.pick(company, ['company_name', 'email', 'description']) });
+            }
+        }
+    );
+}
