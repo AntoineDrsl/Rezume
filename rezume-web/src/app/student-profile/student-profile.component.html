@@ -2,17 +2,10 @@
 
     <thead>
     <img src="/assets/images/IconeRezume.svg" alt="icon" id="icon-profile">
-    <th colspan="2" class="text-center" *ngIf="studentDetails.status === 'student'">Vous êtes connecté en tant
-      qu'étudiant
-    </th>
-    <th colspan="2" class="text-center" *ngIf="studentDetails.status === 'company'">Vous êtes connecté en tant
-      qu'entreprise
-    </th>
-    <th colspan="2" class="text-center" *ngIf="studentDetails.status === 'admin'">Vous êtes connecté en tant
-      qu'administrateur
+    <th colspan="2" class="text-center">Vous êtes connecté en tant qu'étudiant
     </th>
     </thead>
-  
+
     <div class="separator">
       <p>Mes informations :</p>
     </div>
@@ -29,10 +22,6 @@
       <tr>
         <td>Email</td>
         <td>{{studentDetails.email}}</td>
-      </tr>
-      <tr>
-        <td>Statut</td>
-        <td>{{studentDetails.status}}</td>
       </tr>
       </tbody>
     </table>

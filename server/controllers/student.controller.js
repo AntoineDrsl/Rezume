@@ -42,7 +42,7 @@ module.exports.studentProfile = (req, res, next) => {
             if (!student) {
                 return res.status(404).json({ status: false, message: 'Student record not found'});
             } else {
-                return res.status(200).json({ status: true, student: _.pick(student, ['fullName', 'email', 'status']) });
+                return res.status(200).json({ status: true, student: _.pick(student, ['fullName', 'email']) });
             }
         }
     );
