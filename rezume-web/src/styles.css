@@ -279,7 +279,7 @@ label.validation-message{
   padding: 10px 20px 10px 0;
 }
 #icon-profile{
-  width: 12%;
+  width: 8%;
   padding: 10px;
 }
 * {
@@ -304,10 +304,9 @@ label.validation-message{
 /* Table Styles */
 .table-fill {
   background:#33317c;
-  border-radius:3px;
   border-collapse: collapse;
   height: 320px;
-  width: 100%;
+  width: 80%;
   animation: float 5s infinite;
 }
 .wrapper-bc{
@@ -318,6 +317,15 @@ label.validation-message{
   display: flex;
   justify-content: center;
   padding-top: 50px;
+}
+.separator{
+  height: 150px;
+  background-color: #72679f;
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-size: 30px;
+  padding-top: 20px;
 }
 
 thead{
