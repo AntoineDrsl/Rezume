@@ -346,10 +346,17 @@ label.validation-message{
 .wrapper-bc, .wrapper-bc-cv{
   background-color: #72679f;
 }
+.wrapper-bc{
+  height: 100vh;
+}
 .wrapper-bc-cv{
   height: 200vh;
 }
 .wrapper-flex{
+  display: flex;
+  justify-content: center;
+}
+.wrapper-table{
   display: flex;
   justify-content: center;
 }
