@@ -51,7 +51,13 @@ router.post('/uploadimage', jwtHelper.verifyJwtToken, upload.single('file'), ctr
 router.get('/getallcv', jwtHelper.verifyJwtToken, ctrlCV.getAllCv);
 
 //COMPANIES
-router.post('/registercompany', ctrlCompany.register)
+router.post('/registercompany', ctrlCompany.register);
+
+//Ajouter CV en favori
+router.get('/addfavorite/:id', jwtHelper.verifyJwtToken, ctrlCompany.addFavorite);
+
+//Remove CV en favori
+router.get('/removefavorite/:id', jwtHelper.verifyJwtToken, ctrlCompany.removeFavorite);
 
 
 module.exports = router;

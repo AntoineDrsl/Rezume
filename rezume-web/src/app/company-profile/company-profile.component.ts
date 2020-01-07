@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class CompanyProfileComponent implements OnInit {
 
   companyDetails;
-  serverErrorMessage: String;
+  serverErrorMessage: boolean;
 
 
   constructor(private companyService: CompanyService, private router: Router) { }
@@ -21,8 +21,8 @@ export class CompanyProfileComponent implements OnInit {
         this.companyDetails = res['company'];
       },
       err => {
-        this.serverErrorMessage = "Company Details couldn\'t be find, you will be redirected to another page.";
-        setTimeout(() => this.router.navigate(['/cvview']), 1000);
+        this.serverErrorMessage = true;
+        setTimeout(() => this.router.navigate(['/login']), 1000);
       }
     );
   }
