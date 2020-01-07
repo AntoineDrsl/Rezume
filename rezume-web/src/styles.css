@@ -476,6 +476,12 @@ input.button-submitCV{
   margin: 20px;
 }
 
+.ageCV{
+  display: inline-grid;
+}
+.ageCVlabel{
+  margin: 10px 0;
+}
 .icon-delete{
   width: 15px;
 }

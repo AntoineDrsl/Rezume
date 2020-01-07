@@ -27,8 +27,10 @@
         <div formGroupName="experiences" class="experiences">
           <div class="category">
             <legend>Tes expériences</legend>
-            <span style="font-weight: bold; cursor: pointer" (click)="addExperience()"><img
-              src="/assets/images/plus.svg" alt="icon" class="icon-plus"></span></div>
+            <span style="font-weight: bold; cursor: pointer" (click)="addExperience()">
+              <img src="/assets/images/plus.svg" alt="icon" class="icon-plus">
+            </span>
+          </div>
           <div class="input-group" *ngFor="let experienceControl of cvForm.get('experiences').controls; let i = index">
             <input type="text" class="form-control" [formControlName]="i">
             <span class="input-group-addon" id="basic-addon2" (click)="deleteExperience(i)" style="cursor: pointer"><img
@@ -39,9 +41,10 @@
         <div formGroupName="degrees" class="degrees">
           <div class="category">
             <legend>Tes diplômes</legend>
-            <span style="font-weight: bold; cursor: pointer" (click)="addDegree()"><img src="/assets/images/plus.svg"
-                                                                                        alt="icon"
-                                                                                        class="icon-plus"></span></div>
+            <span style="font-weight: bold; cursor: pointer" (click)="addDegree()">
+              <img src="/assets/images/plus.svg" alt="icon" class="icon-plus">
+            </span>
+          </div>
           <div class="input-group" *ngFor="let degreeControl of cvForm.get('degrees').controls; let i = index">
             <input type="text" class="form-control" [formControlName]="i">
             <span class="input-group-addon" id="basic-addon2" (click)="deleteDegree(i)" style="cursor: pointer"><img
