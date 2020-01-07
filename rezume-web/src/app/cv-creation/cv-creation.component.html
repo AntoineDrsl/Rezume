@@ -25,18 +25,18 @@
                 </div>
               <hr class="separator-line">
                 <div formGroupName="experiences" class="experiences">
-                    <legend>Tes expériences | <span style="font-weight: bold; cursor: pointer" (click)="addExperience()">+</span></legend>
+                    <div class="category"><legend>Tes expériences</legend> <span style="font-weight: bold; cursor: pointer" (click)="addExperience()"><img src="/assets/images/plus.svg" alt="icon" class="icon-plus"></span></div>
                     <div class="input-group" *ngFor="let experienceControl of cvForm.get('experiences').controls; let i = index">
                         <input type="text" class="form-control" [formControlName]="i">
-                        <span class="input-group-addon" id="basic-addon2" (click)="deleteExperience(i)" style="cursor: pointer">❌</span>
+                        <span class="input-group-addon" id="basic-addon2" (click)="deleteExperience(i)" style="cursor: pointer"><img src="/assets/images/delete.svg" alt="icon" class="icon-delete"></span>
                     </div>
                 </div>
               <hr class="separator-line">
                 <div formGroupName="degrees" class="degrees">
-                    <legend>Tes diplômes | <span style="font-weight: bold; cursor: pointer" (click)="addDegree()">+</span></legend>
+                    <div class="category"><legend>Tes diplômes</legend> <span style="font-weight: bold; cursor: pointer" (click)="addDegree()"><img src="/assets/images/plus.svg" alt="icon" class="icon-plus"></span></div>
                     <div class="input-group" *ngFor="let degreeControl of cvForm.get('degrees').controls; let i = index">
                         <input type="text" class="form-control" [formControlName]="i">
-                        <span class="input-group-addon" id="basic-addon2" (click)="deleteDegree(i)" style="cursor: pointer">❌</span>
+                        <span class="input-group-addon" id="basic-addon2" (click)="deleteDegree(i)" style="cursor: pointer"><img src="/assets/images/delete.svg" alt="icon" class="icon-delete"></span>
                     </div>
                 </div>
               <hr class="separator-line">

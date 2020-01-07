@@ -466,3 +466,15 @@ input.button-submitCV{
 .degrees, .experiences, .search, .placeAge{
   margin: 20px;
 }
+
+.icon-delete{
+  width: 15px;
+}
+.icon-plus{
+  width: 20px;
+  margin: 2px 5px;
+}
+.category{
+  display: flex;
+  justify-content: center;
+}
