@@ -23,10 +23,10 @@ var upload = multer({ storage: storage })
 //Définition des variables de stockage Job
 const storageJob = multer.diskStorage({
     destination: (req, file, callBack) => {
-        callBack(null, `./uploads/cv`)
+        callBack(null, `./uploads/job`)
     },
     filename: (req, file, callBack) => {
-        callBack(null, `Photo_${_id}.jpg`)
+        callBack(null, `Photo_${req.test}.jpg`)
     }
 })
 

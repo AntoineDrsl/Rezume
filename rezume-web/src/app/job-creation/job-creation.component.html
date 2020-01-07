@@ -12,13 +12,13 @@
             <form [formGroup]="jobForm" (ngSubmit)="onSubmit(jobForm)">
                 <div class="form-group">
                     <input type="text" formControlName="sector" class="form-control" placeholder="Le secteur d'activité du stage">
-                    <div *ngIf="age.touched && age.invalid">
+                    <div *ngIf="sector.touched && sector.invalid">
                         <label class="validation-message">Veuillez entrer un secteur d'activité</label>
                     </div>
                 </div>
                 <div class="form-group">
                     <input type="text" formControlName="description" class="form-control" placeholder="Une courte description du stage et de ses attentes">
-                    <div *ngIf="research.touched && research.invalid">
+                    <div *ngIf="description.touched && description.invalid">
                         <label class="validation-message">Veuillez entrer une description</label>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                     <input id="file" type="file" class="input-file" formControlName="image" (change)="onFileChange($event)" #fileInput>
                     <label for="file" class="label-file">Choisir un fichier</label>
                 </div>
-                <input type="submit" value="Créer ton CV">
+                <input type="submit" value="Créer une offre de stage">
             </form>
         </div>
 

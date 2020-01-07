@@ -18,7 +18,7 @@ module.exports.createJob = (req, res, next) => {
         if(!err){
             job.img_path = `server/uploads/job/Photo_${job._id}`;
             job.save((err, doc) => {
-                if(!err) {           
+                if(!err) {    
                     res.send(doc);
                 } else {
                     return next(err);
