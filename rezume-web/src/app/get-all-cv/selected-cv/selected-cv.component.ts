@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { CvService } from '../../shared/cv.service';
-import { Route, ActivatedRoute } from '@angular/router';
+import { CompanyService } from '../../shared/company.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-selected-cv',
@@ -11,8 +12,13 @@ import { Route, ActivatedRoute } from '@angular/router';
 export class SelectedCvComponent implements OnInit {
 
   cvDetails;
+  companyDetails;
 
-  constructor(private route: ActivatedRoute, private cvService: CvService) { }
+  buttonAdd: boolean;
+  showMessageError: boolean;
+
+  constructor(private route: ActivatedRoute,
+    private cvService: CvService, private companyService: CompanyService, private router: Router) { }
 
   ngOnInit() {
 
@@ -22,13 +28,64 @@ export class SelectedCvComponent implements OnInit {
     this.cvService.getSelectedCV(id).subscribe(
       res => {
         this.cvDetails = res["cv"];
-        console.log(this.cvDetails);
+        // console.log(this.cvDetails);
       },
       err => {
-        // console.log('Cv non récupéré');
+        setTimeout(() => {this.router.navigate(['/cv']); this.showMessageError = true}, 1000);
       }
     );
 
+    this.checkIfFavorite();
+  }
+
+  checkIfFavorite() {
+
+    const id = this.route.snapshot.paramMap.get('id');
+
+    this.companyService.getCompanyProfile().subscribe(
+      res =>{
+        this.companyDetails = res["company"];
+        // on check si l'utilisateur possède déja ce cv en favori
+        this.companyDetails.favorites.forEach(element => {
+          if(element === id){
+            this.buttonAdd = false;
+          }
+          else{
+            this.buttonAdd = true;
+          }
+        });
+
+      },
+      err => {
+        console.log('User not found');
+      }
+    );
+  }
+
+  addFavorite(){
+    const id = this.route.snapshot.paramMap.get('id');
+
+    this.companyService.addFavorite(id).subscribe(
+      res => {
+        // console.log('Success');
+        this.buttonAdd = false;
+      },
+      err => {
+        // console.log('Err');
+      }
+    );
+  }
+
+  removeFavorite(){
+    const id = this.route.snapshot.paramMap.get('id');
+
+    this.companyService.removeFavorite(id).subscribe(
+      res => {
+        this.buttonAdd = true;
+      },
+      err => {
+      }
+    );
   }
 
 }
