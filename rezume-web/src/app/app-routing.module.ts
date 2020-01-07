@@ -9,6 +9,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { CvCreationComponent } from './cv-creation/cv-creation.component';
 import { CvUpdateComponent } from './student-profile/cvUpdate/cv-update/cv-update.component';
 import { CvViewComponent } from './student-profile/cv-view/cv-view.component';
+import { JobCreationComponent } from './job-creation/job-creation.component';
 import { GetAllCvComponent } from './get-all-cv/get-all-cv.component';
 import { SelectedCvComponent } from './get-all-cv/selected-cv/selected-cv.component';
 
@@ -36,6 +37,9 @@ export const routes: Routes = [
   },
   {
     path: 'cvview', component: CvViewComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'jobcreation', component: JobCreationComponent, canActivate: [AuthGuard]
   },
   {
     path: 'cv', component: GetAllCvComponent, canActivate: [AuthGuard]

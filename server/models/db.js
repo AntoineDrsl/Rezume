@@ -11,3 +11,4 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
 require('./student.model');
 require('./cv.model');
 require('./company.model');
+require('./job.model');
