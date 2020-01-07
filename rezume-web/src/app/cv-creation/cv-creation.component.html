@@ -25,7 +25,7 @@
                 </div>
               <hr class="separator-line">
                 <div formGroupName="experiences">
-                    <legend>Tes expériences | <span style="font-weight: bold; cursor: pointer" (click)="addExperience()">+</span></legend>
+                    <legend>Tes expériences | <span style="font-weight: bold; cursor: pointer" (click)="addExperience()"><img class="plus" src="/assets/images/plus-sign.svg"></span></legend>
                     <div class="input-group" *ngFor="let experienceControl of cvForm.get('experiences').controls; let i = index">
                         <input type="text" class="form-control" [formControlName]="i">
                         <span class="input-group-addon" id="basic-addon2" (click)="deleteExperience(i)" style="cursor: pointer">❌</span>
