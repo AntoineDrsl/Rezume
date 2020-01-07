@@ -455,3 +455,14 @@ td.text-right {
   text-align: right;
 }
 
+input.button-submitCV{
+  margin-top: 40px;
+}
+
+.button-cvSubmit{
+  margin-top: 30px;
+}
+
+.degrees, .experiences, .search, .placeAge{
+  margin: 20px;
+}
