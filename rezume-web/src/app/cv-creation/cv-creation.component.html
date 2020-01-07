@@ -10,21 +10,21 @@
         <div class="formContent">
             <h2 class="underlineHover">Quelques infos pour ton CV</h2>
             <form [formGroup]="cvForm" (ngSubmit)="onSubmit(cvForm)">
-                <div class="form-group">
+                <div class="form-group placeAge">
                     <input type="number" formControlName="age" class="form-control age" placeholder="Ton âge">
                     <div *ngIf="age.touched && age.invalid">
                         <label class="validation-message">Veuillez entrer votre âge</label>
                     </div>
                 </div>
               <hr class="separator-line">
-                <div class="form-group">
+                <div class="form-group search">
                     <input type="text" formControlName="research" class="form-control" placeholder="Ton domaine de recherche">
                     <div *ngIf="research.touched && research.invalid">
                         <label class="validation-message">Veuillez entrer votre secteur de recherche</label>
                     </div>
                 </div>
               <hr class="separator-line">
-                <div formGroupName="experiences">
+                <div formGroupName="experiences" class="experiences">
                     <legend>Tes expériences | <span style="font-weight: bold; cursor: pointer" (click)="addExperience()">+</span></legend>
                     <div class="input-group" *ngFor="let experienceControl of cvForm.get('experiences').controls; let i = index">
                         <input type="text" class="form-control" [formControlName]="i">
@@ -32,7 +32,7 @@
                     </div>
                 </div>
               <hr class="separator-line">
-                <div formGroupName="degrees">
+                <div formGroupName="degrees" class="degrees">
                     <legend>Tes diplômes | <span style="font-weight: bold; cursor: pointer" (click)="addDegree()">+</span></legend>
                     <div class="input-group" *ngFor="let degreeControl of cvForm.get('degrees').controls; let i = index">
                         <input type="text" class="form-control" [formControlName]="i">
@@ -40,11 +40,11 @@
                     </div>
                 </div>
               <hr class="separator-line">
-                <div class="form-group">
+                <div class="form-group button-cvSubmit">
                     <input id="file" type="file" class="input-file" formControlName="image" (change)="onFileChange($event)" #fileInput>
                     <label for="file" class="label-file">Choisir un fichier</label>
                 </div>
-                <input type="submit" value="Créer ton CV">
+                <input type="submit" value="Créer ton CV" class="button-submitCV">
             </form>
         </div>
 
