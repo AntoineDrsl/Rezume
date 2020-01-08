@@ -7,7 +7,8 @@ const CV = mongoose.model('cv');
 
 module.exports.register = (req, res, next) => {
     var student = new Student();
-    student.fullName = req.body.fullName;
+    student.firstName = req.body.firstName;
+    student.lastName = req.body.lastName;
     student.email = req.body.email;
     student.status = req.body.status;
     student.password = req.body.password;
@@ -42,7 +43,7 @@ module.exports.studentProfile = (req, res, next) => {
             if (!student) {
                 return res.status(404).json({ status: false, message: 'Student record not found'});
             } else {
-                return res.status(200).json({ status: true, student: _.pick(student, ['fullName', 'email', 'status']) });
+                return res.status(200).json({ status: true, student: _.pick(student, ['firstName', 'lastName', 'email']) });
             }
         }
     );

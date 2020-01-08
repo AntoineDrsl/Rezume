@@ -8,11 +8,11 @@ import { Student } from './student.model';
   providedIn: 'root'
 })
 export class StudentService {
-  
+
   selectedStudent: Student = {
-    fullName: '',
+    firstName: '',
+    lastName: '',
     email: '',
-    status: '',
     password: '',
     confirmPassword: ''
   };
@@ -25,7 +25,7 @@ export class StudentService {
   //HTTP methods
 
   postStudent(student: Student) {
-    return this.http.post(environment.apiBaseUrl+'/register', student, this.noAuthHeader)
+    return this.http.post(environment.apiBaseUrl+'/register', student, this.noAuthHeader);
   }
 
   //Fonction générant un token en fonction de Credentials

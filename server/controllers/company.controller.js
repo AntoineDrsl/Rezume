@@ -22,3 +22,47 @@ module.exports.register = (req, res, next) => {
         }
     });
 }
+
+module.exports.companyProfile = (req, res, next) => {
+    Company.findOne({ _id: req._id },
+        (err, company) => {
+            if (!company) {
+                return res.status(404).json({ status: false, message: 'Company record not found'});
+            } else {
+                return res.status(200).json({ status: true, company});
+            }
+        }
+    );
+}
+
+module.exports.addFavorite = (req, res, next) => {
+
+    var companyFavorite = new Company();
+    companyFavorite.favorites = req.params.id;
+
+    Company.findOneAndUpdate({_id: req._id}, {$push: {favorites: companyFavorite.favorites}},
+        (err, user) => { 
+            if(!user){
+                // Reponse status 409: Conflict (La requête ne peut être traitée en l’état actuel.)
+                return res.status(409).json({status: false, message: 'User not found', erreur: err});
+            }
+            else{
+                return res.status(200).json({status: true, user});
+            }
+        }
+    );
+}
+
+module.exports.removeFavorite = (req, res, next) => {
+    Company.findOneAndUpdate({_id: req._id}, {$pull: {favorites: req.params.id}},
+        (err, user) => {
+            if(!user){
+                // Reponse status 409: Conflict (La requête ne peut être traitée en l’état actuel.)
+                return res.status(409).json({status: false, message: 'User not found', erreur: err});
+            }
+            else{
+                return res.status(200).json({status: true, user});
+            }
+        }
+    );
+}

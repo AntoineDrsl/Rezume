@@ -9,7 +9,6 @@ import { Company } from './company.model';
 })
 export class CompanyService {
 
-
   selectedCompany: Company = {
     company_name: '',
     email: '',
@@ -34,9 +33,9 @@ export class CompanyService {
   }
 
    //Fonction récupérant le profil en fonction du token
-  //  getCompanyProfile() {
-  //   return this.http.get(environment.apiBaseUrl + '/studentprofile');
-  // }
+   getCompanyProfile() {
+    return this.http.get(environment.apiBaseUrl + '/companyprofile');
+  }
 
   // Fonction stockant le token généré par le login
   setToken(token: string) {
@@ -72,5 +71,14 @@ export class CompanyService {
     } else {
       return false;
     }
+  }
+
+
+  addFavorite(id){
+    return this.http.get(environment.apiBaseUrl + '/addfavorite/' + id);
+  }
+
+  removeFavorite(id){
+    return this.http.get(environment.apiBaseUrl + '/removefavorite/' + id);
   }
 }

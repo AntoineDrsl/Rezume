@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+
 
 import { StudentService } from '../../../shared/student.service';
 
@@ -13,7 +15,7 @@ export class SignUpStudentComponent implements OnInit {
   showSuccessMessage: boolean;
   serverErrorMessages: string;
 
-  constructor(private studentService: StudentService) { }
+  constructor(private studentService: StudentService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -24,6 +26,8 @@ export class SignUpStudentComponent implements OnInit {
         this.showSuccessMessage = true;
         setTimeout(() => this.showSuccessMessage = false, 4000);
         this.resetForm(form);
+        setTimeout(() => this.router.navigate(['/studentprofile']), 1000);
+
       },
       err => {
         if (err.status == 422) {
@@ -37,9 +41,9 @@ export class SignUpStudentComponent implements OnInit {
 
   resetForm(form: NgForm) {
     this.studentService.selectedStudent = {
-      fullName: '',
+      firstName: '',
+      lastName: '',
       email: '',
-      status: '',
       password: '',
       confirmPassword: ''
     };
