@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 
 import { StudentService } from '../../shared/student.service';
 
@@ -12,9 +12,12 @@ export class SignUpComponent implements OnInit {
 
   selectedValue: number = 0;
 
-  constructor(private studentService: StudentService) { }
+  constructor(private studentService: StudentService, private router: Router) { }
 
   ngOnInit() {
+    if(this.studentService.isLoggedIn()) {
+      this.router.navigateByUrl('/studentprofile');
+    }
   }
 
   isSelected(number){
