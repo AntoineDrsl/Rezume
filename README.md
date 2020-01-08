@@ -3,9 +3,9 @@
 ## Before to start : 
 
 Install packages to run the app
-`npm i --save express mongoose body-parser bcryptjs cors`
+`npm init`
 
-Create a database in MondoDB called "Rezume" with a table "users"
+Create a database in MondoDB called "Rezume" with 4 tables: "students", "companies", "cvs", "jobs"
 
 ## To launch the application
 
