@@ -8,22 +8,22 @@ import { StudentService } from "../shared/student.service";
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-    constructor(private studentService: StudentService, private router: Router){}
+    constructor(private studentService: StudentService, private router: Router) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler) {
 
-        if(req.headers.get('noauth')) {
+        if (req.headers.get('noauth')) {
             return next.handle(req.clone());
         } else {
             const clonedreq = req.clone({
-               headers: req.headers.set("Authorization", "Bearer " + this.studentService.getToken()) 
+               headers: req.headers.set("Authorization", "Bearer " + this.studentService.getToken())
             });
             return next.handle(clonedreq).pipe(
                 tap(
                     event => { },
                     err => {
                         if (err.error.auth == false) {
-                            this.router.navigateByUrl('/login');
+                            this.router.navigateByUrl('/error');
                         }
                     }
                 )

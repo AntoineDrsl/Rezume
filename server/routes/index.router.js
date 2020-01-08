@@ -29,7 +29,7 @@ router.post('/authenticate', ctrlStudent.authenticate);
 //Ici on utilise get car on va prendre des infos, pas en envoyer
 //On appelle la fonction verifyJwtToken() de jwtHelper pour sécuriser l'accès à cette page
 router.get('/studentprofile', jwtHelper.verifyJwtToken, ctrlStudent.studentProfile);
-router.get('/companyprofile', jwtHelper.verifyJwtToken, ctrlCompany.companyProfile)
+router.get('/companyprofile', jwtHelper.verifyJwtTokenCompany, ctrlCompany.companyProfile)
 
 // '/api/createcv'
 router.get('/createcv', jwtHelper.verifyJwtToken, ctrlCV.getIdAndName);
@@ -38,8 +38,8 @@ router.post('/createcv', jwtHelper.verifyJwtToken, ctrlCV.createCV);
 //on recupere le cv 
 router.get('/getcv', jwtHelper.verifyJwtToken, ctrlCV.getCV);
 
-//on recupere le cv selectionne par le student
-router.get('/getselectedcv/:id', jwtHelper.verifyJwtToken, ctrlCV.getSelectedCV);
+//on recupere le cv selectionne par l'entreprise'
+router.get('/getselectedcv/:id', jwtHelper.verifyJwtTokenCompany, ctrlCV.getSelectedCV);
 
 //on update le cv
 router.post('/updatecv', jwtHelper.verifyJwtToken, ctrlCV.updateCv);
@@ -48,7 +48,7 @@ router.post('/uploadimage', jwtHelper.verifyJwtToken, upload.single('file'), ctr
 
 
 //on recupere tous les cv dans mongoDB
-router.get('/getallcv', jwtHelper.verifyJwtToken, ctrlCV.getAllCv);
+router.get('/getallcv', jwtHelper.verifyJwtTokenCompany, ctrlCV.getAllCv);
 
 //COMPANIES
 router.post('/registercompany', ctrlCompany.register);

@@ -50,7 +50,7 @@ studentSchema.methods.verifyPassword = function (password) {
 
 studentSchema.methods.generateJwt = function () {
     return jwt.sign({ _id: this._id },
-        process.env.JWT_SECRET,
+        process.env.JWT_SECRET_STUDENT,
     {
         expiresIn: process.env.JWT_EXP
     }); //On utilise le JWT_SECRET et JWT_EXP définis dans config.json

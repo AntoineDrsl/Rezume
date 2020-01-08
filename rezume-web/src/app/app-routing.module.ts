@@ -11,6 +11,7 @@ import { CvUpdateComponent } from './student-profile/cvUpdate/cv-update/cv-updat
 import { CvViewComponent } from './student-profile/cv-view/cv-view.component';
 import { GetAllCvComponent } from './get-all-cv/get-all-cv.component';
 import { SelectedCvComponent } from './get-all-cv/selected-cv/selected-cv.component';
+import { ErrorComponent } from './error/error.component';
 
 
 export const routes: Routes = [
@@ -42,6 +43,9 @@ export const routes: Routes = [
   },
   {
     path: 'cvview/:id', component: SelectedCvComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'error', component: ErrorComponent
   },
   {
     path: '', redirectTo: '/login', pathMatch: 'full'

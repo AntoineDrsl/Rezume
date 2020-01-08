@@ -2,7 +2,8 @@
     "development": {
         "PORT": 3000,
         "MONGODB_URI": "mongodb://localhost:27017/Rezume",
-        "JWT_SECRET": "SECRET#123",
+        "JWT_SECRET_STUDENT": "SECRET#123",
+        "JWT_SECRET_COMPANY": "SECRET#321",
         "JWT_EXP": "50m"
     },
     "production": {

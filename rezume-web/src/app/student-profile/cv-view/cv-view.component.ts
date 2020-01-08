@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 // Importation cvService
 import { CvService } from '../../shared/cv.service';
@@ -11,18 +12,19 @@ import { CvService } from '../../shared/cv.service';
 export class CvViewComponent implements OnInit {
 
   cvDetails;
+  showMessageError: boolean= false;
 
-  constructor(private cvService: CvService) { }
+  constructor(private cvService: CvService, private router: Router) { }
 
   ngOnInit() {
 
     this.cvService.getCV().subscribe(
       res => {
         this.cvDetails = res["cv"];
-        // console.log(this.cvDetails);
       },
       err => {
-
+        this.showMessageError = true;
+        setTimeout(() => this.router.navigate(['/studentprofile']), 2000);
       }
     );
 

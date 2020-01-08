@@ -27,6 +27,7 @@ import { SelectedCvComponent } from './get-all-cv/selected-cv/selected-cv.compon
 import { SignUpStudentComponent } from './student/sign-up/sign-up-student/sign-up-student.component';
 import { SignUpCompanyComponent } from './student/sign-up/sign-up-company/sign-up-company.component';
 import { CompanyProfileComponent } from './company-profile/company-profile.component';
+import { ErrorComponent } from './error/error.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { CompanyProfileComponent } from './company-profile/company-profile.compo
     SelectedCvComponent,
     SignUpStudentComponent,
     SignUpCompanyComponent,
-    CompanyProfileComponent
+    CompanyProfileComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

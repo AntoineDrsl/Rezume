@@ -31,7 +31,8 @@ export class SelectedCvComponent implements OnInit {
         // console.log(this.cvDetails);
       },
       err => {
-        setTimeout(() => {this.router.navigate(['/cv']); this.showMessageError = true}, 1000);
+        this.showMessageError = true;
+        setTimeout(() => {this.router.navigate(['/cv']); }, 1500);
       }
     );
 
@@ -67,11 +68,10 @@ export class SelectedCvComponent implements OnInit {
 
     this.companyService.addFavorite(id).subscribe(
       res => {
-        // console.log('Success');
         this.buttonAdd = false;
       },
       err => {
-        // console.log('Err');
+
       }
     );
   }
