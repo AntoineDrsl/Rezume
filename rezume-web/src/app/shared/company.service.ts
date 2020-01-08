@@ -72,4 +72,13 @@ export class CompanyService {
       return false;
     }
   }
+
+
+  addFavorite(id){
+    return this.http.get(environment.apiBaseUrl + '/addfavorite/' + id);
+  }
+
+  removeFavorite(id){
+    return this.http.get(environment.apiBaseUrl + '/removefavorite/' + id);
+  }
 }

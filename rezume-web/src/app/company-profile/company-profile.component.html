@@ -22,8 +22,12 @@
               <td>Description</td>
               <td>{{companyDetails.description}}</td>
             </tr>
+            <tr *ngIf="serverErrorMessage">
+              <td> Company Details couldn't be find, you will be redirected to another page. </td>
+            </tr>
         </tbody>
         <div class="button-cv">
+            <input type="button" routerLink="/cv" value="Voir tous les curriculum vitae">
             <input type="button" (click)="onLogout()" value="Se déconnecter">
             <input type="button" routerLink="/jobcreation" value="Créez une offre de stage">
         </div>

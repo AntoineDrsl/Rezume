@@ -24,6 +24,14 @@
   </tbody>
 </table>
 
-<p *ngIf="!cvDetails">
-  Aucun CV ne correspond a cet ID.
+<div class="button-cv" *ngIf="cvDetails">
+  <input type="button" value="Ajouter aux favoris" (click)="addFavorite()" *ngIf="buttonAdd">
+  <input type="button" value="Retirer des favoris" (click)="removeFavorite()" *ngIf="!buttonAdd">
+
+  <input type="button" value="Revenir à la liste des CV" routerLink="/cv">
+
+</div>
+
+<p *ngIf="showMessageError">
+  Aucun CV ne correspond a cet ID. Vous allez être redirigé....
 </p>
