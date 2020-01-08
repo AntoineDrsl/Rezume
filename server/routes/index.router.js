@@ -26,7 +26,7 @@ const storageJob = multer.diskStorage({
         callBack(null, `./uploads/job`)
     },
     filename: (req, file, callBack) => {
-        callBack(null, `Photo_${req.test}.jpg`)
+        callBack(null, `Photo_${file.originalname}.jpg`)
     }
 })
 

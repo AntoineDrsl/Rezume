@@ -28,7 +28,6 @@ export class JobService {
   }
 
   postJob(job: Job) {
-    console.log(job)
     return this.http.post(environment.apiBaseUrl + '/createjob', job);
   }
 }

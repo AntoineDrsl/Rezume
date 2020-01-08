@@ -14,6 +14,7 @@ export class JobCreationComponent implements OnInit {
   images;
   showSuccessMessage: boolean;
   serverErrorMessages: string;
+  currentJobId;
 
   jobForm: FormGroup
   get sector() {
@@ -36,7 +37,7 @@ export class JobCreationComponent implements OnInit {
       degrees: new FormArray([
         new FormControl('')
       ]),
-      image: new FormControl('')
+      image: new FormControl('', Validators.required)
     });
   }
 
@@ -53,28 +54,27 @@ export class JobCreationComponent implements OnInit {
 
   onSubmit(form) {
 
-    // Upload de l'image
-    const formData = new FormData();
-    formData.append('file', this.images);
-
-    this.jobService.postFile(formData).subscribe(
-      res => {
-        this.showSuccessMessage = true;
-      },
-      err => {
-        this.serverErrorMessages = "Une erreur est survenue";
-      }
-    );
-
     // Stockage des infos dans la bdd
-
     this.jobService.postJob(form.value).subscribe(
-      res => {
+      (res: any) => {
         this.showSuccessMessage = true;
         setTimeout(() => this.showSuccessMessage = false, 1000);
         setTimeout(() => this.router.navigate(['/companyprofile']), 1000);
-
         form.reset()
+
+        // Upload de l'image
+        const formData = new FormData();
+        formData.append('file', this.images, res._id);
+
+        this.jobService.postFile(formData).subscribe(
+          res => {
+            this.showSuccessMessage = true;
+          },
+          err => {
+            this.serverErrorMessages = "Une erreur est survenue";
+          }
+        );
+
       },
       err => {
         this.serverErrorMessages = "Une erreur est survenue";
