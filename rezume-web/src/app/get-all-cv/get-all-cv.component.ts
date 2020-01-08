@@ -24,7 +24,7 @@ export class GetAllCvComponent implements OnInit {
       },
       err => {
         this.showMessageError = true;
-        setTimeout(() => this.location.back(), 1000);
+        // setTimeout(() => this.location.back(), 1000);
       }
     );
 

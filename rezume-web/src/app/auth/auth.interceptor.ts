@@ -4,11 +4,12 @@ import { tap } from 'rxjs/operators';
 import { Router } from "@angular/router";
 
 import { StudentService } from "../shared/student.service";
+import { CompanyService } from '../shared/company.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-    constructor(private studentService: StudentService, private router: Router) { }
+    constructor(private studentService: StudentService,  private companyService: CompanyService, private router: Router) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler) {
 

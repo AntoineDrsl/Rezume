@@ -39,17 +39,17 @@ export class CompanyService {
 
   // Fonction stockant le token généré par le login
   setToken(token: string) {
-    localStorage.setItem('token', token);
+    localStorage.setItem('token_company', token);
   }
 
   //Fonction pour récupérer le token
   getToken() {
-    return localStorage.getItem('token');
+    return localStorage.getItem('token_company');
   }
 
   //Fonction pour supprimer le token
   deleteToken() {
-    localStorage.removeItem('token');
+    localStorage.removeItem('token_company');
   }
 
   //Fonction pour récupérer le payload (les infos de l'entreprise) à partir du token

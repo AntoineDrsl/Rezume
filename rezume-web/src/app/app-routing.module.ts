@@ -5,13 +5,17 @@ import { SignUpComponent } from './student/sign-up/sign-up.component';
 import { SignInComponent } from './student/sign-in/sign-in.component'
 import { StudentProfileComponent } from './student-profile/student-profile.component';
 import { CompanyProfileComponent } from './company-profile/company-profile.component';
-import { AuthGuard } from './auth/auth.guard';
 import { CvCreationComponent } from './cv-creation/cv-creation.component';
 import { CvUpdateComponent } from './student-profile/cvUpdate/cv-update/cv-update.component';
 import { CvViewComponent } from './student-profile/cv-view/cv-view.component';
 import { GetAllCvComponent } from './get-all-cv/get-all-cv.component';
 import { SelectedCvComponent } from './get-all-cv/selected-cv/selected-cv.component';
 import { ErrorComponent } from './error/error.component';
+import { HomeComponent } from './home/home.component';
+
+import { AuthGuard } from './auth/auth.guard';
+import { AuthCompanyGuard } from './auth/auth-company.guard';
+
 
 
 export const routes: Routes = [
@@ -27,7 +31,7 @@ export const routes: Routes = [
     path: 'studentprofile', component: StudentProfileComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'companyprofile', component: CompanyProfileComponent, canActivate: [AuthGuard]
+    path: 'companyprofile', component: CompanyProfileComponent, canActivate: [AuthCompanyGuard]
   },
   {
     path: 'cvcreation', component: CvCreationComponent, canActivate: [AuthGuard]
@@ -45,7 +49,10 @@ export const routes: Routes = [
     path: 'cvview/:id', component: SelectedCvComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'error', component: ErrorComponent
+    path: 'error', component: ErrorComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'home', component: HomeComponent
   },
   {
     path: '', redirectTo: '/login', pathMatch: 'full'
