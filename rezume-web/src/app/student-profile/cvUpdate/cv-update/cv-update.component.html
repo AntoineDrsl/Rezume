@@ -1,44 +1,73 @@
-<div class="wrapper">
+<div class="wrapper-bc-cv">
 
-  <h2>Modifiez votre CV</h2>
-    <form [formGroup]="cvUpdateForm" (ngSubmit)="onSubmit(cvUpdateForm)" *ngIf="cvDetails">
-        <div class="form-group">
-            <label for="age">Votre âge: </label>
-            <input type="number" formControlName="age" class="form-control">
+  <thead>
+  <img src="/assets/images/IconeRezume.svg" alt="icon" id="icon-profile">
+  <p class="title-cv">Modifie ton CV</p>
+  </thead>
+
+  <div class="wrapper">
+    <div class="formContent">
+      <h2 class="underlineHover">Il y a des choses que tu veux changer ? </h2>
+      <form [formGroup]="cvUpdateForm" (ngSubmit)="onSubmit(cvUpdateForm)" *ngIf="cvDetails">
+        <div class="form-group ageCV">
+          <label for="age" class="ageCVlabel">Ton âge : </label>
+          <input type="number" formControlName="age" class="form-control age">
         </div>
+        <hr class="separator-line">
         <div class="form-group">
-            <label for="research">Votre recherche: </label>
-            <input type="text" formControlName="research" class="form-control">
+          <label for="research">Ta recherche : </label>
+          <input type="text" formControlName="research" class="form-control">
         </div>
-        <fieldset formGroupName="experiences">
-            <legend>Vos expériences | <span style="font-weight: bold; cursor: pointer" (click)="addExperience()">+</span></legend>
-            <div class="input-group" *ngFor="let experienceControl of cvUpdateForm.get('experiences').controls; let i = index">
-                <input type="text" class="form-control" [formControlName]="i">
-                <span class="input-group-addon" id="basic-addon2" (click)="deleteExperience(i)" style="cursor: pointer">❌</span>
-            </div>
-        </fieldset>
-        <fieldset formGroupName="degrees">
-            <legend>Vos diplômes | <span style="font-weight: bold; cursor: pointer" (click)="addDegree()">+</span></legend>
-            <div class="input-group" *ngFor="let degreeControl of cvUpdateForm.get('degrees').controls; let i = index">
-                <input type="text" class="form-control" [formControlName]="i">
-                <span class="input-group-addon" id="basic-addon2" (click)="deleteDegree(i)" style="cursor: pointer">❌</span>
-            </div>
-        </fieldset>
+        <hr class="separator-line">
+        <div formGroupName="experiences" class="experiences">
+          <div class="category">
+            <legend>Tes expériences</legend>
+            <span style="font-weight: bold; cursor: pointer" (click)="addExperience()">
+            <img src="/assets/images/plus.svg" alt="icon" class="icon-plus">
+            </span>
+          </div>
+          <div class="input-group"
+               *ngFor="let experienceControl of cvUpdateForm.get('experiences').controls; let i = index">
+            <input type="text" class="form-control" [formControlName]="i">
+            <span class="input-group-addon" id="basic-addon2" (click)="deleteExperience(i)"
+                  style="cursor: pointer"><img src="/assets/images/delete.svg" alt="icon" class="icon-delete"></span>
+          </div>
+        </div>
+        <hr class="separator-line">
+        <div formGroupName="degrees" class="degrees">
+          <div class="category">
+            <legend>Tes diplômes</legend>
+            <span style="font-weight: bold; cursor: pointer" (click)="addDegree()">
+            <img src="/assets/images/plus.svg" alt="icon" class="icon-plus">
+          </span>
+          </div>
+          <div class="input-group" *ngFor="let degreeControl of cvUpdateForm.get('degrees').controls; let i = index">
+            <input type="text" class="form-control" [formControlName]="i">
+            <span class="input-group-addon" id="basic-addon2" (click)="deleteDegree(i)" style="cursor: pointer"><img
+              src="/assets/images/delete.svg" alt="icon" class="icon-delete"></span>
+          </div>
+        </div>
+        <hr class="separator-line">
+        <div class="form-group button-cvSubmit">
+          <input id="file" type="file" class="input-file" formControlName="image" (change)="onFileChange($event)"
+                 #fileInput>
+          <label for="image" class="label-file">Choisir un fichier</label>
+        </div>
+
         <div class="form-group">
-            <label for="image">Votre photo: </label>
-            <input type="file" formControlName="image" (change)="onFileChange($event)" #fileInput>
+          <input type="submit" value="Modifier mon CV" class="button-submitCV">
         </div>
-        <button type="submit">Submit</button>
-    </form>
+      </form>
 
-<!-- Success message -->
-<div class="success" *ngIf="showSuccessMessage">
-  Votre CV a été modifié avec succès
-</div>
+      <!-- Success message -->
+      <div class="success" *ngIf="showSuccessMessage">
+        Votre CV a été modifié avec succès
+      </div>
 
-<!-- Error message -->
-<div class="alert" *ngIf="serverErrorMessages">
-  {{serverErrorMessages}}
-</div>
-
+      <!-- Error message -->
+      <div class="alert" *ngIf="serverErrorMessages">
+        {{serverErrorMessages}}
+      </div>
+    </div>
+  </div>
 </div>

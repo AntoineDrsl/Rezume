@@ -1,5 +1,6 @@
 <div class="wrapper-bc">
 
+  <div class="category">
     <thead>
     <img src="/assets/images/IconeRezume.svg" alt="icon" id="icon-profile">
     <th colspan="2" class="text-center">Vous êtes connecté en tant qu'étudiant</th>
@@ -9,6 +10,7 @@
     <div class="separator">
       <p>Mes informations :</p>
     </div>
+
     <table *ngIf="studentDetails" class="table-fill">
       <tbody>
       <tr>
@@ -25,11 +27,12 @@
       </tr>
       </tbody>
     </table>
-    <div class="button-cv">
-        <input type="button" routerLink="/cvview" value="Consultez votre CV" *ngIf="cvDetails">
-        <input type="button" routerLink="/cvupdate" value="Modifiez votre CV" *ngIf="cvDetails">
-        <input type="button" routerLink="/cvcreation" value="Créez votre CV" *ngIf="!cvDetails">
-        <input type="button" (click)="onLogout()" value="Se déconnecter">
-    </div>
   </div>
+  <div class="button-cv">
+    <input type="button" routerLink="/cvview" value="Consultez votre CV" *ngIf="cvDetails">
+    <input type="button" routerLink="/cvupdate" value="Modifiez votre CV" *ngIf="cvDetails">
+    <input type="button" routerLink="/cvcreation" value="Créez votre CV" *ngIf="!cvDetails">
+    <input type="button" (click)="onLogout()" value="Se déconnecter">
+  </div>
+</div>
 
