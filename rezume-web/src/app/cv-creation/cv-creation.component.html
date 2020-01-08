@@ -59,17 +59,17 @@
         </div>
         <input type="submit" value="Créer ton CV" class="button-submitCV">
       </form>
+
+
+      <!-- Success message -->
+      <div class="success" *ngIf="showSuccessMessage">
+        Votre CV est créé!
+      </div>
+
+      <!-- Error message -->
+      <div class="alert" *ngIf="serverErrorMessages">
+        {{serverErrorMessages}}
+      </div>
     </div>
   </div>
-
-  <!-- Success message -->
-  <div class="success" *ngIf="showSuccessMessage">
-    Votre CV est créé!
-  </div>
-
-  <!-- Error message -->
-  <div class="alert" *ngIf="serverErrorMessages">
-    {{serverErrorMessages}}
-  </div>
-
 </div>
