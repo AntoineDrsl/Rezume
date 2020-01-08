@@ -89,9 +89,6 @@ export class CvCreationComponent implements OnInit {
         this.serverErrorMessages = "Une erreur est survenue";
       }
     )
-
-
-
   }
 
 }

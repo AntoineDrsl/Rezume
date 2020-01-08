@@ -1,11 +1,8 @@
 const mongoose = require('mongoose');
 const _ = require('lodash');
-// const express = require('express');
 
 const Student = mongoose.model('Student');
 const CV = mongoose.model('cv');
-
-
 
 mongoose.set('useFindAndModify', false);
 
@@ -22,7 +19,6 @@ module.exports.getIdAndName = (req, res, next) => {
     );
 
 }
-
 
 module.exports.getCV = (req, res, next) => {
     CV.findOne({ _student: req._id},
@@ -62,7 +58,7 @@ module.exports.createCV = (req, res, next) => {
     cv.research = req.body.research;
     cv.experiences = req.body.experiences;
     cv.degrees = req.body.degrees;
-    cv.img_path = `server/uploads/Photo_${req._id}`;
+    cv.img_path = `server/uploads/cv/Photo_${req._id}`;
     cv.save((err, doc) => {
         if(!err){
             res.send(doc);
