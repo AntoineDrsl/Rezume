@@ -43,7 +43,6 @@ export class CvService {
     }
 
 
-
     getAllCV() {
       return this.http.get(environment.apiBaseUrl + '/getallcv');
     }

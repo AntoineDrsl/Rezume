@@ -41,7 +41,8 @@ router.post('/authenticate', ctrlStudent.authenticate);
 
 //PROFILES
 router.get('/studentprofile', jwtHelper.verifyJwtToken, ctrlStudent.studentProfile);
-router.get('/companyprofile', jwtHelper.verifyJwtToken, ctrlCompany.companyProfile)
+router.get('/studentprofile/:id', jwtHelper.verifyJwtToken, ctrlStudent.getStudentProfile);
+router.get('/companyprofile', jwtHelper.verifyJwtToken, ctrlCompany.companyProfile);
 
 //CV
 router.get('/createcv', jwtHelper.verifyJwtToken, ctrlCV.getIdAndName);

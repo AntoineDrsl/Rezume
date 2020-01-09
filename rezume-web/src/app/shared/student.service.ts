@@ -38,6 +38,9 @@ export class StudentService {
     return this.http.get(environment.apiBaseUrl + '/studentprofile');
   }
 
+  getStudentProfileId(id) {
+    return this.http.get(environment.apiBaseUrl + '/studentprofile/' + id);
+  }
   //Helper Methods
 
   //Fonction stockant le token généré par le login
