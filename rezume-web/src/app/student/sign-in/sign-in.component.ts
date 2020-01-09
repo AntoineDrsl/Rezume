@@ -29,10 +29,10 @@ export class SignInComponent implements OnInit {
   };
 
   onSubmit(form : NgForm) {
-    //On appelle la fonction login() définie dans StudentService en passant les infos comme Credentials
+    // On appelle la fonction login() définie dans StudentService en passant les infos comme Credentials
     this.studentService.login(form.value).subscribe(
       res => {
-        //On stock le tocken renvoyé
+        // On stock le tocken renvoyé
         this.studentService.setToken(res['token']);
         if(this.model.statut == "student") {
           this.router.navigateByUrl('/studentprofile');
