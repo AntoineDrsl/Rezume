@@ -13,8 +13,8 @@ export class GetAllCvComponent implements OnInit {
 
 
   allCv;
-  userListDetails: string[] = [];
-  userDetails;
+  studentListDetails: string[] = [];
+  studentDetails;
 
 
   constructor(private cvService: CvService, private studentService: StudentService) { }
@@ -45,9 +45,9 @@ export class GetAllCvComponent implements OnInit {
 
       this.studentService.getStudentProfileId(item).subscribe(
         res => {
-          this.userDetails = res['student'];
-          this.userListDetails.push(this.userDetails);
-          console.log(this.userListDetails);
+          this.studentDetails = res['student'];
+          this.studentListDetails.push(this.studentDetails);
+          console.log(this.studentListDetails);
         },
         err => {
           console.log('Erreur');
