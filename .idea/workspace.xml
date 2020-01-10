@@ -3,13 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="63772e5c-c779-4723-a7de-b7c0b66e95e8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rezume-web/src/app/company-profile/company-profile.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/rezume-web/src/app/company-profile/company-profile.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rezume-web/src/app/get-all-cv/get-all-cv.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/rezume-web/src/app/get-all-cv/get-all-cv.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rezume-web/src/app/get-all-cv/get-all-cv.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/rezume-web/src/app/get-all-cv/get-all-cv.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rezume-web/src/app/get-all-cv/selected-cv/selected-cv.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/rezume-web/src/app/get-all-cv/selected-cv/selected-cv.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rezume-web/src/app/job-creation/job-creation.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/rezume-web/src/app/job-creation/job-creation.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rezume-web/src/app/student-profile/cvUpdate/cv-update/cv-update.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/rezume-web/src/app/student-profile/cvUpdate/cv-update/cv-update.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rezume-web/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/rezume-web/src/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +55,7 @@
       <workItem from="1578389921510" duration="3522000" />
       <workItem from="1578521658564" duration="168000" />
       <workItem from="1578646030807" duration="485000" />
-      <workItem from="1578652526828" duration="1756000" />
+      <workItem from="1578652526828" duration="2453000" />
     </task>
     <servers />
   </component>
