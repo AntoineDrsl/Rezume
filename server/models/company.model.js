@@ -56,8 +56,8 @@ companySchema.methods.verifyPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
 }; //Return true or false
 
-companySchema.methods.generateJwt = function () {
-    return jwt.sign({ _id: this._id },
+companySchema.methods.generateJwt = function (req) {
+    return jwt.sign({ _id: this._id, statut: req.body.statut },
         process.env.JWT_SECRET,
     {
         expiresIn: process.env.JWT_EXP

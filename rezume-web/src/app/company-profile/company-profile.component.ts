@@ -22,7 +22,7 @@ export class CompanyProfileComponent implements OnInit {
       },
       err => {
         this.serverErrorMessage = true;
-        setTimeout(() => this.router.navigate(['/login']), 1000);
+        setTimeout(() => this.router.navigate(['/login']), 1);
       }
     );
   }

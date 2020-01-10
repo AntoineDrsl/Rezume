@@ -31,7 +31,7 @@ export class SelectedCvComponent implements OnInit {
         // console.log(this.cvDetails);
       },
       err => {
-        setTimeout(() => {this.router.navigate(['/cv']); this.showMessageError = true}, 1000);
+        setTimeout(() => {this.router.navigate(['/studentprofile']); this.showMessageError = true}, 1);
       }
     );
 

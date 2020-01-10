@@ -9,6 +9,7 @@ passport.use(
     //On détermine les conditions de connexion (ici, on utilisera le mail plutôt que le username)
     new localStrategy({ usernameField: 'email', passReqToCallback: true},
         (req, username, password, done) => {
+            username = username.toLowerCase();
             if(req.body.statut == "student") {
                 Student.findOne({ email: username },
                     (err, student) => {

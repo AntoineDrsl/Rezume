@@ -33,7 +33,7 @@ export class JobSelectedComponent implements OnInit {
       },
       err => {
         this.showMessageError = true
-        setTimeout(() => {this.router.navigate(['/job']);}, 1500);
+        setTimeout(() => {this.router.navigate(['/companyprofile']);}, 1);
       }
     )
 

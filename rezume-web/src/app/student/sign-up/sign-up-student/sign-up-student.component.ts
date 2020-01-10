@@ -26,7 +26,7 @@ export class SignUpStudentComponent implements OnInit {
         this.showSuccessMessage = true;
         setTimeout(() => this.showSuccessMessage = false, 4000);
         this.resetForm(form);
-        setTimeout(() => this.router.navigate(['/studentprofile']), 1000);
+        setTimeout(() => this.router.navigate(['/login']), 1000);
 
       },
       err => {
