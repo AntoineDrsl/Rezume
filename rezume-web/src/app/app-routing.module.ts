@@ -13,6 +13,9 @@ import { JobCreationComponent } from './job-creation/job-creation.component';
 import { GetAllCvComponent } from './get-all-cv/get-all-cv.component';
 import { SelectedCvComponent } from './get-all-cv/selected-cv/selected-cv.component';
 import { GetAllJobComponent } from './get-all-job/get-all-job.component';
+import { JobSelectedComponent } from './get-all-job/job-selected/job-selected.component';
+
+
 
 export const routes: Routes = [
   {
@@ -49,6 +52,9 @@ export const routes: Routes = [
   },
   {
     path: 'job', component: GetAllJobComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'job/:id', component: JobSelectedComponent, canActivate: [AuthGuard]
   },
   {
     path: '', redirectTo: '/login', pathMatch: 'full'

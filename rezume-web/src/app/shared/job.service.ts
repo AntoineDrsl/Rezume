@@ -34,4 +34,8 @@ export class JobService {
   getAllJob() {
     return this.http.get(environment.apiBaseUrl + '/getalljob');
   }
+
+  getSelectedJob(id) {
+    return this.http.get(environment.apiBaseUrl + '/getselectedjob/' + id);
+  }
 }
