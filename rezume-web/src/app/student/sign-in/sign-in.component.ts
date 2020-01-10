@@ -17,9 +17,6 @@ export class SignInComponent implements OnInit {
   constructor(private studentService: StudentService, private router: Router) { }
 
   ngOnInit() {
-    if(this.studentService.isLoggedIn()) {
-      this.router.navigateByUrl('/home');
-    }
   }
 
   model = {
@@ -42,7 +39,6 @@ export class SignInComponent implements OnInit {
       },
       err => {
         this.serverErrorMessages = err.error.message;
-
       }
     );
   }
