@@ -3,6 +3,7 @@ import { NgForm, FormGroup, FormControl, FormArray, Validators } from '@angular/
 import { Router } from '@angular/router';
 
 import { CvService } from '../shared/cv.service';
+import { StudentService } from '../shared/student.service';
 
 @Component({
   selector: 'app-cv-creation',
@@ -13,7 +14,9 @@ export class CvCreationComponent implements OnInit {
 
   images;
   showSuccessMessage: boolean;
-  serverErrorMessages: string;
+  serverErrorMessage: string;
+  studentDetails;
+  valid = false;
 
   cvForm: FormGroup
   get age() {
@@ -23,9 +26,21 @@ export class CvCreationComponent implements OnInit {
     return this.cvForm.get('research');
   }
 
-  constructor(private cvService: CvService, private router: Router) { }
+  constructor(private cvService: CvService, private studentService: StudentService, private router: Router) { }
 
   ngOnInit() {
+
+    this.studentService.getStudentProfile().subscribe(
+      res => {
+        this.studentDetails = res['student'];
+        this.valid = true;
+      },
+      err => {
+        this.serverErrorMessage = 'Student Details couldn\'t be find, you will be redirected to another page.';
+        this.router.navigate(['/companyprofile']);
+      }
+    );
+
     this.cvForm = new FormGroup({
       age: new FormControl('', Validators.required),
       research: new FormControl('', Validators.required),
@@ -71,7 +86,7 @@ export class CvCreationComponent implements OnInit {
         this.showSuccessMessage = true;
       },
       err => {
-        this.serverErrorMessages = "Une erreur est survenue";
+        this.serverErrorMessage = "Une erreur est survenue";
       }
     );
 
@@ -86,7 +101,7 @@ export class CvCreationComponent implements OnInit {
         form.reset()
       },
       err => {
-        this.serverErrorMessages = "Une erreur est survenue";
+        this.serverErrorMessage = "Une erreur est survenue";
       }
     )
   }

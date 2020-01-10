@@ -15,8 +15,9 @@ export class CvUpdateComponent implements OnInit {
   coucou = "coucou";
   images;
   showSuccessMessage: boolean;
-  serverErrorMessages: string;
+  serverErrorMessage: string;
   cvUpdateForm: FormGroup;
+  valid = false;
 
   get age() {
     return this.cvUpdateForm.get('age');
@@ -37,8 +38,12 @@ export class CvUpdateComponent implements OnInit {
       res => {
         this.cvDetails = res['cv'];
         this.initForm();
+        this.valid = true;
       },
-      err => {}
+      err => {
+        this.serverErrorMessage = 'Your CV can\'t be loaded';
+        this.router.navigate(['/companyprofile']);
+      }
       );
   }
 
@@ -98,7 +103,7 @@ export class CvUpdateComponent implements OnInit {
         this.showSuccessMessage = true;
       },
       err => {
-        this.serverErrorMessages = "Une erreur est survenue";
+        this.serverErrorMessage = "Une erreur est survenue";
       }
     );
 
@@ -110,7 +115,7 @@ export class CvUpdateComponent implements OnInit {
         setTimeout(() => this.router.navigate(['/studentprofile']), 4000);
       },
       err => {
-        this.serverErrorMessages = "Une erreur est survenue";
+        this.serverErrorMessage = "Une erreur est survenue";
       }
     )
   }

@@ -38,6 +38,7 @@ module.exports.verifyJwtTokenStudent = (req, res, next) => {
                 } else {
                     if(statut !== "student") {
                         res.redirect('/companyprofile')
+                        console.log('coucou')
                     } else {
                         req._id = decoded._id;
                         next();

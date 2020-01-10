@@ -29,7 +29,7 @@ export class GetAllJobComponent implements OnInit {
       },
       err => {
         this.showMessageError = true
-        setTimeout(() => {this.router.navigate(['/studentprofile']);}, 1);
+        setTimeout(() => {this.router.navigate(['/companyprofile']);}, 1);
       }
     )
 

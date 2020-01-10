@@ -3,6 +3,7 @@ import { NgForm, FormGroup, FormControl, FormArray, Validators } from '@angular/
 import { Router } from '@angular/router';
 
 import { JobService } from '../shared/job.service';
+import { CompanyService } from '../shared/company.service';
 
 @Component({
   selector: 'app-job-creation',
@@ -13,8 +14,10 @@ export class JobCreationComponent implements OnInit {
 
   images;
   showSuccessMessage: boolean;
-  serverErrorMessages: string;
+  serverErrorMessage: string;
   currentJobId;
+  companyDetails;
+  valid = false;
 
   jobForm: FormGroup
   get sector() {
@@ -27,9 +30,21 @@ export class JobCreationComponent implements OnInit {
     return this.jobForm.get('experience');
   }
 
-  constructor(private jobService: JobService, private router: Router) { }
+  constructor(private jobService: JobService, private companyService: CompanyService, private router: Router) { }
 
   ngOnInit() {
+
+    this.companyService.getCompanyProfile().subscribe(
+      res => {
+        this.companyDetails = res['student'];
+        this.valid = true;
+      },
+      err => {
+        this.serverErrorMessage = 'Company Details couldn\'t be find, you will be redirected to another page.';
+        this.router.navigate(['/studentprofile']);
+      }
+    );
+
     this.jobForm = new FormGroup({
       sector: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
@@ -71,13 +86,13 @@ export class JobCreationComponent implements OnInit {
             this.showSuccessMessage = true;
           },
           err => {
-            this.serverErrorMessages = "Une erreur est survenue";
+            this.serverErrorMessage = "Une erreur est survenue";
           }
         );
 
       },
       err => {
-        this.serverErrorMessages = "Une erreur est survenue";
+        this.serverErrorMessage = "Une erreur est survenue";
       }
     )
   }

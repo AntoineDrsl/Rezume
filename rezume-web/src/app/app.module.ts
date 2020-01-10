@@ -30,6 +30,7 @@ import { CompanyProfileComponent } from './company-profile/company-profile.compo
 import { JobCreationComponent } from './job-creation/job-creation.component';
 import { GetAllJobComponent } from './get-all-job/get-all-job.component';
 import { JobSelectedComponent } from './get-all-job/job-selected/job-selected.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { JobSelectedComponent } from './get-all-job/job-selected/job-selected.co
     CompanyProfileComponent,
     JobCreationComponent,
     GetAllJobComponent,
-    JobSelectedComponent
+    JobSelectedComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

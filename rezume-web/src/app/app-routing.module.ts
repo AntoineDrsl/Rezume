@@ -14,10 +14,14 @@ import { GetAllCvComponent } from './get-all-cv/get-all-cv.component';
 import { SelectedCvComponent } from './get-all-cv/selected-cv/selected-cv.component';
 import { GetAllJobComponent } from './get-all-job/get-all-job.component';
 import { JobSelectedComponent } from './get-all-job/job-selected/job-selected.component';
+import { HomeComponent } from './home/home.component';
 
 
 
 export const routes: Routes = [
+  {
+    path: 'home', component: HomeComponent
+  },
   {
     path: 'signup', component: StudentComponent,
     children: [{ path: '', component: SignUpComponent }]
