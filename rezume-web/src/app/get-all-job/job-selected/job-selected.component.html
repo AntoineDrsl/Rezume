@@ -1,0 +1,26 @@
+<table class="table-fill" *ngIf="jobDetails">
+  <thead>
+    <tr>
+      <th colspan="2" class="text-center">Job :</th>
+    </tr>
+    </thead>
+    <tr>
+      <td>Sector:</td>
+      <td>{{jobDetails.sector}}</td>
+    </tr>
+    <tr>
+      <td>Description</td>
+      <td>{{jobDetails.description}}</td>
+    </tr>
+    <tr *ngFor="let degree of jobDetails.degrees">
+      <td>Vos Diplômes:</td>
+      <td> {{degree}} </td>
+    </tr>
+</table>
+<div class="button-cv" *ngIf="jobDetails">
+  <input type="button" value="Revenir à la liste des Jobs" routerLink="/job">
+</div>
+
+<div *ngIf="showMessageError">
+  Cet id ne correspond à aucun job, vous allez être redirigé.
+</div>

@@ -37,6 +37,10 @@ export class CompanyService {
     return this.http.get(environment.apiBaseUrl + '/companyprofile');
   }
 
+  getCompanyProfileId(id){
+    return this.http.get(environment.apiBaseUrl + '/companyprofile/' + id);
+  }
+
   // Fonction stockant le token généré par le login
   setToken(token: string) {
     localStorage.setItem('token', token);
