@@ -31,6 +31,7 @@ import { JobCreationComponent } from './job-creation/job-creation.component';
 import { GetAllJobComponent } from './get-all-job/get-all-job.component';
 import { JobSelectedComponent } from './get-all-job/job-selected/job-selected.component';
 import { HomeComponent } from './home/home.component';
+import { TopBarComponent } from './top-bar/top-bar.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { HomeComponent } from './home/home.component';
     JobCreationComponent,
     GetAllJobComponent,
     JobSelectedComponent,
-    HomeComponent
+    HomeComponent,
+    TopBarComponent
   ],
   imports: [
     BrowserModule,
