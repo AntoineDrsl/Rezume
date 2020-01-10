@@ -18,6 +18,8 @@
     </tr>
 </table>
 <div class="button-cv" *ngIf="jobDetails">
+  <input type="button" value="Ajouter ce job aux favoris" (click)="addFavorite()" *ngIf="buttonAdd">
+  <input type="button" value="Retirer ce job des favoris" (click)="removeFavorite()" *ngIf="!buttonAdd">
   <input type="button" value="Revenir à la liste des Jobs" routerLink="/job">
 </div>
 

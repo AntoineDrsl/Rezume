@@ -78,4 +78,13 @@ export class StudentService {
       return false;
     }
   }
+
+
+  addFavorite(id) {
+    return this.http.get(environment.apiBaseUrl + '/addjobfavorite/' + id);
+  }
+
+  removeFavorite(id) {
+    return this.http.get(environment.apiBaseUrl + '/removejobfavorite/' + id);
+  }
 }
