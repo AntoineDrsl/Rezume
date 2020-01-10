@@ -51,7 +51,6 @@ export class GetAllJobComponent implements OnInit {
       res => {
         this.companyDetails = res['company'];
         this.companyListDetails.push(this.companyDetails);
-        console.log(this.companyListDetails);
       },
       err => {
         console.log('erreur');

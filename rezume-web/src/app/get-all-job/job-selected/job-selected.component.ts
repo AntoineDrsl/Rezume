@@ -30,7 +30,6 @@ export class JobSelectedComponent implements OnInit {
     this.jobService.getSelectedJob(id).subscribe(
       res => {
         this.jobDetails = res['job'];
-        console.log(this.jobDetails);
       },
       err => {
         this.showMessageError = true
@@ -49,7 +48,7 @@ export class JobSelectedComponent implements OnInit {
         this.buttonAdd = false;
       },
       err => {
-        // console.log('Err');
+        console.log('Err');
       }
     );
   }
@@ -62,7 +61,7 @@ export class JobSelectedComponent implements OnInit {
         this.buttonAdd = true;
       },
       err => {
-
+        console.log('Err');
       }
     );
   }
