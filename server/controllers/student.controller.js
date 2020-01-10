@@ -9,7 +9,8 @@ module.exports.register = (req, res, next) => {
     var student = new Student();
     student.firstName = req.body.firstName;
     student.lastName = req.body.lastName;
-    student.email = req.body.email;
+    studentEmail = req.body.email.toLowerCase();
+    student.email = studentEmail;
     student.status = req.body.status;
     student.password = req.body.password;
     student.save((err, doc) => {

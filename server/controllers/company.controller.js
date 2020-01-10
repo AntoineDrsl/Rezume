@@ -7,7 +7,8 @@ const Company = mongoose.model('Company');
 module.exports.register = (req, res, next) => {
     var company = new Company();
     company.company_name = req.body.company_name;
-    company.email = req.body.email;
+    companyEmail = req.body.email.toLowerCase();
+    company.email = companyEmail;
     company.description = req.body.description;
     company.password = req.body.password;
     company.save((err, doc) => {
