@@ -15,7 +15,7 @@ export class JobSelectedComponent implements OnInit {
   studentDetails;
   showMessageError: boolean = false;
 
-  buttonAdd: boolean = false;
+  buttonAdd: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -37,6 +37,7 @@ export class JobSelectedComponent implements OnInit {
       }
     )
 
+    this.checkIfFavorite();
   }
 
     addFavorite() {
@@ -74,7 +75,7 @@ export class JobSelectedComponent implements OnInit {
         this.studentDetails = res['student'];
 
         this.studentDetails.forEach(element => {
-          if(element === id){
+          if(element === id) {
             this.buttonAdd = false;
           }
           else{
