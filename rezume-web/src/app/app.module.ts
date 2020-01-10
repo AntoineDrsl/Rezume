@@ -28,6 +28,8 @@ import { SignUpStudentComponent } from './student/sign-up/sign-up-student/sign-u
 import { SignUpCompanyComponent } from './student/sign-up/sign-up-company/sign-up-company.component';
 import { CompanyProfileComponent } from './company-profile/company-profile.component';
 import { JobCreationComponent } from './job-creation/job-creation.component';
+import { GetAllJobComponent } from './get-all-job/get-all-job.component';
+import { JobSelectedComponent } from './get-all-job/job-selected/job-selected.component';
 
 
 @NgModule({
@@ -45,7 +47,9 @@ import { JobCreationComponent } from './job-creation/job-creation.component';
     SignUpStudentComponent,
     SignUpCompanyComponent,
     CompanyProfileComponent,
-    JobCreationComponent
+    JobCreationComponent,
+    GetAllJobComponent,
+    JobSelectedComponent
   ],
   imports: [
     BrowserModule,

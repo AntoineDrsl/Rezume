@@ -38,6 +38,9 @@ export class StudentService {
     return this.http.get(environment.apiBaseUrl + '/studentprofile');
   }
 
+  getStudentProfileId(id) {
+    return this.http.get(environment.apiBaseUrl + '/studentprofile/' + id);
+  }
   //Helper Methods
 
   //Fonction stockant le token généré par le login
@@ -74,5 +77,14 @@ export class StudentService {
     } else {
       return false;
     }
+  }
+
+
+  addFavorite(id) {
+    return this.http.get(environment.apiBaseUrl + '/addjobfavorite/' + id);
+  }
+
+  removeFavorite(id) {
+    return this.http.get(environment.apiBaseUrl + '/removejobfavorite/' + id);
   }
 }

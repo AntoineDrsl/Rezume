@@ -48,3 +48,47 @@ module.exports.studentProfile = (req, res, next) => {
         }
     );
 }
+
+
+module.exports.getStudentProfile = (req, res, next) => {
+    Student.findOne({_id: req.params.id}, 
+        (err, student) => {
+            if (!student) {
+                return res.status(404).json({ status: false, message: 'Student record not found'});
+            } else {
+                return res.status(200).json({ status: true, student});
+            }
+        }
+    );
+}
+
+module.exports.addJobFavorite = (req, res, next) => {
+    var studentFavorite = new Student();
+    studentFavorite.favorites = req.params.id;
+
+    Student.findOneAndUpdate({_id: req._id}, {$push: {favorites: studentFavorite.favorites}},
+        (err, student) => {
+            if(!student){
+                return res.status(409).json({status: false, message: 'Student not found or update failed'});
+            }
+            else{
+                return res.status(200).json({status: true, student});
+            }
+        }
+    );
+}
+
+
+
+module.exports.removeJobFavorite = (req, res, next) => {
+    Student.findOneAndUpdate({_id: req._id}, {$pull: {favorites: req.params.id}},
+        (err, student) => {
+            if(!student){
+                return res.status(409).json({status: false, message: 'Student not found or update failed'});
+            }
+            else{
+                return res.status(200).json({status: true, student});
+            }
+        }
+    );
+}

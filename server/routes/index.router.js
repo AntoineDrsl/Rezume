@@ -41,7 +41,9 @@ router.post('/authenticate', ctrlStudent.authenticate);
 
 //PROFILES
 router.get('/studentprofile', jwtHelper.verifyJwtToken, ctrlStudent.studentProfile);
-router.get('/companyprofile', jwtHelper.verifyJwtToken, ctrlCompany.companyProfile)
+router.get('/studentprofile/:id', jwtHelper.verifyJwtToken, ctrlStudent.getStudentProfile);
+router.get('/companyprofile', jwtHelper.verifyJwtToken, ctrlCompany.companyProfile);
+router.get('/companyprofile/:id', jwtHelper.verifyJwtToken, ctrlCompany.getCompanyProfileId);
 
 //CV
 router.get('/createcv', jwtHelper.verifyJwtToken, ctrlCV.getIdAndName);
@@ -57,12 +59,16 @@ router.get('/getallcv', jwtHelper.verifyJwtToken, ctrlCV.getAllCv);
 //JOB
 router.post('/createjob', jwtHelper.verifyJwtToken, ctrlJob.createJob);
 router.post('/uploadjobimage', jwtHelper.verifyJwtToken, uploadJob.single('file'), ctrlJob.uploadImage)
+router.get('/getalljob', jwtHelper.verifyJwtToken, ctrlJob.geAllJob);
+router.get('/getselectedjob/:id', jwtHelper.verifyJwtToken, ctrlJob.getSelectedJob);
 
 //Ajouter CV en favori
 router.get('/addfavorite/:id', jwtHelper.verifyJwtToken, ctrlCompany.addFavorite);
+router.get('/addjobfavorite/:id', jwtHelper.verifyJwtToken, ctrlStudent.addJobFavorite);
 
 //Remove CV en favori
 router.get('/removefavorite/:id', jwtHelper.verifyJwtToken, ctrlCompany.removeFavorite);
+router.get('/removejobfavorite/:id', jwtHelper.verifyJwtToken, ctrlStudent.removeJobFavorite);
 
 
 module.exports = router;
