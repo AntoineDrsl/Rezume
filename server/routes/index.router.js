@@ -40,33 +40,33 @@ router.post('/registercompany', ctrlCompany.register)
 router.post('/authenticate', ctrlStudent.authenticate);
 
 //PROFILES
-router.get('/studentprofile', jwtHelper.verifyJwtToken, ctrlStudent.studentProfile);
-router.get('/studentprofile/:id', jwtHelper.verifyJwtToken, ctrlStudent.getStudentProfile);
-router.get('/companyprofile', jwtHelper.verifyJwtToken, ctrlCompany.companyProfile);
+router.get('/studentprofile', jwtHelper.verifyJwtTokenStudent, ctrlStudent.studentProfile);
+router.get('/studentprofile/:id', jwtHelper.verifyJwtTokenCompany, ctrlStudent.getStudentProfile);
+router.get('/companyprofile', jwtHelper.verifyJwtTokenCompany, ctrlCompany.companyProfile);
 router.get('/companyprofile/:id', jwtHelper.verifyJwtToken, ctrlCompany.getCompanyProfileId);
 
 //CV
-router.get('/createcv', jwtHelper.verifyJwtToken, ctrlCV.getIdAndName);
-router.post('/createcv', jwtHelper.verifyJwtToken, ctrlCV.createCV);
-router.post('/updatecv', jwtHelper.verifyJwtToken, ctrlCV.updateCv);
-router.post('/uploadimage', jwtHelper.verifyJwtToken, upload.single('file'), ctrlCV.uploadImage);
+router.get('/createcv', jwtHelper.verifyJwtTokenStudent, ctrlCV.getIdAndName);
+router.post('/createcv', jwtHelper.verifyJwtTokenStudent, ctrlCV.createCV);
+router.post('/updatecv', jwtHelper.verifyJwtTokenStudent, ctrlCV.updateCv);
+router.post('/uploadimage', jwtHelper.verifyJwtTokenStudent, upload.single('file'), ctrlCV.uploadImage);
 
 //SEE CV
-router.get('/getcv', jwtHelper.verifyJwtToken, ctrlCV.getCV);
-router.get('/getselectedcv/:id', jwtHelper.verifyJwtToken, ctrlCV.getSelectedCV);
-router.get('/getallcv', jwtHelper.verifyJwtToken, ctrlCV.getAllCv);
+router.get('/getcv', jwtHelper.verifyJwtTokenStudent, ctrlCV.getCV);
+router.get('/getselectedcv/:id', jwtHelper.verifyJwtTokenCompany, ctrlCV.getSelectedCV);
+router.get('/getallcv', jwtHelper.verifyJwtTokenCompany, ctrlCV.getAllCv);
 
 //JOB
-router.post('/createjob', jwtHelper.verifyJwtToken, ctrlJob.createJob);
-router.post('/uploadjobimage', jwtHelper.verifyJwtToken, uploadJob.single('file'), ctrlJob.uploadImage)
-router.get('/getalljob', jwtHelper.verifyJwtToken, ctrlJob.geAllJob);
-router.get('/getselectedjob/:id', jwtHelper.verifyJwtToken, ctrlJob.getSelectedJob);
+router.post('/createjob', jwtHelper.verifyJwtTokenCompany, ctrlJob.createJob);
+router.post('/uploadjobimage', jwtHelper.verifyJwtTokenCompany, uploadJob.single('file'), ctrlJob.uploadImage)
+router.get('/getalljob', jwtHelper.verifyJwtTokenStudent, ctrlJob.geAllJob);
+router.get('/getselectedjob/:id', jwtHelper.verifyJwtTokenStudent, ctrlJob.getSelectedJob);
 
 //Ajouter CV en favori
-router.get('/addfavorite/:id', jwtHelper.verifyJwtToken, ctrlCompany.addFavorite);
+router.get('/addfavorite/:id', jwtHelper.verifyJwtTokenCompany, ctrlCompany.addFavorite);
 
 //Remove CV en favori
-router.get('/removefavorite/:id', jwtHelper.verifyJwtToken, ctrlCompany.removeFavorite);
+router.get('/removefavorite/:id', jwtHelper.verifyJwtTokenCompany, ctrlCompany.removeFavorite);
 
 
 module.exports = router;

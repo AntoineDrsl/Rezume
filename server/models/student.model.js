@@ -48,8 +48,9 @@ studentSchema.methods.verifyPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
 }; //Return true or false
 
-studentSchema.methods.generateJwt = function () {
-    return jwt.sign({ _id: this._id },
+studentSchema.methods.generateJwt = function (req) {
+    console.log(req.body.statut)
+    return jwt.sign({ _id: this._id, statut: req.body.statut },
         process.env.JWT_SECRET,
     {
         expiresIn: process.env.JWT_EXP

@@ -32,7 +32,7 @@ module.exports.authenticate = (req, res, next) => {
         //Si il y a une erreur on la retourne
         if (err) return res.status(400).json(err);
         //Si student est retourné (seulement si ça réussi), on crée un JsonWebToken grâce à la méthode définie dans student.model.js
-        else if (student) return res.status(200).json({ "token": student.generateJwt() });
+        else if (student) return res.status(200).json({ "token": student.generateJwt(req) });
         //Si l'email n'existe pas ou si le mot de passe est incorrect on affiche le message défini dans passportConfig.js
         else return res.status(404).json(info);
     })(req, res);

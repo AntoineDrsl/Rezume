@@ -23,7 +23,7 @@ export class StudentProfileComponent implements OnInit {
       },
       err => {
         this.serverErrorMessage = 'Student Details couldn\'t be find, you will be redirected to another page.';
-        setTimeout(() => this.router.navigate(['/cvview']), 3000);
+        setTimeout(() => this.router.navigate(['/login']), 1);
       }
     );
 
