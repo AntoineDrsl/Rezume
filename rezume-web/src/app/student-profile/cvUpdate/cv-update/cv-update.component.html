@@ -23,14 +23,15 @@
           <div class="category">
             <legend>Tes expériences</legend>
             <span style="font-weight: bold; cursor: pointer" (click)="addExperience()">
-            <img src="/assets/images/plus.svg" alt="icon" class="icon-plus">
+              <img src="/assets/images/plus.svg" alt="icon" class="icon-plus">
             </span>
           </div>
           <div class="input-group"
                *ngFor="let experienceControl of cvUpdateForm.get('experiences').controls; let i = index">
             <input type="text" class="form-control" [formControlName]="i">
-            <span class="input-group-addon" id="basic-addon2" (click)="deleteExperience(i)"
-                  style="cursor: pointer"><img src="/assets/images/delete.svg" alt="icon" class="icon-delete"></span>
+            <span class="input-group-addon" id="basic-addon2" (click)="deleteExperience(i)" style="cursor: pointer">
+              <img src="/assets/images/delete.svg" alt="icon" class="icon-delete">
+            </span>
           </div>
         </div>
         <hr class="separator-line">

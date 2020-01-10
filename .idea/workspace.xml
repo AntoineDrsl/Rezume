@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="63772e5c-c779-4723-a7de-b7c0b66e95e8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/rezume-web/src/app/student-profile/student-profile.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/rezume-web/src/app/student-profile/student-profile.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rezume-web/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/rezume-web/src/styles.css" afterDir="false" />
-    </list>
+    <list default="true" id="63772e5c-c779-4723-a7de-b7c0b66e95e8" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,7 +17,9 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -52,6 +51,9 @@
       <option name="presentableId" value="Default" />
       <updated>1578389917882</updated>
       <workItem from="1578389921510" duration="3522000" />
+      <workItem from="1578521658564" duration="168000" />
+      <workItem from="1578646030807" duration="485000" />
+      <workItem from="1578652526828" duration="2954000" />
     </task>
     <servers />
   </component>

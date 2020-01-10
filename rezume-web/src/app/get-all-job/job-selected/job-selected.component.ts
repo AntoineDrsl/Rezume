@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { JobService } from '../../shared/job.service';
+import { StudentService } from '../../shared/student.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -11,9 +12,16 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class JobSelectedComponent implements OnInit {
 
   jobDetails;
+  studentDetails;
   showMessageError: boolean = false;
 
-  constructor(private route: ActivatedRoute, private jobService: JobService, private router: Router) { }
+  buttonAdd: boolean;
+
+  constructor(
+    private route: ActivatedRoute,
+    private jobService: JobService,
+    private router: Router,
+    private studentService: StudentService) { }
 
   ngOnInit() {
 
@@ -22,7 +30,6 @@ export class JobSelectedComponent implements OnInit {
     this.jobService.getSelectedJob(id).subscribe(
       res => {
         this.jobDetails = res['job'];
-        console.log(this.jobDetails);
       },
       err => {
         this.showMessageError = true
@@ -30,6 +37,55 @@ export class JobSelectedComponent implements OnInit {
       }
     )
 
+    this.checkIfFavorite();
   }
 
+    addFavorite() {
+    const id = this.route.snapshot.paramMap.get('id');
+
+    this.studentService.addFavorite(id).subscribe(
+      res => {
+        this.buttonAdd = false;
+      },
+      err => {
+        console.log('Err');
+      }
+    );
+  }
+
+  removeFavorite() {
+    const id = this.route.snapshot.paramMap.get('id');
+
+    this.studentService.removeFavorite(id).subscribe(
+      res => {
+        this.buttonAdd = true;
+      },
+      err => {
+        console.log('Err');
+      }
+    );
+  }
+
+  checkIfFavorite() {
+    const id = this.route.snapshot.paramMap.get('id');
+
+    this.studentService.getStudentProfile().subscribe(
+      res => {
+        this.studentDetails = res['student'];
+
+        console.log(this.studentDetails.favorites);
+        this.studentDetails.favorites.forEach(element => {
+          if(element === id){
+            this.buttonAdd = false;
+          }
+          else{
+            this.buttonAdd = true;
+          }
+        });
+      },
+      err => {
+        console.log('Student not found');
+      }
+    );
+  }
 }
