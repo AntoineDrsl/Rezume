@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { CvService } from '../shared/cv.service';
 import { StudentService } from '../shared/student.service';
@@ -15,9 +16,9 @@ export class GetAllCvComponent implements OnInit {
   allCv;
   studentListDetails: string[] = [];
   studentDetails;
+  showMessageError: boolean = false;
 
-
-  constructor(private cvService: CvService, private studentService: StudentService) { }
+  constructor(private cvService: CvService, private studentService: StudentService, private router: Router) { }
 
   ngOnInit() {
     this.cvService.getAllCV().subscribe(
@@ -26,7 +27,10 @@ export class GetAllCvComponent implements OnInit {
         // console.log(this.allCv);
         this.launchFunction();
       },
-      err => {}
+      err => {
+        this.showMessageError = true;
+        setTimeout(() => {this.router.navigate(['/companyprofile']);}, 1500);
+      }
       );
     }
 
@@ -47,10 +51,10 @@ export class GetAllCvComponent implements OnInit {
         res => {
           this.studentDetails = res['student'];
           this.studentListDetails.push(this.studentDetails);
-          console.log(this.studentListDetails);
+          // console.log(this.studentListDetails);
         },
         err => {
-          console.log('Erreur');
+          console.log('Erreur lors de la récupération des données');
         }
         )
       }

@@ -11,8 +11,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class JobSelectedComponent implements OnInit {
 
   jobDetails;
+  showMessageError: boolean = false;
 
-  constructor(private route: ActivatedRoute, private jobService: JobService) { }
+  constructor(private route: ActivatedRoute, private jobService: JobService, private router: Router) { }
 
   ngOnInit() {
 
@@ -24,7 +25,8 @@ export class JobSelectedComponent implements OnInit {
         console.log(this.jobDetails);
       },
       err => {
-        console.log('Impossible de recup le job');
+        this.showMessageError = true
+        setTimeout(() => {this.router.navigate(['/job']);}, 1500);
       }
     )
 

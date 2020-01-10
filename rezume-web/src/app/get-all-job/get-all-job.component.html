@@ -4,3 +4,7 @@
   <h1>Proposé par: {{companyListDetails[i].company_name}} </h1>
   <input type="button" routerLink="/job/{{job._id}}" value="Consulter ce Job">
 </div>
+
+<div *ngIf="showMessageError">
+  Une erreur est apparu lors de la récupération des jobs
+</div>

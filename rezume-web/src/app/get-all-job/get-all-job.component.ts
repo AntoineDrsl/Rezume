@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { JobService } from '../shared/job.service';
 import { CompanyService } from '../shared/company.service';
@@ -14,7 +15,9 @@ export class GetAllJobComponent implements OnInit {
   companyListDetails: string[] = [];
   companyDetails;
 
-  constructor(private jobService: JobService, private companyService: CompanyService) { }
+  showMessageError: boolean = false;
+
+  constructor(private jobService: JobService, private companyService: CompanyService, private router: Router) { }
 
   ngOnInit() {
 
@@ -25,7 +28,8 @@ export class GetAllJobComponent implements OnInit {
         // console.log(this.allJob);
       },
       err => {
-
+        this.showMessageError = true
+        setTimeout(() => {this.router.navigate(['/studentprofile']);}, 1500);
       }
     )
 

@@ -20,3 +20,7 @@
 <div class="button-cv" *ngIf="jobDetails">
   <input type="button" value="Revenir à la liste des Jobs" routerLink="/job">
 </div>
+
+<div *ngIf="showMessageError">
+  Cet id ne correspond à aucun job, vous allez être redirigé.
+</div>
