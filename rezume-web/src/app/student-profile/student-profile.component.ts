@@ -13,6 +13,7 @@ export class StudentProfileComponent implements OnInit {
   studentDetails;
   cvDetails;
   serverErrorMessage: string;
+  valid = false;
 
   constructor(private studentService: StudentService, private router: Router, private cvService: CvService) { }
 
@@ -20,10 +21,11 @@ export class StudentProfileComponent implements OnInit {
     this.studentService.getStudentProfile().subscribe(
       res => {
         this.studentDetails = res['student'];
+        this.valid = true;
       },
       err => {
         this.serverErrorMessage = 'Student Details couldn\'t be find, you will be redirected to another page.';
-        setTimeout(() => this.router.navigate(['/login']), 1);
+        setTimeout(() => this.router.navigate(['/companyprofile']), 1);
       }
     );
 

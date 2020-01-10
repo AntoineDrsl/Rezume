@@ -11,6 +11,7 @@ export class CompanyProfileComponent implements OnInit {
 
   companyDetails;
   serverErrorMessage: boolean;
+  valid = false;
 
 
   constructor(private companyService: CompanyService, private router: Router) { }
@@ -19,10 +20,11 @@ export class CompanyProfileComponent implements OnInit {
     this.companyService.getCompanyProfile().subscribe(
       res => {
         this.companyDetails = res['company'];
+        this.valid = true;
       },
       err => {
         this.serverErrorMessage = true;
-        setTimeout(() => this.router.navigate(['/login']), 1);
+        setTimeout(() => this.router.navigate(['/studentprofile']), 1);
       }
     );
   }
