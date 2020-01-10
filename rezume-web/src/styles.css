@@ -188,6 +188,17 @@ label.validation-message{
   text-align: center;
   margin-bottom: 10px;
 }
+.xpRequise{
+  text-decoration: none;
+  background-color: #f6f6f6;
+  border: none;
+  color: #0d0d0d;
+  width: 250px;
+  height: 50px;
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 10px;
+}
 .title-cv{
   color: #D5DDE5;
   font-size: 23px;
@@ -347,7 +358,7 @@ label.validation-message{
   background-color: #72679f;
 }
 .wrapper-bc{
-  height: 100vh;
+  height: 150vh;
 
 }
 .wrapper-bc-cv{
@@ -356,6 +367,9 @@ label.validation-message{
 .wrapper-flex{
   display: flex;
   justify-content: center;
+}
+.wrapper-block{
+  display: block;
 }
 .wrapper-table{
   display: flex;
@@ -473,7 +487,7 @@ input.button-submitCV{
   margin-top: 30px;
 }
 
-.degrees, .experiences, .search, .placeAge{
+.degrees, .experiences, .search, .placeAge,.space{
   margin: 20px;
 }
 
@@ -534,4 +548,13 @@ input.button-submitCV{
   border-width: 6px;
   border-style: solid;
   pointer-events: none;
+}
+
+
+input.back{
+  margin-top: 50px;
+  padding: 15px 20px;
+}
+.wrapper-block h1{
+  font-size: 25px;
 }

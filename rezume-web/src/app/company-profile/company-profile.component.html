@@ -8,6 +8,7 @@
     <div class="separator">
         <p>Vos informations :</p>
     </div>
+  <div class="category">
     <table  *ngIf="companyDetails" class="table-fill">
         <tbody>
             <tr>
@@ -28,9 +29,10 @@
         </tbody>
         <div class="button-cv">
             <input type="button" routerLink="/cv" value="Voir tous les curriculum vitae">
-            <input type="button" (click)="onLogout()" value="Se déconnecter">
             <input type="button" routerLink="/jobcreation" value="Créez une offre de stage">
+          <input type="button" (click)="onLogout()" value="Se déconnecter">
         </div>
     </table>
+  </div>
 
 </div>
