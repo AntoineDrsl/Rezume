@@ -2,8 +2,11 @@
 
 ## Before to start : 
 
-Install packages to run the app
+Install all the packages:
+`cd rezume_web`
 `npm init`
+Accept all
+`npm install`
 
 Create a database in MondoDB called "Rezume" with 4 tables: "students", "companies", "cvs", "jobs"
 
