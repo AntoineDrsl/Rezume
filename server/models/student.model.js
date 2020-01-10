@@ -16,6 +16,9 @@ var studentSchema = new mongoose.Schema({
         required: 'Email cannot be empty',
         unique: true
     },
+    favorites: [
+        { type: String }
+    ],
     password: {
         type: String,
         required: 'Password cannot be empty',

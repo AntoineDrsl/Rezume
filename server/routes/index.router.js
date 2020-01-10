@@ -64,9 +64,11 @@ router.get('/getselectedjob/:id', jwtHelper.verifyJwtToken, ctrlJob.getSelectedJ
 
 //Ajouter CV en favori
 router.get('/addfavorite/:id', jwtHelper.verifyJwtToken, ctrlCompany.addFavorite);
+router.get('/addjobfavorite/:id', jwtHelper.verifyJwtToken, ctrlStudent.addJobFavorite);
 
 //Remove CV en favori
 router.get('/removefavorite/:id', jwtHelper.verifyJwtToken, ctrlCompany.removeFavorite);
+router.get('/removejobfavorite/:id', jwtHelper.verifyJwtToken, ctrlStudent.removeJobFavorite);
 
 
 module.exports = router;
