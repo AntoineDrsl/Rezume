@@ -15,7 +15,7 @@ export class JobSelectedComponent implements OnInit {
   studentDetails;
   showMessageError: boolean = false;
 
-  buttonAdd: boolean = false;
+  buttonAdd: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -37,6 +37,7 @@ export class JobSelectedComponent implements OnInit {
       }
     )
 
+    this.checkIfFavorite();
   }
 
     addFavorite() {
@@ -44,7 +45,6 @@ export class JobSelectedComponent implements OnInit {
 
     this.studentService.addFavorite(id).subscribe(
       res => {
-        // // console.log('Success');
         this.buttonAdd = false;
       },
       err => {
@@ -73,7 +73,8 @@ export class JobSelectedComponent implements OnInit {
       res => {
         this.studentDetails = res['student'];
 
-        this.studentDetails.forEach(element => {
+        console.log(this.studentDetails.favorites);
+        this.studentDetails.favorites.forEach(element => {
           if(element === id){
             this.buttonAdd = false;
           }
