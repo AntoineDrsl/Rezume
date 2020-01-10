@@ -12,7 +12,7 @@ import { CvViewComponent } from './student-profile/cv-view/cv-view.component';
 import { JobCreationComponent } from './job-creation/job-creation.component';
 import { GetAllCvComponent } from './get-all-cv/get-all-cv.component';
 import { SelectedCvComponent } from './get-all-cv/selected-cv/selected-cv.component';
-
+import { GetAllJobComponent } from './get-all-job/get-all-job.component';
 
 export const routes: Routes = [
   {
@@ -46,6 +46,9 @@ export const routes: Routes = [
   },
   {
     path: 'cvview/:id', component: SelectedCvComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'job', component: GetAllJobComponent, canActivate: [AuthGuard]
   },
   {
     path: '', redirectTo: '/login', pathMatch: 'full'

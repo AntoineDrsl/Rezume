@@ -66,3 +66,16 @@ module.exports.removeFavorite = (req, res, next) => {
         }
     );
 }
+
+module.exports.getCompanyProfileId = (req, res, next) => {
+    Company.findOne({_id: req.params.id},
+        (err, company) => {
+            if(!company){
+                return res.status(409).json({status: false, message: 'Company not found', erreur: err});
+            }
+            else{
+                return res.status(200).json({status: true, company});
+            }
+        }
+    );
+}

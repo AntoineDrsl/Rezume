@@ -40,3 +40,29 @@ module.exports.uploadImage = (req, res, next) => {
     }
     res.send(file)
 }
+
+module.exports.geAllJob = (req, res, next) => {
+    Job.find({}, 
+        (err, job) => {
+            if(!job){
+                return res.status(500).json({status: false, message: 'Cannot load all job'});
+            }
+            else{
+                return res.status(200).json({status: true, job});
+            }
+        }
+    );
+}
+
+module.exports.getSelectedJob = (req, res, next) => {
+    Job.findOne({_id: req.params.id},
+        (err, job) => {
+            if(!job){
+                return res.status(500).json({status: false, message: 'Job offer not found'});
+            }
+            else{
+                return res.status(200).json({status: true, job});
+            }
+        }    
+    )
+}

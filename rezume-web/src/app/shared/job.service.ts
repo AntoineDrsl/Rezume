@@ -30,4 +30,8 @@ export class JobService {
   postJob(job: Job) {
     return this.http.post(environment.apiBaseUrl + '/createjob', job);
   }
+
+  getAllJob() {
+    return this.http.get(environment.apiBaseUrl + '/getalljob');
+  }
 }
