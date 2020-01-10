@@ -3,8 +3,8 @@
     <img src="/assets/images/LogoRezume.svg" alt="icon" id="icon">
 </div>
 
-<h2 class="underlineHover" (click)="isSelected(0)" routerLinkActive="active">Entreprise</h2>
-<h2 class="underlineHover" (click)="isSelected(1)" routerLinkActive="active">Etudiant</h2>
+<h2 class="underlineHover" [ngClass]="selectedValue == 0 ? 'active' : ''" (click)="isSelected(0)" routerLinkActive="active">Entreprise</h2>
+<h2 class="underlineHover" [ngClass]="selectedValue == 1 ? 'active' : ''" (click)="isSelected(1)" routerLinkActive="active">Etudiant</h2>
 
 <app-sign-up-student *ngIf="selectedValue == 1"></app-sign-up-student>
 <app-sign-up-company *ngIf="selectedValue == 0" ></app-sign-up-company>
