@@ -59,6 +59,10 @@ export class JobCreationComponent implements OnInit {
   addDegree() {
     (<FormArray>this.jobForm.get('degrees')).push(new FormControl(''));
   }
+  deleteDegree(index: number) {
+    (<FormArray>this.jobForm.get('degrees')).removeAt(index);
+  }
+
 
   onFileChange(event) {
     if (event.target.files.length > 0) {

@@ -62,10 +62,10 @@ export class CvCreationComponent implements OnInit {
   }
 
   deleteExperience(index: number) {
-    (<FormArray>this.cvForm.get('experiences')).removeAt(index)
+    (<FormArray>this.cvForm.get('experiences')).removeAt(index);
   }
   deleteDegree(index: number) {
-    (<FormArray>this.cvForm.get('degrees')).removeAt(index)
+    (<FormArray>this.cvForm.get('degrees')).removeAt(index);
   }
 
   onFileChange(event) {

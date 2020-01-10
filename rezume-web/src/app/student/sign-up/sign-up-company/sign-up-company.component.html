@@ -1,5 +1,5 @@
 <form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
-  <input type="text" #company_name="ngModel" [(ngModel)]="companyService.selectedCompany.company_name" name="company_name" placeholder="Company name" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !fullName.valid }">
+  <input type="text" #company_name="ngModel" [(ngModel)]="companyService.selectedCompany.company_name" name="company_name" placeholder="Company name" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !company_name.valid }">
   <div *ngIf="signUpForm.submitted && !company_name.valid">
     <label class="validation-message">Veuillez entrer un nom d'entreprise.</label>
   </div>
@@ -8,7 +8,7 @@
     <label *ngIf="email.errors.required" class="validation-message">Veuillez entrer une adresse email.</label>
     <label *ngIf="email.errors.pattern" class="validation-message">Cette adresse email est invalide.</label>
   </div>
-  <input type="text" #description="ngModel" [(ngModel)]="companyService.selectedCompany.description" name="description" placeholder="Description de l'entreprise" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !fullName.valid }">
+  <input type="text" #description="ngModel" [(ngModel)]="companyService.selectedCompany.description" name="description" placeholder="Description de l'entreprise" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !description.valid }">
   <div *ngIf="signUpForm.submitted && !description.valid">
     <label class="validation-message">Veuillez entrer une description de l'entreprise.</label>
   </div>
