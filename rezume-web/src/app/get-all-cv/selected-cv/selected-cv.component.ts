@@ -39,21 +39,22 @@ export class SelectedCvComponent implements OnInit {
   }
 
   checkIfFavorite() {
-
     const id = this.route.snapshot.paramMap.get('id');
 
     this.companyService.getCompanyProfile().subscribe(
       res =>{
         this.companyDetails = res["company"];
         // on check si l'utilisateur possède déja ce cv en favori
-        this.companyDetails.favorites.forEach(element => {
-          if(element === id){
-            this.buttonAdd = false;
-          }
-          else{
-            this.buttonAdd = true;
-          }
-        });
+        if(this.companyDetails.favorites.length > 0) {
+          this.companyDetails.favorites.forEach(element => {
+            if(element === id){
+              this.buttonAdd = false;
+            }
+          });
+        }
+        else{
+          this.buttonAdd = true;
+        }
 
       },
       err => {
@@ -62,7 +63,7 @@ export class SelectedCvComponent implements OnInit {
     );
   }
 
-  addFavorite(){
+  addFavorite() {
     const id = this.route.snapshot.paramMap.get('id');
 
     this.companyService.addFavorite(id).subscribe(
@@ -76,7 +77,7 @@ export class SelectedCvComponent implements OnInit {
     );
   }
 
-  removeFavorite(){
+  removeFavorite() {
     const id = this.route.snapshot.paramMap.get('id');
 
     this.companyService.removeFavorite(id).subscribe(

@@ -67,21 +67,23 @@ export class JobSelectedComponent implements OnInit {
   }
 
   checkIfFavorite() {
+
     const id = this.route.snapshot.paramMap.get('id');
 
     this.studentService.getStudentProfile().subscribe(
       res => {
         this.studentDetails = res['student'];
-
         console.log(this.studentDetails.favorites);
-        this.studentDetails.favorites.forEach(element => {
-          if(element === id){
-            this.buttonAdd = false;
-          }
-          else{
-            this.buttonAdd = true;
-          }
-        });
+        if(this.studentDetails.favorites.length > 0) {
+          this.studentDetails.favorites.forEach(element => {
+            if(element === id){
+              this.buttonAdd = false;
+            }
+          });
+        }
+        else{
+          this.buttonAdd = true;
+        }
       },
       err => {
         console.log('Student not found');

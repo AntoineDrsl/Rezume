@@ -11,7 +11,7 @@
     <div class="wrapper-block">
       <div *ngFor="let job of allJob; index as i">
         <h1>Emploi: {{job.sector}} </h1>
-        <h1>Proposé par: {{companyListDetails[i].company_name}} </h1>
+        <h1>Proposé par: {{companyListDetails[i]}} </h1>
         <input type="button" routerLink="/job/{{job._id}}" value="Consulter ce Job">
       </div>
     </div>

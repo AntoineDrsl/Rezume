@@ -50,7 +50,7 @@ export class GetAllJobComponent implements OnInit {
     this.companyService.getCompanyProfileId(item).subscribe(
       res => {
         this.companyDetails = res['company'];
-        this.companyListDetails.push(this.companyDetails);
+        this.companyListDetails.push(this.companyDetails.company_name);
       },
       err => {
         console.log('erreur');
