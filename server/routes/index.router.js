@@ -4,7 +4,7 @@ const multer = require('multer');
 
 const ctrlStudent = require('../controllers/student.controller');
 const ctrlCV = require('../controllers/cv.controller');
-const ctrlCompany = require('../controllers/company.controller')
+const ctrlCompany = require('../controllers/company.controller');
 const ctrlJob = require('../controllers/job.controller');
 const jwtHelper = require('../config/jwtHelper');
 
