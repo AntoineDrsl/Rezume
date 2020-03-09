@@ -34,7 +34,7 @@ export class SignInComponent implements OnInit {
         if(this.model.statut == "student") {
           this.router.navigateByUrl('/studentprofile');
         } else if(this.model.statut == "company") {
-          this.router.navigateByUrl('/companyprofile')
+          this.router.navigateByUrl('/companyprofile');
         }
       },
       err => {

@@ -50,6 +50,9 @@ export class SelectedCvComponent implements OnInit {
             if(element === id){
               this.buttonAdd = false;
             }
+            else{
+              this.buttonAdd = true;
+            }
           });
         }
         else{
