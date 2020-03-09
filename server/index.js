@@ -8,7 +8,11 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const passport = require('passport')
 
-const rtsIndex = require('./routes/index.router');
+const rtsRegistration = require('./routes/registration.router');
+const rtsStudent = require('./routes/student.router');
+const rtsCompany = require('./routes/company.router');
+const rtsCv = require('./routes/cv.router');
+const rtsJob = require('./routes/cv.router');
 
 var app = express();
 
@@ -16,7 +20,7 @@ var app = express();
 app.use(bodyParser.json());
 app.use(cors());
 app.use(passport.initialize());
-app.use('/api', rtsIndex); // define URL '/api' to call the router
+app.use('/api', rtsRegistration, rtsStudent, rtsCompany, rtsCv, rtsJob); // define URL '/api' to call the router
 
 // error handler
 app.use((err, req, res, next) => {
