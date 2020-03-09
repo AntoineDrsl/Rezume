@@ -1,0 +1,37 @@
+
+<form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
+  <input type="text" #firstName="ngModel" [(ngModel)]="studentService.selectedStudent.firstName" name="firstName" placeholder="Firstname" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !firstName.valid }">
+      <div *ngIf="signUpForm.submitted && !firstName.valid">
+          <label class="validation-message">Veuillez entrer un prénom.</label>
+      </div>
+  <input type="text" #lastName="ngModel" [(ngModel)]="studentService.selectedStudent.lastName" name="lastName" placeholder="Lastname" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !lastName.valid }">
+      <div *ngIf="signUpForm.submitted && !lastName.valid">
+          <label class="validation-message">Veuillez entrer un nom.</label>
+      </div>
+  <input type="text" #email="ngModel" [(ngModel)]="studentService.selectedStudent.email" name="email" placeholder="Email" required [pattern]="emailRegex" [ngClass]="{'invalid-textbox' :signUpForm.submitted && !email.valid }">
+      <div *ngIf="signUpForm.submitted && email.errors">
+          <label *ngIf="email.errors.required" class="validation-message">Veuillez entrer une adresse email.</label>
+          <label *ngIf="email.errors.pattern" class="validation-message">Cette adresse email est invalide.</label>
+      </div>
+  <input type="password" #password="ngModel" [(ngModel)]="studentService.selectedStudent.password" name="password" placeholder="Password" required minlength="8" [ngClass]="{'invalid-textbox' :signUpForm.submitted && !password.valid }">
+      <div *ngIf="signUpForm.submitted && password.errors">
+          <label *ngIf="password.errors.required" class="validation-message">Veuillez entrer un mot de passe</label>
+          <label *ngIf="password.errors.minlength" class="validation-message">Votre mot de passe doit contenir au moins 8 caractères</label>
+      </div>
+  <input type="password" #confirmPassword="ngModel" [(ngModel)]="studentService.selectedStudent.confirmPassword" name="confirmPassword" placeholder="Confirm password" required pattern="{{password.value}}" [ngClass]="{'invalid-textbox' :signUpForm.submitted && !confirmPassword.valid }">
+      <div *ngIf="signUpForm.submitted && confirmPassword.errors">
+          <label *ngIf="confirmPassword.errors.required" class="validation-message">Veuillez confirmer votre mot de passe</label>
+          <label *ngIf="confirmPassword.errors.pattern" class="validation-message">Vos mots de passe ne correspondent pas</label>
+      </div>
+  <input type="submit" value="Sign Up">
+</form>
+
+<!-- Success message -->
+<div class="success" *ngIf="showSuccessMessage">
+  Vous êtes inscrit !
+</div>
+
+<!-- Error message -->
+<div class="alert" *ngIf="serverErrorMessages">
+  {{serverErrorMessages}}
+</div>

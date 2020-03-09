@@ -1,0 +1,39 @@
+<div class="wrapper" *ngIf="valid">
+  <div class="formContent">
+
+
+    <div>
+      <img src="/assets/images/LogoRezume.svg" alt="icon" id="icon">
+    </div>
+    <form #signInForm="ngForm" (ngSubmit)="signInForm.valid && onSubmit(signInForm)">
+      <div class="formfield-select">
+        <label>Vous êtes: </label>
+        <div class="formfield-select--container">
+          <select class="custom-select" name="statut" #statut="ngModel" [(ngModel)]="model.statut" required
+                  [ngClass]="{'invalid-textbox' :signInForm.submitted && !statut.valid }">
+            <option value="student">un étudiant</option>
+            <option value="company">une entreprise</option>
+          </select>
+        </div>
+      </div>
+      <input type="text" name="email" #email="ngModel" [(ngModel)]="model.email" placeholder="Email" [pattern]="emailRegex"
+            required [ngClass]="{ 'invalid-textbox' : signInForm.submitted && !email.valid }">
+      <div *ngIf="signInForm.submitted && email.errors?.pattern">
+        <label class="validation-message">Invalid email adress.</label>
+      </div>
+      <input type="password" name="password" #password="ngModel" [(ngModel)]="model.password" placeholder="Password"
+            required minlength="8" [ngClass]="{ 'invalid-textbox' : signInForm.submitted && !password.valid }">
+      <div *ngIf="signInForm.submitted && password.errors?.minlength">
+        <label class="validation-message">Minimum 8 characters</label>
+      </div>
+      <input type="submit" value="Sign In">
+    </form>
+
+    <!-- Error message -->
+    <div class="alert" *ngIf="serverErrorMessages">
+      {{serverErrorMessages}}
+    </div>
+
+
+  </div>
+</div>
