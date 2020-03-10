@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import {Location} from '@angular/common';
 import { Router } from '@angular/router';
 
-import { StudentService } from '../../shared/student.service';
+import { StudentService } from '../shared/student.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -13,10 +14,16 @@ export class SignInComponent implements OnInit {
 
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   serverErrorMessages: string;
+  valid = false;
 
-  constructor(private studentService: StudentService, private router: Router) { }
+  constructor(private studentService: StudentService, private router: Router, private location: Location) { }
 
   ngOnInit() {
+    if(this.studentService.isLoggedIn()) {
+      this.location.back();
+    } else {
+      this.valid = true;
+    }
   }
 
   model = {
@@ -34,7 +41,7 @@ export class SignInComponent implements OnInit {
         if(this.model.statut == "student") {
           this.router.navigateByUrl('/studentprofile');
         } else if(this.model.statut == "company") {
-          this.router.navigateByUrl('/companyprofile')
+          this.router.navigateByUrl('/companyprofile');
         }
       },
       err => {

@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
 
-import { StudentService } from '../../../shared/student.service';
+import { StudentService } from '../../shared/student.service';
 
 @Component({
   selector: 'app-sign-up-student',

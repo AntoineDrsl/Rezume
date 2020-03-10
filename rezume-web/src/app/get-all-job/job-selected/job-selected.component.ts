@@ -73,11 +73,13 @@ export class JobSelectedComponent implements OnInit {
     this.studentService.getStudentProfile().subscribe(
       res => {
         this.studentDetails = res['student'];
-        console.log(this.studentDetails.favorites);
         if(this.studentDetails.favorites.length > 0) {
           this.studentDetails.favorites.forEach(element => {
             if(element === id){
               this.buttonAdd = false;
+            }
+            else{
+              this.buttonAdd = true;
             }
           });
         }

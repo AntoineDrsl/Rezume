@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
 
-import { CompanyService } from '../../../shared/company.service';
+import { CompanyService } from '../../shared/company.service';
 
 @Component({
   selector: 'app-sign-up-company',

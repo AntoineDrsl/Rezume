@@ -1,8 +1,7 @@
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { StudentComponent } from './student/student.component';
-import { SignUpComponent } from './student/sign-up/sign-up.component';
-import { SignInComponent } from './student/sign-in/sign-in.component'
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignInComponent } from './sign-in/sign-in.component'
 import { StudentProfileComponent } from './student-profile/student-profile.component';
 import { CompanyProfileComponent } from './company-profile/company-profile.component';
 import { AuthGuard } from './auth/auth.guard';
@@ -14,18 +13,24 @@ import { GetAllCvComponent } from './get-all-cv/get-all-cv.component';
 import { SelectedCvComponent } from './get-all-cv/selected-cv/selected-cv.component';
 import { GetAllJobComponent } from './get-all-job/get-all-job.component';
 import { JobSelectedComponent } from './get-all-job/job-selected/job-selected.component';
-import {SignUpCompanyComponent} from './student/sign-up/sign-up-company/sign-up-company.component';
-import {SignUpStudentComponent} from './student/sign-up/sign-up-student/sign-up-student.component';
+import {SignUpCompanyComponent} from './sign-up/sign-up-company/sign-up-company.component';
+import {SignUpStudentComponent} from './sign-up/sign-up-student/sign-up-student.component';
 
 
 export const routes: Routes = [
+  // {
+  //   path: 'signup', component: StudentComponent,
+  //   children: [{ path: '', component: SignUpComponent }]
+  // },
+  // {
+  //   path: 'login', component: StudentComponent,
+  //   children: [{ path: '', component: SignInComponent }]
+  // },
   {
-    path: 'signup', component: StudentComponent,
-    children: [{ path: '', component: SignUpComponent }]
+    path: 'login', component: SignInComponent
   },
   {
-    path: 'login', component: StudentComponent,
-    children: [{ path: '', component: SignInComponent }]
+    path: 'signup', component: SignUpComponent
   },
   {
     path: 'studentprofile', component: StudentProfileComponent, canActivate: [AuthGuard]
