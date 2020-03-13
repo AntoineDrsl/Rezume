@@ -58,6 +58,7 @@ module.exports.createCV = (req, res, next) => {
     cv.research = req.body.research;
     cv.experiences = req.body.experiences;
     cv.degrees = req.body.degrees;
+    cv.hashtag = req.body.hashtag;
     cv.img_path = `server/uploads/cv/Photo_${req._id}`;
     cv.save((err, doc) => {
         if(!err){
@@ -119,4 +120,18 @@ module.exports.getAllCv = (req, res, next) =>{
             }
         }
     );
+}
+
+module.exports.searchBy = (req, res, next) => {
+    CV.find(
+        {hashtag: req.params.field},
+        (err, cv) =>{
+            if(!cv) {
+                return res.status(500).json({status: false, message: 'Cannot load all CV'});
+            }
+            else{
+                return res.status(200).json({status: true, cv});
+            }
+        }
+    )
 }
