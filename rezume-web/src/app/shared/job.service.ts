@@ -16,7 +16,7 @@ export class JobService {
     degrees: ['']
   };
 
-  //Attribut à ajouter pour les fonctions ne demandant pas de JWT
+  // Attribut à ajouter pour les fonctions ne demandant pas de JWT
   noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' }) };
 
   constructor(private http: HttpClient) { }
