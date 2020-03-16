@@ -4,6 +4,7 @@ const _ = require('lodash');
 const Student = mongoose.model('Student');
 const CV = mongoose.model('cv');
 
+
 mongoose.set('useFindAndModify', false);
 
 module.exports.getIdAndName = (req, res, next) => {
@@ -123,8 +124,22 @@ module.exports.getAllCv = (req, res, next) =>{
 }
 
 module.exports.searchBy = (req, res, next) => {
+
+
+    let queryField = [];
+    for(const key in req.query){
+        if(req.query[key] == ''){
+            console.log('query empty');
+        }
+        else{
+            queryField.push(req.query[key]);
+        }
+    }
+
+    console.log(queryField);
+
     CV.find(
-        {hashtag: req.params.field},
+        {hashtag: {$all: queryField}},
         (err, cv) =>{
             if(!cv) {
                 return res.status(500).json({status: false, message: 'Cannot load all CV'});
