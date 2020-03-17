@@ -19,4 +19,12 @@ export class PostService {
   getAllPost() {
     return this.http.get(environment.apiBaseUrl + '/getallpost');
   }
+
+  addPost(post: Post) {
+    return this.http.post(environment.apiBaseUrl + '/createpost', post);
+  }
+
+  getCompanyPost() {
+    return this.http.get(environment.apiBaseUrl + '/getcompanypost');
+  }
 }

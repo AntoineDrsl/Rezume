@@ -32,7 +32,7 @@ export class SignInComponent implements OnInit {
     password : ''
   };
 
-  onSubmit(form : NgForm) {
+  onSubmit(form: NgForm) {
     // On appelle la fonction login() définie dans StudentService en passant les infos comme Credentials
     this.studentService.login(form.value).subscribe(
       res => {

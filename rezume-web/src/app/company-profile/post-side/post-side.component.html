@@ -1,0 +1,31 @@
+
+<div class="postSide">
+
+  <div class="postForm">
+    <form #addPost="ngForm" (ngSubmit)="addPost.valid && onSubmit(addPost)">
+      <div class="form-group">
+        <label for="postContent" class="labelTitle">Créer une publication</label>
+        <textarea name="content" id="content" class="form-control" cols="30" placeholder="Dernières nouvelles de l'entreprise"
+        #postContent="ngModel" ngModel required></textarea>
+      </div>
+
+      <div class="form-group fileInput">
+        <!--<button class="btn btn-primary sendPost">Send</button>-->
+        <input type="submit" value="Poster">
+      </div>
+
+    </form>
+  </div>
+
+  <div class="alert alert-success" role="alert" *ngIf="showMessageSuccess">
+    Posté avec succès
+  </div>
+
+  <div class="post">
+    <p class="titlePost">
+      Vos derniers posts:
+    </p>
+  </div>
+
+</div>
+

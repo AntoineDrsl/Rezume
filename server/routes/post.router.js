@@ -10,5 +10,6 @@ const jwtHelper = require('../config/jwtHelper');
 router.post('/createpost', jwtHelper.verifyJwtTokenCompany, ctrlPost.createPost);
 router.get('/getallpost', jwtHelper.verifyJwtTokenCompany, ctrlPost.getAllPost);
 router.post('/deletepost/:id', jwtHelper.verifyJwtTokenCompany, ctrlPost.deletePost);
+router.get('/getcompanypost', jwtHelper.verifyJwtTokenCompany, ctrlPost.getCompanyPost);
 
 module.exports = router;

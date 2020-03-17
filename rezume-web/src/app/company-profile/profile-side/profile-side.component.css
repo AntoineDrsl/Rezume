@@ -1,0 +1,99 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.topDetails{
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 70px 0px;
+
+  border: 1px solid rgb(199, 199, 199);
+}
+
+.pictureProfile{
+  width: 100px;
+  max-width: 100px;
+  min-width: 100px;
+
+}
+
+.companyName{
+  font-size: 40px;
+  color: #6E58C6;
+
+  margin: 20px 0;
+}
+
+.buttonProfile{
+  background-color: #6E58C6;
+  color: white;
+  transition: 0.5s;
+
+  border: 0;
+  border-radius: 7px;
+
+  padding: 7px 25px;
+}
+
+.buttonProfile:hover{
+  background-color: white;
+  color: #6E58C6;
+  transition: 0.5s;
+}
+
+.studentFav{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgb(199, 199, 199);
+
+  padding: 40px 0;
+}
+
+.favTitle{
+  font-size: 30px;
+  color: #6E58C6;
+}
+
+.selectStudent{
+  width: 85%;
+  height: 40px;
+
+  border: 1px solid rgb(199, 199, 199);
+  border-radius: 7px;
+
+  margin: 4px 0;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  overflow: hidden;
+}
+
+.studentName{
+
+  padding-left: 10px;
+  padding-top: 1px;
+
+  font-size: 20px;
+
+}
+
+.studentCV{
+
+  font-size: 20px;
+  padding-top: 1px;
+  margin-right: 5px;
+
+  margin-left: auto;
+  color: #6E58C6;
+
+}

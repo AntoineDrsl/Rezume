@@ -1,4 +1,4 @@
-<div class="wrapper-bc" *ngIf="valid">
+<!-- <div class="wrapper-bc" *ngIf="valid">
 
   <thead>
   <img src="/assets/images/IconeRezume.svg" alt="icon" id="icon-profile">
@@ -33,6 +33,20 @@
   <div class="button-cv">
     <input type="button" routerLink="/cv" value="Voir tous les curriculum vitae">
     <input type="button" routerLink="/jobcreation" value="Créez une offre de stage">
-    <input type="button" (click)="onLogout()" value="Se déconnecter">
+  </div>
+</div> -->
+
+<div class="container-fluid">
+  <div class="row justify-content-center">
+
+    <div class="col-3">
+      <app-profile-side [company]="companyDetails"></app-profile-side>
+    </div>
+
+    <div class="col-9">
+      <app-post-side></app-post-side>
+    </div>
   </div>
 </div>
+
+<input type="button" (click)="onLogout()" value="Se déconnecter">
