@@ -40,7 +40,7 @@ export class PostSideComponent implements OnInit {
         form.reset();
         this.showMessageSuccess = true;
         setTimeout(() => {
-          this.showMessageSuccess = false;
+          window.location.reload();
         }, 2000);
       },
       err => {

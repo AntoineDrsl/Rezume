@@ -1,4 +1,5 @@
 
+<!--FORM POST SIDE-->
 <div class="postSide">
 
   <div class="postForm">
@@ -21,10 +22,37 @@
     Posté avec succès
   </div>
 
-  <div class="post">
-    <p class="titlePost">
-      Vos derniers posts:
-    </p>
+
+
+  <!--POST SIDE-->
+  <p class="titlePost">
+    Vos derniers posts:
+  </p>
+  <div class="postSection">
+
+
+    <div class="post" *ngFor="let post of companyPost; index as i">
+      <div class="postHead">
+        <p class="postTitle">
+          {{post.company_detail[0].company_name}}
+        </p>
+        <hr>
+      </div>
+
+      <div class="postImage">
+        <img src="assets/images/IconeRezume.png" alt="PP" class="pictureProfile img-circle">
+      </div>
+
+      <div class="postContent">
+        <p class="postText">
+          {{post.content}}
+        </p>
+        <p class="text-muted datePost">
+          {{post.createdAt}}
+        </p>
+      </div>
+    </div>
+
   </div>
 
 </div>
