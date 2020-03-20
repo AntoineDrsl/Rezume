@@ -71,7 +71,7 @@ export function playerFactory() {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    LottieModule.forRoot({ player: playerFactory })
+    LottieModule.forRoot({ player: playerFactory, useCache: true, }),
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

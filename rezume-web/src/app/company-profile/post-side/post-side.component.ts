@@ -20,7 +20,6 @@ export class PostSideComponent implements OnInit {
     this.postService.getCompanyPost().subscribe(
       res => {
         this.companyPost = res['post'];
-        console.log(this.companyPost);
       },
 
       err => {

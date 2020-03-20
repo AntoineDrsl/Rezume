@@ -18,10 +18,14 @@ export class CompanyProfileComponent implements OnInit {
 
   options: AnimationOptions = {
     path: '/assets/lottie/data.json',
+    loop: true,
+    autoplay: true
   };
 
   animationCreated(animationItem: AnimationItem): void {
-    console.log(animationItem);
+    // console.log(animationItem);
+    animationItem.setSpeed(0.5);
+
   }
 
   constructor(private companyService: CompanyService, private router: Router) { }
@@ -34,7 +38,6 @@ export class CompanyProfileComponent implements OnInit {
       },
       err => {
         this.serverErrorMessage = true;
-        setTimeout(() => this.router.navigate(['/studentprofile']), 1);
       }
     );
   }
