@@ -5,12 +5,18 @@
 
 
 .allDetails{
-  margin: 30px 0 0 8%;
+  margin: 30px 0 0 5%;
+  background-color: white;
   border: 1px solid rgb(199, 199, 199);
   border-radius: 10px;
   box-shadow: 0px 3px 4px -1px rgba(0,0,0,0.46);
 
-  width: 100%;
+  position: sticky;
+  top: 30px;
+
+
+
+
 }
 
 .topDetails{
@@ -21,7 +27,6 @@
   justify-content: center;
 
   padding: 70px 0px;
-
 
 }
 

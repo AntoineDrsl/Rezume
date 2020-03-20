@@ -11,11 +11,16 @@ export class ProfileSideComponent implements OnInit {
 
   @Input() company;
 
+  posY: number;
+  posDetail;
+
+
   constructor() { }
 
   ngOnInit() {
 
 
   }
+
 
 }

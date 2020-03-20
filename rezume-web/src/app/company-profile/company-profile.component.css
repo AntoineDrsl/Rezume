@@ -6,3 +6,14 @@
 body{
   background-color: #f5f5f5de;
 }
+
+.svg{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 85%;
+
+  width: 100vw;
+  height: 100vh;
+}

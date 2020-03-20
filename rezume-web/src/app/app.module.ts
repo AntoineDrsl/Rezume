@@ -5,6 +5,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+// Lottie
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
+
 //component imports
 import { AppComponent } from './app.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
@@ -34,6 +38,12 @@ import { ProfileSideComponent } from './company-profile/profile-side/profile-sid
 import { PostSideComponent } from './company-profile/post-side/post-side.component';
 
 
+// LOTTIE PLAYER
+export function playerFactory() {
+  return player;
+}
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +70,8 @@ import { PostSideComponent } from './company-profile/post-side/post-side.compone
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    LottieModule.forRoot({ player: playerFactory })
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
