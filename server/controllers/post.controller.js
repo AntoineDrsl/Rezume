@@ -73,11 +73,11 @@ module.exports.getCompanyPost = (req, res, next) => {
                 return res.status(409).json({status: false, message: 'post not found', erreur: err});
             }
             else {
-                console.log(post);
                 return res.status(200).json({status: true, post});
             }            
         }
     );
+    
 
     
 };
