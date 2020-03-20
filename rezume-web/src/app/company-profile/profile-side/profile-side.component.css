@@ -5,10 +5,12 @@
 
 
 .allDetails{
-  margin: 30px 0 0 3%;
+  margin: 30px 0 0 8%;
   border: 1px solid rgb(199, 199, 199);
   border-radius: 10px;
   box-shadow: 0px 3px 4px -1px rgba(0,0,0,0.46);
+
+  width: 100%;
 }
 
 .topDetails{
@@ -19,6 +21,8 @@
   justify-content: center;
 
   padding: 70px 0px;
+
+
 }
 
 .pictureProfile{
