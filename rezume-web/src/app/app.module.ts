@@ -36,6 +36,7 @@ import { JobSelectedComponent } from './get-all-job/job-selected/job-selected.co
 import { PostComponent } from './post/post.component';
 import { ProfileSideComponent } from './company-profile/profile-side/profile-side.component';
 import { PostSideComponent } from './company-profile/post-side/post-side.component';
+import { CompanyDetailComponent } from './company/company-detail/company-detail.component';
 
 
 // LOTTIE PLAYER
@@ -63,7 +64,8 @@ export function playerFactory() {
     JobSelectedComponent,
     PostComponent,
     ProfileSideComponent,
-    PostSideComponent
+    PostSideComponent,
+    CompanyDetailComponent
   ],
   imports: [
     BrowserModule,

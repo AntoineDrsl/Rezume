@@ -16,7 +16,7 @@ import { JobSelectedComponent } from './get-all-job/job-selected/job-selected.co
 import { PostComponent } from './post/post.component';
 import {SignUpCompanyComponent} from './sign-up/sign-up-company/sign-up-company.component';
 import {SignUpStudentComponent} from './sign-up/sign-up-student/sign-up-student.component';
-
+import { CompanyDetailComponent } from './company/company-detail/company-detail.component';
 
 export const routes: Routes = [
   // {
@@ -37,7 +37,7 @@ export const routes: Routes = [
     path: 'studentprofile', component: StudentProfileComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'companyprofile', component: CompanyProfileComponent, canActivate: [AuthGuard]
+    path: 'company', component: CompanyProfileComponent, canActivate: [AuthGuard]
   },
   {
     path: 'cvcreation', component: CvCreationComponent, canActivate: [AuthGuard]
@@ -68,6 +68,9 @@ export const routes: Routes = [
   },
   {
     path: 'post', component: PostComponent
+  },
+  {
+    path: 'companyprofile', component: CompanyDetailComponent, canActivate: [AuthGuard]
   }
 ];
 

@@ -24,7 +24,8 @@
 
   margin: 30px 0;
 
-
+  position: sticky;
+  top: 0;
 
 }
 
@@ -113,7 +114,11 @@
 
 .postContent{
   padding: 20px 50px;
+  width: 100%;
+
+  text-align: center;
 }
+
 
 .datePost{
   text-align: center;
