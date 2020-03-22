@@ -1,6 +1,6 @@
 
 
-<div class="container-fluid">
+<div class="container-fluid" [class.blurEffect]="editSelected === true">
   <div class="row">
 
     <div class="col-xl-3 favSide" *ngIf="companyDetails">
@@ -25,7 +25,7 @@
 
       <div class="infoMain">
 
-        <button class="edit"><img src="assets/icons/edit.svg" alt="edit" width="28px" height="28px"></button>
+        <button class="edit" (click)="goToEdit(editSelected)" [disabled]="editSelected"><img src="assets/icons/edit.svg" alt="edit" width="28px" height="28px"></button>
 
         <div class="topInfo">
           <div class="imgTop">
@@ -62,6 +62,17 @@
         </div>
       </div>
 
+    </div>
+  </div>
+  <ng-lottie [options]="options" (animationCreated)="animationCreated($event)" class="svg"></ng-lottie>
+</div>
+
+
+<div class="container editSide" [ngClass]="{'editProfil': editSelected === true}" *ngIf="editSelected === true">
+  <button (click)="goToEdit(editSelected)"><img src="assets/icons/close.svg" alt="edit" width="28px" height="28px"></button>
+  <div class="row">
+    <div class="mainEdit">
+      SALUT
     </div>
   </div>
 </div>

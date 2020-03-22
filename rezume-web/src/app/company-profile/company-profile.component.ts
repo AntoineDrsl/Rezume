@@ -25,7 +25,6 @@ export class CompanyProfileComponent implements OnInit {
   animationCreated(animationItem: AnimationItem): void {
     // console.log(animationItem);
     animationItem.setSpeed(0.5);
-
   }
 
   constructor(private companyService: CompanyService, private router: Router) { }
