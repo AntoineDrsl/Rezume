@@ -86,6 +86,10 @@ export class CompanyService {
     return this.http.get(environment.apiBaseUrl + '/removefavorite/' + id);
   }
 
+  getAllFavorites(){
+    return this.http.get(environment.apiBaseUrl + '/getallfavorites');
+  }
+
 
   updateCompany(form){
     return this.http.post(environment.apiBaseUrl + '/updatecompany', form);

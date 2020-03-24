@@ -10,6 +10,7 @@ import { CompanyProfileComponent } from '../company-profile.component';
 export class ProfileSideComponent implements OnInit {
 
   @Input() company;
+  @Input() favorites;
 
   posY: number;
   posDetail;
@@ -18,7 +19,6 @@ export class ProfileSideComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-
 
   }
 

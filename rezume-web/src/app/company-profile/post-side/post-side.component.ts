@@ -19,7 +19,6 @@ export class PostSideComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log(this.company[0].posts);
 
   }
 
