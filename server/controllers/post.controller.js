@@ -73,13 +73,7 @@ module.exports.getCompanyPost = (req, res, next) => {
             }            
         }
     );
-    
-    // Post.find({_company: req._id}, 
-    //     (err, post) => {
-    //         return res.json({post})
-    //     }
-    // );
-    
+  
 };
 
 

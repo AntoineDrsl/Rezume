@@ -37,6 +37,7 @@ import { PostComponent } from './post/post.component';
 import { ProfileSideComponent } from './company-profile/profile-side/profile-side.component';
 import { PostSideComponent } from './company-profile/post-side/post-side.component';
 import { CompanyDetailComponent } from './company/company-detail/company-detail.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 // LOTTIE PLAYER
@@ -65,7 +66,8 @@ export function playerFactory() {
     PostComponent,
     ProfileSideComponent,
     PostSideComponent,
-    CompanyDetailComponent
+    CompanyDetailComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

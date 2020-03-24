@@ -17,6 +17,7 @@ import { PostComponent } from './post/post.component';
 import {SignUpCompanyComponent} from './sign-up/sign-up-company/sign-up-company.component';
 import {SignUpStudentComponent} from './sign-up/sign-up-student/sign-up-student.component';
 import { CompanyDetailComponent } from './company/company-detail/company-detail.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 export const routes: Routes = [
   // {
@@ -71,6 +72,9 @@ export const routes: Routes = [
   },
   {
     path: 'companyprofile', component: CompanyDetailComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'navbar', component: NavbarComponent
   }
 ];
 

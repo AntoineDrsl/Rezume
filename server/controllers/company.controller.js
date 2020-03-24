@@ -26,8 +26,6 @@ module.exports.register = (req, res, next) => {
 }
 
 module.exports.companyProfile = (req, res, next) => {
-
-    console.log(typeof req._id);
     Company.aggregate([
         {
             $match: {_id: ObjectId(req._id)}
