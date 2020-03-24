@@ -58,6 +58,7 @@ export class CompanyDetailComponent implements OnInit {
     const email = this.companyDetails[0].email;
     const description = this.companyDetails[0].description;
     const password = this.companyDetails[0].password;
+    console.log(password);
 
     this.companyUpdateForm = new FormGroup({
       company_name: new FormControl(company_name),

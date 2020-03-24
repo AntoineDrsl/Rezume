@@ -48,32 +48,32 @@ module.exports.deletePost = (req, res, next) => {
     );
 }
 
-module.exports.getCompanyPost = (req, res, next) => {
+// module.exports.getCompanyPost = (req, res, next) => {
     
-    Post.aggregate([
-        {
-            $lookup: {
-                from: "companies",
-                localField: "_company",
-                foreignField: "_id",
-                as: "company_detail"
-            }
-        },
-    ], (err, post) => {
-            if(!post){
-                return res.status(409).json({status: false, message: 'post not found', erreur: err});
-            }
-            else {
-                if(err){
-                    console.log(err);
-                }
-                else{
-                    return res.status(200).json({status: true, post});
-                }
-            }            
-        }
-    );
+//     Post.aggregate([
+//         {
+//             $lookup: {
+//                 from: "companies",
+//                 localField: "_company",
+//                 foreignField: "_id",
+//                 as: "company_detail"
+//             }
+//         },
+//     ], (err, post) => {
+//             if(!post){
+//                 return res.status(409).json({status: false, message: 'post not found', erreur: err});
+//             }
+//             else {
+//                 if(err){
+//                     console.log(err);
+//                 }
+//                 else{
+//                     return res.status(200).json({status: true, post});
+//                 }
+//             }            
+//         }
+//     );
   
-};
+// };
 
 
