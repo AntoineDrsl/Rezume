@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { PostService } from 'src/app/shared/post.service';
 
@@ -9,6 +9,8 @@ import { PostService } from 'src/app/shared/post.service';
 })
 export class PostSideComponent implements OnInit {
 
+ @Input() company;
+
   showMessageSuccess: boolean = false;
   companyPost;
 
@@ -17,15 +19,7 @@ export class PostSideComponent implements OnInit {
 
   ngOnInit() {
 
-    this.postService.getCompanyPost().subscribe(
-      res => {
-        this.companyPost = res['post'];
-      },
-
-      err => {
-        console.log('Probleme');
-      }
-    )
+    console.log(this.company[0].posts);
 
   }
 

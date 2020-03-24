@@ -31,10 +31,10 @@
   <div class="postSection">
 
 
-    <div class="post" *ngFor="let post of companyPost; index as i">
+    <div class="post" *ngFor="let post of company[0].posts; index as i">
       <div class="postHead">
         <p class="postTitle">
-          {{post.company_detail[0].company_name}}
+          {{company[0].company_name}}
         </p>
         <hr>
       </div>

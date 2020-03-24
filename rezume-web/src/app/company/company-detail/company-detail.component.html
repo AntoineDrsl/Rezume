@@ -8,7 +8,7 @@
         Etudiants Favoris
       </p>
 
-      <div class="selectStudent" *ngFor="let student of companyDetails.favorites; index as i">
+      <div class="selectStudent" *ngFor="let student of companyDetails[0].favorites; index as i">
         <p class="studentName">
           {{student}}
         </p>
@@ -34,7 +34,7 @@
           <div class="infos">
 
             <div class="nameInfo">
-              {{companyDetails.company_name}}
+              {{companyDetails[0].company_name}}
             </div>
 
             <div class="numberInfo">
@@ -49,7 +49,7 @@
 
         <div class="middleInfo">
           <div class="emailInfo">
-            {{companyDetails.email}}
+            {{companyDetails[0].email}}
           </div>
 
           <div class="passwordInfo">
@@ -58,13 +58,13 @@
         </div>
 
         <div class="bottomInfo">
-          {{companyDetails.description}}
+          {{companyDetails[0].description}}
         </div>
       </div>
 
     </div>
   </div>
-  <ng-lottie [options]="options" (animationCreated)="animationCreated($event)" class="svg"></ng-lottie>
+  <!-- <ng-lottie [options]="options" (animationCreated)="animationCreated($event)" class="svg"></ng-lottie> -->
 </div>
 
 
@@ -72,7 +72,35 @@
   <button (click)="goToEdit(editSelected)"><img src="assets/icons/close.svg" alt="edit" width="28px" height="28px"></button>
   <div class="row">
     <div class="mainEdit">
-      SALUT
+      <p class="editFormTitle">Modifier mes informations</p>
+
+      <div class="editForm">
+        <form [formGroup]="companyUpdateForm" (ngSubmit)="onSubmit(companyUpdateForm)" *ngIf="companyDetails">
+          <fieldset>
+            <div class="form-group">
+              <label for="company_name">Nom de l'entreprise</label><br>
+              <input type="text" class="form-control" id="company_name" formControlName="company_name">
+            </div>
+
+            <div class="form-group">
+              <label for="email">Adresse mail</label><br>
+              <input type="text" class="form-control" id="email" formControlName="email">
+            </div>
+
+            <div class="form-group">
+              <label for="password">Mot de passe</label><br>
+              <input type="password" class="form-control" id="password" formControlName="password">
+            </div>
+
+            <div class="form-group">
+              <label for="description">Description de l'entreprise</label><br>
+              <textarea name="description" id="description" cols="30" rows="2" formControlName="description"></textarea>
+            </div>
+          </fieldset>
+
+          <input type="submit" value="Modifier">
+        </form>
+      </div>
     </div>
   </div>
 </div>

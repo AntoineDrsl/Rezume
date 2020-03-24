@@ -95,7 +95,7 @@ module.exports.updateCv = (req, res, next) => {
         (err, cv) => {
             if(err){
 
-                return res.status(404).json({status: false, message: 'CV not found or other..'});
+                return res.status(500).json({status: false, message: 'CV not found or update impossible'});
             }
             else{
  

@@ -9,5 +9,7 @@ const jwtHelper = require('../config/jwtHelper');
 router.get('/companyprofile', jwtHelper.verifyJwtTokenCompany, ctrlCompany.companyProfile);
 router.get('/companyprofile/:id', jwtHelper.verifyJwtToken, ctrlCompany.getCompanyProfileId);
 
+//UPDATE
+router.post('/updatecompany', jwtHelper.verifyJwtTokenCompany, ctrlCompany.updateCompany);
 
 module.exports = router;

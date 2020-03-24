@@ -237,8 +237,7 @@
   z-index: -1;
   opacity: 85%;
 
-  width: 100vw;
-  height: 100vh;
+
 }
 
 
@@ -253,7 +252,7 @@
   top: 10%;
   left: 17%;
 
-  width: 75%;
+  width: 65%;
 }
 
 .editSide button {
@@ -312,7 +311,20 @@
   }
 }
 
+.editFormTitle{
+  text-align: center;
 
+  font-size: 35px;
+}
 
+.editForm{
+  padding: 30px;
+}
+
+fieldset{
+  border: 1.5px solid rgb(95, 74, 179);
+  border-radius: 10px;
+  padding: 10px;
+}
 
 
