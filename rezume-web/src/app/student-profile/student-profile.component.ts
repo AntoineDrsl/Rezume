@@ -46,10 +46,8 @@ export class StudentProfileComponent implements OnInit {
     this.studentService.getAllFavorites().subscribe(
       res => {
         this.favorites = res['favorites'];
-        console.log(this.favorites);
       },
       err => { 
-        console.log('err')
         this.serverErrorMessage = "Aucun favoris n'a été trouvé";
       }
     );

@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { StudentService } from 'src/app/shared/student.service';
+import { PostService } from 'src/app/shared/post.service';
 
 @Component({
   selector: 'app-post-side-student',
@@ -8,10 +10,20 @@ import { Component, OnInit, Input } from '@angular/core';
 export class PostSideStudentComponent implements OnInit {
 
   @Input() student;
+  posts;
+  serverErrorMessage;
 
-  constructor() { }
+  constructor(private postService: PostService) { }
 
   ngOnInit() {
+    this.postService.getAllPost().subscribe(
+      res => {
+        this.posts = res['post'];
+      },
+      err => {
+        this.serverErrorMessage = "Aucune entreprise suivie n'a été trouvée";
+      }
+    );
   }
 
 }

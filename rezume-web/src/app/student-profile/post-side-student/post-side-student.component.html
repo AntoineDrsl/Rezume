@@ -1,1 +1,36 @@
-<p>post-side-student works!</p>
+
+<div class="postSide">
+
+    <p class="titlePost mt-3">
+      Les derniers posts:
+    </p>
+    <div class="postSection">
+  
+  
+      <div class="post" *ngFor="let post of posts; index as i">
+        <div class="postHead">
+          <p class="postTitle">
+            Titre
+          </p>
+          <hr>
+        </div>
+  
+        <div class="postImage" >
+          <img src="assets/images/maxresdefault.jpg" alt="PP" class="pictureProfile img-thumbnail" width="50%">
+        </div>
+  
+        <div class="postContent">
+          <p class="postText">
+            {{post.content}}
+          </p>
+          <p class="text-muted datePost">
+            {{post.createdAt}}
+          </p>
+        </div>
+      </div>
+  
+    </div>
+  
+  </div>
+  
+  
