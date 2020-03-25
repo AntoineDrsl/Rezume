@@ -33,7 +33,6 @@ export class CompanyProfileComponent implements OnInit {
     this.companyService.getCompanyProfile().subscribe(
       res => {
         this.companyDetails = res['company'];
-        console.log(this.companyDetails);
         this.valid = true;
       },
       err => {
