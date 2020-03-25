@@ -115,4 +115,6 @@ module.exports.updateCompany = (req, res, next) => {
         }
     
     )
+
+    
 }

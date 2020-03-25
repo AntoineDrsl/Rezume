@@ -41,10 +41,7 @@ export class CompanyProfileComponent implements OnInit {
     );
   }
 
-  onLogout() {
-    this.companyService.deleteToken();
-    this.router.navigate(['/login']);
-  }
+
 
 
 

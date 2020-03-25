@@ -37,7 +37,6 @@ export class CompanyDetailComponent implements OnInit {
     this.companyService.getCompanyProfile().subscribe(
       res => {
         this.companyDetails = res['company'];
-        console.log(this.companyDetails);
       },
       err => {
         console.log("nop");

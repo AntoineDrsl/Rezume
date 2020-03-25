@@ -51,6 +51,17 @@ companySchema.pre('save', function (next) {
     });
 });
 
+companySchema.pre('findOneAndUpdate', function (next) {
+    bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(this.password, salt, (err, hash) => {
+            this.password = hash;
+            this.saltSecret = salt;
+            next();
+        });
+    });
+});
+
+
 // Methods
 companySchema.methods.verifyPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
