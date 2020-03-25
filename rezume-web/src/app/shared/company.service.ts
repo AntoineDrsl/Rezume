@@ -87,7 +87,7 @@ export class CompanyService {
   }
 
   getAllFavorites(){
-    return this.http.get(environment.apiBaseUrl + '/getallfavorites');
+    return this.http.get(environment.apiBaseUrl + '/getfavoritesstudents');
   }
 
 

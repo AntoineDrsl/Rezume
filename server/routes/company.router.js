@@ -13,6 +13,6 @@ router.get('/companyprofile/:id', jwtHelper.verifyJwtToken, ctrlCompany.getCompa
 router.post('/updatecompany', jwtHelper.verifyJwtTokenCompany, ctrlCompany.updateCompany);
 
 //FAVORITES
-router.get('/getallfavorites', jwtHelper.verifyJwtTokenCompany, ctrlCompany.getAllFavorites);
+router.get('/getfavoritesstudents', jwtHelper.verifyJwtTokenCompany, ctrlCompany.getAllFavorites);
 
 module.exports = router;
