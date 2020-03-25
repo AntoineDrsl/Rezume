@@ -89,7 +89,6 @@ module.exports.getAllFavorites = (req, res, next) => {
             if (!company) {
                 return res.status(404).json({ status: false, message: 'Company not found'});
             } else {
-                var favoriteIds = company.favorites.map(function(id) { return ObjectId(id) });
                 Student.find({_id: {$in: company.favorites}},
                         (err, favorites) => {
                             return res.status(200).json({ status: true, favorites });
