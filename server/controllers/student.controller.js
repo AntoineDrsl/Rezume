@@ -3,6 +3,7 @@ const passport = require('passport');
 const _ = require('lodash');
 
 const Student = mongoose.model('Student');
+const Company = mongoose.model('Company');
 const CV = mongoose.model('cv');
 
 module.exports.register = (req, res, next) => {
@@ -79,8 +80,6 @@ module.exports.addJobFavorite = (req, res, next) => {
     );
 }
 
-
-
 module.exports.removeJobFavorite = (req, res, next) => {
     Student.findOneAndUpdate({_id: req._id}, {$pull: {favorites: req.params.id}},
         (err, student) => {
@@ -89,6 +88,22 @@ module.exports.removeJobFavorite = (req, res, next) => {
             }
             else{
                 return res.status(200).json({status: true, student});
+            }
+        }
+    );
+}
+
+module.exports.getAllFavorites = (req, res, next) => {
+    Student.findOne({_id: req._id},
+        (err, student) => {
+            if (!student) {
+                return res.status(404).json({ status: false, message: 'Student not found'});
+            } else {
+                Company.find({_id: {$in: student.favorites}},
+                        (err, favorites) => {
+                            return res.status(200).json({ status: true, favorites });
+                        }
+                    );
             }
         }
     );

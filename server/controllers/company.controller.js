@@ -4,6 +4,7 @@ const _ = require('lodash');
 const ObjectId = mongoose.Types.ObjectId;
 
 const Company = mongoose.model('Company');
+const Student = mongoose.model('Student');
 
 module.exports.register = (req, res, next) => {
     var company = new Company();
@@ -37,7 +38,7 @@ module.exports.companyProfile = (req, res, next) => {
                 foreignField: "_company",
                 as: "posts"
             }
-        },
+        }
     ],
     (err, company) => {
         if(!company){
@@ -77,6 +78,22 @@ module.exports.removeFavorite = (req, res, next) => {
             }
             else{
                 return res.status(200).json({status: true, user});
+            }
+        }
+    );
+}
+
+module.exports.getAllFavorites = (req, res, next) => {
+    Company.findOne({_id: req._id},
+        (err, company) => {
+            if (!company) {
+                return res.status(404).json({ status: false, message: 'Company not found'});
+            } else {
+                Student.find({_id: {$in: company.favorites}},
+                        (err, favorites) => {
+                            return res.status(200).json({ status: true, favorites });
+                        }
+                    );
             }
         }
     );

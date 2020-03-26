@@ -87,4 +87,8 @@ export class StudentService {
   removeFavorite(id) {
     return this.http.get(environment.apiBaseUrl + '/removejobfavorite/' + id);
   }
+
+  getAllFavorites() {
+    return this.http.get(environment.apiBaseUrl + '/getfavoritescompanies');
+  }
 }

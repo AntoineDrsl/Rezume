@@ -1,39 +1,16 @@
-<div class="wrapper-bc" *ngIf="valid">
+<div class="container-fluid" *ngIf="studentDetails">
+  <div class="row justify-content-center">
 
-
-    <thead>
-    <img src="/assets/images/IconeRezume.svg" alt="icon" id="icon-profile">
-    <th colspan="2" class="text-center">Vous êtes connecté en tant qu'étudiant</th>
-
-    </thead>
-
-    <div class="separator">
-      <p>Mes informations :</p>
+    <div class="col-xl-3 col-md-6">
+      <app-profile-side-student [student]="studentDetails" [favorites]="favorites"></app-profile-side-student>
     </div>
-  <div class="category">
-    <table *ngIf="studentDetails" class="table-fill">
-      <tbody>
-      <tr>
-        <td>First Name</td>
-        <td>{{studentDetails.firstName}}</td>
-      </tr>
-      <tr>
-        <td>Last Name</td>
-        <td>{{studentDetails.lastName}}</td>
-      </tr>
-      <tr>
-        <td>Email</td>
-        <td>{{studentDetails.email}}</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="button-cv">
-    <input type="button" routerLink="/cvview" value="Consultez votre CV" *ngIf="cvDetails">
-    <input type="button" routerLink="/cvupdate" value="Modifiez votre CV" *ngIf="cvDetails">
-    <input type="button" routerLink="/cvcreation" value="Créez votre CV" *ngIf="!cvDetails">
-    <input type="button" routerLink="/job" value="Consulter la liste des jobs">
-    <input type="button" (click)="onLogout()" value="Se déconnecter">
-  </div>
-</div>
 
+    <div class="col-xl-9 col-md-6">
+      <app-post-side-student [student]="studentDetails"></app-post-side-student>
+    </div>
+  </div>
+
+  <input type="button" (click)="onLogout()" value="Se déconnecter">
+
+  <ng-lottie [options]="options" (animationCreated)="animationCreated($event)" class="svg"></ng-lottie>
+</div>

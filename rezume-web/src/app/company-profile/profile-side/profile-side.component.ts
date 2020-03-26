@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class ProfileSideComponent implements OnInit {
 
   @Input() company;
+  @Input() favorites;
 
   posY: number;
   posDetail;
@@ -19,7 +20,6 @@ export class ProfileSideComponent implements OnInit {
   constructor(private companyService: CompanyService, private router: Router) { }
 
   ngOnInit() {
-
 
   }
 

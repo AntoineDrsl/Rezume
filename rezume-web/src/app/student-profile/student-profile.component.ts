@@ -3,6 +3,9 @@ import { StudentService } from '../shared/student.service';
 import { CvService } from '../shared/cv.service';
 import { Router } from '@angular/router';
 
+import { AnimationItem } from 'lottie-web';
+import { AnimationOptions } from 'ngx-lottie';
+
 @Component({
   selector: 'app-student-profile',
   templateUrl: './student-profile.component.html',
@@ -11,9 +14,20 @@ import { Router } from '@angular/router';
 export class StudentProfileComponent implements OnInit {
 
   studentDetails;
+  favorites;
   cvDetails;
   serverErrorMessage: string;
   valid = false;
+
+  options: AnimationOptions = {
+    path: '/assets/lottie/data.json',
+    loop: true,
+    autoplay: true
+  };
+
+  animationCreated(animationItem: AnimationItem): void {
+    animationItem.setSpeed(0.5);
+  }
 
   constructor(private studentService: StudentService, private router: Router, private cvService: CvService) { }
 
@@ -24,8 +38,17 @@ export class StudentProfileComponent implements OnInit {
         this.valid = true;
       },
       err => {
-        this.serverErrorMessage = 'Student Details couldn\'t be find, you will be redirected to another page.';
+        this.serverErrorMessage = "L'étudiant n'a pas été trouvé";
         setTimeout(() => this.router.navigate(['/companyprofile']), 1);
+      }
+    );
+
+    this.studentService.getAllFavorites().subscribe(
+      res => {
+        this.favorites = res['favorites'];
+      },
+      err => { 
+        this.serverErrorMessage = "Aucun favoris n'a été trouvé";
       }
     );
 

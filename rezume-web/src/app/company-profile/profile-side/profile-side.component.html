@@ -1,7 +1,3 @@
-
-
-
-
 <div class="allDetails" id="allDetails">
   <div class="topDetails" *ngIf="company">
     <img src="assets/images/IconeRezume.png" alt="PP" class="pictureProfile img-circle">
@@ -14,15 +10,15 @@
     <button class="buttonProfile" style="margin-top: 20px;" (click)="onLogout()">Se deconnecter</button>
   </div>
 
-  <div class="studentFav" *ngIf="company">
+  <div class="studentFav" *ngIf="favorites">
     <p class="favTitle">
       Etudiants en Favoris
     </p>
 
-    <div class="selectStudent" *ngFor="let student of company[0].favorites">
+    <div class="selectStudent" *ngFor="let student of favorites">
       <img src="assets/images/star.svg" alt="star" width="25px" style="padding-left: 5px">
       <p class="studentName">
-        {{student}}
+        {{ student.firstName }} {{ student.lastName }}
       </p>
       <a href="#" class="studentCV">
         CV

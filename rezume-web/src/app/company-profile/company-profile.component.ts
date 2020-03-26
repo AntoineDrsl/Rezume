@@ -13,6 +13,7 @@ import { AnimationOptions } from 'ngx-lottie';
 export class CompanyProfileComponent implements OnInit {
 
   companyDetails;
+  favorites;
   serverErrorMessage: boolean;
   valid = false;
 
@@ -23,7 +24,6 @@ export class CompanyProfileComponent implements OnInit {
   };
 
   animationCreated(animationItem: AnimationItem): void {
-    // console.log(animationItem);
     animationItem.setSpeed(0.5);
   }
 
@@ -36,6 +36,14 @@ export class CompanyProfileComponent implements OnInit {
         this.valid = true;
       },
       err => {
+        this.serverErrorMessage = true;
+      }
+    );
+    this.companyService.getAllFavorites().subscribe(
+      res => {
+        this.favorites = res['favorites'];
+      },
+      err => { 
         this.serverErrorMessage = true;
       }
     );

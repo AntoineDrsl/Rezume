@@ -1,0 +1,34 @@
+<div class="allDetails" id="allDetails">
+    <div class="topDetails" *ngIf="student">
+      <img src="assets/images/IconeRezume.png" alt="PP" class="pictureProfile img-circle">
+  
+      <p class="studentName">
+        {{student.firstName}} {{student.lastName}}
+      </p>
+  
+      <a routerLink="/studentprofile"><button class="buttonProfile">Voir mes informations</button></a>
+    </div>
+  
+    <div class="studentFav" *ngIf="favorites">
+      <p class="favTitle">
+        Entreprises suivies
+      </p>
+  
+      <div class="selectCompany" *ngFor="let company of favorites">
+        <img src="assets/images/star.svg" alt="star" width="25px" style="padding-left: 5px">
+        <p class="studentName">
+          {{ company.company_name }}
+        </p>
+        <a href="#" class="studentCV">
+          CV
+        </a>
+      </div>
+  
+    </div>
+  
+    <div class="topDetails" *ngIf="!student" style="text-align: center;">
+      <p>Details sur le profil non disponible pour l'instant</p>
+      <p>Veuillez patienter</p>
+    </div>
+  
+  </div>
