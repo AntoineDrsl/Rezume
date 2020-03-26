@@ -97,7 +97,7 @@ module.exports.getCompanyProfileId = (req, res, next) => {
 
 
 module.exports.updateCompany = (req, res, next) => {
-    var companyUpdate = new Company();
+    var companyUpdate = Company.find({_id: req._id});
     companyUpdate._id = req._id;
     companyUpdate.company_name = req.body.company_name;
     companyUpdate.email = req.body.email.toLowerCase();
@@ -105,9 +105,10 @@ module.exports.updateCompany = (req, res, next) => {
     companyUpdate.description = req.body.description;
 
     Company.findOneAndUpdate({_id: req._id}, {$set: {company_name: companyUpdate.company_name, email: companyUpdate.email, password: companyUpdate.password, description: companyUpdate.description}},
+        { runValidators: true, context: 'query' },
         (err, company) => {
             if(err) {
-                return res.status(500).json({status: false, message: 'Company not found or update impossible'})
+                return res.status(500).json({status: false, message: 'Company not found or update impossible'});
             }
             else {
                 return res.status(200).json({status: true, company});
@@ -115,6 +116,4 @@ module.exports.updateCompany = (req, res, next) => {
         }
     
     )
-
-    
 }

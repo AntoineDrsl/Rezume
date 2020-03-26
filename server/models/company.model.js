@@ -31,7 +31,12 @@ var companySchema = new mongoose.Schema({
     },
     saltSecret: String
 
-});
+
+},
+{
+    strict: true
+}
+);
 
 // Custom validation for email
 companySchema.path('email').validate((value) => {
@@ -52,9 +57,10 @@ companySchema.pre('save', function (next) {
 });
 
 companySchema.pre('findOneAndUpdate', function (next) {
+    
     bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(this.password, salt, (err, hash) => {
-            this.password = hash;
+        bcrypt.hash(this.getUpdate().$set.password, salt, (err, hash) => {
+            this.getUpdate().$set.password = hash;
             this.saltSecret = salt;
             next();
         });
