@@ -4,6 +4,7 @@ const _ = require('lodash');
 const Student = mongoose.model('Student');
 const CV = mongoose.model('cv');
 
+
 mongoose.set('useFindAndModify', false);
 
 module.exports.getIdAndName = (req, res, next) => {
@@ -58,6 +59,7 @@ module.exports.createCV = (req, res, next) => {
     cv.research = req.body.research;
     cv.experiences = req.body.experiences;
     cv.degrees = req.body.degrees;
+    cv.hashtag = req.body.hashtag;
     cv.img_path = `server/uploads/cv/Photo_${req._id}`;
     cv.save((err, doc) => {
         if(!err){
@@ -93,7 +95,7 @@ module.exports.updateCv = (req, res, next) => {
         (err, cv) => {
             if(err){
 
-                return res.status(404).json({status: false, message: 'CV not found or other..'});
+                return res.status(500).json({status: false, message: 'CV not found or update impossible'});
             }
             else{
  
@@ -119,4 +121,32 @@ module.exports.getAllCv = (req, res, next) =>{
             }
         }
     );
+}
+
+module.exports.searchBy = (req, res, next) => {
+
+
+    let queryField = [];
+    for(const key in req.query){
+        if(req.query[key] == ''){
+            console.log('query empty');
+        }
+        else{
+            queryField.push(req.query[key]);
+        }
+    }
+
+    console.log(queryField);
+
+    CV.find(
+        {hashtag: {$all: queryField}},
+        (err, cv) =>{
+            if(!cv) {
+                return res.status(500).json({status: false, message: 'Cannot load all CV'});
+            }
+            else{
+                return res.status(200).json({status: true, cv});
+            }
+        }
+    )
 }

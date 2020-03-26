@@ -15,16 +15,7 @@ export class SignInComponent implements OnInit {
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   serverErrorMessages: string;
   valid = false;
-
-  constructor(private studentService: StudentService, private router: Router, private location: Location) { }
-
-  ngOnInit() {
-    if(this.studentService.isLoggedIn()) {
-      this.location.back();
-    } else {
-      this.valid = true;
-    }
-  }
+  getToken;
 
   model = {
     statut : 'student',
@@ -32,16 +23,34 @@ export class SignInComponent implements OnInit {
     password : ''
   };
 
-  onSubmit(form : NgForm) {
+  constructor(private studentService: StudentService, private router: Router, private location: Location) { }
+
+  ngOnInit() {
+    if(this.studentService.isLoggedIn()) {
+      // this.location.back();
+      this.getToken = this.studentService.getStudentPayload();
+      if(this.getToken.statut === 'student') {
+        this.router.navigateByUrl('/studentprofile');
+      }
+      else {
+        this.router.navigateByUrl('/company');
+      }
+    } else {
+      this.valid = true;
+    }
+  }
+
+
+  onSubmit(form: NgForm) {
     // On appelle la fonction login() définie dans StudentService en passant les infos comme Credentials
     this.studentService.login(form.value).subscribe(
       res => {
         // On stock le tocken renvoyé
         this.studentService.setToken(res['token']);
-        if(this.model.statut == "student") {
+        if(this.model.statut == 'student') {
           this.router.navigateByUrl('/studentprofile');
-        } else if(this.model.statut == "company") {
-          this.router.navigateByUrl('/companyprofile');
+        } else if(this.model.statut == 'company') {
+          this.router.navigateByUrl('/company');
         }
       },
       err => {

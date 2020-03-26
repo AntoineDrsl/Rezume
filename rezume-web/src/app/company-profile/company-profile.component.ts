@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CompanyService } from '../shared/company.service';
 import { Router } from '@angular/router';
 
+import { AnimationItem } from 'lottie-web';
+import { AnimationOptions } from 'ngx-lottie';
+
 @Component({
   selector: 'app-company-profile',
   templateUrl: './company-profile.component.html',
@@ -13,6 +16,16 @@ export class CompanyProfileComponent implements OnInit {
   serverErrorMessage: boolean;
   valid = false;
 
+  options: AnimationOptions = {
+    path: '/assets/lottie/data.json',
+    loop: true,
+    autoplay: true
+  };
+
+  animationCreated(animationItem: AnimationItem): void {
+    // console.log(animationItem);
+    animationItem.setSpeed(0.5);
+  }
 
   constructor(private companyService: CompanyService, private router: Router) { }
 
@@ -24,14 +37,12 @@ export class CompanyProfileComponent implements OnInit {
       },
       err => {
         this.serverErrorMessage = true;
-        setTimeout(() => this.router.navigate(['/studentprofile']), 1);
       }
     );
   }
 
-  onLogout() {
-    this.companyService.deleteToken();
-    this.router.navigate(['/login']);
-  }
+
+
+
 
 }

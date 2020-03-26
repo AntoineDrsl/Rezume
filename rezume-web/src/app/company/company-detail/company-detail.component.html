@@ -1,0 +1,119 @@
+
+
+<div class="container-fluid" [class.blurEffect]="editSelected === true">
+  <div class="row">
+
+    <div class="col-xl-3 col-lg-3" *ngIf="companyDetails">
+      <div class="favSide">
+        <p class="titleFav">
+          Etudiants Favoris
+        </p>
+
+        <div class="selectStudent" *ngFor="let student of companyDetails[0].favorites; index as i">
+          <img src="assets/images/star.svg" alt="star" width="25px" style="padding-left: 5px" class="imgFav">
+
+          <p class="studentName">
+            {{student}}
+          </p>
+
+          <a href="#" class="studentCV">
+            CV
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-9 col-lg-9 infoSide" *ngIf="companyDetails">
+
+      <p class="titleInfo">Mes informations</p>
+
+      <div class="infoMain">
+
+        <button class="edit" (click)="goToEdit(editSelected)" [disabled]="editSelected"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="25px" height="25px" viewBox="0 0 528.899 528.899" style="enable-background:new 0 0 528.899 528.899;" xml:space="preserve"><g><g>
+          <path d="M328.883,89.125l107.59,107.589l-272.34,272.34L56.604,361.465L328.883,89.125z M518.113,63.177l-47.981-47.981   c-18.543-18.543-48.653-18.543-67.259,0l-45.961,45.961l107.59,107.59l53.611-53.611   C532.495,100.753,532.495,77.559,518.113,63.177z M0.3,512.69c-1.958,8.812,5.998,16.708,14.811,14.565l119.891-29.069   L27.473,390.597L0.3,512.69z" data-original="#000000" class="active-path" data-old_color="#000000" />
+          </g></g> </svg>
+        </button>
+
+        <div class="topInfo">
+          <div class="imgTop">
+            <img src="assets/images/maxresdefault.jpg" alt="dsqd">
+          </div>
+          <div class="infos">
+
+            <div class="nameInfo">
+              {{companyDetails[0].company_name}}
+            </div>
+
+            <div class="numberInfo">
+              06513264
+            </div>
+
+            <div class="adressInfo">
+              2 allée des chevaliers
+            </div>
+          </div>
+        </div>
+
+        <div class="middleInfo">
+          <div class="emailInfo">
+            {{companyDetails[0].email}}
+          </div>
+
+          <div class="passwordInfo">
+            Password
+          </div>
+        </div>
+
+        <div class="bottomInfo">
+          {{companyDetails[0].description}}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<ng-lottie [options]="options" (animationCreated)="animationCreated($event)" class="svg"></ng-lottie>
+
+
+<div class="container editSide" [ngClass]="{'editProfil': editSelected === true}" *ngIf="editSelected === true">
+  <button (click)="goToEdit(editSelected)"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 492 492" style="enable-background:new 0 0 492 492;" xml:space="preserve" width="25" height="25"><g><g>
+    <g>
+      <path d="M300.188,246L484.14,62.04c5.06-5.064,7.852-11.82,7.86-19.024c0-7.208-2.792-13.972-7.86-19.028L468.02,7.872    c-5.068-5.076-11.824-7.856-19.036-7.856c-7.2,0-13.956,2.78-19.024,7.856L246.008,191.82L62.048,7.872    c-5.06-5.076-11.82-7.856-19.028-7.856c-7.2,0-13.96,2.78-19.02,7.856L7.872,23.988c-10.496,10.496-10.496,27.568,0,38.052    L191.828,246L7.872,429.952c-5.064,5.072-7.852,11.828-7.852,19.032c0,7.204,2.788,13.96,7.852,19.028l16.124,16.116    c5.06,5.072,11.824,7.856,19.02,7.856c7.208,0,13.968-2.784,19.028-7.856l183.96-183.952l183.952,183.952    c5.068,5.072,11.824,7.856,19.024,7.856h0.008c7.204,0,13.96-2.784,19.028-7.856l16.12-16.116    c5.06-5.064,7.852-11.824,7.852-19.028c0-7.204-2.792-13.96-7.852-19.028L300.188,246z" data-original="#000000" class="active-path" data-old_color="#000000"/>
+    </g>
+    </g></g> </svg>
+  </button>
+  <div class="row">
+    <div class="mainEdit">
+      <p class="editFormTitle">Modifier mes informations</p>
+
+      <div class="editForm">
+        <form [formGroup]="companyUpdateForm" (ngSubmit)="onSubmit(companyUpdateForm)" *ngIf="companyDetails">
+          <fieldset>
+            <div class="form-group">
+              <label for="company_name">Nom de l'entreprise</label><br>
+              <input type="text" class="form-control" id="company_name" formControlName="company_name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Adresse mail</label><br>
+              <input type="text" class="form-control" id="email" formControlName="email" required>
+            </div>
+
+            <div class="form-group">
+              <label for="password">Mot de passe</label><br>
+              <input type="password" class="form-control" id="password" formControlName="password" required minlength="8">
+            </div>
+
+            <div class="form-group">
+              <label for="description">Description de l'entreprise</label><br>
+              <textarea name="description" id="description" cols="30" rows="2" formControlName="description" required></textarea>
+            </div>
+
+            <input type="submit" value="Modifier">
+          </fieldset>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

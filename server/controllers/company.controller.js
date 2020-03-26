@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const passport = require('passport');
 const _ = require('lodash');
+const ObjectId = mongoose.Types.ObjectId;
 
 const Company = mongoose.model('Company');
 
@@ -25,15 +26,28 @@ module.exports.register = (req, res, next) => {
 }
 
 module.exports.companyProfile = (req, res, next) => {
-    Company.findOne({ _id: req._id },
-        (err, company) => {
-            if (!company) {
-                return res.status(404).json({ status: false, message: 'Company record not found'});
-            } else {
-                return res.status(200).json({ status: true, company});
+    Company.aggregate([
+        {
+            $match: {_id: ObjectId(req._id)}
+        },
+        {
+            $lookup: {
+                from: "posts",
+                localField: "_id",
+                foreignField: "_company",
+                as: "posts"
             }
+        },
+    ],
+    (err, company) => {
+        if(!company){
+            return res.status(404).json({ status: false, message: 'Company record not found'});
         }
-    );
+        else {
+            return res.status(200).json({ status: true, company});
+        }
+    }
+    )
 }
 
 module.exports.addFavorite = (req, res, next) => {
@@ -79,4 +93,27 @@ module.exports.getCompanyProfileId = (req, res, next) => {
             }
         }
     );
+}
+
+
+module.exports.updateCompany = (req, res, next) => {
+    var companyUpdate = Company.find({_id: req._id});
+    companyUpdate._id = req._id;
+    companyUpdate.company_name = req.body.company_name;
+    companyUpdate.email = req.body.email.toLowerCase();
+    companyUpdate.password = req.body.password;
+    companyUpdate.description = req.body.description;
+
+    Company.findOneAndUpdate({_id: req._id}, {$set: {company_name: companyUpdate.company_name, email: companyUpdate.email, password: companyUpdate.password, description: companyUpdate.description}},
+        { runValidators: true, context: 'query' },
+        (err, company) => {
+            if(err) {
+                return res.status(500).json({status: false, message: 'Company not found or update impossible'});
+            }
+            else {
+                return res.status(200).json({status: true, company});
+            }
+        }
+    
+    )
 }

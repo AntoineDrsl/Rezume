@@ -1,38 +1,18 @@
-<div class="wrapper-bc" *ngIf="valid">
 
-  <thead>
-  <img src="/assets/images/IconeRezume.svg" alt="icon" id="icon-profile">
-  <th colspan="2" class="text-center">Vous êtes connecté en tant qu'entreprise</th>
-  </thead>
+<div class="container-fluid" *ngIf="companyDetails">
+  <div class="row justify-content-center">
 
-  <div class="separator">
-    <p>Vos informations :</p>
+    <div class="col-xl-3 col-md-6">
+      <app-profile-side [company]="companyDetails"></app-profile-side>
+    </div>
+
+    <div class="col-xl-9 col-md-6">
+      <app-post-side [company]="companyDetails"></app-post-side>
+    </div>
   </div>
 
-  <div class="category">
-    <table *ngIf="companyDetails" class="table-fill">
-      <tbody>
-      <tr>
-        <td>Nom de l'entreprise</td>
-        <td>{{companyDetails.company_name}}</td>
-      </tr>
-      <tr>
-        <td>Email</td>
-        <td>{{companyDetails.email}}</td>
-      </tr>
-      <tr>
-        <td>Description</td>
-        <td>{{companyDetails.description}}</td>
-      </tr>
-      <tr *ngIf="serverErrorMessage">
-        <td> Company Details couldn't be find, you will be redirected to another page.</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="button-cv">
-    <input type="button" routerLink="/cv" value="Voir tous les curriculum vitae">
-    <input type="button" routerLink="/jobcreation" value="Créez une offre de stage">
-    <input type="button" (click)="onLogout()" value="Se déconnecter">
-  </div>
 </div>
+
+<ng-lottie [options]="options" (animationCreated)="animationCreated($event)" class="svg"></ng-lottie>
+
+

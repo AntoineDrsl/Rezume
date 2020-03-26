@@ -1,0 +1,58 @@
+
+<!--FORM POST SIDE-->
+<div class="postSide">
+
+  <div class="postForm">
+    <form #addPost="ngForm" (ngSubmit)="addPost.valid && onSubmit(addPost)">
+      <div class="form-group">
+        <label for="postContent" class="labelTitle">Créer une publication</label>
+        <textarea name="content" id="content" class="form-control" cols="30" placeholder="Dernières nouvelles de l'entreprise"
+        #postContent="ngModel" ngModel required></textarea>
+      </div>
+
+      <div class="form-group fileInput">
+        <input type="submit" value="Poster">
+      </div>
+
+    </form>
+  </div>
+
+  <div class="alert alert-success" role="alert" *ngIf="showMessageSuccess">
+    Posté avec succès
+  </div>
+
+
+
+  <!--POST SIDE-->
+  <p class="titlePost">
+    Vos derniers posts:
+  </p>
+  <div class="postSection">
+
+
+    <div class="post" *ngFor="let post of company[0].posts; index as i">
+      <div class="postHead">
+        <p class="postTitle">
+          {{company[0].company_name}}
+        </p>
+        <hr>
+      </div>
+
+      <div class="postImage" >
+        <img src="assets/images/maxresdefault.jpg" alt="PP" class="pictureProfile img-thumbnail" width="50%">
+      </div>
+
+      <div class="postContent">
+        <p class="postText">
+          {{post.content}}
+        </p>
+        <p class="text-muted datePost">
+          {{post.createdAt}}
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+

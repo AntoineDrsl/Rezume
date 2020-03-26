@@ -6,13 +6,14 @@ require('./config/passportConfig'); //Passport configuration
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const passport = require('passport')
+const passport = require('passport');
 
 const rtsRegistration = require('./routes/registration.router');
 const rtsStudent = require('./routes/student.router');
 const rtsCompany = require('./routes/company.router');
 const rtsCv = require('./routes/cv.router');
-const rtsJob = require('./routes/cv.router');
+const rtsJob = require('./routes/job.router');
+const rtsPost = require('./routes/post.router');
 
 var app = express();
 
@@ -20,14 +21,14 @@ var app = express();
 app.use(bodyParser.json());
 app.use(cors());
 app.use(passport.initialize());
-app.use('/api', rtsRegistration, rtsStudent, rtsCompany, rtsCv, rtsJob); // define URL '/api' to call the router
+app.use('/api', rtsRegistration, rtsStudent, rtsCompany, rtsCv, rtsJob, rtsPost); // define URL '/api' to call the router
 
 // error handler
 app.use((err, req, res, next) => {
     if(err.name == 'ValidationError') {
         var valErrors = [];
         Object.keys(err.errors).forEach(key => valErrors.push(err.errors[key].message));
-        res.status(422).send(valErrors)
+        res.status(422).send(valErrors);
     }
 });
 

@@ -7,7 +7,6 @@ const ctrlJob = require('../controllers/job.controller');
 const jwtHelper = require('../config/jwtHelper');
 
 
-var upload = multer({ storage: storage })
 
 //Définition des variables de stockage Job
 const storageJob = multer.diskStorage({
@@ -24,7 +23,7 @@ var uploadJob = multer({ storage: storageJob});
 
 //JOB
 router.post('/createjob', jwtHelper.verifyJwtTokenCompany, ctrlJob.createJob);
-router.post('/uploadjobimage', jwtHelper.verifyJwtTokenCompany, uploadJob.single('file'), ctrlJob.uploadImage)
+router.post('/uploadjobimage', jwtHelper.verifyJwtTokenCompany, uploadJob.single('file'), ctrlJob.uploadImage);
 router.get('/getalljob', jwtHelper.verifyJwtTokenStudent, ctrlJob.geAllJob);
 router.get('/getselectedjob/:id', jwtHelper.verifyJwtTokenStudent, ctrlJob.getSelectedJob);
 

@@ -1,0 +1,365 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+/* ALL */
+
+.container-fluid{
+  transition: 0.70s;
+}
+
+.blurEffect{
+
+  transition:  1s;
+  filter: blur(15px);
+}
+
+
+/* LEFT SIDE */
+
+.favSide{
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  margin: 30px 0 0 5%;
+
+  border: 1px solid rgb(199, 199, 199);
+  box-shadow: 0px 3px 4px -1px rgba(0,0,0,0.46);
+  background-color: white;
+
+
+}
+
+.titleFav{
+
+  font-size: 40px;
+  color: #6E58C6;
+
+  padding: 30px 0;
+
+  text-align: center;
+}
+
+.selectStudent{
+  width: 85%;
+  height: 40px;
+
+  border: 1px solid rgb(199, 199, 199);
+  border-radius: 7px;
+
+  margin: 4px 0;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  overflow: hidden;
+}
+
+.studentName{
+
+  padding-left: 10px;
+
+  font-size: 20px;
+
+  text-align: center;
+}
+
+.studentCV{
+
+  font-size: 20px;
+  padding-top: 1px;
+  margin-right: 5px;
+
+  margin-left: auto;
+  color: #6E58C6;
+
+}
+
+
+/*INFO SIDE*/
+
+.infoSide{
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.infoSide button{
+
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 7px 6px 10px -5px rgba(0,0,0,0.6);
+  background-color: rgb(95, 74, 179);
+
+
+  color: white;
+
+  width: 50px;
+  height: 50px;
+
+  position: absolute;
+  top: 16%;
+  left: 77%;
+
+  fill: white;
+  transition: 0.50s;
+}
+
+
+.infoSide button:hover{
+
+  background-color: white;
+  border: 2px solid rgb(95, 74, 179);
+  color: rgb(95, 74, 179);
+  fill: rgb(95, 74, 179);
+
+  transition: 0.50s;
+}
+
+.infoSide button:focus{
+  outline: none;
+}
+
+.infoSide button:disabled{
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 7px 6px 10px -5px rgba(0,0,0,0.6);
+  background-color: rgb(95, 74, 179);
+}
+
+.infoSide button img{
+  color: #6E58C6;
+}
+
+.titleInfo{
+  font-size: 40px;
+  color: #6E58C6;
+
+  padding: 30px 0;
+
+  text-align: center;
+}
+
+.infoMain{
+
+  background-color: #e5e4e4;
+  border-radius: 10px;
+  box-shadow: 0px 3px 4px -1px rgba(0,0,0,0.46);
+
+  width: 60%;
+
+  padding: 30px;
+}
+
+.topInfo{
+  display: flex;
+  flex-direction: row;
+  /* align-items: center;
+  justify-content: center; */
+}
+
+.imgTop{
+  /* float: left; */
+}
+
+.imgTop img{
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+}
+
+.infos{
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.infos div{
+  padding: 0px 30px;
+}
+
+.infos .nameInfo{
+  font-size: 45px;
+  font-weight: bolder;
+}
+
+.infos .numberInfo{
+  font-size: 30px;
+}
+
+.infos .adressInfo{
+  font-size: 25px;
+  font-weight: lighter;
+}
+
+
+.middleInfo{
+
+  display: flex;
+  flex-direction: column;
+
+  font-size: 20px;
+
+  margin-top: 30px;
+}
+
+.middleInfo div{
+
+  margin: 2px 0;
+
+}
+
+.middleInfo .passwordInfo{
+  font-style: italic;
+}
+
+.bottomInfo{
+  border: 1.5px solid #6E58C6;
+  border-radius: 3px;
+
+  height: 100px;
+
+  margin-top: 2px;
+  padding: 10px;
+  font-size: larger;
+}
+
+
+
+.svg{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 85%;
+
+  width: 100vw;
+  /* height: 100vh; */
+}
+
+
+
+
+
+
+
+.editSide{
+
+  position: absolute;
+  top: 17%;
+  left: 17%;
+
+  width: 65%;
+}
+
+.editSide button {
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 7px 6px 10px -5px rgba(0,0,0,0.6);
+  background-color: rgb(95, 74, 179);
+
+
+  color: white;
+
+  width: 50px;
+  height: 50px;
+
+  position: absolute;
+  top: -3%;
+  left: 97%;
+
+  transition: 0.50s;
+
+  fill: white;
+}
+
+.editSide button:focus{
+  outline: none;
+}
+
+.editSide button:hover {
+
+  border: 2px solid rgb(95, 74, 179);
+  background-color: white;
+  fill:rgb(95, 74, 179);
+}
+
+.mainEdit{
+
+  background-color: #e5e4e4;
+  border-radius: 10px;
+  box-shadow: 0px 3px 4px -1px rgba(0,0,0,0.46);
+
+  width: 100%;
+
+}
+
+
+.editProfil{
+
+  animation-name: editProfilAnimation;
+  animation-duration: 1s;
+
+
+
+}
+
+
+@keyframes editProfilAnimation {
+
+  from {
+    top: -100%;
+  }
+
+  to {
+    top: 17%;
+  }
+}
+
+.editFormTitle{
+  text-align: center;
+
+  font-size: 35px;
+
+  padding-top: 25px;
+}
+
+.editForm{
+  padding: 25px;
+  text-align: center;
+}
+
+fieldset{
+  border: 1.5px solid rgb(95, 74, 179);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.editForm label{
+  font-size: 25px;
+}
+
+.editForm textarea{
+
+  resize: none;
+
+  border: 0;
+  background-color: white;
+  border-radius: 10px;
+
+  width: 85%;
+  height: 75px;
+  outline: none;
+  padding: 10px 0;
+
+}

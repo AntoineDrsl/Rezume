@@ -12,6 +12,9 @@ var cvSchema = new mongoose.Schema({
     degrees: [
         { type: String }
     ],
+    hashtag: [
+        { type: String }
+    ],
     img_path: String
 }, {
     timestamps: true

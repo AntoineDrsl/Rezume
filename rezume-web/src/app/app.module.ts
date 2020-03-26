@@ -5,6 +5,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+// Lottie
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
+
 //component imports
 import { AppComponent } from './app.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
@@ -29,6 +33,17 @@ import { CompanyProfileComponent } from './company-profile/company-profile.compo
 import { JobCreationComponent } from './job-creation/job-creation.component';
 import { GetAllJobComponent } from './get-all-job/get-all-job.component';
 import { JobSelectedComponent } from './get-all-job/job-selected/job-selected.component';
+import { PostComponent } from './post/post.component';
+import { ProfileSideComponent } from './company-profile/profile-side/profile-side.component';
+import { PostSideComponent } from './company-profile/post-side/post-side.component';
+import { CompanyDetailComponent } from './company/company-detail/company-detail.component';
+import { NavbarComponent } from './navbar/navbar.component';
+
+
+// LOTTIE PLAYER
+export function playerFactory() {
+  return player;
+}
 
 
 @NgModule({
@@ -47,14 +62,20 @@ import { JobSelectedComponent } from './get-all-job/job-selected/job-selected.co
     CompanyProfileComponent,
     JobCreationComponent,
     GetAllJobComponent,
-    JobSelectedComponent
+    JobSelectedComponent,
+    PostComponent,
+    ProfileSideComponent,
+    PostSideComponent,
+    CompanyDetailComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    LottieModule.forRoot({ player: playerFactory, useCache: true, }),
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
