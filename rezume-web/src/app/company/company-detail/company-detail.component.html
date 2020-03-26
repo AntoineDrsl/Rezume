@@ -87,26 +87,38 @@
       <p class="editFormTitle">Modifier mes informations</p>
 
       <div class="editForm">
-        <form [formGroup]="companyUpdateForm" (ngSubmit)="onSubmit(companyUpdateForm)" *ngIf="companyDetails">
+        <form [formGroup]="companyUpdateForm" (ngSubmit)="companyUpdateForm.valid && onSubmit(companyUpdateForm)" *ngIf="companyDetails">
           <fieldset>
             <div class="form-group">
               <label for="company_name">Nom de l'entreprise</label><br>
-              <input type="text" class="form-control" id="company_name" formControlName="company_name" required>
+              <input type="text" class="form-control" id="company_name" formControlName="company_name" [ngClass]="{'invalid-textbox' :company_name.touched && company_name.invalid }">
+              <div *ngIf="company_name.touched && company_name.invalid">
+                <label class="validation-message">Veuillez entrer un nom</label>
+              </div>
             </div>
 
             <div class="form-group">
               <label for="email">Adresse mail</label><br>
-              <input type="text" class="form-control" id="email" formControlName="email" required>
+              <input type="text" class="form-control" id="email" formControlName="email" [ngClass]="{'invalid-textbox' :email.touched && email.invalid }">
+              <div *ngIf="email.touched && email.invalid">
+                <label class="validation-message">Veuillez entrer une adresse email</label>
+              </div>
             </div>
 
             <div class="form-group">
               <label for="password">Mot de passe</label><br>
-              <input type="password" class="form-control" id="password" formControlName="password" required minlength="8">
+              <input type="password" class="form-control" id="password" formControlName="password" [ngClass]="{'invalid-textbox' :password.touched && password.invalid }">
+              <div *ngIf="password.touched && password.invalid">
+                <label class="validation-message">Veuillez entrer un mot de passe</label>
+              </div>
             </div>
 
             <div class="form-group">
               <label for="description">Description de l'entreprise</label><br>
-              <textarea name="description" id="description" cols="30" rows="2" formControlName="description" required></textarea>
+              <textarea name="description" id="description" cols="30" rows="2" formControlName="description" [ngClass]="{'invalid-textbox' :description.touched && description.invalid }"></textarea>
+              <div *ngIf="description.touched && description.invalid">
+                <label class="validation-message">Veuillez entrer une description</label>
+              </div>
             </div>
 
             <input type="submit" value="Modifier">
