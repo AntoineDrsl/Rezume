@@ -3,7 +3,7 @@
 <div class="postSide">
 
   <div class="postForm">
-    <form #addPost="ngForm" (ngSubmit)="addPost.valid && onSubmit(addPost)">
+    <!-- <form #addPost="ngForm" (ngSubmit)="addPost.valid && onSubmit(addPost)">
       <div class="form-group">
         <label for="postContent" class="labelTitle">Créer une publication</label>
         <textarea name="content" id="content" class="form-control" cols="30" placeholder="Dernières nouvelles de l'entreprise"
@@ -11,14 +11,34 @@
       </div>
 
       <div class="form-group fileInput">
-        <input type="submit" value="Poster">
+        <input id="file" type="file" name="image" class="input-file" (change)="onFileChange($event)">
+        <label for="file" class="label-file">Choisir un fichier</label><br>
       </div>
+      <input type="submit" value="Nouveau post">
+
+    </form> -->
+
+    <form [formGroup]="addPost" (ngSubmit)="addPost.valid && onSubmit(addPost)">
+      <div class="form-group">
+        <label for="postContent" class="labelTitle">Créer une publication</label>
+        <textarea formControlName="content" id="content" class="form-control" cols="30" placeholder="Dernières nouvelles de l'entreprise"
+        id="postContent" required></textarea>
+      </div>
+
+      <div class="form-group fileInput">
+        <input id="file" type="file" formControlName="image" class="input-file" (change)="onFileChange($event)">
+        <label for="file" class="label-file ml-4"><img src="assets/icons/photo.svg" alt="icone" width="30px"></label><br>
+      </div>
+      <input type="submit" value="Nouveau post">
 
     </form>
   </div>
 
   <div class="alert alert-success" role="alert" *ngIf="showMessageSuccess">
     Posté avec succès
+  </div>
+  <div class="alert alert-success" role="alert" *ngIf="showImgMessageSuccess">
+    img
   </div>
 
 
@@ -38,8 +58,11 @@
         <hr>
       </div>
 
-      <div class="postImage" >
+      <div class="postImage" *ngIf="!post.img_path">
         <img src="assets/images/maxresdefault.jpg" alt="PP" class="pictureProfile img-thumbnail" width="50%">
+      </div>
+      <div class="postImage" *ngIf="post.img_path">
+        <img src="" alt="PP" class="pictureProfile img-thumbnail" width="50%">
       </div>
 
       <div class="postContent">

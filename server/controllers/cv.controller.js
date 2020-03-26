@@ -52,7 +52,6 @@ module.exports.getSelectedCV = (req, res, next) => {
 
 
 module.exports.createCV = (req, res, next) => {
-
     var cv = new CV();
     cv._student = req._id;
     cv.age = req.body.age;
@@ -74,8 +73,8 @@ module.exports.uploadImage = (req, res, next) => {
 
     const file = req.file;
     if(!file) {
-        const error = new Error('Please  upload a file')
-        error.httpStatusCode = 400
+        const error = new Error('Please  upload a file');
+        error.httpStatusCode = 400;
         return next(error);
     }
     res.send(file)

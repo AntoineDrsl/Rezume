@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { CvService } from '../shared/cv.service';
@@ -18,7 +18,7 @@ export class CvCreationComponent implements OnInit {
   studentDetails;
   valid = false;
 
-  cvForm: FormGroup
+  cvForm: FormGroup;
   get age() {
     return this.cvForm.get('age');
   }
@@ -80,6 +80,8 @@ export class CvCreationComponent implements OnInit {
     // Upload de l'image
     const formData = new FormData();
     formData.append('file', this.images);
+
+    console.log(form.value, formData);
 
     this.cvService.postFile(formData).subscribe(
       res => {

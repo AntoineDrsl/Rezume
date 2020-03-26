@@ -43,7 +43,7 @@ export class CompanyProfileComponent implements OnInit {
       res => {
         this.favorites = res['favorites'];
       },
-      err => { 
+      err => {
         this.serverErrorMessage = true;
       }
     );

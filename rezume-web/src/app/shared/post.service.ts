@@ -27,4 +27,8 @@ export class PostService {
   getCompanyPost() {
     return this.http.get(environment.apiBaseUrl + '/getcompanypost');
   }
+
+  postFile(formData) {
+    return this.http.post<any>(environment.apiBaseUrl + '/uploadimagepost', formData);
+  }
 }

@@ -9,26 +9,16 @@ const jwtHelper = require('../config/jwtHelper');
 //Définition des variables de stockage CV
 const storage = multer.diskStorage({
     destination: (req, file, callBack) => {
-        callBack(null, `./uploads/cv`)
+        callBack(null, `./uploads/cv`);
     },
     filename: (req, file, callBack) => {
-        callBack(null, `Photo_${req._id}.jpg`)
+        callBack(null, `Photo_${file.originalname}`);
     }
 })
 
-var upload = multer({ storage: storage })
+var upload = multer({ storage: storage });
 
-//Définition des variables de stockage Job
-const storageJob = multer.diskStorage({
-    destination: (req, file, callBack) => {
-        callBack(null, `./uploads/job`);
-    },
-    filename: (req, file, callBack) => {
-        callBack(null, `Photo_${file.originalname}.jpg`);
-    }
-});
 
-var uploadJob = multer({ storage: storageJob});
 
 
 //CV
