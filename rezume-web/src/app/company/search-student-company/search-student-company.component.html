@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="main">
+
+      <div class="topTitle">
+        <h1>Recherche de profil</h1>
+      </div>
+
+      <!-- <div class="searchHashtag">
+        <p class="top">Compétences recherchés:</p>
+      </div> -->
+
+      <mat-card class="searchHashtag mt-5">
+
+        <mat-card-content>
+          <mat-card-title>
+            Compétences recherchés
+          </mat-card-title>
+
+          <p>Bonjour je m'appelle Nicolas</p>
+        </mat-card-content>
+
+        <mat-card-actions>
+          <input matInput placeholder="Ajouter une compétence" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option value="Nico">
+              Nico
+            </mat-option>
+            <mat-option value="Max">
+              Max
+            </mat-option>
+          </mat-autocomplete>
+        </mat-card-actions>
+      </mat-card>
+
+    </div>
+  </div>
+</div>

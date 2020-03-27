@@ -1,25 +1,35 @@
-//built-in imports
+// built-in imports
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
+// Angular Material
+import {
+  MatCardModule,
+  MatButtonModule,
+  MatAutocompleteModule,
+  MatInputModule,
+} from '@angular/material';
 
 // Lottie
 import { LottieModule } from 'ngx-lottie';
 import player from 'lottie-web';
 
-//component imports
+// component imports
 import { AppComponent } from './app.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 
-//routes
+// routes
 import { AppRoutingModule } from './app-routing.module';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { StudentService } from './shared/student.service';
 
-//other
+// other
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { CvCreationComponent } from './cv-creation/cv-creation.component';
@@ -40,6 +50,7 @@ import { CompanyDetailComponent } from './company/company-detail/company-detail.
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProfileSideStudentComponent } from './student-profile/profile-side-student/profile-side-student.component';
 import { PostSideStudentComponent } from './student-profile/post-side-student/post-side-student.component';
+import { SearchStudentCompanyComponent } from './company/search-student-company/search-student-company.component';
 
 
 // LOTTIE PLAYER
@@ -71,7 +82,8 @@ export function playerFactory() {
     CompanyDetailComponent,
     NavbarComponent,
     ProfileSideStudentComponent,
-    PostSideStudentComponent
+    PostSideStudentComponent,
+    SearchStudentCompanyComponent
   ],
   imports: [
     BrowserModule,
@@ -80,6 +92,13 @@ export function playerFactory() {
     ReactiveFormsModule,
     HttpClientModule,
     LottieModule.forRoot({ player: playerFactory, useCache: true, }),
+    BrowserAnimationsModule,
+
+
+    MatAutocompleteModule,
+    MatButtonModule,
+    MatInputModule,
+    MatCardModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
