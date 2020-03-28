@@ -58,11 +58,8 @@
         <hr>
       </div>
 
-      <div class="postImage" *ngIf="!post.img_path">
-        <img src="assets/images/maxresdefault.jpg" alt="PP" class="pictureProfile img-thumbnail" width="50%">
-      </div>
       <div class="postImage" *ngIf="post.img_path">
-        <img src="" alt="PP" class="pictureProfile img-thumbnail" width="50%">
+        <img src="http://localhost:3000/post/{{post.img_path}}" alt="PP" class="pictureProfile img-thumbnail" width="50%">
       </div>
 
       <div class="postContent">

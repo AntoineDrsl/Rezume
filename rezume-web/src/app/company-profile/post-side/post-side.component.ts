@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NgForm, FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { PostService } from 'src/app/shared/post.service';
 
 @Component({
@@ -35,8 +35,6 @@ export class PostSideComponent implements OnInit {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.images = file;
-
-      console.log(this.images);
     }
   }
 
@@ -62,9 +60,9 @@ export class PostSideComponent implements OnInit {
       res => {
         form.reset();
         this.showMessageSuccess = true;
-        // setTimeout(() => {
-        //   window.location.reload();
-        // }, 2000);
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
       },
       err => {
         console.log('non');

@@ -99,13 +99,13 @@
 }
 
 .post div{
-  margin-top: 3%
 }
 
 .postTitle{
   font-size: 30px;
   color: #6E58C6;
   text-align: center;
+  margin-top: 10%;
 }
 
 .postImage{
