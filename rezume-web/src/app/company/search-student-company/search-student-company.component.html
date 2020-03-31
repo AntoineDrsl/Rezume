@@ -16,20 +16,38 @@
           <mat-card-title>
             Compétences recherchés
           </mat-card-title>
-
-          <p>Bonjour je m'appelle Nicolas</p>
         </mat-card-content>
 
         <mat-card-actions>
-          <input matInput placeholder="Ajouter une compétence" [matAutocomplete]="auto">
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option value="Nico">
-              Nico
-            </mat-option>
-            <mat-option value="Max">
-              Max
-            </mat-option>
-          </mat-autocomplete>
+          <mat-form-field class="example-chip-list">
+            <mat-chip-list #chipList aria-label="Fruit selection">
+              <mat-chip
+                *ngFor="let fruit of fruits"
+                [selectable]="selectable"
+                [removable]="removable"
+                (removed)="remove(fruit)">
+                {{fruit}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input
+                placeholder="New fruit..."
+                #fruitInput
+                [formControl]="fruitCtrl"
+                [matAutocomplete]="auto"
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+              <mat-optgroup>
+                Development
+                <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+                  {{fruit}}
+                </mat-option>
+              </mat-optgroup>
+            </mat-autocomplete>
+          </mat-form-field>
         </mat-card-actions>
       </mat-card>
 

@@ -13,6 +13,9 @@ import {
   MatButtonModule,
   MatAutocompleteModule,
   MatInputModule,
+  MatChipsModule,
+  MatIconModule,
+  MatFormFieldModule
 } from '@angular/material';
 
 // Lottie
@@ -98,7 +101,11 @@ export function playerFactory() {
     MatAutocompleteModule,
     MatButtonModule,
     MatInputModule,
-    MatCardModule
+    MatChipsModule,
+    MatCardModule,
+    MatInputModule,
+    MatIconModule,
+    MatFormFieldModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
