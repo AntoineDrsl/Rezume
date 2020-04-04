@@ -50,4 +50,8 @@ export class CvService {
     updateCV(cv: CV) {
       return this.http.post(environment.apiBaseUrl + '/updatecv', cv);
     }
+
+    searchProfil(arr) {
+      return this.http.get(environment.apiBaseUrl + '/searchProfil/' + arr);
+    }
 }

@@ -149,3 +149,21 @@ module.exports.searchBy = (req, res, next) => {
         }
     )
 }
+
+module.exports.searchProfil = (req, res, next) => {
+
+    const listCompetence = JSON.parse(req.params.arr);
+
+    CV.find(
+        {hashtag: {$all: listCompetence}},
+        (err, cv) =>{
+            if(!cv) {
+                return res.status(500).json({status: false, message: 'Cannot load all CV'});
+            }
+            else{
+                return res.status(200).json({status: true, cv});
+            }
+        }
+    )
+
+}

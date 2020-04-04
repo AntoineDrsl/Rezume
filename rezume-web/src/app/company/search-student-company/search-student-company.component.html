@@ -12,6 +12,7 @@
           <mat-card-title>
             Compétences recherchés
           </mat-card-title>
+
         </mat-card-content>
 
         <mat-card-actions>
@@ -20,6 +21,7 @@
               <mat-chip
                 *ngFor="let competence of competences"
                 [selectable]="selectable"
+                color = "primary"
                 [removable]="removable"
                 (removed)="remove(competence)">
                 {{competence}}
@@ -43,7 +45,9 @@
                 </mat-option>
               </mat-optgroup>
             </mat-autocomplete>
+
           </mat-form-field>
+          <button class="btn btn-primary" (click)="onSubmit()">Rechercher</button>
         </mat-card-actions>
       </mat-card>
 
