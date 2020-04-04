@@ -6,10 +6,6 @@
         <h1>Recherche de profil</h1>
       </div>
 
-      <!-- <div class="searchHashtag">
-        <p class="top">Compétences recherchés:</p>
-      </div> -->
-
       <mat-card class="searchHashtag mt-5">
 
         <mat-card-content>
@@ -20,19 +16,19 @@
 
         <mat-card-actions>
           <mat-form-field class="example-chip-list">
-            <mat-chip-list #chipList aria-label="Fruit selection">
+            <mat-chip-list #chipList aria-label="Compétences selection">
               <mat-chip
-                *ngFor="let fruit of fruits"
+                *ngFor="let competence of competences"
                 [selectable]="selectable"
                 [removable]="removable"
-                (removed)="remove(fruit)">
-                {{fruit}}
+                (removed)="remove(competence)">
+                {{competence}}
                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
               </mat-chip>
               <input
-                placeholder="New fruit..."
-                #fruitInput
-                [formControl]="fruitCtrl"
+                placeholder="Ajouter une compétence"
+                #competenceInput
+                [formControl]="competenceCtrl"
                 [matAutocomplete]="auto"
                 [matChipInputFor]="chipList"
                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
@@ -42,8 +38,8 @@
             <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
               <mat-optgroup>
                 Development
-                <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
-                  {{fruit}}
+                <mat-option *ngFor="let competence of filteredCompetences | async" [value]="competence">
+                  {{competence}}
                 </mat-option>
               </mat-optgroup>
             </mat-autocomplete>
