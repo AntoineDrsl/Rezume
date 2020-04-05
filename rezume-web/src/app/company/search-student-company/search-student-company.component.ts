@@ -29,7 +29,7 @@ export class SearchStudentCompanyComponent implements OnInit {
 
   allCompetences: string[] = ['HTML', 'CSS', 'PHP', 'Angular', 'NodeJS'];
 
-  cvList;
+  studentList;
 
   @ViewChild('competenceInput', {static: false}) competenceInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
@@ -103,8 +103,8 @@ export class SearchStudentCompanyComponent implements OnInit {
 
     this.studentService.searchProfile(listJson).subscribe(
       res => {
-        this.cvList = res['cv'];
-        console.log(this.cvList);
+        this.studentList = res['cv'];
+        console.log(this.studentList);
       },
 
       err => {
