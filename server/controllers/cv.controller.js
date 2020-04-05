@@ -122,33 +122,6 @@ module.exports.getAllCv = (req, res, next) =>{
     );
 }
 
-module.exports.searchBy = (req, res, next) => {
-
-
-    let queryField = [];
-    for(const key in req.query){
-        if(req.query[key] == ''){
-            console.log('query empty');
-        }
-        else{
-            queryField.push(req.query[key]);
-        }
-    }
-
-    console.log(queryField);
-
-    CV.find(
-        {hashtag: {$all: queryField}},
-        (err, cv) =>{
-            if(!cv) {
-                return res.status(500).json({status: false, message: 'Cannot load all CV'});
-            }
-            else{
-                return res.status(200).json({status: true, cv});
-            }
-        }
-    )
-}
 
 module.exports.searchProfil = (req, res, next) => {
 
@@ -167,3 +140,4 @@ module.exports.searchProfil = (req, res, next) => {
     )
 
 }
+

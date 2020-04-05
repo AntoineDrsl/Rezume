@@ -19,6 +19,9 @@ var studentSchema = new mongoose.Schema({
     favorites: [
         { type: String }
     ],
+    hashtag: [
+        { type: String }
+    ],
     password: {
         type: String,
         required: 'Password cannot be empty',

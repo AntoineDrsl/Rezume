@@ -31,9 +31,6 @@ router.post('/uploadimage', jwtHelper.verifyJwtTokenStudent, upload.single('file
 router.get('/getcv', jwtHelper.verifyJwtTokenStudent, ctrlCV.getCV);
 router.get('/getselectedcv/:id', jwtHelper.verifyJwtTokenCompany, ctrlCV.getSelectedCV);
 router.get('/getallcv', jwtHelper.verifyJwtTokenCompany, ctrlCV.getAllCv);
-router.get('/searchcv/',jwtHelper.verifyJwtTokenCompany, ctrlCV.searchBy);
-
-router.get('/searchProfil/:arr', jwtHelper.verifyJwtTokenCompany, ctrlCV.searchProfil)
 
 //Ajouter CV en favori
 router.get('/addfavorite/:id', jwtHelper.verifyJwtTokenCompany, ctrlCompany.addFavorite);

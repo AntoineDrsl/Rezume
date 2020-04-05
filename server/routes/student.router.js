@@ -9,6 +9,7 @@ const jwtHelper = require('../config/jwtHelper');
 router.get('/studentprofile', jwtHelper.verifyJwtTokenStudent, ctrlStudent.studentProfile);
 router.get('/studentprofile/:id', jwtHelper.verifyJwtTokenCompany, ctrlStudent.getStudentProfile);
 
+router.get('/searchprofile/:arr', jwtHelper.verifyJwtTokenCompany, ctrlStudent.searchProfile);
 //FAVORITES
 router.get('/getfavoritescompanies', jwtHelper.verifyJwtTokenStudent, ctrlStudent.getAllFavorites);
 

@@ -108,3 +108,54 @@ module.exports.getAllFavorites = (req, res, next) => {
         }
     );
 }
+
+module.exports.searchProfile = (req, res, next) => {
+
+    const listCompetence = JSON.parse(req.params.arr);
+    console.log(listCompetence);
+
+    // Student.aggregate([
+        
+    //     {
+    //         $redac: {
+    //             $cond: [ 
+    //                 {
+    //                     $in: [listCompetence, hashtag]
+    //                 } 
+    //             ],
+    //             $$KEEP,
+    //             $$PRUNE
+    //         }
+    //     },
+    //     {
+    //         $lookup: {
+    //             from: "cv",
+    //             localfield: "_id",
+    //             foreignField: "_student",
+    //             as: "cvs"
+    //         }
+    //     }
+    // ],
+    // (err, student) => {
+    //     if(!student) {
+    //         console.log('nop');
+    //         return res.status(409).json({status: false, message: 'Student not found'});
+    //     }
+    //     else {
+    //         console.log('oui  ' + student);
+    //         return res.status(200).json({status: true, student});
+    //     }
+    // })
+
+    Student.find(
+        {hashtag: {$all: listCompetence}},
+        (err, cv) =>{
+            if(!cv) {
+                return res.status(500).json({status: false, message: 'Cannot load all CV'});
+            }
+            else{
+                return res.status(200).json({status: true, cv});
+            }
+        }
+    )
+};

@@ -7,7 +7,8 @@ import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/a
 import {MatChipInputEvent} from '@angular/material/chips';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-import { CvService } from 'src/app/shared/cv.service';
+import { StudentService } from 'src/app/shared/student.service';
+
 
 
 @Component({
@@ -33,7 +34,7 @@ export class SearchStudentCompanyComponent implements OnInit {
   @ViewChild('competenceInput', {static: false}) competenceInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
 
-  constructor(private cvService: CvService) {
+  constructor(private studentService: StudentService) {
     this.filteredCompetences = this.competenceCtrl.valueChanges.pipe(
       startWith(null),
       map((competence: string | null) => competence ? this._filter(competence) : this.allCompetences.slice()));
@@ -100,7 +101,7 @@ export class SearchStudentCompanyComponent implements OnInit {
   onSubmit() {
     const listJson = encodeURIComponent(JSON.stringify(this.competences));
 
-    this.cvService.searchProfil(listJson).subscribe(
+    this.studentService.searchProfile(listJson).subscribe(
       res => {
         this.cvList = res['cv'];
         console.log(this.cvList);

@@ -91,4 +91,8 @@ export class StudentService {
   getAllFavorites() {
     return this.http.get(environment.apiBaseUrl + '/getfavoritescompanies');
   }
+
+  searchProfile(competence) {
+    return this.http.get(environment.apiBaseUrl + '/searchprofile/' + competence);
+  }
 }
