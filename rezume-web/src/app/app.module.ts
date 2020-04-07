@@ -90,7 +90,7 @@ export function playerFactory() {
     ProfileSideStudentComponent,
     PostSideStudentComponent,
     SearchStudentCompanyComponent,
-    SelectedCvTwoComponent
+    SelectedCvTwoComponent,
     StudentDetailsComponent
 
   ],
