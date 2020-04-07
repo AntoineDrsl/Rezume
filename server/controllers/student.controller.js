@@ -108,3 +108,28 @@ module.exports.getAllFavorites = (req, res, next) => {
         }
     );
 }
+
+module.exports.updateStudent = (req, res, next) => {
+    var studentUpdate = Student.find({_id: req._id});
+    studentUpdate._id = req._id;
+    studentUpdate.firstName = req.body.firstName;
+    studentUpdate.lastName = req.body.lastName;
+    studentUpdate.email = req.body.email.toLowerCase();
+    
+    if(req.body.password) {
+        studentUpdate.password = req.body.password;
+    }
+
+    Student.findOneAndUpdate({_id: req._id}, {$set: {firstName: studentUpdate.firstName, lastName: studentUpdate.lastName, email: studentUpdate.email, password: studentUpdate.password }}, { omitUndefined: true,  runValidators: true, context: 'query' },
+        (err, student) => {
+            if(err) {
+                return res.status(500).json({status: false, message: 'Student not found or update impossible'});
+            }
+            else {
+                return res.status(200).json({status: true, student});
+            }
+        }
+    
+    )
+
+}

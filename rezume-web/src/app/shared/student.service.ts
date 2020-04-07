@@ -91,4 +91,8 @@ export class StudentService {
   getAllFavorites() {
     return this.http.get(environment.apiBaseUrl + '/getfavoritescompanies');
   }
+
+  updateStudent(form){
+    return this.http.post(environment.apiBaseUrl + '/updatestudent', form);
+  }
 }

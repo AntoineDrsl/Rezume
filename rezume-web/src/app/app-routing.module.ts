@@ -14,10 +14,9 @@ import { SelectedCvComponent } from './get-all-cv/selected-cv/selected-cv.compon
 import { GetAllJobComponent } from './get-all-job/get-all-job.component';
 import { JobSelectedComponent } from './get-all-job/job-selected/job-selected.component';
 import { PostComponent } from './post/post.component';
-import {SignUpCompanyComponent} from './sign-up/sign-up-company/sign-up-company.component';
-import {SignUpStudentComponent} from './sign-up/sign-up-student/sign-up-student.component';
 import { CompanyDetailComponent } from './company/company-detail/company-detail.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { StudentDetailsComponent } from './student-profile/student-details/student-details.component';
 
 export const routes: Routes = [
   // {
@@ -71,7 +70,10 @@ export const routes: Routes = [
     path: 'post', component: PostComponent
   },
   {
-    path: 'companyprofile', component: CompanyDetailComponent, canActivate: [AuthGuard]
+    path: 'companydetails', component: CompanyDetailComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'studentdetails', component: StudentDetailsComponent, canActivate: [AuthGuard]
   },
   {
     path: 'navbar', component: NavbarComponent
