@@ -16,7 +16,10 @@ import { JobSelectedComponent } from './get-all-job/job-selected/job-selected.co
 import { PostComponent } from './post/post.component';
 import { CompanyDetailComponent } from './company/company-detail/company-detail.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { SearchStudentCompanyComponent } from './company/search-student-company/search-student-company.component';
+import { SelectedCvTwoComponent } from './company/selected-cv-two/selected-cv-two.component';
 import { StudentDetailsComponent } from './student-profile/student-details/student-details.component';
+
 
 export const routes: Routes = [
   // {
@@ -76,7 +79,17 @@ export const routes: Routes = [
     path: 'studentdetails', component: StudentDetailsComponent, canActivate: [AuthGuard]
   },
   {
+    path: 'cvstudent/:id', component: SelectedCvTwoComponent, canActivate: [AuthGuard]
+  },
+
+
+
+  // Pour CREATION COMPONENTS
+  {
     path: 'navbar', component: NavbarComponent
+  },
+  {
+    path: 'search', component: SearchStudentCompanyComponent, canActivate: [AuthGuard]
   }
 ];
 

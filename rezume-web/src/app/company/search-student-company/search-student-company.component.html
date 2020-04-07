@@ -1,0 +1,88 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="top">
+
+      <div class="topTitle mt-4">
+        <p>Recherche de profil</p>
+      </div>
+
+      <mat-card class="searchHashtag mt-4">
+
+        <mat-card-content>
+          <mat-card-title>
+            Compétences recherchés
+          </mat-card-title>
+
+        </mat-card-content>
+
+        <mat-card-actions>
+          <mat-form-field class="example-chip-list">
+            <mat-chip-list #chipList aria-label="Compétences selection">
+              <mat-chip
+                *ngFor="let competence of competences"
+                [selectable]="selectable"
+                color = "primary"
+                [removable]="removable"
+                (removed)="remove(competence)">
+                {{competence}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input
+                placeholder="Ajouter une compétence"
+                #competenceInput
+                [formControl]="competenceCtrl"
+                [matAutocomplete]="auto"
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+              <mat-optgroup>
+                Development
+                <mat-option *ngFor="let competence of filteredCompetences | async" [value]="competence">
+                  {{competence}}
+                </mat-option>
+              </mat-optgroup>
+            </mat-autocomplete>
+
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="onSubmit()">Rechercher</button>
+        </mat-card-actions>
+      </mat-card>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="main" *ngIf="studentList?.length > 0">
+
+      <mat-card class="students" *ngFor="let student of studentList">
+        <mat-card-header>
+          <div mat-card-avatar class="studend-avatar"><img mat-card-avatar src="assets/images/IconeRezume.png" alt="oui"></div>
+          <mat-card-title>
+            {{student.lastName | uppercase}} {{student.firstName}}
+          </mat-card-title>
+          <button mat-raised-button color="warn" class="ml-auto" (click)="selectCvStudent(student._id)">Voir le CV</button>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-card-subtitle>
+            Liste des compétences
+          </mat-card-subtitle>
+          <mat-chip-list>
+            <mat-chip *ngFor="let competence of student.hashtag">{{competence}}</mat-chip>
+          </mat-chip-list>
+        </mat-card-content>
+        <mat-card-footer style="margin: 0">
+          <b>A propos:</b><br>
+          <p></p>
+        </mat-card-footer>
+      </mat-card>
+
+    </div>
+
+    <div class="notmain" *ngIf="!studentList || studentList?.length == 0">
+      Veuillez lancer une recherche
+    </div>
+  </div>
+</div>

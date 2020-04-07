@@ -1,0 +1,66 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.top{
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.topTitle > p {
+  font-size: 40px;
+  color: #6E58C6;
+}
+
+.searchHashtag{
+  width: 400px;
+  background-color: #F0F0F0;
+
+}
+
+.example-chip-list {
+  width: 100%;
+}
+
+
+
+.main{
+  width: 100%;
+  margin-top: 2%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.main .students{
+  width: 55%;
+  background-color: rgb(202, 202, 202);
+  color: rgb(95, 74, 179);
+  margin: 1% 0;
+}
+
+.students > * {
+  padding: 15px 5px;
+  margin: 0;
+}
+
+
+.notmain{
+  width: 100%;
+  margin-top: 3%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  color: rgb(95, 74, 179);
+  font-size: 30px;
+}

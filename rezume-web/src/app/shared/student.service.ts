@@ -92,7 +92,11 @@ export class StudentService {
     return this.http.get(environment.apiBaseUrl + '/getfavoritescompanies');
   }
 
+  searchProfile(competence) {
+    return this.http.get(environment.apiBaseUrl + '/searchprofile/' + competence);
+  }
   updateStudent(form){
     return this.http.post(environment.apiBaseUrl + '/updatestudent', form);
+
   }
 }

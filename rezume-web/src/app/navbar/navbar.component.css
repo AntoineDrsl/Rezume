@@ -16,6 +16,7 @@
   background-color: rgb(95, 74, 179);
 
   color: white;
+  fill: #FFFFFF;
 
   width: 50px;
   height: 50px;
@@ -32,6 +33,8 @@
   color: rgb(95, 74, 179);
 
   transition: 0.50s;
+
+  fill: rgb(95, 74, 179);
 }
 
 .btn-link:focus{

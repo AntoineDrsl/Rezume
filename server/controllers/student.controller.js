@@ -25,7 +25,7 @@ module.exports.register = (req, res, next) => {
             }
         }
     });
-}
+};
 
 module.exports.authenticate = (req, res, next) => {
     //On appelle la méthode d'authentification configurée dans passportConfig.js
@@ -37,7 +37,7 @@ module.exports.authenticate = (req, res, next) => {
         //Si l'email n'existe pas ou si le mot de passe est incorrect on affiche le message défini dans passportConfig.js
         else return res.status(404).json(info);
     })(req, res);
-}
+};
 
 module.exports.studentProfile = (req, res, next) => {
     Student.findOne({ _id: req._id },
@@ -49,7 +49,7 @@ module.exports.studentProfile = (req, res, next) => {
             }
         }
     );
-}
+};
 
 
 module.exports.getStudentProfile = (req, res, next) => {
@@ -62,7 +62,7 @@ module.exports.getStudentProfile = (req, res, next) => {
             }
         }
     );
-}
+};
 
 module.exports.addJobFavorite = (req, res, next) => {
     var studentFavorite = new Student();
@@ -78,7 +78,7 @@ module.exports.addJobFavorite = (req, res, next) => {
             }
         }
     );
-}
+};
 
 module.exports.removeJobFavorite = (req, res, next) => {
     Student.findOneAndUpdate({_id: req._id}, {$pull: {favorites: req.params.id}},
@@ -91,7 +91,7 @@ module.exports.removeJobFavorite = (req, res, next) => {
             }
         }
     );
-}
+};
 
 module.exports.getAllFavorites = (req, res, next) => {
     Student.findOne({_id: req._id},
@@ -100,14 +100,33 @@ module.exports.getAllFavorites = (req, res, next) => {
                 return res.status(404).json({ status: false, message: 'Student not found'});
             } else {
                 Company.find({_id: {$in: student.favorites}},
-                        (err, favorites) => {
-                            return res.status(200).json({ status: true, favorites });
-                        }
-                    );
+                    (err, favorites) => {
+                        return res.status(200).json({ status: true, favorites });
+                    }
+                );
             }
         }
     );
-}
+};
+
+module.exports.searchProfile = (req, res, next) => {
+
+    const listCompetence = JSON.parse(req.params.arr);
+    console.log(listCompetence);
+
+    Student.find(
+        {hashtag: {$all: listCompetence}},
+        (err, cv) =>{
+            if(!cv) {
+                return res.status(500).json({status: false, message: 'Cannot load all CV'});
+            }
+            else{
+                return res.status(200).json({status: true, cv});
+            }
+        }
+    );
+};
+
 
 module.exports.updateStudent = (req, res, next) => {
     var studentUpdate = Student.find({_id: req._id});
@@ -131,5 +150,5 @@ module.exports.updateStudent = (req, res, next) => {
         }
     
     )
-
 }
+

@@ -122,23 +122,13 @@ module.exports.getAllCv = (req, res, next) =>{
     );
 }
 
-module.exports.searchBy = (req, res, next) => {
 
+module.exports.searchProfil = (req, res, next) => {
 
-    let queryField = [];
-    for(const key in req.query){
-        if(req.query[key] == ''){
-            console.log('query empty');
-        }
-        else{
-            queryField.push(req.query[key]);
-        }
-    }
-
-    console.log(queryField);
+    const listCompetence = JSON.parse(req.params.arr);
 
     CV.find(
-        {hashtag: {$all: queryField}},
+        {hashtag: {$all: listCompetence}},
         (err, cv) =>{
             if(!cv) {
                 return res.status(500).json({status: false, message: 'Cannot load all CV'});
@@ -148,4 +138,23 @@ module.exports.searchBy = (req, res, next) => {
             }
         }
     )
+
 }
+
+
+// Find Cv with the student ID
+module.exports.getCvStudentId = (req, res, next) => {
+    CV.findOne(
+    {
+        _student: req.params.id
+    }, 
+    (err, cv) => {
+        if(!cv){
+            return res.status(500).json({status: false, message: 'Cannot load CV'});
+        }
+        else {
+            return res.status(200).json({status: true, cv: _.pick(cv, ['_id'])});
+        }
+    });
+}
+
