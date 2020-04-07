@@ -65,13 +65,12 @@ export class CompanyDetailComponent implements OnInit {
     const company_name = this.companyDetails[0].company_name;
     const email = this.companyDetails[0].email;
     const description = this.companyDetails[0].description;
-    const password = this.companyDetails[0].password;
 
     this.companyUpdateForm = new FormGroup({
       company_name: new FormControl(company_name, Validators.required),
       email: new FormControl(email, Validators.compose([Validators.required, Validators.email])),
       description: new FormControl(description, Validators.required),
-      password: new FormControl(password, Validators.compose([Validators.required, Validators.minLength(8)]))
+      password: new FormControl('', Validators.minLength(8))
     });
 
   }

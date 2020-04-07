@@ -9,6 +9,9 @@ const jwtHelper = require('../config/jwtHelper');
 router.get('/studentprofile', jwtHelper.verifyJwtTokenStudent, ctrlStudent.studentProfile);
 router.get('/studentprofile/:id', jwtHelper.verifyJwtTokenCompany, ctrlStudent.getStudentProfile);
 
+//UPDATE
+router.post('/updatestudent', jwtHelper.verifyJwtTokenStudent, ctrlStudent.updateStudent);
+
 //FAVORITES
 router.get('/getfavoritescompanies', jwtHelper.verifyJwtTokenStudent, ctrlStudent.getAllFavorites);
 

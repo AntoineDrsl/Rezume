@@ -40,6 +40,7 @@ import { CompanyDetailComponent } from './company/company-detail/company-detail.
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProfileSideStudentComponent } from './student-profile/profile-side-student/profile-side-student.component';
 import { PostSideStudentComponent } from './student-profile/post-side-student/post-side-student.component';
+import { StudentDetailsComponent } from './student-profile/student-details/student-details.component';
 
 
 // LOTTIE PLAYER
@@ -71,7 +72,8 @@ export function playerFactory() {
     CompanyDetailComponent,
     NavbarComponent,
     ProfileSideStudentComponent,
-    PostSideStudentComponent
+    PostSideStudentComponent,
+    StudentDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -118,11 +118,13 @@ module.exports.updateCompany = (req, res, next) => {
     companyUpdate._id = req._id;
     companyUpdate.company_name = req.body.company_name;
     companyUpdate.email = req.body.email.toLowerCase();
-    companyUpdate.password = req.body.password;
     companyUpdate.description = req.body.description;
+    
+    if(req.body.password) {
+        companyUpdate.password = req.body.password;
+    }
 
-    Company.findOneAndUpdate({_id: req._id}, {$set: {company_name: companyUpdate.company_name, email: companyUpdate.email, password: companyUpdate.password, description: companyUpdate.description}},
-        { runValidators: true, context: 'query' },
+    Company.findOneAndUpdate({_id: req._id}, {$set: {company_name: companyUpdate.company_name, email: companyUpdate.email, password: companyUpdate.password, description: companyUpdate.description}}, { omitUndefined: true,  runValidators: true, context: 'query' },
         (err, company) => {
             if(err) {
                 return res.status(500).json({status: false, message: 'Company not found or update impossible'});
@@ -133,4 +135,5 @@ module.exports.updateCompany = (req, res, next) => {
         }
     
     )
+
 }
