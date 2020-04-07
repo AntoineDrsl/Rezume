@@ -48,6 +48,17 @@ studentSchema.pre('save', function (next) {
     });
 });
 
+studentSchema.pre('findOneAndUpdate', function (next) {
+    
+    bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(this.getUpdate().$set.password, salt, (err, hash) => {
+            this.getUpdate().$set.password = hash;
+            this.saltSecret = salt;
+            next();
+        });
+    });
+});
+
 // Methods
 
 studentSchema.methods.verifyPassword = function (password) {

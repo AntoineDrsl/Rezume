@@ -11,7 +11,7 @@ module.exports.createPost = (req, res, next) => {
     var post = new Post();
     post._company = req._id;
     post.content = req.body.content;
-    post.img_path = `server/uploads/post/Post_${req.body.image.substring(12)}`;
+    post.img_path = req.body.image.substring(12);
     post.save((err, doc) => {
         if(!err){
             res.send(doc);

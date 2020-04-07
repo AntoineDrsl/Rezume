@@ -6,7 +6,8 @@
         {{student.firstName}} {{student.lastName}}
       </p>
   
-      <a routerLink="/studentprofile"><button class="buttonProfile">Voir mes informations</button></a>
+      <a routerLink="/studentdetails"><button class="buttonProfile">Voir mes informations</button></a>
+      <button class="buttonProfile" style="margin-top: 20px;" (click)="onLogout()">Se deconnecter</button>
     </div>
   
     <div class="studentFav" *ngIf="favorites">

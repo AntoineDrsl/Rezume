@@ -19,6 +19,7 @@ var app = express();
 
 //On dit à l'application ce qu'on va utiliser
 app.use(bodyParser.json());
+app.use(express.static('uploads'));
 app.use(cors());
 app.use(passport.initialize());
 app.use(express.static('uploads'));

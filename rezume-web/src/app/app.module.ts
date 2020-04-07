@@ -55,6 +55,8 @@ import { ProfileSideStudentComponent } from './student-profile/profile-side-stud
 import { PostSideStudentComponent } from './student-profile/post-side-student/post-side-student.component';
 import { SearchStudentCompanyComponent } from './company/search-student-company/search-student-company.component';
 import { SelectedCvTwoComponent } from './company/selected-cv-two/selected-cv-two.component';
+import { StudentDetailsComponent } from './student-profile/student-details/student-details.component';
+
 
 
 // LOTTIE PLAYER
@@ -89,6 +91,8 @@ export function playerFactory() {
     PostSideStudentComponent,
     SearchStudentCompanyComponent,
     SelectedCvTwoComponent
+    StudentDetailsComponent
+
   ],
   imports: [
     BrowserModule,

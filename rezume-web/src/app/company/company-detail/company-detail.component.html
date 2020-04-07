@@ -109,7 +109,7 @@
               <label for="password">Mot de passe</label><br>
               <input type="password" class="form-control" id="password" formControlName="password" [ngClass]="{'invalid-textbox' :password.touched && password.invalid }">
               <div *ngIf="password.touched && password.invalid">
-                <label class="validation-message">Veuillez entrer un mot de passe</label>
+                <label class="validation-message">Votre mot de passe doit faire au moins 8 caractères</label>
               </div>
             </div>
 
