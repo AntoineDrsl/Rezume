@@ -141,3 +141,20 @@ module.exports.searchProfil = (req, res, next) => {
 
 }
 
+
+// Find Cv with the student ID
+module.exports.getCvStudentId = (req, res, next) => {
+    CV.findOne(
+    {
+        _student: req.params.id
+    }, 
+    (err, cv) => {
+        if(!cv){
+            return res.status(500).json({status: false, message: 'Cannot load CV'});
+        }
+        else {
+            return res.status(200).json({status: true, cv: _.pick(cv, ['_id'])});
+        }
+    });
+}
+

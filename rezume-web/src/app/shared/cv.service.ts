@@ -42,6 +42,9 @@ export class CvService {
       return this.http.get(environment.apiBaseUrl + '/getselectedcv/' + id);
     }
 
+    getSelectedCvStudent(id) {
+      return this.http.get(environment.apiBaseUrl + '/getcvstudent/' + id);
+    }
 
     getAllCV() {
       return this.http.get(environment.apiBaseUrl + '/getallcv');

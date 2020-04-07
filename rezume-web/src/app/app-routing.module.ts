@@ -19,6 +19,7 @@ import {SignUpStudentComponent} from './sign-up/sign-up-student/sign-up-student.
 import { CompanyDetailComponent } from './company/company-detail/company-detail.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SearchStudentCompanyComponent } from './company/search-student-company/search-student-company.component';
+import { SelectedCvTwoComponent } from './company/selected-cv-two/selected-cv-two.component';
 
 export const routes: Routes = [
   // {
@@ -74,6 +75,9 @@ export const routes: Routes = [
   {
     path: 'companyprofile', component: CompanyDetailComponent, canActivate: [AuthGuard]
   },
+  {
+    path: 'cvstudent/:id', component: SelectedCvTwoComponent, canActivate: [AuthGuard]
+  },
 
 
 
@@ -82,7 +86,7 @@ export const routes: Routes = [
     path: 'navbar', component: NavbarComponent
   },
   {
-    path: 'search', component: SearchStudentCompanyComponent
+    path: 'search', component: SearchStudentCompanyComponent, canActivate: [AuthGuard]
   }
 ];
 

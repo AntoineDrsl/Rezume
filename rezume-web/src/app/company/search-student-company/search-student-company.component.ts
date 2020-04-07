@@ -2,12 +2,14 @@
 
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {Component, ElementRef, ViewChild, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 import {FormControl} from '@angular/forms';
 import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { StudentService } from 'src/app/shared/student.service';
+import { CvService } from 'src/app/shared/cv.service';
 
 
 
@@ -30,11 +32,12 @@ export class SearchStudentCompanyComponent implements OnInit {
   allCompetences: string[] = ['HTML', 'CSS', 'PHP', 'Angular', 'NodeJS'];
 
   studentList;
+  cvId;
 
   @ViewChild('competenceInput', {static: false}) competenceInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
 
-  constructor(private studentService: StudentService) {
+  constructor(private studentService: StudentService, private cvService: CvService, private router: Router) {
     this.filteredCompetences = this.competenceCtrl.valueChanges.pipe(
       startWith(null),
       map((competence: string | null) => competence ? this._filter(competence) : this.allCompetences.slice()));
@@ -111,6 +114,21 @@ export class SearchStudentCompanyComponent implements OnInit {
         console.log('pas ok');
       }
 
+    )
+  }
+
+
+  selectCvStudent(id) {
+
+    this.cvService.getSelectedCvStudent(id).subscribe(
+      res => {
+        this.cvId = res["cv"];
+        console.log(this.cvId);
+        this.router.navigate(['/cvstudent/' + this.cvId._id]);
+      },
+      err => {
+        console.log('Pas id');
+      }
     )
   }
 }
