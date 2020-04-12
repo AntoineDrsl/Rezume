@@ -112,7 +112,6 @@ module.exports.getAllFavorites = (req, res, next) => {
 module.exports.searchProfile = (req, res, next) => {
 
     const listCompetence = JSON.parse(req.params.arr);
-    console.log(listCompetence);
 
     Student.find(
         {hashtag: {$all: listCompetence}},
