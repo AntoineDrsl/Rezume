@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { CvService } from 'src/app/shared/cv.service';
 
 @Component({
   selector: 'app-selected-cv-two',
@@ -8,12 +9,23 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class SelectedCvTwoComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  cvDetails;
+
+  constructor(private route: ActivatedRoute, private cvService: CvService) { }
 
   ngOnInit() {
 
-    const id = JSON.stringify(this.route.snapshot.paramMap.get('id'));
-    console.log(id);
+    const id = this.route.snapshot.paramMap.get('id');
+
+    this.cvService.getSelectedCV(id).subscribe(
+      res => {
+        this.cvDetails = res["cv"];
+        console.log(this.cvDetails);
+      },
+      err => {
+        console.log('Impossible de recup cv details');
+      }
+    )
   }
 
 }
