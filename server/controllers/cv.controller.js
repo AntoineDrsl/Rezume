@@ -4,6 +4,7 @@ const _ = require('lodash');
 const Student = mongoose.model('Student');
 const CV = mongoose.model('cv');
 
+const ObjectId = mongoose.Types.ObjectId;
 
 mongoose.set('useFindAndModify', false);
 
@@ -37,17 +38,27 @@ module.exports.getCV = (req, res, next) => {
 
 module.exports.getSelectedCV = (req, res, next) => {
 
-    
-    CV.findOne({_id: req.params.id},
-        (err, cv) =>{
-            if(!cv) {
-                return res.status(404).json({status: false, message: 'Cv not found'});
-            }
-            else{
-                return res.status(200).json({status: true, cv: _.pick(cv, ['student','age','research', 'experiences', 'degrees'])});
+    CV.aggregate([
+        {
+            $match: {_id: ObjectId(req.params.id)}
+        },
+        {
+            $lookup: {
+                from: "students",
+                localField: "_student",
+                foreignField: "_id",
+                as: "student"
             }
         }
-    );
+    ],
+    (err, cv) => {
+        if(!cv) {
+            return res.status(409).json({ status: false, message: 'Cv cannot be loaded' });
+        }
+        else {
+            return res.status(200).json({status: true, cv});
+        }
+    });
 }
 
 

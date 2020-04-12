@@ -1,1 +1,46 @@
-<p>selected-cv-two works!</p>
+
+
+<div class="container">
+  <div class="row">
+
+      <mat-card class="cv-details">
+        <div class="card-head">
+          <mat-card-subtitle>
+            <a routerLink="/search" class="mx-5">Revenir à la recherche</a>
+          </mat-card-subtitle>
+            <img src="assets/images/IconeRezume.png" alt="Photo de profil" class="img-top">
+        </div>
+
+        <mat-card-content *ngIf="cvDetails">
+
+          <mat-card-title class="text-center mt-3 cv-name">
+            {{cvDetails[0].student[0].firstName}} {{cvDetails[0].student[0].lastName}}
+          </mat-card-title>
+
+          <p class="cv-description">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat, culpa facere quas ab voluptas quis odit explicabo animi autem porro ipsa, dolorum perferendis sint nulla non eaque cupiditate delectus sunt.
+          </p>
+
+          <div class="cv-experiences">
+            <p class="section-title">Experiences Professionnelles</p>
+            <p class="section-content" *ngFor="let experience of cvDetails[0].experiences">2018-2020 - {{experience}}</p>
+          </div>
+
+          <div class="cv-degrees">
+            <p class="section-title">Diplômes</p>
+            <p class="section-content" *ngFor="let degree of cvDetails[0].degrees">2018-2020 - {{degree}}</p>
+          </div>
+
+          <div class="cv-hashtag">
+            <p class="section-title">Compétences</p>
+            <mat-chip-list>
+              <mat-chip class="cv-chips" *ngFor="let hashtag of cvDetails[0].hashtag">
+                {{hashtag}}
+              </mat-chip>
+            </mat-chip-list>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+  </div>
+</div>
