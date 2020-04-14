@@ -43,9 +43,6 @@ import { SelectedCvComponent } from './get-all-cv/selected-cv/selected-cv.compon
 import { SignUpStudentComponent } from './sign-up/sign-up-student/sign-up-student.component';
 import { SignUpCompanyComponent } from './sign-up/sign-up-company/sign-up-company.component';
 import { CompanyProfileComponent } from './company-profile/company-profile.component';
-import { JobCreationComponent } from './job-creation/job-creation.component';
-import { GetAllJobComponent } from './get-all-job/get-all-job.component';
-import { JobSelectedComponent } from './get-all-job/job-selected/job-selected.component';
 import { PostComponent } from './post/post.component';
 import { ProfileSideComponent } from './company-profile/profile-side/profile-side.component';
 import { PostSideComponent } from './company-profile/post-side/post-side.component';
@@ -79,9 +76,6 @@ export function playerFactory() {
     SignUpStudentComponent,
     SignUpCompanyComponent,
     CompanyProfileComponent,
-    JobCreationComponent,
-    GetAllJobComponent,
-    JobSelectedComponent,
     PostComponent,
     ProfileSideComponent,
     PostSideComponent,

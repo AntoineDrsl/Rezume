@@ -12,7 +12,6 @@ const rtsRegistration = require('./routes/registration.router');
 const rtsStudent = require('./routes/student.router');
 const rtsCompany = require('./routes/company.router');
 const rtsCv = require('./routes/cv.router');
-const rtsJob = require('./routes/job.router');
 const rtsPost = require('./routes/post.router');
 
 var app = express();
@@ -23,7 +22,7 @@ app.use(express.static('uploads'));
 app.use(cors());
 app.use(passport.initialize());
 app.use(express.static('uploads'));
-app.use('/api', rtsRegistration, rtsStudent, rtsCompany, rtsCv, rtsJob, rtsPost); // define URL '/api' to call the router
+app.use('/api', rtsRegistration, rtsStudent, rtsCompany, rtsCv, rtsPost); // define URL '/api' to call the router
 
 // error handler
 app.use((err, req, res, next) => {
