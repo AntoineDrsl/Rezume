@@ -3,13 +3,30 @@
 ## Before to start : 
 
 Install all the packages:
-`cd rezume_web`
-`npm init`
+```bash
+cd rezume_web
+```
+```bash
+npm init
+```
 Accept all
-`npm install`
+```bash
+npm install
+```
 
-Create a database in MondoDB called "Rezume" with 4 tables: "students", "companies", "cvs", "jobs"
-
+Create a database in MondoDB called "Rezume" with 4 tables: 
+```bash
+students
+```
+```bash
+companies
+```
+```bash
+cvs
+```
+```bash
+posts
+```
 ## To launch the application
 
 Launch the backend (Node)
