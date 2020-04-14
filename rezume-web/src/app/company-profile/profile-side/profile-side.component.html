@@ -15,14 +15,18 @@
       Etudiants en Favoris
     </p>
 
-    <div class="selectStudent" *ngFor="let student of favorites">
+    <div class="selectStudent" *ngFor="let student of favorites; index as i">
       <img src="assets/images/star.svg" alt="star" width="25px" style="padding-left: 5px">
       <p class="studentName">
         {{ student.firstName }} {{ student.lastName }}
       </p>
-      <a href="#" class="studentCV">
+      <a class="studentCV" (click)="getCvId(i)">
         CV
       </a>
+    </div>
+
+    <div *ngIf="favorites.length == 0">
+      Encore aucun étudiant en favoris
     </div>
 
   </div>

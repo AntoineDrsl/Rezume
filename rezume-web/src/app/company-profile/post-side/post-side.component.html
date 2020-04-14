@@ -3,20 +3,6 @@
 <div class="postSide">
 
   <div class="postForm">
-    <!-- <form #addPost="ngForm" (ngSubmit)="addPost.valid && onSubmit(addPost)">
-      <div class="form-group">
-        <label for="postContent" class="labelTitle">Créer une publication</label>
-        <textarea name="content" id="content" class="form-control" cols="30" placeholder="Dernières nouvelles de l'entreprise"
-        #postContent="ngModel" ngModel required></textarea>
-      </div>
-
-      <div class="form-group fileInput">
-        <input id="file" type="file" name="image" class="input-file" (change)="onFileChange($event)">
-        <label for="file" class="label-file">Choisir un fichier</label><br>
-      </div>
-      <input type="submit" value="Nouveau post">
-
-    </form> -->
 
     <form [formGroup]="addPost" (ngSubmit)="addPost.valid && onSubmit(addPost)">
       <div class="form-group">
@@ -70,6 +56,10 @@
           {{post.createdAt}}
         </p>
       </div>
+    </div>
+
+    <div *ngIf="company[0].posts.length == 0">
+      Vous n'avez encore rien posté, alors allez y !
     </div>
 
   </div>

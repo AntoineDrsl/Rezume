@@ -16,9 +16,13 @@
             {{student}}
           </p>
 
-          <a href="#" class="studentCV">
+          <a class="studentCV" (click)="getCvId(i)">
             CV
           </a>
+        </div>
+
+        <div *ngIf="companyDetails[0].favorites.length == 0">
+          Encore aucun étudiant en favoris
         </div>
       </div>
     </div>

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CompanyService } from 'src/app/shared/company.service';
+import { Router } from '@angular/router';
 
 import { AnimationItem } from 'lottie-web';
 import { AnimationOptions } from 'ngx-lottie';
 import { FormGroup, FormControl, Validators, MinLengthValidator} from '@angular/forms';
+import { CvService } from 'src/app/shared/cv.service';
 
 @Component({
   selector: 'app-company-detail',
@@ -13,7 +15,8 @@ import { FormGroup, FormControl, Validators, MinLengthValidator} from '@angular/
 export class CompanyDetailComponent implements OnInit {
 
   companyDetails;
-
+  favorites;
+  cvId;
   editSelected = false;
 
   companyUpdateForm: FormGroup;
@@ -41,7 +44,7 @@ export class CompanyDetailComponent implements OnInit {
 
   }
 
-  constructor(private companyService: CompanyService) { }
+  constructor(private companyService: CompanyService, private cvService: CvService, private router: Router) { }
 
   ngOnInit() {
 
@@ -52,7 +55,16 @@ export class CompanyDetailComponent implements OnInit {
       err => {
         console.log("nop");
       }
-    )
+    );
+
+    this.companyService.getAllFavorites().subscribe(
+      res => {
+        this.favorites = res['favorites'];
+      },
+      err => {
+
+      }
+    );
 
   }
 
@@ -82,6 +94,19 @@ export class CompanyDetailComponent implements OnInit {
       },
       err => {
         console.log("erreur");
+      }
+    )
+  }
+
+
+  getCvId(index) {
+    this.cvService.getSelectedCvStudent(this.favorites[index]._id).subscribe(
+      res => {
+        this.cvId = res["cv"];
+        this.router.navigate(['/cvstudent/' + this.cvId._id]);
+      },
+      err => {
+        console.log('Pas id');
       }
     )
   }

@@ -34,7 +34,6 @@ export class CompanyProfileComponent implements OnInit {
       res => {
         this.companyDetails = res['company'];
         this.valid = true;
-        console.log(this.companyDetails);
       },
       err => {
         this.serverErrorMessage = true;

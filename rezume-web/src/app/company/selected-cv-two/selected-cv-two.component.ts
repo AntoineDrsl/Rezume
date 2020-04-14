@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CvService } from 'src/app/shared/cv.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-selected-cv-two',
@@ -11,7 +12,7 @@ export class SelectedCvTwoComponent implements OnInit {
 
   cvDetails;
 
-  constructor(private route: ActivatedRoute, private cvService: CvService) { }
+  constructor(private route: ActivatedRoute, private cvService: CvService, private _location: Location) { }
 
   ngOnInit() {
 
@@ -26,6 +27,10 @@ export class SelectedCvTwoComponent implements OnInit {
         console.log('Impossible de recup cv details');
       }
     )
+  }
+
+  backToPage() {
+    this._location.back();
   }
 
 }
