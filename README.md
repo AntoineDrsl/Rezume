@@ -30,9 +30,16 @@ posts
 ## To launch the application
 
 Launch the backend (Node)
-`cd server`
-`node index.js`
-
+```bash
+cd server
+```
+```bash
+node index.js
+```
 Launch the frontend (AngularApp)
-`cd rezume-web`
-`ng serve --open`
+```bash
+cd rezume-web
+```
+```bash
+ng serve --open
+```
