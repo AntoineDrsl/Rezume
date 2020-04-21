@@ -24,3 +24,13 @@
     box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
     text-align: center;
 }
+
+#icon {
+    width:80%;
+    padding: 10px 20px 10px 0;
+}
+
+#icon-profile{
+    width: 30%;
+    padding: 10px;
+}
