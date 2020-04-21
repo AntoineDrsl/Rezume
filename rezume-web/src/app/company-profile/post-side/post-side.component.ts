@@ -24,6 +24,7 @@ export class PostSideComponent implements OnInit {
 
   ngOnInit() {
     this.addPost = new FormGroup({
+      title: new FormControl(''),
       content: new FormControl(''),
       image: new FormControl('')
     });
