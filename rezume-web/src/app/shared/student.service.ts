@@ -17,23 +17,23 @@ export class StudentService {
     confirmPassword: ''
   };
 
-  //Attribut à ajouter pour les fonctions ne demandant pas de JWT
+  // Attribut à ajouter pour les fonctions ne demandant pas de JWT
   noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' }) };
 
   constructor(private http: HttpClient) { }
 
-  //HTTP methods
+  // HTTP methods
 
   postStudent(student: Student) {
     return this.http.post(environment.apiBaseUrl+'/register', student, this.noAuthHeader);
   }
 
-  //Fonction générant un token en fonction de Credentials
+  // Fonction générant un token en fonction de Credentials
   login(authCredentials) {
     return this.http.post(environment.apiBaseUrl + '/authenticate', authCredentials, this.noAuthHeader);
   }
 
-  //Fonction récupérant le profil en fonction du token
+  // Fonction récupérant le profil en fonction du token
   getStudentProfile() {
     return this.http.get(environment.apiBaseUrl + '/studentprofile');
   }
@@ -43,22 +43,22 @@ export class StudentService {
   }
   //Helper Methods
 
-  //Fonction stockant le token généré par le login
+  // Fonction stockant le token généré par le login
   setToken(token: string) {
     localStorage.setItem('token', token);
   }
 
-  //Fonction pour récupérer le token
+  // Fonction pour récupérer le token
   getToken() {
     return localStorage.getItem('token');
   }
 
-  //Fonction pour supprimer le token
+  // Fonction pour supprimer le token
   deleteToken() {
     localStorage.removeItem('token');
   }
 
-  //Fonction pour récupérer le payload (les infos du student) à partir du token
+  // Fonction pour récupérer le payload (les infos du student) à partir du token
   getStudentPayload() {
     var token = this.getToken();
     if(token) {
@@ -69,7 +69,7 @@ export class StudentService {
     }
   }
 
-  //Fonction pour vérifier si le student est login
+  // Fonction pour vérifier si le student est login
   isLoggedIn() {
     var studentPayload = this.getStudentPayload();
     if (studentPayload) {

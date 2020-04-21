@@ -14,7 +14,8 @@
         <button class="btn-link"><img src="assets/icons/edit.svg" alt="edit" width="28px" height="28px"></button>
       </li>
       <li class="nav-item">
-        <button class="btn-link"><img src="assets/icons/edit.svg" alt="edit" width="28px" height="28px"></button>
+        <button class="btn-link" *ngIf="visitorInformation.statut === 'company'"><img src="assets/icons/edit.svg" alt="edit" width="28px" height="28px"></button>
+        <button class="btn-link" *ngIf="visitorInformation.statut === 'student'" routerLink="/cvview">CV</button>
       </li>
       <li class="nav-item" routerLink="/search">
         <button class="btn-link">

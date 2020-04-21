@@ -23,17 +23,27 @@ module.exports.getIdAndName = (req, res, next) => {
 }
 
 module.exports.getCV = (req, res, next) => {
-    CV.findOne({ _student: req._id},
-        (err, cv) =>{
-            if(!cv) {
-                return res.status(404).json({status: false, message: 'Cv not found'});
-            }
-            else{
-                return res.status(200).json({status: true, cv: _.pick(cv, ['student','age','research', 'experiences', 'degrees'])});
+    CV.aggregate([
+        {
+            $match: {_student: ObjectId(req._id)}
+        },
+        {
+            $lookup: {
+                from: "students",
+                localField: "_student",
+                foreignField: "_id",
+                as: "student"
             }
         }
-
-    );
+    ],
+    (err, cv) => {
+        if(!cv) {
+            return res.status(409).json({ status: false, message: 'Cv cannot be loaded' });
+        }
+        else {
+            return res.status(200).json({status: true, cv});
+        }
+    });
 }
 
 module.exports.getSelectedCV = (req, res, next) => {

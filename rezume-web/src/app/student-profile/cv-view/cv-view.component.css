@@ -1,0 +1,62 @@
+*{
+  color: rgb(95, 74, 179);
+}
+
+.cv-details{
+  width: 100%;
+  background-color: rgb(204, 201, 201);
+  margin-top: 2%;
+}
+
+
+.img-top{
+  width: 120px;
+  margin-left: 43%;
+}
+
+.cv-name{
+  font-weight: lighter;
+  font-size: 42px;
+}
+
+.cv-description{
+  font-size: 20px;
+  margin: 0 12%;
+  text-align: justify;
+}
+
+.cv-experiences{
+  margin: 2% 12% 0 12%;
+  border: 1.5px solid rgb(95, 74, 179);
+  border-radius: 5px;
+}
+
+.section-title {
+  font-size: 30px;
+  margin: 2%;
+}
+
+.section-content{
+
+  margin: 2% 0 2% 15%;
+  font-weight: lighter;
+  font-size: 25px;
+
+}
+
+.cv-degrees{
+  margin: 2% 12% 0 12%;
+  border: 1.5px solid rgb(95, 74, 179);
+  border-radius: 5px;
+}
+
+.cv-hashtag{
+  margin: 2% 12% 0 12%;
+  border: 1.5px solid rgb(95, 74, 179);
+  border-radius: 5px;
+}
+
+.mat-chip.mat-standard-chip{
+
+  margin: 2%;
+}

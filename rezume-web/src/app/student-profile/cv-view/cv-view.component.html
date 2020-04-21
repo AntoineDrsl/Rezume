@@ -1,44 +1,44 @@
-<div class="wrapper-bc" *ngIf="valid">
+<div class="container">
+  <div class="row">
 
-  <thead>
-  <img src="/assets/images/IconeRezume.svg" alt="icon" id="icon-profile">
-  <tr>
-    <th colspan="2" class="text-center">Mon CV :</th>
-  </tr>
-  </thead>
+      <mat-card class="cv-details">
+        <div class="card-head">
+          <mat-card-subtitle>
+            <a class="mx-5" (click)="backToPage()">Revenir à votre profil</a>
+          </mat-card-subtitle>
+            <img src="assets/images/IconeRezume.png" alt="Photo de profil" class="img-top">
+        </div>
 
-  <div class="separator">
-    <p>Mes informations CV :</p>
+        <mat-card-content *ngIf="cvDetails">
+
+          <mat-card-title class="text-center mt-3 cv-name">
+            {{cvDetails[0].student[0].firstName}} {{cvDetails[0].student[0].lastName}}
+          </mat-card-title>
+
+          <p class="cv-description">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat, culpa facere quas ab voluptas quis odit explicabo animi autem porro ipsa, dolorum perferendis sint nulla non eaque cupiditate delectus sunt.
+          </p>
+
+          <div class="cv-experiences">
+            <p class="section-title">Experiences Professionnelles</p>
+            <p class="section-content" *ngFor="let experience of cvDetails[0].experiences">2018-2020 - {{experience}}</p>
+          </div>
+
+          <div class="cv-degrees">
+            <p class="section-title">Diplômes</p>
+            <p class="section-content" *ngFor="let degree of cvDetails[0].degrees">2018-2020 - {{degree}}</p>
+          </div>
+
+          <div class="cv-hashtag">
+            <p class="section-title">Compétences</p>
+            <mat-chip-list>
+              <mat-chip class="cv-chips" *ngFor="let hashtag of cvDetails[0].hashtag">
+                {{hashtag}}
+              </mat-chip>
+            </mat-chip-list>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
   </div>
-
-  <div class="category">
-    <table class="table-fill" *ngIf="cvDetails">
-      <tbody>
-      <tr>
-        <td>Votre age:</td>
-        <td>{{cvDetails.age}}</td>
-      </tr>
-      <tr>
-        <td>Recherche:</td>
-        <td>{{cvDetails.research}}</td>
-      </tr>
-      <tr *ngFor="let experience of cvDetails.experiences">
-        <td>Vos expériences:</td>
-        <td> {{experience}} </td>
-      </tr>
-      <tr *ngFor="let degree of cvDetails.degrees">
-        <td>Vos Diplômes:</td>
-        <td> {{degree}} </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="button-cv">
-    <input type="button" routerLink="/cvupdate" value="Modifier votre CV">
-    <input type="button" routerLink="/studentprofile" value="Revenir à votre profil">
-  </div>
-
-
-  <!-- <p *ngIf="!cvDetails">Une erreur est survenue</p> -->
-
 </div>

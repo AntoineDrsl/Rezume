@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { StudentService } from '../shared/student.service';
+
+
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  visitorInformation;
+
+  constructor(private studentService: StudentService) { }
 
   ngOnInit() {
+
+    this.visitorInformation = this.studentService.getStudentPayload();
+    console.log(this.visitorInformation)
+
+
   }
 
 }

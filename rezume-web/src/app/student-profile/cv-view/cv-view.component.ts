@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import {Location} from '@angular/common';
 // Importation cvService
 import { CvService } from '../../shared/cv.service';
 
@@ -12,27 +12,27 @@ import { CvService } from '../../shared/cv.service';
 export class CvViewComponent implements OnInit {
 
   cvDetails;
-  serverErrorMessage;
-  valid = false;
 
-  constructor(private cvService: CvService, private router: Router) { }
+
+  constructor(private cvService: CvService, private router: Router, private _location: Location) { }
 
   ngOnInit() {
 
     this.cvService.getCV().subscribe(
       res => {
         this.cvDetails = res["cv"];
-        this.valid = true;
+        console.log(this.cvDetails);
       },
       err => {
-        this.serverErrorMessage = 'Your CV can\'t be loaded';
-        this.router.navigate(['/companyprofile']);
+
       }
     );
 
   }
 
-
+  backToPage() {
+    this._location.back();
+  }
 
 
 }

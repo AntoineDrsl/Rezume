@@ -19,14 +19,6 @@ import { StudentDetailsComponent } from './student-profile/student-details/stude
 
 
 export const routes: Routes = [
-  // {
-  //   path: 'signup', component: StudentComponent,
-  //   children: [{ path: '', component: SignUpComponent }]
-  // },
-  // {
-  //   path: 'login', component: StudentComponent,
-  //   children: [{ path: '', component: SignInComponent }]
-  // },
   {
     path: 'login', component: SignInComponent
   },
@@ -54,7 +46,6 @@ export const routes: Routes = [
   {
     path: 'cvview/:id', component: SelectedCvComponent, canActivate: [AuthGuard]
   },
-
   {
     path: '', redirectTo: '/login', pathMatch: 'full'
   },
