@@ -120,3 +120,16 @@
 .datePost{
   text-align: center;
 }
+
+.label-file { /* ne change rien quand retiré */
+  cursor: pointer;
+  color: #33317c;
+  font-weight: bold;
+}
+.label-file:hover {
+  color: #72679f;
+}
+
+.input-file {
+  display: none;
+}
