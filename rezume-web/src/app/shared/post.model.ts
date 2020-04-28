@@ -1,3 +1,3 @@
 export class Post {
-  content: String;
+  content: string;
 }

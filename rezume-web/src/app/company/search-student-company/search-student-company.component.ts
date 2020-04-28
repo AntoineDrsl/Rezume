@@ -8,10 +8,12 @@ import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/a
 import {MatChipInputEvent} from '@angular/material/chips';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+
 import { StudentService } from 'src/app/shared/student.service';
 import { CvService } from 'src/app/shared/cv.service';
+import { HashtagService } from 'src/app/shared/hashtag.service';
 
-
+import {Hashtag} from 'src/app/shared/hashtag.model';
 
 @Component({
   selector: 'app-search-student-company',
@@ -27,9 +29,9 @@ export class SearchStudentCompanyComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   competenceCtrl = new FormControl();
   filteredCompetences: Observable<string[]>;
-  competences: string[] = [];
+  competences: string[] = ['HTML', 'PHP', 'CSS', 'Angular', 'VueJs', 'React'];
 
-  allCompetences: string[] = ['HTML', 'CSS', 'PHP', 'Angular', 'NodeJS'];
+  allCompetences: string[];
 
   studentList;
   cvId;
@@ -37,13 +39,30 @@ export class SearchStudentCompanyComponent implements OnInit {
   @ViewChild('competenceInput', {static: false}) competenceInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
 
-  constructor(private studentService: StudentService, private cvService: CvService, private router: Router) {
+  constructor(private studentService: StudentService,
+              private cvService: CvService,
+              private hashtagService: HashtagService,
+              private router: Router) {
+
     this.filteredCompetences = this.competenceCtrl.valueChanges.pipe(
       startWith(null),
       map((competence: string | null) => competence ? this._filter(competence) : this.allCompetences.slice()));
+
    }
 
   ngOnInit() {
+
+    this.hashtagService.getAllHashtag().subscribe(
+      res => {
+        // this.allCompetences = res["hashtag"];
+        console.table(res['hashtag']);
+      },
+
+      err => {
+        console.log(err);
+      }
+    )
+
   }
 
   add(event: MatChipInputEvent): void {
