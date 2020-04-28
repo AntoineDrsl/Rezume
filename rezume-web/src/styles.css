@@ -4,14 +4,23 @@
 
 /* BASIC */
 
-html {
-  /* background-color: rgb(231, 233, 248); */
+
+* {
+  box-sizing: border-box;
 }
 
-body {
-  font-family: "Poppins", sans-serif;
-  height: 100vh;
-  margin: 0;
+*:focus {
+  outline: none;
+}
+
+html, 
+body { 
+  height: 100%; 
+}
+
+body{
+  margin: 0; 
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
 }
 
 a {
@@ -30,38 +39,15 @@ h2 {
   margin: 40px 8px 10px 8px;
   color: #cccccc;
 }
-.underlineHover{
-  color: #33317c;
-}
+
 
 
 /* STRUCTURE */
 
-.wrapper {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  padding: 70px;
-}
 
-.formContent {
-  -webkit-border-radius: 10px 10px 10px 10px;
-  border-radius: 10px 10px 10px 10px;
-  background: #fff;
-  padding: 30px;
-  width: 90%;
-  max-width: 450px;
-  position: relative;
-  padding: 0px;
-  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-  text-align: center;
-}
+
 
 #formFooter {
-  background-color: #f6f6f6;
   border-top: 1px solid #dce8f1;
   padding: 25px;
   text-align: center;
@@ -70,18 +56,9 @@ h2 {
 }
 
 
-.label-file {
-  cursor: pointer;
-  color: #33317c;
-  font-weight: bold;
-}
-.label-file:hover {
-  color: #72679f;
-}
 
-   .input-file {
-     display: none;
-   }
+
+
 
 
 /* TABS */
@@ -178,121 +155,9 @@ label.validation-message{
   color:#ed5558;
 }
 
-.age{
-  text-decoration: none;
-  background-color: #f6f6f6;
-  border: none;
-  color: #0d0d0d;
-  width: 200px;
-  height: 50px;
-  font-size: 16px;
-  text-align: center;
-  margin-bottom: 10px;
-}
-.xpRequise{
-  text-decoration: none;
-  background-color: #f6f6f6;
-  border: none;
-  color: #0d0d0d;
-  width: 250px;
-  height: 50px;
-  font-size: 16px;
-  text-align: center;
-  margin-bottom: 10px;
-}
-.title-cv{
-  color: #D5DDE5;
-  font-size: 23px;
-  font-weight: 100;
-  padding: 20px;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-}
-.separator-line{
-  width: 90%;
-}
+
 
 /* ANIMATIONS */
-
-/* Simple CSS3 Fade-in-down Animation */
-.fadeInDown {
-  -webkit-animation-name: fadeInDown;
-  animation-name: fadeInDown;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-
-@-webkit-keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
-}
-
-@keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate3d(0, -100%, 0);
-    transform: translate3d(0, -100%, 0);
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
-}
-
-/* Simple CSS3 Fade-in Animation */
-@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-
-.fadeIn {
-  opacity:0;
-  -webkit-animation:fadeIn ease-in 1;
-  -moz-animation:fadeIn ease-in 1;
-  animation:fadeIn ease-in 1;
-
-  -webkit-animation-fill-mode:forwards;
-  -moz-animation-fill-mode:forwards;
-  animation-fill-mode:forwards;
-
-  -webkit-animation-duration:1s;
-  -moz-animation-duration:1s;
-  animation-duration:1s;
-}
-
-.fadeIn.first {
-  -webkit-animation-delay: 0.4s;
-  -moz-animation-delay: 0.4s;
-  animation-delay: 0.4s;
-}
-
-.fadeIn.second {
-  -webkit-animation-delay: 0.6s;
-  -moz-animation-delay: 0.6s;
-  animation-delay: 0.6s;
-}
-
-.fadeIn.third {
-  -webkit-animation-delay: 0.8s;
-  -moz-animation-delay: 0.8s;
-  animation-delay: 0.8s;
-}
-
-.fadeIn.fourth {
-  -webkit-animation-delay: 1s;
-  -moz-animation-delay: 1s;
-  animation-delay: 1s;
-}
-
 /* Simple CSS3 Fade-in Animation */
 .underlineHover:after {
   display: block;
@@ -319,23 +184,6 @@ label.validation-message{
 
 /* OTHERS */
 
-*:focus {
-    outline: none;
-}
-
-#icon {
-  width:80%;
-  padding: 10px 20px 10px 0;
-}
-#icon-profile{
-  width: 8%;
-  padding: 10px;
-}
-* {
-  box-sizing: border-box;
-}
-
-
 .alert {
   padding: 20px;
   background-color: #f44336; /* Red */
@@ -351,47 +199,7 @@ label.validation-message{
 }
 
 /* Table Styles */
-.table-fill {
-  border-collapse: collapse;
-  height: 320px;
-  width: 80%;
-  animation: float 5s infinite;
-}
-.wrapper-bc, .wrapper-bc-cv{
-  background-color: #72679f;
-}
-.wrapper-bc{
-  height: 150vh;
 
-}
-.wrapper-bc-cv{
-  height: 200vh;
-}
-.wrapper-flex{
-  display: flex;
-  justify-content: center;
-}
-.wrapper-block{
-  display: block;
-}
-.wrapper-table{
-  display: flex;
-  justify-content: center;
-}
-.button-cv{
-  display: flex;
-  justify-content: center;
-  padding-top: 50px;
-}
-.separator{
-  height: 150px;
-  background-color: #72679f;
-  display: flex;
-  justify-content: center;
-  color: white;
-  font-size: 30px;
-  padding-top: 20px;
-}
 
 thead{
   background:#33317c;
@@ -486,31 +294,6 @@ input.button-submitCV{
   margin-top: 40px;
 }
 
-.button-cvSubmit{
-  margin-top: 30px;
-}
-
-.degrees, .experiences, .search, .placeAge,.space{
-  margin: 20px;
-}
-
-.ageCV{
-  display: inline-grid;
-}
-.ageCVlabel{
-  margin: 10px 0;
-}
-.icon-delete{
-  width: 15px;
-}
-.icon-plus{
-  width: 20px;
-  margin: 2px 5px;
-}
-.category{
-  display: flex;
-  justify-content: center;
-}
 
 .formfield-select {
   position: relative;
@@ -562,5 +345,4 @@ input.back{
   font-size: 20px;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
