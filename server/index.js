@@ -21,7 +21,6 @@ app.use(bodyParser.json());
 app.use(express.static('uploads'));
 app.use(cors());
 app.use(passport.initialize());
-app.use(express.static('uploads'));
 app.use('/api', rtsRegistration, rtsStudent, rtsCompany, rtsCv, rtsPost); // define URL '/api' to call the router
 
 // error handler

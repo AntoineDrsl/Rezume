@@ -19,9 +19,10 @@ export class PostSideStudentComponent implements OnInit {
     this.postService.getAllPost().subscribe(
       res => {
         this.posts = res['post'];
+        console.log(this.posts);
       },
       err => {
-        this.serverErrorMessage = "Aucune entreprise suivie n'a été trouvée";
+        this.serverErrorMessage = 'Aucune entreprise suivie n\'a été trouvée';
       }
     );
   }

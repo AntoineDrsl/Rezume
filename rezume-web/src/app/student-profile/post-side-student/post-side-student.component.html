@@ -5,20 +5,20 @@
       Les derniers posts:
     </p>
     <div class="postSection">
-  
-  
+
+
       <div class="post" *ngFor="let post of posts; index as i">
         <div class="postHead">
           <p class="postTitle">
-            Titre
+            {{ post.title }}
           </p>
           <hr>
         </div>
-  
+
         <div class="postImage" >
-          <img src="assets/images/maxresdefault.jpg" alt="PP" class="pictureProfile img-thumbnail" width="50%">
+          <img src="http://localhost:3000/post/{{post.img_path}}" alt="PP" class="pictureProfile img-thumbnail" width="50%">
         </div>
-  
+
         <div class="postContent">
           <p class="postText">
             {{post.content}}
@@ -28,9 +28,9 @@
           </p>
         </div>
       </div>
-  
+
     </div>
-  
+
   </div>
-  
-  
+
+

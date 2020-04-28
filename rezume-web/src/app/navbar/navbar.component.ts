@@ -17,7 +17,6 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
 
     this.visitorInformation = this.studentService.getStudentPayload();
-    console.log(this.visitorInformation)
 
 
   }
