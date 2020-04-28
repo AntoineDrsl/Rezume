@@ -36,9 +36,7 @@
   .studentName{
     font-size: 40px;
     color: #6E58C6;
-  
     margin: 20px 0;
-  
     text-align: center;
   }
   
@@ -46,10 +44,9 @@
     background-color: #6E58C6;
     color: white;
     transition: 0.5s;
-  
+    margin-top: 20px;
     border: 0;
     border-radius: 7px;
-  
     padding: 7px 25px;
   }
   

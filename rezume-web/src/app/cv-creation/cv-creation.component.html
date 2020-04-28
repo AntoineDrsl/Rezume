@@ -1,57 +1,73 @@
 <div class="wrapper-bc-cv" *ngIf="valid">
 
-  <thead>
-  <img src="/assets/images/IconeRezume.svg" alt="icon" id="icon-profile">
-  <p class="title-cv">Création de ton CV</p>
-  </thead>
-
   <div class="wrapper">
 
     <div class="formContent">
       <h2 class="underlineHover">Quelques infos pour ton CV</h2>
       <form [formGroup]="cvForm" (ngSubmit)="onSubmit(cvForm)">
-        <div class="form-group placeAge">
-          <input type="number" formControlName="age" class="form-control age" placeholder="Ton âge">
-          <div *ngIf="age.touched && age.invalid">
-            <label class="validation-message">Veuillez entrer votre âge</label>
-          </div>
-        </div>
+
+        <p>
+          <mat-form-field class="form-group placeAge" appearance="standard">
+            <mat-label>Ton âge</mat-label>
+            <input matInput type="number" formControlName="age" required>
+            <mat-error *ngIf="age.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field class="form-group search" appearance="standard">
+            <mat-label>Secteur de recherche</mat-label>
+            <input matInput formControlName="research" required>
+            <mat-error *ngIf="research.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </p>
+
         <hr class="separator-line">
-        <div class="form-group search">
-          <input type="text" formControlName="research" class="form-control" placeholder="Ton domaine de recherche">
-          <div *ngIf="research.touched && research.invalid">
-            <label class="validation-message">Veuillez entrer votre secteur de recherche</label>
-          </div>
-        </div>
-        <hr class="separator-line">
+
         <div formGroupName="experiences" class="experiences">
           <div class="category">
-            <legend>Tes expériences</legend>
-            <span style="font-weight: bold; cursor: pointer" (click)="addExperience()">
-              <img src="/assets/images/plus.svg" alt="icon" class="icon-plus">
-            </span>
+            <legend>Tes expériences
+              <div (click)="addExperience()" class="plusContainer">
+                <img src="/assets/images/plus.svg" alt="icon" class="icon-plus">
+              </div>
+            </legend>
           </div>
           <div class="input-group" *ngFor="let experienceControl of cvForm.get('experiences').controls; let i = index">
-            <input type="text" class="form-control" [formControlName]="i">
-            <span class="input-group-addon" id="basic-addon2" (click)="deleteExperience(i)" style="cursor: pointer"><img
-              src="/assets/images/delete.svg" alt="icon" class="icon-delete"></span>
+            <p>
+              <mat-form-field class="form-group experience" appearance="standard">
+                <mat-label>Expérience</mat-label>
+                <input matInput [formControlName]="i" required>
+                <mat-error *ngIf="i.invalid">{{getErrorMessage()}}</mat-error>
+                <mat-icon (click)="deleteExperience(i)" matSuffix>delete</mat-icon>
+              </mat-form-field>
+            </p>
           </div>
         </div>
+
         <hr class="separator-line">
+
         <div formGroupName="degrees" class="degrees">
           <div class="category">
-            <legend>Tes diplômes</legend>
-            <span style="font-weight: bold; cursor: pointer" (click)="addDegree()">
-              <img src="/assets/images/plus.svg" alt="icon" class="icon-plus">
-            </span>
+            <legend>Tes diplômes
+              <div (click)="addDegree()" class="plusContainer">
+                <img src="/assets/images/plus.svg" alt="icon" class="icon-plus">
+              </div>
+            </legend>
           </div>
           <div class="input-group" *ngFor="let degreeControl of cvForm.get('degrees').controls; let i = index">
-            <input type="text" class="form-control" [formControlName]="i">
-            <span class="input-group-addon" id="basic-addon2" (click)="deleteDegree(i)" style="cursor: pointer"><img
-              src="/assets/images/delete.svg" alt="icon" class="icon-delete"></span>
+            <p>
+              <mat-form-field class="form-group degrees" appearance="standard">
+                <mat-label>Diplôme</mat-label>
+                <input matInput [formControlName]="i" required>
+                <mat-error *ngIf="i.invalid">{{getErrorMessage()}}</mat-error>
+                <mat-icon (click)="deleteDegree(i)" matSuffix>delete</mat-icon>
+              </mat-form-field>
+            </p>
           </div>
         </div>
+
         <hr class="separator-line">
+
         <div class="form-group button-cvSubmit">
           <input id="file" type="file" class="input-file" formControlName="image" (change)="onFileChange($event)"
                  #fileInput>

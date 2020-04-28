@@ -7,7 +7,8 @@
       </p>
   
       <a routerLink="/studentdetails"><button class="buttonProfile">Voir mes informations</button></a>
-      <button class="buttonProfile" style="margin-top: 20px;" (click)="onLogout()">Se deconnecter</button>
+      <a routerLink="/cvcreation"><button class="buttonProfile">Créer mon cv</button></a>
+      <button class="buttonProfile" (click)="onLogout()">Se deconnecter</button>
     </div>
   
     <div class="studentFav" *ngIf="favorites">

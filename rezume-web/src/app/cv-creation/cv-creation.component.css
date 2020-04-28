@@ -1,4 +1,21 @@
-.ng-touched .ng-invalid{
-    border: 1px solid red;
+.title-cv{
+    text-align: center;
+    margin-top: 50px;
+    font-size: 2em;
+}
+
+.wrapper{
+    width: 25%;
+    margin: auto;
+}
+
+.plusContainer{
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+}
+
+.plusContainer img{
+    max-height: 100%;
 }
 

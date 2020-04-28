@@ -54,6 +54,14 @@ export class CvCreationComponent implements OnInit {
     });
   }
 
+  
+
+  getErrorMessage() {
+    if (this.age.hasError('required')) {
+      return 'Veuillez entrer un âge';
+    }
+  }
+
   addExperience() {
     (<FormArray>this.cvForm.get('experiences')).push(new FormControl(''));
   }
@@ -81,8 +89,6 @@ export class CvCreationComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', this.images);
 
-    console.log(form.value, formData);
-
     this.cvService.postFile(formData).subscribe(
       res => {
         this.showSuccessMessage = true;
@@ -97,8 +103,7 @@ export class CvCreationComponent implements OnInit {
     this.cvService.postCV(form.value).subscribe(
       res => {
         this.showSuccessMessage = true;
-        setTimeout(() => this.showSuccessMessage = false, 3000);
-        setTimeout(() => this.router.navigate(['/studentprofile']), 1000);
+        console.log(form.value);
 
         form.reset()
       },
