@@ -12,3 +12,4 @@ require('./student.model');
 require('./cv.model');
 require('./company.model');
 require('./post.model');
+require('./hashtag.model');
