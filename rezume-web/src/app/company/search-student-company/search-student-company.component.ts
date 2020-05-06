@@ -8,12 +8,11 @@ import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/a
 import {MatChipInputEvent} from '@angular/material/chips';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-
 import { StudentService } from 'src/app/shared/student.service';
 import { CvService } from 'src/app/shared/cv.service';
 import { HashtagService } from 'src/app/shared/hashtag.service';
 
-import {Hashtag} from 'src/app/shared/hashtag.model';
+
 
 @Component({
   selector: 'app-search-student-company',
@@ -29,9 +28,9 @@ export class SearchStudentCompanyComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   competenceCtrl = new FormControl();
   filteredCompetences: Observable<string[]>;
-  competences: string[] = ['HTML', 'PHP', 'CSS', 'Angular', 'VueJs', 'React'];
+  competences: string[] = [];
 
-  allCompetences: string[];
+  allCompetences: string[] = ['HTML', 'CSS', 'PHP', 'Angular', 'NodeJS'];
 
   studentList;
   cvId;
@@ -41,23 +40,19 @@ export class SearchStudentCompanyComponent implements OnInit {
 
   constructor(private studentService: StudentService,
               private cvService: CvService,
-              private hashtagService: HashtagService,
-              private router: Router) {
-
+              private router: Router,
+              private hashtagService: HashtagService) {
     this.filteredCompetences = this.competenceCtrl.valueChanges.pipe(
       startWith(null),
       map((competence: string | null) => competence ? this._filter(competence) : this.allCompetences.slice()));
-
    }
 
   ngOnInit() {
 
     this.hashtagService.getAllHashtag().subscribe(
       res => {
-        // this.allCompetences = res["hashtag"];
         console.table(res['hashtag']);
       },
-
       err => {
         console.log(err);
       }
