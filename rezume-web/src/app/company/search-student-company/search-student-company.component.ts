@@ -11,6 +11,7 @@ import {map, startWith} from 'rxjs/operators';
 import { StudentService } from 'src/app/shared/student.service';
 import { CvService } from 'src/app/shared/cv.service';
 import { HashtagService } from 'src/app/shared/hashtag.service';
+import { Hashtag } from 'src/app/shared/hashtag.model';
 
 
 
@@ -30,7 +31,7 @@ export class SearchStudentCompanyComponent implements OnInit {
   filteredCompetences: Observable<string[]>;
   competences: string[] = [];
 
-  allCompetences: string[] = ['HTML', 'CSS', 'PHP', 'Angular', 'NodeJS'];
+  allCompetences: string[] = [];
 
   studentList;
   cvId;
@@ -51,7 +52,12 @@ export class SearchStudentCompanyComponent implements OnInit {
 
     this.hashtagService.getAllHashtag().subscribe(
       res => {
-        console.table(res['hashtag']);
+        const hashtagResponse = res['hashtag'];
+
+        hashtagResponse.forEach(hashtag => {
+          console.log('nom: ' + hashtag.name);
+          this.allCompetences.push(hashtag.name);
+        });
       },
       err => {
         console.log(err);
