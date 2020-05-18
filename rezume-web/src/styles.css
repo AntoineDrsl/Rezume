@@ -4,7 +4,6 @@
 
 /* BASIC */
 
-
 * {
   box-sizing: border-box;
 }
@@ -13,14 +12,14 @@
   outline: none;
 }
 
-html, 
-body { 
-  height: 100%; 
+html,
+body {
+  height: 100%;
 }
 
 body{
-  margin: 0; 
-  font-family: Roboto, "Helvetica Neue", sans-serif; 
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 a {
@@ -343,6 +342,35 @@ input.back{
 }
 .wrapper-block h1{
   font-size: 20px;
+}
+
+/* CHAT.CSS */
+.message{
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  padding: 10px;
+  max-width: 45%;
+}
+.newMessageMe{
+  background-color: rgb(77, 155, 243);
+  margin-left: 55%;
+  margin-top: 2%;
+}
+.newMessageAll{
+  background-color: rgb(204, 211, 211);
+  margin-top: 2%;
+}
+
+/* Messages from databse */
+.oldMessages{
+  background-color: rgb(204, 211, 211);
+  margin-top: 2%;
+}
+.oldMessagesMe{
+  background-color: rgb(77, 155, 243);
+  margin-left: 55%;
+  margin-top: 2%;
 }
 
 

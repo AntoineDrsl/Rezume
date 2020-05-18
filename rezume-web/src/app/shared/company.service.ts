@@ -36,6 +36,11 @@ export class CompanyService {
     return this.http.post(environment.apiBaseUrl + '/authenticate', authCredentials, this.noAuthHeader);
   }
 
+  //Fonction récupérant le profil en fonction du token
+  getCompany() {
+    return this.http.get(environment.apiBaseUrl + '/getcompany');
+  }
+
    //Fonction récupérant le profil en fonction du token
    getCompanyProfile() {
     return this.http.get(environment.apiBaseUrl + '/companyprofile');

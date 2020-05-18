@@ -70,9 +70,30 @@ io.on('connection', (socket) => {
         })
     })
 
+    socket.on('newMessage', (content, sender) => {
+        if(socket.channel) {
+            var message = new Message();
+            message._id_room = socket.channel;
+            message.sender = sender;
+            message.content = content;
+            message.save();
+
+            socket.broadcast.to(socket.channel).emit('newMessageAll', content);
+        } else {
+            return false;
+        }
+    })
+
     function _joinRoom(room, infos) {
         var previousChannel = '';
         var newChannel = '';
+
+        if(infos.status == "student") {
+            newChannel = room._id_users.company;
+        } else if(infos.status == "company") {
+            newChannel = room._id_users.student;
+        }
+
         if(socket.channel) {
             Room.findOne({_id: socket.channel}, (err, previousRoom) => {   
                 if(!previousRoom) {
@@ -83,25 +104,16 @@ io.on('connection', (socket) => {
                     } else if(infos.status == "company") {
                         previousChannel = previousRoom._id_users.student;
                     }
+                    socket.emit('emitChannel', {previousChannel: previousChannel, newChannel: newChannel})
                 }
             })
-        }
-
-        if(infos.status == "student") {
-            newChannel = room._id_users.company;
-        } else if(infos.status == "company") {
-            newChannel = room._id_users.student;
+        } else {
+            socket.emit('emitChannel', {newChannel: newChannel})
         }
 
         socket.leaveAll();
         socket.join(room._id);
         socket.channel = room._id;
-
-        if(previousChannel) {
-            socket.emit('emitChannel', {previousChannel: previousChannel, newChannel: newChannel})
-        } else {
-            socket.emit('emitChannel', {newChannel: newChannel})
-        }
     }
 
 })

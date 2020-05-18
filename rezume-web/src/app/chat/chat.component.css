@@ -55,48 +55,6 @@ form > input[type="submit"]{
   border: none;
 }
 
-/* User comes and quit */
-.newUser{
-  color: white;
-  font-style: italic;
-}
-.quitUser{
-  color: white;
-  font-style: italic;
-}
-
-/* Messages */
-.message{
-  border: none;
-  border-radius: 10px;
-  font-size: 20px;
-  padding: 10px;
-  max-width: 45%;
-}
-.newMessageMe{
-  background-color: rgb(77, 155, 243);
-  margin-left: 55%;
-  margin-top: 2%;
-}
-.newMessageAll{
-  background-color: rgb(204, 211, 211);
-  margin-top: 2%;
-}
-.whisper{
-  background-color: rgb(235, 14, 14);
-  margin-top: 2%;
-}
-
-/* Messages from databse */
-.oldMessages{
-  background-color: rgb(204, 211, 211);
-  margin-top: 2%;
-}
-.oldWhispers{
-  background-color: rgb(235, 14, 14);
-  margin-top: 2%;
-}
-
 
 /* Channels */
 #companiesList{

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { StudentService } from './../shared/student.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NgModel } from '@angular/forms';
 import * as io from 'socket.io-client';
 
 @Component({
@@ -16,6 +17,7 @@ export class ChatComponent implements OnInit {
   userInfos;
   companies;
   students;
+  textContent;
 
   constructor
   (
@@ -47,7 +49,7 @@ export class ChatComponent implements OnInit {
         )
 
       } else if(this.userInfos.statut == "company") {
-        this.companyService.getCompanyProfile().subscribe(
+        this.companyService.getCompany().subscribe(
           res => {
             this.user = res['company'];
           }
@@ -65,13 +67,40 @@ export class ChatComponent implements OnInit {
     })
 
     this.socket.on('emitChannel', (channel) => {
+
       if(channel.previousChannel) {
         document.getElementById(channel.previousChannel).classList.remove('inChannel');
       }
       document.getElementById(channel.newChannel).classList.add('inChannel');
     })
 
+    this.socket.on('newMessageAll', (content) => {
+      this.createMessage('newMessageAll', content);
+    })
+
+    this.socket.on('oldMessages', (messages) => {
+      messages.forEach(message => {
+        if(message.sender === this.user._id) {
+          this.createMessage('oldMessagesMe', message.content);
+        } else {
+          this.createMessage('oldMessages', message.content);
+        }
+      });
+    })
+
     document.getElementById('chatForm').addEventListener('submit', (e) => {
+
+      e.preventDefault();
+
+      if(this.textContent.length > 0) {
+        const sender = this.user._id;
+
+        this.socket.emit('newMessage', this.textContent, sender);
+
+        this.createMessage('newMessageMe', this.textContent);
+
+        this.textContent = '';
+      }
 
     })
 
@@ -80,11 +109,42 @@ export class ChatComponent implements OnInit {
 
   joinRoom(elementId) {
     document.getElementById('msgContainer').innerHTML = '';
-
     if(this.userInfos.statut == "student") {
       this.socket.emit('changeChannel', {studentId: this.user._id, companyId: elementId, status: 'student'});
     } else if (this.userInfos.statut == "company") {
       this.socket.emit('changeChannel', {companyId: this.user._id, studentId: elementId, status: 'company'});
+    }
+  }
+
+  createMessage(element, content) {
+    const newElement = document.createElement('div');
+
+    switch(element) {
+
+      case 'newMessageMe':
+        newElement.classList.add(element, 'message');
+        newElement.innerHTML = content;
+        document.getElementById('msgContainer').appendChild(newElement);
+        break;
+
+      case 'newMessageAll':
+        newElement.classList.add(element, 'message');
+        newElement.innerHTML = content;
+        document.getElementById('msgContainer').appendChild(newElement);
+        break;
+
+      case 'oldMessages':
+        newElement.classList.add(element, 'message');
+        newElement.innerHTML = content;
+        document.getElementById('msgContainer').appendChild(newElement);
+        break;
+
+      case 'oldMessagesMe':
+        newElement.classList.add(element, 'message');
+        newElement.innerHTML = content;
+        document.getElementById('msgContainer').appendChild(newElement);
+        break;
+
     }
   }
 

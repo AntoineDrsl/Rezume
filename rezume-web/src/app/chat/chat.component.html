@@ -12,7 +12,7 @@
         <div *ngIf="students" id="studentsList">
           <h1>Étudiants</h1>
           <ul>
-              <li *ngFor="let student of students" id="{{student._id}}" class="elementList">{{ student.firstName }} {{ student.lastName }}</li>
+              <li *ngFor="let student of students" id="{{student._id}}" class="elementList" (click)="joinRoom(student._id)">{{ student.firstName }} {{ student.lastName }}</li>
           </ul>
       </div>
 
@@ -21,7 +21,7 @@
 
     <div id="isWritting"></div>
     <form action="/chat" method="POST" id="chatForm">
-        <input type="text" id="msgInput" autofocus>
+        <input type="text" id="msgInput" name="textContent" [(ngModel)]="textContent" autofocus>
         <input type="submit" id="btnSend" value="Envoyer">
     </form>
 
