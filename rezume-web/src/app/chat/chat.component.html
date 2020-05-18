@@ -1,0 +1,25 @@
+<div class="app">
+    <h1 class="chatTitle">Bienvenue sur chat</h1>
+
+
+    <div class="container">
+        <div class="channelList">
+            <h1>Liste des channels</h1>
+            <ul id="roomList">
+                <li class="elementList" id="createNewRoom">Creer une nouvelle room</li>
+            </ul>
+        </div>
+
+        <div class="msgContainer" id="msgContainer"></div>
+    </div>
+
+    <div id="isWritting"></div>
+    <form action="/chat" method="POST" id="chatForm">
+        <input type="text" id="msgInput" autofocus>
+        <select name="receiver" id="receiverInput">
+            <option value="all">A tous</option>
+        </select>
+        <input type="submit" id="btnSend" value="Envoyer">
+    </form>
+
+</div>

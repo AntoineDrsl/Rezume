@@ -16,6 +16,7 @@ const rtsPost = require('./routes/post.router');
 const rtsHashtag = require('./routes/hashtag.router');
 
 var app = express();
+var server = require('http').createServer(app);
 
 //On dit à l'application ce qu'on va utiliser
 app.use(bodyParser.json());
@@ -33,6 +34,15 @@ app.use((err, req, res, next) => {
     }
 });
 
+//IO
+var io = require('socket.io').listen(server);
+var connectedUsers = [];
+
+io.on('connection', (socket) => {
+    console.log('new People');
+    socket.emit('coucou')
+})
+
 // start server
-app.listen(process.env.PORT, () => console.log('Server started at port : ' + process.env.PORT));
+server.listen(process.env.PORT, () => console.log('Server started at port : ' + process.env.PORT));
 

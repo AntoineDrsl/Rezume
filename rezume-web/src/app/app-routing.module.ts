@@ -16,6 +16,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SearchStudentCompanyComponent } from './company/search-student-company/search-student-company.component';
 import { SelectedCvTwoComponent } from './company/selected-cv-two/selected-cv-two.component';
 import { StudentDetailsComponent } from './student-profile/student-details/student-details.component';
+import { ChatComponent } from './chat/chat.component';
 
 
 export const routes: Routes = [
@@ -60,6 +61,9 @@ export const routes: Routes = [
   },
   {
     path: 'cvstudent/:id', component: SelectedCvTwoComponent, canActivate: [AuthGuard]
+  },
+  {
+    path: 'chat', component: ChatComponent,canActivate: [AuthGuard]
   },
 
 
