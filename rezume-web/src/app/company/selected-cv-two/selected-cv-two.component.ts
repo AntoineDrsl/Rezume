@@ -26,7 +26,6 @@ export class SelectedCvTwoComponent implements OnInit {
     this.cvService.getSelectedCV(id).subscribe(
       res => {
         this.cvDetails = res["cv"];
-        console.log(this.cvDetails);
       },
       err => {
         console.log('Impossible de recup cv details');
