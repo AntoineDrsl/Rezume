@@ -5,6 +5,7 @@ var cvSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, ref: 'Student'
     },
     age: String,
+    description: String,
     research: String,
     experiences: [
         { type: String } 

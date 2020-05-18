@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { CvService } from '../shared/cv.service';
 import { StudentService } from '../shared/student.service';
+import { isEmpty } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cv-creation',
@@ -15,8 +16,10 @@ export class CvCreationComponent implements OnInit {
   images;
   showSuccessMessage: boolean;
   serverErrorMessage: string;
-  studentDetails;
+  getCvErrorMessage: string;
+  isCvCreated;
   valid = false;
+  getCvCreated;
 
   cvForm: FormGroup;
   get age() {
@@ -30,19 +33,27 @@ export class CvCreationComponent implements OnInit {
 
   ngOnInit() {
 
-    this.studentService.getStudentProfile().subscribe(
+    this.cvService.getCV().subscribe(
       res => {
-        this.studentDetails = res['student'];
-        this.valid = true;
-      },
-      err => {
-        this.serverErrorMessage = 'Student Details couldn\'t be find, you will be redirected to another page.';
-        this.router.navigate(['/companyprofile']);
-      }
-    );
+        this.isCvCreated = res["cv"]
 
+        if (this.isCvCreated.length === 0) {
+          this.valid = true;
+        } else {
+          this.router.navigate(['/studentprofile']);
+          this.valid = false;
+        }
+      },
+
+      err => {
+
+        this.getCvErrorMessage = 'Impossible de recuperer les données de la base de données';
+
+      }
+    )
     this.cvForm = new FormGroup({
       age: new FormControl('', Validators.required),
+      description: new FormControl(''),
       research: new FormControl('', Validators.required),
       experiences: new FormArray([
         new FormControl('')
@@ -54,7 +65,7 @@ export class CvCreationComponent implements OnInit {
     });
   }
 
-  
+
 
   getErrorMessage() {
     if (this.age.hasError('required')) {
@@ -103,9 +114,10 @@ export class CvCreationComponent implements OnInit {
     this.cvService.postCV(form.value).subscribe(
       res => {
         this.showSuccessMessage = true;
-        console.log(form.value);
+        this.getCvCreated = res["doc"];
+        this.router.navigate(['/cvview']);
 
-        form.reset()
+        form.reset();
       },
       err => {
         this.serverErrorMessage = "Une erreur est survenue";

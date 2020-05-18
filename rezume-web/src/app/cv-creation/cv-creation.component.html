@@ -6,13 +6,17 @@
       <h2 class="underlineHover">Quelques infos pour ton CV</h2>
       <form [formGroup]="cvForm" (ngSubmit)="onSubmit(cvForm)">
 
-        <p>
-          <mat-form-field class="form-group placeAge" appearance="standard">
-            <mat-label>Ton âge</mat-label>
-            <input matInput type="number" formControlName="age" required>
-            <mat-error *ngIf="age.invalid">{{getErrorMessage()}}</mat-error>
-          </mat-form-field>
-        </p>
+
+        <mat-form-field class="form-group placeAge" appearance="standard">
+          <mat-label>Ton âge</mat-label>
+          <input matInput type="number" formControlName="age" required>
+          <mat-error *ngIf="age.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field><br>
+
+        <mat-form-field>
+          <mat-label>Une petite description</mat-label>
+          <textarea matInput formControlName="description" required></textarea>
+        </mat-form-field>
 
         <p>
           <mat-form-field class="form-group search" appearance="standard">
@@ -82,10 +86,10 @@
         Votre CV est créé!
       </div>
 
-      <!-- Error message -->
-      <div class="alert" *ngIf="serverErrorMessages">
-        {{serverErrorMessages}}
-      </div>
     </div>
   </div>
+</div>
+
+<div *ngIf="getCvErrorMessage">
+  {{getCvErrorMessage}}
 </div>

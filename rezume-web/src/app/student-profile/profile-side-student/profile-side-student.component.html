@@ -7,7 +7,7 @@
       </p>
 
       <a routerLink="/studentdetails"><button class="buttonProfile">Voir mes informations</button></a>
-      <a routerLink="/cvcreation"><button class="buttonProfile">Créer mon cv</button></a>
+      <a routerLink="/cvcreation"><button class="buttonProfile" *ngIf="showBtn">Créer mon cv</button></a>
       <button class="buttonProfile" (click)="onLogout()">Se deconnecter</button>
     </div>
 
