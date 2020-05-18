@@ -4,7 +4,7 @@
     <p class="titlePost mt-3">
       Les derniers posts:
     </p>
-    <div class="postSection">
+    <div class="postSection" *ngIf="posts.length > 0">
 
 
       <div class="post" *ngFor="let post of posts; index as i">
@@ -29,6 +29,10 @@
         </div>
       </div>
 
+    </div>
+
+    <div class="postSectionEmpty" *ngIf="posts.length === 0">
+      Aucun post à afficher.
     </div>
 
   </div>

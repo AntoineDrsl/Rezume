@@ -12,7 +12,7 @@ import { CvService } from '../../shared/cv.service';
 export class CvViewComponent implements OnInit {
 
   cvDetails;
-
+  noCv: boolean = true;
 
   constructor(private cvService: CvService, private router: Router, private _location: Location) { }
 
@@ -20,8 +20,15 @@ export class CvViewComponent implements OnInit {
 
     this.cvService.getCV().subscribe(
       res => {
-        this.cvDetails = res["cv"];
-        console.log(this.cvDetails);
+        if(res["cv"].length === 0 ){
+          this.noCv = true;
+          setTimeout(() => {
+            this.router.navigateByUrl('/cvcreation');
+          }, 4000);
+        } else {
+          this.noCv = false;
+          this.cvDetails = res["cv"];
+        }
       },
       err => {
 
