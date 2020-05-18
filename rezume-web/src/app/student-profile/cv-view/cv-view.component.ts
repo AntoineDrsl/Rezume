@@ -20,7 +20,7 @@ export class CvViewComponent implements OnInit {
 
     this.cvService.getCV().subscribe(
       res => {
-        if(res["cv"].length === 0 ){
+        if(res["cv"].length === 0 ) {
           this.noCv = true;
           setTimeout(() => {
             this.router.navigateByUrl('/cvcreation');
