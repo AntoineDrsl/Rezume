@@ -4,8 +4,8 @@ const router = express.Router();
 const ctrlCompany = require('../controllers/company.controller');
 const jwtHelper = require('../config/jwtHelper');
 
-
 //PROFILES
+router.get('/getcompanies', jwtHelper.verifyJwtToken, ctrlCompany.getCompanies);
 router.get('/companyprofile', jwtHelper.verifyJwtTokenCompany, ctrlCompany.companyProfile);
 router.get('/companyprofile/:id', jwtHelper.verifyJwtToken, ctrlCompany.getCompanyProfileId);
 

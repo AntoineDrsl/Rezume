@@ -60,9 +60,6 @@ export class CompanyDetailComponent implements OnInit {
     this.companyService.getAllFavorites().subscribe(
       res => {
         this.favorites = res['favorites'];
-      },
-      err => {
-
       }
     );
 

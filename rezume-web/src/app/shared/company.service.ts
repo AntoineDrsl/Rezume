@@ -23,6 +23,10 @@ export class CompanyService {
 
   constructor(private http: HttpClient) { }
 
+  getCompanies() {
+    return this.http.get(environment.apiBaseUrl + '/getcompanies');
+  }
+
   postCompany(company: Company) {
     return this.http.post(environment.apiBaseUrl + '/registercompany', company, this.noAuthHeader);
   }

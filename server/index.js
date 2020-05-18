@@ -34,14 +34,17 @@ app.use((err, req, res, next) => {
     }
 });
 
+
 //IO
 var io = require('socket.io').listen(server);
 var connectedUsers = [];
 
 io.on('connection', (socket) => {
-    console.log('new People');
-    socket.emit('coucou')
+
+    socket.emit('newUser');
+
 })
+
 
 // start server
 server.listen(process.env.PORT, () => console.log('Server started at port : ' + process.env.PORT));

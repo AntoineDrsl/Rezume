@@ -24,6 +24,10 @@ export class StudentService {
 
   // HTTP methods
 
+  getStudents() {
+    return this.http.get(environment.apiBaseUrl + '/getstudents');
+  }
+
   postStudent(student: Student) {
     return this.http.post(environment.apiBaseUrl+'/register', student, this.noAuthHeader);
   }

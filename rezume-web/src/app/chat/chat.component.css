@@ -99,7 +99,11 @@ form > input[type="submit"]{
 
 
 /* Channels */
-.channelList{
+#companiesList{
+  color:white;
+  width: 25%;
+}
+#studentsList{
   color:white;
   width: 25%;
 }

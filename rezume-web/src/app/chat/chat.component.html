@@ -3,12 +3,18 @@
 
 
     <div class="container">
-        <div class="channelList">
-            <h1>Liste des channels</h1>
-            <ul id="roomList">
-                <li class="elementList" id="createNewRoom">Creer une nouvelle room</li>
+        <div *ngIf="companies" id="companiesList">
+            <h1>Entreprises</h1>
+            <ul>
+                <li *ngFor="let company of companies" class="elementList">{{ company.company_name }}</li>
             </ul>
         </div>
+        <div *ngIf="students" id="studentsList">
+          <h1>Étudiants</h1>
+          <ul>
+              <li *ngFor="let student of students" class="elementList">{{ student.firstName }} {{ student.lastName }}</li>
+          </ul>
+      </div>
 
         <div class="msgContainer" id="msgContainer"></div>
     </div>
@@ -16,9 +22,6 @@
     <div id="isWritting"></div>
     <form action="/chat" method="POST" id="chatForm">
         <input type="text" id="msgInput" autofocus>
-        <select name="receiver" id="receiverInput">
-            <option value="all">A tous</option>
-        </select>
         <input type="submit" id="btnSend" value="Envoyer">
     </form>
 
