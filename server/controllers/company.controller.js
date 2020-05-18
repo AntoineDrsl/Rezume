@@ -75,20 +75,31 @@ module.exports.companyProfile = (req, res, next) => {
 
 module.exports.addFavorite = (req, res, next) => {
 
-    var companyFavorite = new Company();
-    companyFavorite.favorites = req.params.id;
 
-    Company.findOneAndUpdate({_id: req._id}, {$push: {favorites: companyFavorite.favorites}},
+    Company.findByIdAndUpdate({_id: req._id}, 
+        {$push: {favorites: req.params.id}},
         (err, user) => { 
             if(!user){
                 // Reponse status 409: Conflict (La requête ne peut être traitée en l’état actuel.)
                 return res.status(409).json({status: false, message: "L'utilisateur n'a pas été trouvé", erreur: err});
             }
             else{
+                Student.findOneAndUpdate({_id: req.params.id},
+                    {$push: {favorites: req._id}},
+                    (err, student) => {
+                        if(!student){
+                            console.log('pas de student');
+                        }
+                        else{
+                            console.log('student');
+                        }
+                    }
+                );
                 return res.status(200).json({status: true, user});
             }
         }
     );
+    
 }
 
 module.exports.removeFavorite = (req, res, next) => {

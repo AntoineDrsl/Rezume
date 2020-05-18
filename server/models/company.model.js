@@ -22,7 +22,9 @@ var companySchema = new mongoose.Schema({
         // required: 'Siret field cannot be empty'
     },
     favorites: [
-        { type: String }
+        { 
+            type: String
+        }
     ],
     password: {
         type: String,
@@ -56,16 +58,18 @@ companySchema.pre('save', function (next) {
     });
 });
 
-companySchema.pre('findOneAndUpdate', function (next) {
+// CETTE FONCTION ME PETE LES COUILLES
+
+// companySchema.pre('findOneAndUpdate', function (next) {
     
-    bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(this.getUpdate().$set.password, salt, (err, hash) => {
-            this.getUpdate().$set.password = hash;
-            this.saltSecret = salt;
-            next();
-        });
-    });
-});
+//     bcrypt.genSalt(10, (err, salt) => {
+//         bcrypt.hash(this.getUpdate().$set.password, salt, (err, hash) => {
+//             this.getUpdate().$set.password = hash;
+//             this.saltSecret = salt;
+//             next();
+//         });
+//     });
+// });
 
 
 // Methods
