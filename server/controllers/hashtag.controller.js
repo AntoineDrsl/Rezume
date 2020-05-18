@@ -19,9 +19,7 @@ module.exports.getAllHashtag = (req, res, next) => {
 
 module.exports.addHashtag = (req, res, next) => {
     let hashtag = new Hashtag();
-    hashtag.categorie = req.body.categorie;
     hashtag.name = req.body.name;
-    hashtag.used_count = 0;
     hashtag.save((err, doc) => {
         if(!err){
             res.send(doc);
