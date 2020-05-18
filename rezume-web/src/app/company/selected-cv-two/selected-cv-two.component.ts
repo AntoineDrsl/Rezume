@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CvService } from 'src/app/shared/cv.service';
 import {Location} from '@angular/common';
+import { CompanyService } from 'src/app/shared/company.service';
 
 @Component({
   selector: 'app-selected-cv-two',
@@ -12,7 +13,11 @@ export class SelectedCvTwoComponent implements OnInit {
 
   cvDetails;
 
-  constructor(private route: ActivatedRoute, private cvService: CvService, private _location: Location) { }
+  constructor(private route: ActivatedRoute,
+              private cvService: CvService,
+              private _location: Location,
+              private companyService: CompanyService
+              ) { }
 
   ngOnInit() {
 
@@ -33,4 +38,10 @@ export class SelectedCvTwoComponent implements OnInit {
     this._location.back();
   }
 
+  addToFavorites() {
+    this.companyService.addFavorite(this.cvDetails[0].student[0]._id).subscribe(
+      res => {
+      }
+    );
+  }
 }

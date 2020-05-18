@@ -9,6 +9,14 @@
             <a class="mx-5" (click)="backToPage()">Revenir à la recherche</a>
           </mat-card-subtitle>
             <img src="assets/images/IconeRezume.png" alt="Photo de profil" class="img-top">
+
+            <button mat-icon-button [matMenuTriggerFor]="favorites">
+              Plus d'action
+            </button>
+
+            <mat-menu #favorites="matMenu">
+              <button mat-menu-item (click)="addToFavorites()">Ajouter aux favoris</button>
+            </mat-menu>
         </div>
 
         <mat-card-content *ngIf="cvDetails">
