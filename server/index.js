@@ -41,6 +41,8 @@ const mongoose = require('mongoose');
 const ObjectId = mongoose.Types.ObjectId;
 const Room = mongoose.model('Room');
 const Message = mongoose.model('Message');
+const Company = mongoose.model('Company');
+const Student = mongoose.model('Student');
 
 var io = require('socket.io').listen(server);
 var connectedUsers = [];
@@ -70,16 +72,39 @@ io.on('connection', (socket) => {
         })
     })
 
-    socket.on('newMessage', (content, sender) => {
+    socket.on('newMessage', (content, sender, status) => {
         if(socket.channel) {
-            
-            var message = new Message();
-            message._id_room = socket.channel;
-            message.sender = sender;
-            message.content = content;
-            message.save();
+            Room.findOne({_id: socket.channel}, (err, room) => {
+                if(room) {
+                    var message = new Message();
+                    message._id_room = socket.channel;
+                    message.sender = sender;
+                    if(status == "student") { 
+                        Student.findOne({_id: room._id_users.student}, (err, student) => {
+                            if(student) {
+                                message.receiver = room._id_users.company;
+                                message.sender_name = student.firstName + ' ' + student.lastName.splice(0, 1).toUpperCase() + '.';
+                                message.content = content;
+                                message.save();
 
-            socket.broadcast.to(socket.channel).emit('newMessageAll', content);
+                                socket.broadcast.to(socket.channel).emit('newMessageAll', content, message.sender_name);
+                            }
+                        })
+                    } else if (status == "company") {
+                        Company.findOne({_id: room._id_users.company}, (err, company) => {
+                            if(company) {   
+                                message.receiver = room._id_users.student;
+                                message.sender_name = company.company_name;
+                                message.content = content;
+                                message.save();
+
+                                socket.broadcast.to(socket.channel).emit('newMessageAll', content, message.sender_name);
+                            }
+                        })
+                    }
+                }
+            })
+
         } else {
             return false;
         }

@@ -74,8 +74,8 @@ export class ChatComponent implements OnInit {
       document.getElementById(channel.newChannel).classList.add('inChannel');
     })
 
-    this.socket.on('newMessageAll', (content) => {
-      this.createMessage('newMessageAll', content);
+    this.socket.on('newMessageAll', (content, sender) => {
+      this.createMessage('newMessageAll', {message: content, sender: sender});
     })
 
     this.socket.on('oldMessages', (messages) => {
@@ -83,7 +83,7 @@ export class ChatComponent implements OnInit {
         if(message.sender === this.user._id) {
           this.createMessage('oldMessagesMe', message.content);
         } else {
-          this.createMessage('oldMessages', message.content);
+          this.createMessage('oldMessages', {message: message.content, sender: message.sender_name});
         }
       });
     })
@@ -94,8 +94,9 @@ export class ChatComponent implements OnInit {
 
       if(this.textContent.length > 0) {
         const sender = this.user._id;
+        const status = this.userInfos.statut;
 
-        this.socket.emit('newMessage', this.textContent, sender);
+        this.socket.emit('newMessage', this.textContent, sender, status);
 
         this.createMessage('newMessageMe', this.textContent);
 
@@ -117,6 +118,8 @@ export class ChatComponent implements OnInit {
   }
 
   createMessage(element, content) {
+    const newContainer = document.createElement('div');
+    const newSpan = document.createElement('span');
     const newElement = document.createElement('div');
 
     switch(element) {
@@ -128,15 +131,23 @@ export class ChatComponent implements OnInit {
         break;
 
       case 'newMessageAll':
+        newSpan.innerHTML = content.sender;
         newElement.classList.add(element, 'message');
-        newElement.innerHTML = content;
-        document.getElementById('msgContainer').appendChild(newElement);
+        newElement.innerHTML = content.message;
+        newContainer.appendChild(newSpan);
+        newContainer.appendChild(newElement);
+        newContainer.classList.add('msgItemContainer');
+        document.getElementById('msgContainer').appendChild(newContainer);
         break;
 
       case 'oldMessages':
+        newSpan.innerHTML = content.sender;
         newElement.classList.add(element, 'message');
-        newElement.innerHTML = content;
-        document.getElementById('msgContainer').appendChild(newElement);
+        newElement.innerHTML = content.message;
+        newContainer.appendChild(newSpan);
+        newContainer.appendChild(newElement);
+        newContainer.classList.add('msgItemContainer');
+        document.getElementById('msgContainer').appendChild(newContainer);
         break;
 
       case 'oldMessagesMe':

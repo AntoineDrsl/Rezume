@@ -5,6 +5,8 @@ var messageSchema = new mongoose.Schema({
         type: String
     },
     sender: String,
+    sender_name: String,
+    receiver: String,
     content: String
 
 });

@@ -345,23 +345,29 @@ input.back{
 }
 
 /* CHAT.CSS */
+.msgItemContainer{
+  margin-top: 25px;
+  margin-left: 15px;
+}
+.msgItemContainer span{
+  color: #5F4AB3;
+}
 .message{
   border-radius: 10px;
   font-size: 20px;
   padding: 10px;
   max-width: 45%;
-  margin-top: 25px;
 }
 .newMessageAll, .oldMessages{
   border: 2px #5F4AB3 solid;
   background-color: #fff;
   color: #5F4AB3;
-  margin-left: 15px;
 }
 .newMessageMe, .oldMessagesMe{
   border: none;
   background-color: #5F4AB3;
   color: #fff;
+  margin-top: 25px;
   margin-left: 50%;
 }
 
