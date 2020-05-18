@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "rezume-web"
+  "defaultProject": "rezume-web",
+  "cli": {
+    "analytics": "ea912353-f528-4a11-abb5-55ef70a941e9"
+  }
 }
