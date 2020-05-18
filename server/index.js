@@ -72,6 +72,7 @@ io.on('connection', (socket) => {
 
     socket.on('newMessage', (content, sender) => {
         if(socket.channel) {
+            
             var message = new Message();
             message._id_room = socket.channel;
             message.sender = sender;

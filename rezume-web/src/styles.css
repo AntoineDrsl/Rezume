@@ -346,31 +346,23 @@ input.back{
 
 /* CHAT.CSS */
 .message{
-  border: none;
   border-radius: 10px;
   font-size: 20px;
   padding: 10px;
   max-width: 45%;
+  margin-top: 25px;
 }
-.newMessageMe{
-  background-color: rgb(77, 155, 243);
-  margin-left: 55%;
-  margin-top: 2%;
+.newMessageAll, .oldMessages{
+  border: 2px #5F4AB3 solid;
+  background-color: #fff;
+  color: #5F4AB3;
+  margin-left: 15px;
 }
-.newMessageAll{
-  background-color: rgb(204, 211, 211);
-  margin-top: 2%;
-}
-
-/* Messages from databse */
-.oldMessages{
-  background-color: rgb(204, 211, 211);
-  margin-top: 2%;
-}
-.oldMessagesMe{
-  background-color: rgb(77, 155, 243);
-  margin-left: 55%;
-  margin-top: 2%;
+.newMessageMe, .oldMessagesMe{
+  border: none;
+  background-color: #5F4AB3;
+  color: #fff;
+  margin-left: 50%;
 }
 
 
