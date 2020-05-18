@@ -18,7 +18,6 @@ export class NavbarComponent implements OnInit {
 
     this.visitorInformation = this.studentService.getStudentPayload();
 
-
   }
 
 }
