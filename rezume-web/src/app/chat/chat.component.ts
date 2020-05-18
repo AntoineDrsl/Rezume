@@ -11,6 +11,7 @@ import * as io from 'socket.io-client';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
+  user;
   socket;
   userInfos;
   companies;
@@ -33,6 +34,12 @@ export class ChatComponent implements OnInit {
     this.socket.on('newUser', () => {
 
       if(this.userInfos.statut == "student") {
+        this.studentService.getStudentProfile().subscribe(
+          res => {
+            this.user = res['student'];
+          }
+        )
+
         this.companyService.getCompanies().subscribe(
           res => {
             this.companies = res['companies'];
@@ -40,6 +47,12 @@ export class ChatComponent implements OnInit {
         )
 
       } else if(this.userInfos.statut == "company") {
+        this.companyService.getCompanyProfile().subscribe(
+          res => {
+            this.user = res['company'];
+          }
+        )
+
         this.studentService.getStudents().subscribe(
           res => {
             this.students = res['students'];
@@ -50,6 +63,29 @@ export class ChatComponent implements OnInit {
         this.router.navigateByUrl('/login');
       }
     })
+
+    this.socket.on('emitChannel', (channel) => {
+      if(channel.previousChannel) {
+        document.getElementById(channel.previousChannel).classList.remove('inChannel');
+      }
+      document.getElementById(channel.newChannel).classList.add('inChannel');
+    })
+
+    document.getElementById('chatForm').addEventListener('submit', (e) => {
+
+    })
+
+
+  }
+
+  joinRoom(elementId) {
+    document.getElementById('msgContainer').innerHTML = '';
+
+    if(this.userInfos.statut == "student") {
+      this.socket.emit('changeChannel', {studentId: this.user._id, companyId: elementId, status: 'student'});
+    } else if (this.userInfos.statut == "company") {
+      this.socket.emit('changeChannel', {companyId: this.user._id, studentId: elementId, status: 'company'});
+    }
   }
 
 }

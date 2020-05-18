@@ -36,12 +36,73 @@ app.use((err, req, res, next) => {
 
 
 //IO
+
+const mongoose = require('mongoose');
+const ObjectId = mongoose.Types.ObjectId;
+const Room = mongoose.model('Room');
+const Message = mongoose.model('Message');
+
 var io = require('socket.io').listen(server);
 var connectedUsers = [];
 
 io.on('connection', (socket) => {
 
     socket.emit('newUser');
+
+    socket.on('changeChannel', (infos) => {
+        Room.findOne({ $and: [ {"_id_users.student": infos.studentId}, {"_id_users.company": infos.companyId}]}, (err, room) => {
+            if(!room || room.length <= 0) {
+                var newRoom = new Room();
+                newRoom._id_users = { student: infos.studentId, company: infos.companyId };
+                newRoom.save();
+
+                _joinRoom(newRoom, infos);
+            } else {
+                _joinRoom(room, infos);
+                Message.find({_id_room: socket.channel}, (err, messages) => {
+                    if(!messages) {
+                        return false;
+                    } else {
+                        socket.emit('oldMessages', messages);
+                    }
+                })
+            }
+        })
+    })
+
+    function _joinRoom(room, infos) {
+        var previousChannel = '';
+        var newChannel = '';
+        if(socket.channel) {
+            Room.findOne({_id: socket.channel}, (err, previousRoom) => {   
+                if(!previousRoom) {
+                    return false;
+                } else {
+                    if(infos.status == "student") {  
+                        previousChannel = previousRoom._id_users.company;
+                    } else if(infos.status == "company") {
+                        previousChannel = previousRoom._id_users.student;
+                    }
+                }
+            })
+        }
+
+        if(infos.status == "student") {
+            newChannel = room._id_users.company;
+        } else if(infos.status == "company") {
+            newChannel = room._id_users.student;
+        }
+
+        socket.leaveAll();
+        socket.join(room._id);
+        socket.channel = room._id;
+
+        if(previousChannel) {
+            socket.emit('emitChannel', {previousChannel: previousChannel, newChannel: newChannel})
+        } else {
+            socket.emit('emitChannel', {newChannel: newChannel})
+        }
+    }
 
 })
 
