@@ -22,14 +22,9 @@
     </form>
   </div>
 
-  <div class="alert alert-success" role="alert" *ngIf="showMessageSuccess">
-    Posté avec succès
+  <div class="publishSuccess" *ngIf="showMessageSuccess && showImgMessageSuccess">
+    Publication publié avec succès !
   </div>
-  <div class="alert alert-success" role="alert" *ngIf="showImgMessageSuccess">
-    img
-  </div>
-
-
 
   <!--POST SIDE-->
   <p class="titlePost">
