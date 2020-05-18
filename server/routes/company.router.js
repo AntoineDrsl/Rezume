@@ -16,5 +16,6 @@ router.post('/updatecompany', jwtHelper.verifyJwtTokenCompany, ctrlCompany.updat
 //FAVORITES
 router.get('/getfavoritesstudents', jwtHelper.verifyJwtTokenCompany, ctrlCompany.getAllFavorites);
 router.post('/addfavorite/:id', jwtHelper.verifyJwtTokenCompany, ctrlCompany.addFavorite);
+router.post('/removefavorite/:id', jwtHelper.verifyJwtTokenCompany, ctrlCompany.removeFavorite);
 
 module.exports = router;

@@ -179,4 +179,13 @@ export class ChatComponent implements OnInit {
     }
   }
 
+
+  deleteChannel(elementId){
+    this.companyService.removeFavorite(elementId).subscribe(
+      res => {
+        window.location.reload();
+      }
+    )
+  }
+
 }

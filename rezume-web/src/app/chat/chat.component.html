@@ -11,7 +11,17 @@
     <div *ngIf="students" id="studentsList">
       <h1>Étudiants</h1>
       <ul class="list">
-          <li *ngFor="let student of students" id="{{student._id}}" class="elementList" (click)="joinRoom(student._id)">{{ student.firstName }} {{ student.lastName }}</li>
+          <li *ngFor="let student of students" id="{{student._id}}" class="elementList" (click)="joinRoom(student._id)">
+            {{ student.firstName }} {{ student.lastName }}
+            <button mat-icon-button [matMenuTriggerFor]="favorites">
+              Plus d'action
+            </button>
+
+            <mat-menu #favorites="matMenu">
+              <button mat-menu-item (click)="deleteChannel(student._id)">Supprimer cette conversation</button>
+            </mat-menu>
+          </li>
+
       </ul>
     </div>
   </div>

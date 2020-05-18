@@ -74,6 +74,21 @@ module.exports.getStudentProfile = (req, res, next) => {
     );
 };
 
+
+// module.exports.removeFavorite = (req, res, next) => {
+//     Student.findOneAndUpdate({_id: req.params.id}, {$pull: {favorites: req.params.id}},
+//         (err, user) => {
+//             if(!user){
+//                 // Reponse status 409: Conflict (La requête ne peut être traitée en l’état actuel.)
+//                 return res.status(409).json({status: false, message: "L'utilisateur n'a pas été trouvé", erreur: err});
+//             }
+//             else{
+//                 return res.status(200).json({status: true, user});
+//             }
+//         }
+//     );
+// }
+
 module.exports.getAllFavorites = (req, res, next) => {
     Student.findOne({_id: req._id},
         (err, student) => {

@@ -110,6 +110,12 @@ module.exports.removeFavorite = (req, res, next) => {
                 return res.status(409).json({status: false, message: "L'utilisateur n'a pas été trouvé", erreur: err});
             }
             else{
+                Student.findOneAndUpdate({_id: req.params.id},
+                    {$pull: {favorites: req._id}},
+                    (err, student) => {
+                        
+                    }
+                )
                 return res.status(200).json({status: true, user});
             }
         }
