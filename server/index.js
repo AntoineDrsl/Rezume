@@ -82,8 +82,9 @@ io.on('connection', (socket) => {
                     if(status == "student") { 
                         Student.findOne({_id: room._id_users.student}, (err, student) => {
                             if(student) {
+
                                 message.receiver = room._id_users.company;
-                                message.sender_name = student.firstName + ' ' + student.lastName.splice(0, 1).toUpperCase() + '.';
+                                message.sender_name = student.firstName + ' ' + student.lastName.toUpperCase();
                                 message.content = content;
                                 message.save();
 
