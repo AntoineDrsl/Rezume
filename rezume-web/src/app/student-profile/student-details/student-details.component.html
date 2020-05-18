@@ -56,9 +56,16 @@
             <div class="emailInfo">
               {{studentDetails.email}}
             </div>
-
-            <div class="passwordInfo">
-              Password
+            <div class="hashtagsInfo">
+              <mat-chip-list *ngIf="studentDetails.hashtag?.length > 0">
+                <mat-chip selected *ngFor="let competence of studentDetails.hashtag">
+                  {{competence}}
+                </mat-chip>
+              </mat-chip-list>
+              <p *ngIf="studentDetails.hashtag.length === 0">
+                Vous avez spécifié aucune compétence. <br>
+                Attention les entreprises ne peuvent pas vous trouver !
+              </p>
             </div>
           </div>
 

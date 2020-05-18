@@ -47,6 +47,8 @@ export class StudentDetailsComponent implements OnInit {
     this.studentService.getStudentProfile().subscribe(
       res => {
         this.studentDetails = res['student'];
+
+        console.log(this.studentDetails);
       },
       err => {
         console.log("nop");
