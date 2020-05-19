@@ -27,14 +27,52 @@
               </div>
             </legend>
           </div>
+          <!-- EXPERIENCES -->
+          <div class="input-group" *ngFor="let experienceGroup of cvForm.get('experiences').controls; let i = index">
 
-          <div class="input-group" *ngFor="let experienceControl of cvForm.get('experiences').controls; let i = index">
-            <mat-form-field class="form-group experience" appearance="standard">
-              <mat-label>Expérience</mat-label>
-              <input matInput [formControlName]="i" required>
-              <mat-error *ngIf="i.invalid">{{getErrorMessage()}}</mat-error>
-              <mat-icon (click)="deleteExperience(i)" matSuffix>delete</mat-icon>
-            </mat-form-field>
+            <div [formGroup]="cvForm.get('experiences').controls[i]" class="experiencesGroup">
+
+              <mat-form-field class="form-group experienceName" appearance="standard">
+                <mat-label>Intitulé du poste</mat-label>
+                <input matInput [formControl]="cvForm.get('experiences').controls[i].controls.experienceName" required>
+                <mat-error *ngIf="i.invalid">{{getErrorMessage()}}</mat-error>
+              </mat-form-field>
+
+              <mat-form-field class="form-group experienceCompany" appearance="standard">
+                <mat-label>Entreprise</mat-label>
+                <input matInput [formControl]="cvForm.get('experiences').controls[i].controls.experienceCompany" required>
+                <mat-error *ngIf="i.invalid">{{getErrorMessage()}}</mat-error>
+              </mat-form-field>
+
+              <mat-form-field class="form-group experienceStart" appearance="standard">
+                <mat-label>Date de début</mat-label>
+                <input matInput [matDatepicker]="experienceStart" [formControl]="cvForm.get('experiences').controls[i].controls.experienceStart">
+                <mat-datepicker-toggle matSuffix [for]="experienceStart"></mat-datepicker-toggle>
+                <mat-datepicker #experienceStart startView="multi-year" (yearSelected)="experienceStartYear($event, i)" (monthSelected)="experienceStartMonth($event, experienceStart, i)" panelClass="example-month-picker">
+                </mat-datepicker>
+              </mat-form-field>
+
+              <mat-form-field class="form-group experienceEnd" appearance="standard">
+                <mat-label>Date de début</mat-label>
+                <input matInput [matDatepicker]="experienceEnd" [formControl]="cvForm.get('experiences').controls[i].controls.experienceEnd">
+                <mat-datepicker-toggle matSuffix [for]="experienceEnd"></mat-datepicker-toggle>
+                <mat-datepicker #experienceEnd startView="multi-year" (yearSelected)="experienceEndYear($event, i)" (monthSelected)="experienceEndMonth($event, experienceEnd, i)" panelClass="example-month-picker">
+                </mat-datepicker>
+              </mat-form-field>
+
+              <mat-form-field class="form-group experienceDescription" appearance="standard">
+                <mat-label>Description de votre expérience</mat-label>
+                <textarea matInput [formControl]="cvForm.get('experiences').controls[i].controls.experienceDescription" required></textarea>
+                <mat-error *ngIf="i.invalid">{{getErrorMessage()}}</mat-error>
+              </mat-form-field>
+
+              <div class="deleteDegree">
+                <button type="button" mat-fab color="primary" (click)="deleteExperience(i)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+
+            </div>
           </div>
 
         </div>
@@ -53,6 +91,7 @@
           <div class="input-group" *ngFor="let degreeGroup of cvForm.get('degrees').controls; let i = index">
 
             <div [formGroup]="cvForm.get('degrees').controls[i]" class="degreesGroup">
+
               <mat-form-field class="form-group degreeName" appearance="standard">
                 <mat-label>Diplôme</mat-label>
                 <input matInput [formControl]="cvForm.get('degrees').controls[i].controls.degreeName" required>

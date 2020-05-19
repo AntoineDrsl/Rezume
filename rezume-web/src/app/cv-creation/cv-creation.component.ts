@@ -81,11 +81,16 @@ export class CvCreationComponent implements OnInit {
     )
 
     this.cvForm = new FormGroup({
-      age: new FormControl('', Validators.required),
       description: new FormControl(''),
       research: new FormControl('', Validators.required),
       experiences: new FormArray([
-        new FormControl('')
+        new FormGroup({
+          experienceName: new FormControl(''),
+          experienceCompany: new FormControl(''),
+          experienceStart: new FormControl(moment()),
+          experienceEnd: new FormControl(moment()),
+          experienceDescription: new FormControl('')
+        })
       ]),
       degrees: new FormArray([
         new FormGroup({
@@ -103,7 +108,13 @@ export class CvCreationComponent implements OnInit {
 
   addExperience() {
     if((<FormArray>this.cvForm.get('experiences')).length < 10) {
-      (<FormArray>this.cvForm.get('experiences')).push(new FormControl(''));
+      (<FormArray>this.cvForm.get('experiences')).push(new FormGroup({
+        experienceName: new FormControl(''),
+        experienceCompany: new FormControl(''),
+        experienceStart: new FormControl(moment()),
+        experienceEnd: new FormControl(moment()),
+        experienceDescription: new FormControl('')
+      }));
     }
   }
   addDegree() {
@@ -128,7 +139,7 @@ export class CvCreationComponent implements OnInit {
     }
   }
 
-  //DEGREEDATE
+  //Degree Date
   degreeYear(normalizedYear: Moment, index) {
     const ctrlValue = this.cvForm.get('degrees').value[index].degreeDate;
     ctrlValue.year(normalizedYear.year());
@@ -142,6 +153,34 @@ export class CvCreationComponent implements OnInit {
     datepicker.close();
   }
 
+  //Experience start date
+  experienceStartYear(normalizedYear: Moment, index) {
+    const ctrlValue = this.cvForm.get('experiences').value[index].experienceStart;
+    ctrlValue.year(normalizedYear.year());
+    this.cvForm.get('experiences').controls[index].controls.experienceStart.setValue(ctrlValue);
+  }
+
+  experienceStartMonth(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>, index) {
+    const ctrlValue = this.cvForm.get('experiences').value[index].experienceStart;
+    ctrlValue.month(normalizedMonth.month());
+    this.cvForm.get('experiences').controls[index].controls.experienceStart.setValue(ctrlValue);
+    datepicker.close();
+  }
+
+  //Experience end date
+  experienceEndYear(normalizedYear: Moment, index) {
+    const ctrlValue = this.cvForm.get('experiences').value[index].experienceEnd;
+    ctrlValue.year(normalizedYear.year());
+    this.cvForm.get('experiences').controls[index].controls.experienceEnd.setValue(ctrlValue);
+  }
+
+  experienceEndMonth(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>, index) {
+    const ctrlValue = this.cvForm.get('experiences').value[index].experienceEnd;
+    ctrlValue.month(normalizedMonth.month());
+    this.cvForm.get('experiences').controls[index].controls.experienceEnd.setValue(ctrlValue);
+    datepicker.close();
+  }
+
   onFileChange(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
@@ -151,36 +190,35 @@ export class CvCreationComponent implements OnInit {
 
   onSubmit(form) {
 
-
     console.log(form.value)
 
     // Upload de l'image
-    // const formData = new FormData();
-    // formData.append('file', this.images);
+    const formData = new FormData();
+    formData.append('file', this.images);
 
-    // this.cvService.postFile(formData).subscribe(
-    //   res => {
-    //     this.showSuccessMessage = true;
-    //   },
-    //   err => {
-    //     this.serverErrorMessage = "Une erreur est survenue";
-    //   }
-    // );
+    this.cvService.postFile(formData).subscribe(
+      res => {
+        this.showSuccessMessage = true;
+      },
+      err => {
+        this.serverErrorMessage = "Une erreur est survenue";
+      }
+    );
 
     // Stockage des infos dans la bdd
 
-    // this.cvService.postCV(form.value).subscribe(
-    //   res => {
-    //     this.showSuccessMessage = true;
-    //     this.getCvCreated = res["doc"];
-    //     this.router.navigate(['/cvview']);
+    this.cvService.postCV(form.value).subscribe(
+      res => {
+        this.showSuccessMessage = true;
+        this.getCvCreated = res["doc"];
+        this.router.navigate(['/cvview']);
 
-    //     form.reset();
-    //   },
-    //   err => {
-    //     this.serverErrorMessage = "Une erreur est survenue";
-    //   }
-    // )
+        form.reset();
+      },
+      err => {
+        this.serverErrorMessage = "Une erreur est survenue";
+      }
+    )
   }
 
 }

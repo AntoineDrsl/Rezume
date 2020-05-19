@@ -78,9 +78,9 @@ module.exports.createCV = (req, res, next) => {
     CV.findOne({_student: req._id},
         (err, cv) => {
             if(!cv){
+                console.log(req.body);
                 var cv = new CV();
                 cv._student = req._id;
-                cv.age = req.body.age;
                 cv.description = req.body.description;
                 cv.research = req.body.research;
                 cv.experiences = req.body.experiences;

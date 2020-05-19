@@ -1,3 +1,7 @@
+hr{
+  background-color: #5F4AB3;
+}
+
 .wrapper{
     width: 50%;
     margin: auto;
@@ -32,11 +36,11 @@
 mat-form-field{
   width: 100%;
 }
-.degreeDate, .degreeName{
+.degreeDate, .degreeName, .experienceName, .experienceCompany, .experienceStart, .experienceEnd{
   width: 45%;
   margin-right: 0 !important;
 }
-.degreeDate{
+.degreeDate, .experienceCompany, .experienceEnd{
   margin-left: 10%;
 }
 
