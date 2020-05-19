@@ -27,6 +27,16 @@ module.exports.register = (req, res, next) => {
     });
 };
 
+module.exports.getStudents = (req, res) => {
+    Student.find((err, students) => {
+        if(!students) {
+            return res.status(409).json({status: false, message: 'Aucun étudiant trouvé'})
+        } else {
+            return res.status(200).json({ status: true, students })
+        }
+    })
+};
+
 module.exports.authenticate = (req, res, next) => {
     //On appelle la méthode d'authentification configurée dans passportConfig.js
     passport.authenticate('local', (err, user, info) => {

@@ -13,3 +13,5 @@ require('./cv.model');
 require('./company.model');
 require('./post.model');
 require('./hashtag.model');
+require('./room.model');
+require('./message.model');

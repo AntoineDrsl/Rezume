@@ -1,0 +1,29 @@
+
+<div class="chatContainer">
+
+  <div class="sidebar">
+    <div *ngIf="companies" id="companiesList">
+        <h1>Entreprises</h1>
+        <ul class="list">
+            <li *ngFor="let company of companies" class="elementList" id="{{company._id}}" (click)="joinRoom(company._id)">{{ company.company_name }}</li>
+        </ul>
+    </div>
+    <div *ngIf="students" id="studentsList">
+      <h1>Étudiants</h1>
+      <ul class="list">
+          <li *ngFor="let student of students" id="{{student._id}}" class="elementList" (click)="joinRoom(student._id)">{{ student.firstName }} {{ student.lastName }}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mainContent">
+    <div class="msgContainer" id="msgContainer"></div>
+
+    <form action="/chat" method="POST" id="chatForm">
+        <input type="text" id="msgInput" name="textContent" [(ngModel)]="textContent" autofocus>
+        <input type="submit" id="btnSend" value="Envoyer">
+    </form>
+  </div>
+
+</div>
+

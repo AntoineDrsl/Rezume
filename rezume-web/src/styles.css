@@ -4,7 +4,6 @@
 
 /* BASIC */
 
-
 * {
   box-sizing: border-box;
 }
@@ -343,6 +342,33 @@ input.back{
 }
 .wrapper-block h1{
   font-size: 20px;
+}
+
+/* CHAT.CSS */
+.msgItemContainer{
+  margin-top: 25px;
+  margin-left: 15px;
+}
+.msgItemContainer span{
+  color: #5F4AB3;
+}
+.message{
+  border-radius: 10px;
+  font-size: 20px;
+  padding: 10px;
+  max-width: 45%;
+}
+.newMessageAll, .oldMessages{
+  border: 2px #5F4AB3 solid;
+  background-color: #fff;
+  color: #5F4AB3;
+}
+.newMessageMe, .oldMessagesMe{
+  border: none;
+  background-color: #5F4AB3;
+  color: #fff;
+  margin-top: 25px;
+  margin-left: 50%;
 }
 
 
