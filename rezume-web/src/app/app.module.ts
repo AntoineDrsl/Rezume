@@ -16,7 +16,7 @@ import {
   MatChipsModule,
   MatIconModule,
   MatFormFieldModule,
-  MatTooltipModule
+  MatTooltipModule,
   MatMenuModule,
 
 } from '@angular/material';
@@ -111,7 +111,7 @@ export function playerFactory() {
     MatInputModule,
     MatIconModule,
     MatFormFieldModule,
-    MatTooltipModule
+    MatTooltipModule,
     MatMenuModule,
   ],
   providers: [{
