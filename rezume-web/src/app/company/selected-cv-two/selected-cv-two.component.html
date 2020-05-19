@@ -16,7 +16,8 @@
             </button>
 
             <mat-menu #favorites="matMenu">
-              <button mat-menu-item (click)="addToFavorites()">Ajouter au favoris</button>
+              <button mat-menu-item (click)="addToFavorites()" *ngIf="buttonAdd">Ajouter au favoris</button>
+              <button mat-menu-item (click)="removeFromFavorites()" *ngIf="!buttonAdd">Retirer des favoris</button>
             </mat-menu>
         </div>
 
