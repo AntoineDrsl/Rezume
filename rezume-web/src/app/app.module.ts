@@ -1,3 +1,4 @@
+
 // built-in imports
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
@@ -9,6 +10,7 @@ import * as moment from "moment";
 
 // Angular Material
 import {
+
   MatCardModule,
   MatButtonModule,
   MatAutocompleteModule,
@@ -16,9 +18,9 @@ import {
   MatChipsModule,
   MatIconModule,
   MatFormFieldModule,
+  MatSnackBarModule,
   MatSelectModule,
   MatStepperModule,
-  MatDatepickerModule,
   MatNativeDateModule,
   MatTooltipModule,
   MatMenuModule,
@@ -59,6 +61,8 @@ import { SearchStudentCompanyComponent } from './company/search-student-company/
 import { SelectedCvTwoComponent } from './company/selected-cv-two/selected-cv-two.component';
 import { StudentDetailsComponent } from './student-profile/student-details/student-details.component';
 import { ChatComponent } from './chat/chat.component';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatDatepickerModule} from '@angular/material';
 
 // LOTTIE PLAYER
 export function playerFactory() {
@@ -108,6 +112,14 @@ export function playerFactory() {
     MatInputModule,
     MatIconModule,
     MatFormFieldModule,
+    MatMomentDateModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatSnackBarModule
+  ],
+  exports: [
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatSelectModule,
     MatStepperModule,
     MatDatepickerModule,
@@ -127,7 +139,6 @@ export function playerFactory() {
     MatDatepickerModule,
     MatTooltipModule,
     MatMenuModule,
-
 
   ],
   bootstrap: [AppComponent],

@@ -21,12 +21,12 @@
 
           <div class="cv-experiences">
             <p class="section-title">Experiences Professionnelles</p>
-            <p class="section-content" *ngFor="let experience of cvDetails[0].experiences">2018-2020 - {{experience}}</p>
+            <p class="section-content" *ngFor="let experience of cvDetails[0].experiences">2018-2020 - {{experience.name}}</p>
           </div>
 
           <div class="cv-degrees">
             <p class="section-title">Diplômes</p>
-            <p class="section-content" *ngFor="let degree of cvDetails[0].degrees">2018-2020 - {{degree}}</p>
+            <p class="section-content" *ngFor="let degree of cvDetails[0].degrees">2018-2020 - {{degree.name}}</p>
           </div>
 
           <div class="cv-hashtag">

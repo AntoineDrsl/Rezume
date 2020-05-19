@@ -4,14 +4,23 @@ var cvSchema = new mongoose.Schema({
     _student: {
         type: mongoose.Schema.Types.ObjectId, ref: 'Student'
     },
-    age: String,
-    description: String,
     research: String,
+    description: String,
     experiences: [
-        { type: String } 
+        {
+        "name": String,
+        "company": String,
+        "start": Date,
+        "end": Date,
+        "description": String
+        }
     ],
     degrees: [
-        { type: String }
+        {
+        "name": String,
+        "date": Date,
+        "school": String
+        }
     ],
     img_path: String
 }, {
