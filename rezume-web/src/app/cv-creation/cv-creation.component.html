@@ -3,28 +3,19 @@
   <div class="wrapper">
 
     <div class="formContent">
-      <h2 class="underlineHover">Quelques infos pour ton CV</h2>
+      <h2 class="underlineHover title-cv">Quelques infos pour ton CV</h2>
       <form [formGroup]="cvForm" (ngSubmit)="onSubmit(cvForm)">
 
-
-        <mat-form-field class="form-group placeAge" appearance="standard">
-          <mat-label>Ton âge</mat-label>
-          <input matInput type="number" formControlName="age" required>
-          <mat-error *ngIf="age.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field><br>
-
-        <mat-form-field>
-          <mat-label>Une petite description</mat-label>
-          <textarea matInput formControlName="description" required></textarea>
+        <mat-form-field class="form-group search" appearance="standard">
+          <mat-label>Poste recherché</mat-label>
+          <input matInput formControlName="research" required>
+          <mat-error *ngIf="research.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
 
-        <p>
-          <mat-form-field class="form-group search" appearance="standard">
-            <mat-label>Secteur de recherche</mat-label>
-            <input matInput formControlName="research" required>
-            <mat-error *ngIf="research.invalid">{{getErrorMessage()}}</mat-error>
-          </mat-form-field>
-        </p>
+        <mat-form-field class="descritpion">
+          <mat-label>Décrivez-vous en quelques lignes !</mat-label>
+          <textarea matInput formControlName="description" required></textarea>
+        </mat-form-field>
 
         <hr class="separator-line">
 
@@ -37,14 +28,12 @@
             </legend>
           </div>
           <div class="input-group" *ngFor="let experienceControl of cvForm.get('experiences').controls; let i = index">
-            <p>
-              <mat-form-field class="form-group experience" appearance="standard">
-                <mat-label>Expérience</mat-label>
-                <input matInput [formControlName]="i" required>
-                <mat-error *ngIf="i.invalid">{{getErrorMessage()}}</mat-error>
-                <mat-icon (click)="deleteExperience(i)" matSuffix>delete</mat-icon>
-              </mat-form-field>
-            </p>
+            <mat-form-field class="form-group experience" appearance="standard">
+              <mat-label>Expérience</mat-label>
+              <input matInput [formControlName]="i" required>
+              <mat-error *ngIf="i.invalid">{{getErrorMessage()}}</mat-error>
+              <mat-icon (click)="deleteExperience(i)" matSuffix>delete</mat-icon>
+            </mat-form-field>
           </div>
         </div>
 
@@ -58,15 +47,34 @@
               </div>
             </legend>
           </div>
-          <div class="input-group" *ngFor="let degreeControl of cvForm.get('degrees').controls; let i = index">
-            <p>
-              <mat-form-field class="form-group degrees" appearance="standard">
+          <!-- DEGREES -->
+          <div class="input-group degreeGroup" *ngFor="let degreeControl of cvForm.get('degrees').controls; let i = index">
+
+              <mat-form-field class="form-group degreeName" appearance="standard">
                 <mat-label>Diplôme</mat-label>
                 <input matInput [formControlName]="i" required>
                 <mat-error *ngIf="i.invalid">{{getErrorMessage()}}</mat-error>
-                <mat-icon (click)="deleteDegree(i)" matSuffix>delete</mat-icon>
               </mat-form-field>
-            </p>
+
+              <mat-form-field class="form-group degreeDate" appearance="standard">
+                <mat-label>Date d'obtention</mat-label>
+                <input matInput [matDatepicker]="dp" [formControl]="date">
+                <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                <mat-datepicker #dp startView="multi-year" (yearSelected)="chosenYearHandler($event)" (monthSelected)="chosenMonthHandler($event, dp)" panelClass="example-month-picker">
+                </mat-datepicker>
+              </mat-form-field>
+
+              <mat-form-field class="form-group degreeSchool" appearance="standard">
+                <mat-label>Établissement</mat-label>
+                <input matInput [formControlName]="i" required>
+                <mat-error *ngIf="i.invalid">{{getErrorMessage()}}</mat-error>
+              </mat-form-field>
+
+              <div class="deleteDegree">
+                <button type="button" mat-fab color="primary" (click)="deleteDegree(i)" *ngIf="i > 0">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
           </div>
         </div>
 

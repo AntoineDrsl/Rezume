@@ -6,12 +6,58 @@ import { CvService } from '../shared/cv.service';
 import { StudentService } from '../shared/student.service';
 import { isEmpty } from 'rxjs/operators';
 
+import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import {MatDatepicker} from '@angular/material/datepicker';
+
+import * as _moment from 'moment';
+import {default as _rollupMoment, Moment} from 'moment';
+
+const moment = _rollupMoment || _moment;
+
+
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'MM/YYYY',
+  },
+  display: {
+    dateInput: 'MM/YYYY',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  }
+}
+
 @Component({
   selector: 'app-cv-creation',
   templateUrl: './cv-creation.component.html',
-  styleUrls: ['./cv-creation.component.css']
+  styleUrls: ['./cv-creation.component.css'],
+  providers: [
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+    },
+    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS}
+  ]
 })
 export class CvCreationComponent implements OnInit {
+
+  //DATE
+  date = new FormControl(moment());
+
+  chosenYearHandler(normalizedYear: Moment) {
+    const ctrlValue = this.date.value;
+    ctrlValue.year(normalizedYear.year());
+    this.date.setValue(ctrlValue);
+  }
+
+  chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
+    const ctrlValue = this.date.value;
+    ctrlValue.month(normalizedMonth.month());
+    this.date.setValue(ctrlValue);
+    datepicker.close();
+  }
 
   images;
   showSuccessMessage: boolean;
@@ -74,17 +120,25 @@ export class CvCreationComponent implements OnInit {
   }
 
   addExperience() {
-    (<FormArray>this.cvForm.get('experiences')).push(new FormControl(''));
+    if((<FormArray>this.cvForm.get('experiences')).length < 10) {
+      (<FormArray>this.cvForm.get('experiences')).push(new FormControl(''));
+    }
   }
   addDegree() {
-    (<FormArray>this.cvForm.get('degrees')).push(new FormControl(''));
+    if((<FormArray>this.cvForm.get('degrees')).length < 10) {
+      (<FormArray>this.cvForm.get('degrees')).push(new FormControl(''));
+    }
   }
 
   deleteExperience(index: number) {
-    (<FormArray>this.cvForm.get('experiences')).removeAt(index);
+    if((<FormArray>this.cvForm.get('experiences')).length > 1) {
+      (<FormArray>this.cvForm.get('experiences')).removeAt(index);
+    }
   }
   deleteDegree(index: number) {
-    (<FormArray>this.cvForm.get('degrees')).removeAt(index);
+    if((<FormArray>this.cvForm.get('degrees')).length > 1) {
+      (<FormArray>this.cvForm.get('degrees')).removeAt(index);
+    }
   }
 
   onFileChange(event) {

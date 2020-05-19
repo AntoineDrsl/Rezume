@@ -1,3 +1,4 @@
+
 // built-in imports
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -15,7 +16,8 @@ import {
   MatInputModule,
   MatChipsModule,
   MatIconModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatNativeDateModule
 } from '@angular/material';
 
 // Lottie
@@ -54,6 +56,8 @@ import { SearchStudentCompanyComponent } from './company/search-student-company/
 import { SelectedCvTwoComponent } from './company/selected-cv-two/selected-cv-two.component';
 import { StudentDetailsComponent } from './student-profile/student-details/student-details.component';
 import { ChatComponent } from './chat/chat.component';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatDatepickerModule} from '@angular/material';
 
 
 
@@ -107,7 +111,14 @@ export function playerFactory() {
     MatCardModule,
     MatInputModule,
     MatIconModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatMomentDateModule,
+    MatNativeDateModule,
+    MatDatepickerModule
+  ],
+  exports: [
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
