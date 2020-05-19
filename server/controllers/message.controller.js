@@ -17,7 +17,7 @@ module.exports.getAllUserMessages = (req, res, next) => {
                 if(messages.length <= 0){
                     return res.status(200).json({status: true, isUnread: false});
                 } else {
-                    return res.status(200).json({status: true, isUnread: true});
+                    return res.status(200).json({status: true, isUnread: true, countUnread: messages.length});
                 }
             }
         });

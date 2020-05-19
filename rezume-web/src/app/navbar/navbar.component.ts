@@ -28,7 +28,7 @@ export class NavbarComponent implements OnInit {
     if(this.studentService.getStudentPayload() !== null) {
       this.messageService.getMessages().subscribe(
         res => {
-          this.isUnreadMessage = res['isUnread'];
+          this.isUnreadMessage = res['countUnread'];
         }
       );
     }

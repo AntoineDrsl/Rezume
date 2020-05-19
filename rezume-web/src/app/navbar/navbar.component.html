@@ -23,7 +23,7 @@
           <img src="assets/icons/messagerie.svg" alt="messagerie" width="28px" height="28px">
         </button>
 
-        <button class="btn-link" routerLink="/chat" matTooltip="Voir mes messages" *ngIf="isUnreadMessage" matBadge="!" matBadgeColor="warn">
+        <button class="btn-link" routerLink="/chat" matTooltip="Voir mes messages" *ngIf="isUnreadMessage" matBadge="{{isUnreadMessage}}" matBadgeColor="warn">
           <img src="assets/icons/messagerie.svg" alt="messagerie" width="28px" height="28px">
         </button>
 
