@@ -1,11 +1,11 @@
 // built-in imports
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { RouterModule } from "@angular/router";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import * as moment from "moment";
 
 // Angular Material
 import {
@@ -16,24 +16,27 @@ import {
   MatChipsModule,
   MatIconModule,
   MatFormFieldModule,
+  MatSelectModule,
+  MatStepperModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
   MatTooltipModule,
   MatMenuModule,
-
 } from '@angular/material';
 
 // Lottie
-import { LottieModule } from 'ngx-lottie';
-import player from 'lottie-web';
+import { LottieModule } from "ngx-lottie";
+import player from "lottie-web";
 
 // component imports
-import { AppComponent } from './app.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import { AppComponent } from "./app.component";
+import { SignUpComponent } from "./sign-up/sign-up.component";
 
 // routes
-import { AppRoutingModule } from './app-routing.module';
-import { StudentProfileComponent } from './student-profile/student-profile.component';
-import { SignInComponent } from './sign-in/sign-in.component';
-import { StudentService } from './shared/student.service';
+import { AppRoutingModule } from "./app-routing.module";
+import { StudentProfileComponent } from "./student-profile/student-profile.component";
+import { SignInComponent } from "./sign-in/sign-in.component";
+import { StudentService } from "./shared/student.service";
 
 // other
 import { AuthGuard } from './auth/auth.guard';
@@ -58,13 +61,10 @@ import { SelectedCvTwoComponent } from './company/selected-cv-two/selected-cv-tw
 import { StudentDetailsComponent } from './student-profile/student-details/student-details.component';
 import { ChatComponent } from './chat/chat.component';
 
-
-
 // LOTTIE PLAYER
 export function playerFactory() {
   return player;
 }
-
 
 @NgModule({
   declarations: [
@@ -90,7 +90,8 @@ export function playerFactory() {
     SearchStudentCompanyComponent,
     SelectedCvTwoComponent,
     StudentDetailsComponent,
-    ChatComponent
+    ChatComponent,
+
 
   ],
   imports: [
@@ -99,10 +100,8 @@ export function playerFactory() {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    LottieModule.forRoot({ player: playerFactory, useCache: true, }),
+    LottieModule.forRoot({ player: playerFactory, useCache: true }),
     BrowserAnimationsModule,
-
-
     MatAutocompleteModule,
     MatButtonModule,
     MatInputModule,
@@ -111,16 +110,24 @@ export function playerFactory() {
     MatInputModule,
     MatIconModule,
     MatFormFieldModule,
+    MatSelectModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+    AuthGuard,
+    StudentService,
+    MatDatepickerModule,
     MatTooltipModule,
     MatMenuModule,
+
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
-    multi: true
-  },
-  AuthGuard,
-  StudentService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

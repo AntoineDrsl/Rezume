@@ -1,37 +1,108 @@
+<form #signUpForm="ngForm" id="registerFormStudent" (ngSubmit)="signUpForm.valid">
+    <mat-horizontal-stepper linear="true" #stepper>
+        <mat-step>
+            <ng-template matStepLabel>Informations</ng-template>
 
-<form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
-  <input type="text" #firstName="ngModel" [(ngModel)]="studentService.selectedStudent.firstName" name="firstName" placeholder="Firstname" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !firstName.valid }">
-      <div *ngIf="signUpForm.submitted && !firstName.valid">
-          <label class="validation-message">Veuillez entrer un prénom.</label>
-      </div>
-  <input type="text" #lastName="ngModel" [(ngModel)]="studentService.selectedStudent.lastName" name="lastName" placeholder="Lastname" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !lastName.valid }">
-      <div *ngIf="signUpForm.submitted && !lastName.valid">
-          <label class="validation-message">Veuillez entrer un nom.</label>
-      </div>
-  <input type="text" #email="ngModel" [(ngModel)]="studentService.selectedStudent.email" name="email" placeholder="Email" required [pattern]="emailRegex" [ngClass]="{'invalid-textbox' :signUpForm.submitted && !email.valid }">
-      <div *ngIf="signUpForm.submitted && email.errors">
-          <label *ngIf="email.errors.required" class="validation-message">Veuillez entrer une adresse email.</label>
-          <label *ngIf="email.errors.pattern" class="validation-message">Cette adresse email est invalide.</label>
-      </div>
-  <input type="password" #password="ngModel" [(ngModel)]="studentService.selectedStudent.password" name="password" placeholder="Password" required minlength="8" [ngClass]="{'invalid-textbox' :signUpForm.submitted && !password.valid }">
-      <div *ngIf="signUpForm.submitted && password.errors">
-          <label *ngIf="password.errors.required" class="validation-message">Veuillez entrer un mot de passe</label>
-          <label *ngIf="password.errors.minlength" class="validation-message">Votre mot de passe doit contenir au moins 8 caractères</label>
-      </div>
-  <input type="password" #confirmPassword="ngModel" [(ngModel)]="studentService.selectedStudent.confirmPassword" name="confirmPassword" placeholder="Confirm password" required pattern="{{password.value}}" [ngClass]="{'invalid-textbox' :signUpForm.submitted && !confirmPassword.valid }">
-      <div *ngIf="signUpForm.submitted && confirmPassword.errors">
-          <label *ngIf="confirmPassword.errors.required" class="validation-message">Veuillez confirmer votre mot de passe</label>
-          <label *ngIf="confirmPassword.errors.pattern" class="validation-message">Vos mots de passe ne correspondent pas</label>
-      </div>
-  <input type="submit" value="Sign Up">
+
+            <input formcontrolname="firstCtrl" type="text" #firstName="ngModel" [(ngModel)]="studentService.selectedStudent.firstName" name="firstName" placeholder="Prénom" required [ngClass]="{'invalid-textbox' :(signUpForm.submitted && !firstName.valid) || (showErrFname && !studentService.selectedStudent.firstName) }">
+            <div *ngIf="(signUpForm.submitted && !firstName.valid)">
+                <label class="validation-message">Veuillez entrer un prénom.</label>
+            </div>
+            <input type="text" #lastName="ngModel" [(ngModel)]="studentService.selectedStudent.lastName" name="lastName" placeholder="Nom de famille" required [ngClass]="{'invalid-textbox' :(signUpForm.submitted && !lastName.valid) || (showErrLname && !studentService.selectedStudent.lastName) }">
+            <div *ngIf="(signUpForm.submitted && !lastName.valid)">
+                <label class="validation-message">Veuillez entrer un nom.</label>
+            </div>
+
+
+            <mat-form-field class="selectorClass" [ngClass]="{'invalidDate' :signUpForm.submitted && !studentService.selectedStudent.birthDate}" (click)="picker.open()">
+                <mat-label class="placeholderTextSelect">Date de naissance</mat-label>
+                <input matInput class="resetTextInputCss" #birthDate="ngModel" [(ngModel)]="studentService.selectedStudent.birthDate" name="birthDate" [matDatepicker]="picker" class="text-dark">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker disabled="false" #picker></mat-datepicker>
+            </mat-form-field>
+            <div *ngIf="!studentService.selectedStudent.birthDate &&  signUpForm.submitted">
+                <label class="validation-message">Veuillez entrer une date de naissance.</label>
+            </div>
+
+
+            <mat-form-field class="selectorClass">
+                <mat-label class="placeholderTextSelect" *ngIf="studentService.selectedStudent.competencies.length < 1">
+                    Séléctionnez compétences
+                </mat-label>
+                <mat-select multiple name="competencies" #competencies="ngModel" [(ngModel)]="studentService.selectedStudent.compentencies">
+                    <mat-option *ngFor="let competence of allCompetences" [value]="competence">
+                        {{competence}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+
+            <div>
+                <button class="buttonFormStep" value="Sign Up" (click)="checkFirstStep()">
+                    étape suivante
+                </button>
+            </div>
+        </mat-step>
+
+
+        <mat-step>
+            <ng-template matStepLabel>Informations utilisateur</ng-template>
+            <input type="text" #email="ngModel" [(ngModel)]="studentService.selectedStudent.email" name="email" placeholder="Adresse email" required [pattern]="emailRegex" [ngClass]="{'invalid-textbox' :signUpForm.submitted && !email.valid && secondStepError}">
+            <div *ngIf="signUpForm.submitted && email.errors && secondStepError">
+                <label *ngIf="email.errors.required" class="validation-message">
+                    Veuillez entrer une adresse email.
+                </label>
+                <label *ngIf="email.errors.pattern" class="validation-message">
+                    Cette adresse email est invalide.
+                </label>
+            </div>
+
+
+            <input type="text" #phoneNumber="ngModel" [(ngModel)]="studentService.selectedStudent.phoneNumber" name="phoneNumber" placeholder="Téléphone" required>
+
+
+            <input type="password" #password="ngModel" [(ngModel)]="studentService.selectedStudent.password" name="password" placeholder="Mot de passe" required minlength="8" [ngClass]="{'invalid-textbox' :signUpForm.submitted && !password.valid  && secondStepError }">
+            <div *ngIf="signUpForm.submitted && password.errors && secondStepError">
+                <label *ngIf="password.errors.required" class="validation-message">
+                    Veuillez entrer un mot de passe
+                </label>
+                <label *ngIf="password.errors.minlength" class="validation-message">
+                    Votre mot de passe doit contenir au moins 8 caractères
+                </label>
+            </div>
+
+
+            <input type="password" #confirmPassword="ngModel" [(ngModel)]="studentService.selectedStudent.confirmPassword" name="confirmPassword" placeholder="Confirmez mot de passe" required pattern="{{password.value}}" [ngClass]="{'invalid-textbox' :signUpForm.submitted && !confirmPassword.valid && secondStepError }">
+            <div *ngIf="signUpForm.submitted && confirmPassword.errors && secondStepError">
+                <label *ngIf="confirmPassword.errors.required" class="validation-message">
+                    Veuillez confirmer votre mot de passe
+                </label>
+                <label *ngIf="confirmPassword.errors.pattern" class="validation-message">
+                    Vos mots de passe ne correspondent pas
+                </label>
+            </div>
+
+
+            <div>
+                <button mat-raised-button matStepperPrevious>
+                    RETOUR
+                </button>
+                <button class="buttonFormStep" (click)="onSubmit(signUpForm)">
+                    s'enregistrer
+                </button>
+            </div>
+        </mat-step>
+    </mat-horizontal-stepper>
 </form>
+
 
 <!-- Success message -->
 <div class="success" *ngIf="showSuccessMessage">
-  Vous êtes inscrit !
+    Vous êtes inscrit !
 </div>
+
 
 <!-- Error message -->
 <div class="alert" *ngIf="serverErrorMessages">
-  {{serverErrorMessages}}
+    {{serverErrorMessages}}
 </div>

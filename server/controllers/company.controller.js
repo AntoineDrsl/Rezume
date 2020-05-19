@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
-const passport = require('passport');
-const _ = require('lodash');
+const mongoose = require("mongoose");
+const passport = require("passport");
+const _ = require("lodash");
 const ObjectId = mongoose.Types.ObjectId;
 
-const Company = mongoose.model('Company');
-const Student = mongoose.model('Student');
+const Company = mongoose.model("Company");
+const Student = mongoose.model("Student");
 
 module.exports.register = (req, res, next) => {
     var company = new Company();
@@ -13,18 +13,20 @@ module.exports.register = (req, res, next) => {
     company.email = companyEmail;
     company.description = req.body.description;
     company.password = req.body.password;
+    company.siret = req.body.siret;
     company.save((err, doc) => {
-        if(!err) {
+        if (!err) {
             res.send(doc);
         } else {
             if (err.code == 11000) {
+
                 res.status(422).send(['Cette addresse mail existe déjà']);
             } else {
                 return next(err);
             }
         }
     });
-}
+};
 
 module.exports.getCompanies = (req, res) => {
     Company.find((err, companies) => {
@@ -102,10 +104,11 @@ module.exports.addFavorite = (req, res, next) => {
     
 }
 
+
 module.exports.removeFavorite = (req, res, next) => {
-    Company.findOneAndUpdate({_id: req._id}, {$pull: {favorites: req.params.id}},
+    Company.findOneAndUpdate({ _id: req._id }, { $pull: { favorites: req.params.id } },
         (err, user) => {
-            if(!user){
+            if (!user) {
                 // Reponse status 409: Conflict (La requête ne peut être traitée en l’état actuel.)
                 return res.status(409).json({status: false, message: "L'utilisateur n'a pas été trouvé", erreur: err});
             }
@@ -120,9 +123,10 @@ module.exports.removeFavorite = (req, res, next) => {
             }
         }
     );
-}
+};
 
 module.exports.getAllFavorites = (req, res, next) => {
+
     Company.findOne({_id: req._id},
         (err, company) => {
             if (!company) {
@@ -135,8 +139,8 @@ module.exports.getAllFavorites = (req, res, next) => {
                 );
             }
         }
-    );
-}
+    });
+};
 
 module.exports.getCompanyProfileId = (req, res, next) => {
     Company.findOne({_id: req.params.id},
@@ -148,22 +152,28 @@ module.exports.getCompanyProfileId = (req, res, next) => {
                 return res.status(200).json({status: true, company});
             }
         }
-    );
-}
-
+    });
+};
 
 module.exports.updateCompany = (req, res, next) => {
-    var companyUpdate = Company.find({_id: req._id});
+    var companyUpdate = Company.find({ _id: req._id });
     companyUpdate._id = req._id;
     companyUpdate.company_name = req.body.company_name;
     companyUpdate.email = req.body.email.toLowerCase();
     companyUpdate.description = req.body.description;
-    
-    if(req.body.password) {
+
+    if (req.body.password) {
         companyUpdate.password = req.body.password;
     }
 
-    Company.findOneAndUpdate({_id: req._id}, {$set: {company_name: companyUpdate.company_name, email: companyUpdate.email, password: companyUpdate.password, description: companyUpdate.description}}, { omitUndefined: true,  runValidators: true, context: 'query' },
+    Company.findOneAndUpdate({ _id: req._id }, {
+            $set: {
+                company_name: companyUpdate.company_name,
+                email: companyUpdate.email,
+                password: companyUpdate.password,
+                description: companyUpdate.description,
+            },
+        }, { omitUndefined: true, runValidators: true, context: "query" },
         (err, company) => {
             if(err) {
                 return res.status(500).json({status: false, message: 'Modification impossible'});
@@ -172,7 +182,5 @@ module.exports.updateCompany = (req, res, next) => {
                 return res.status(200).json({status: true, company});
             }
         }
-    
-    )
-
-}
+    );
+};
