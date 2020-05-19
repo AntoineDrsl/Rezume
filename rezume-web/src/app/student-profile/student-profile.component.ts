@@ -32,6 +32,11 @@ export class StudentProfileComponent implements OnInit {
   constructor(private studentService: StudentService, private router: Router, private cvService: CvService) { }
 
   ngOnInit() {
+
+    if(!(this.studentService.getStudentPayload().statut === 'student')) {
+      this.router.navigate(['/company']);
+    }
+
     this.studentService.getStudentProfile().subscribe(
       res => {
         this.studentDetails = res['student'];

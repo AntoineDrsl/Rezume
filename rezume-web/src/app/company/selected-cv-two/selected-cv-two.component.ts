@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CvService } from 'src/app/shared/cv.service';
 import {Location} from '@angular/common';
 import { CompanyService } from 'src/app/shared/company.service';
+import { StudentService } from 'src/app/shared/student.service';
 
 @Component({
   selector: 'app-selected-cv-two',
@@ -20,10 +21,16 @@ export class SelectedCvTwoComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private cvService: CvService,
               private _location: Location,
-              private companyService: CompanyService
+              private companyService: CompanyService,
+              private studentService: StudentService,
+              private router: Router
               ) { }
 
   ngOnInit() {
+
+    if (!(this.studentService.getStudentPayload().statut === 'company')) {
+      this.router.navigate(['/student']);
+    }
 
     const id = this.route.snapshot.paramMap.get('id');
 

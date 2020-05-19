@@ -21,6 +21,8 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
 
+
+
     this.visitorInformation = this.studentService.getStudentPayload();
 
     if(this.studentService.getStudentPayload() !== null) {

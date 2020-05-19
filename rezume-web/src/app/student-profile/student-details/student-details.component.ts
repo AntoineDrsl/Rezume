@@ -46,6 +46,10 @@ export class StudentDetailsComponent implements OnInit {
 
   ngOnInit() {
 
+    if(!(this.studentService.getStudentPayload().statut === 'student')) {
+      this.router.navigate(['/company']);
+    }
+
     this.studentService.getStudentProfile().subscribe(
       res => {
         this.studentDetails = res['student'];

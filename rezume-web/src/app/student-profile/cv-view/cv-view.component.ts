@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import {Location} from '@angular/common';
 // Importation cvService
 import { CvService } from '../../shared/cv.service';
+import { StudentService } from 'src/app/shared/student.service';
 
 @Component({
   selector: 'app-cv-view',
@@ -14,9 +15,13 @@ export class CvViewComponent implements OnInit {
   cvDetails;
   noCv: boolean = true;
 
-  constructor(private cvService: CvService, private router: Router, private _location: Location) { }
+  constructor(private cvService: CvService, private router: Router, private _location: Location, private studentService: StudentService) { }
 
   ngOnInit() {
+
+    if(!(this.studentService.getStudentPayload().statut === 'company')) {
+      this.router.navigate(['/student']);
+    }
 
     this.cvService.getCV().subscribe(
       res => {

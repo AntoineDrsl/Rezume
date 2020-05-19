@@ -24,7 +24,7 @@ export const routes: Routes = [
     path: 'signup', component: SignUpComponent
   },
   {
-    path: 'studentprofile', component: StudentProfileComponent, canActivate: [AuthGuard]
+    path: 'student', component: StudentProfileComponent, canActivate: [AuthGuard]
   },
   {
     path: 'company', component: CompanyProfileComponent, canActivate: [AuthGuard]

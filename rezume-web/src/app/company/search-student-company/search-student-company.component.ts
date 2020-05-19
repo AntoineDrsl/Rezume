@@ -50,6 +50,11 @@ export class SearchStudentCompanyComponent implements OnInit {
 
   ngOnInit() {
 
+    if (!(this.studentService.getStudentPayload().statut === 'company')) {
+      this.router.navigate(['/student']);
+    }
+
+
     this.hashtagService.getAllHashtag().subscribe(
       res => {
         const hashtagResponse = res['hashtag'];
