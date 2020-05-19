@@ -5,13 +5,14 @@
 .cv-details{
   width: 100%;
   background-color: rgb(204, 201, 201);
-  margin-top: 2%;
+  margin: 2% 0;
+  padding-bottom: 5%;
 }
 
 
 .img-top{
   width: 120px;
-  margin-left: 43%;
+  margin-left: 40%;
 }
 
 .cv-name{
