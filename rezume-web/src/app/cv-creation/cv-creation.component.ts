@@ -129,17 +129,16 @@ export class CvCreationComponent implements OnInit {
   }
 
   //DEGREEDATE
-  degreeYear(normalizedYear: Moment) {
-    console.log(this.cvForm.get('degrees').value[1]);
-    const ctrlValue = this.cvForm.get('degrees').value[1];
+  degreeYear(normalizedYear: Moment, index) {
+    const ctrlValue = this.cvForm.get('degrees').value[index].degreeDate;
     ctrlValue.year(normalizedYear.year());
-    this.cvForm.get('degrees').setValue(ctrlValue);
+    this.cvForm.get('degrees').controls[index].controls.degreeDate.setValue(ctrlValue);
   }
 
-  degreeMonth(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
-    const ctrlValue = this.cvForm.get('degrees').value;
+  degreeMonth(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>, index) {
+    const ctrlValue = this.cvForm.get('degrees').value[index].degreeDate;
     ctrlValue.month(normalizedMonth.month());
-    this.cvForm.get('degrees').setValue(ctrlValue);
+    this.cvForm.get('degrees').controls[index].controls.degreeDate.setValue(ctrlValue);
     datepicker.close();
   }
 
@@ -152,33 +151,36 @@ export class CvCreationComponent implements OnInit {
 
   onSubmit(form) {
 
-    // Upload de l'image
-    const formData = new FormData();
-    formData.append('file', this.images);
 
-    this.cvService.postFile(formData).subscribe(
-      res => {
-        this.showSuccessMessage = true;
-      },
-      err => {
-        this.serverErrorMessage = "Une erreur est survenue";
-      }
-    );
+    console.log(form.value)
+
+    // Upload de l'image
+    // const formData = new FormData();
+    // formData.append('file', this.images);
+
+    // this.cvService.postFile(formData).subscribe(
+    //   res => {
+    //     this.showSuccessMessage = true;
+    //   },
+    //   err => {
+    //     this.serverErrorMessage = "Une erreur est survenue";
+    //   }
+    // );
 
     // Stockage des infos dans la bdd
 
-    this.cvService.postCV(form.value).subscribe(
-      res => {
-        this.showSuccessMessage = true;
-        this.getCvCreated = res["doc"];
-        this.router.navigate(['/cvview']);
+    // this.cvService.postCV(form.value).subscribe(
+    //   res => {
+    //     this.showSuccessMessage = true;
+    //     this.getCvCreated = res["doc"];
+    //     this.router.navigate(['/cvview']);
 
-        form.reset();
-      },
-      err => {
-        this.serverErrorMessage = "Une erreur est survenue";
-      }
-    )
+    //     form.reset();
+    //   },
+    //   err => {
+    //     this.serverErrorMessage = "Une erreur est survenue";
+    //   }
+    // )
   }
 
 }

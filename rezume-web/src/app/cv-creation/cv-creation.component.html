@@ -63,7 +63,7 @@
                 <mat-label>Date d'obtention</mat-label>
                 <input matInput [matDatepicker]="degreeDate" [formControl]="cvForm.get('degrees').controls[i].controls.degreeDate">
                 <mat-datepicker-toggle matSuffix [for]="degreeDate"></mat-datepicker-toggle>
-                <mat-datepicker #degreeDate startView="multi-year" (yearSelected)="degreeYear($event)" (monthSelected)="degreeMonth($event, degreeDate)" panelClass="example-month-picker">
+                <mat-datepicker #degreeDate startView="multi-year" (yearSelected)="degreeYear($event, i)" (monthSelected)="degreeMonth($event, degreeDate, i)" panelClass="example-month-picker">
                 </mat-datepicker>
               </mat-form-field>
 
