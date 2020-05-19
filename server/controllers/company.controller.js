@@ -11,6 +11,7 @@ module.exports.register = (req, res, next) => {
     company.company_name = req.body.company_name;
     companyEmail = req.body.email.toLowerCase();
     company.email = companyEmail;
+    company.siret = req.body.siret;
     company.description = req.body.description;
     company.password = req.body.password;
     company.save((err, doc) => {
