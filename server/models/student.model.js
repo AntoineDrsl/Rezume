@@ -1,44 +1,46 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 var studentSchema = new mongoose.Schema({
     firstName: {
         type: String,
-        required: 'Fullname cannot be empty'
+        required: "Le prénom ne peut être vide",
     },
     lastName: {
         type: String,
-        required: 'Lastname cannot be empty'
+        required: "Le nom de famille ne peut être vide",
     },
     email: {
         type: String,
-        required: 'Email cannot be empty',
-        unique: true
+        required: "L'email' ne peut être vide",
+        unique: true,
     },
-    favorites: [
-        { type: String }
-    ],
-    hashtag: [
-        { type: String }
-    ],
+    birthDate: {
+        type: String,
+        required: "La date de naissance ne peut être vide",
+    },
+    phoneNumber: {
+        type: String,
+    },
+    favorites: [{ type: String }],
+    hashtag: [{ type: String }],
     password: {
         type: String,
-        required: 'Password cannot be empty',
-        minlength: [8, 'Password must be atleast 8 character long']
+        required: "le mot de passe ne peut être vide.",
+        minlength: [8, "Le mot de passe doit mesurer au moins 8 caractères"],
     },
-    saltSecret: String
+    saltSecret: String,
 });
 
 // Custom validation for email
-studentSchema.path('email').validate((value) => {
+studentSchema.path("email").validate((value) => {
     emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return emailRegex.test(value);
-}, 'Invalid e-mail.');
-
+}, "Adresse email invalide.");
 
 // Events
-studentSchema.pre('save', function (next) {
+studentSchema.pre("save", function(next) {
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(this.password, salt, (err, hash) => {
             this.password = hash;
@@ -49,28 +51,31 @@ studentSchema.pre('save', function (next) {
 });
 
 studentSchema.pre('findOneAndUpdate', function (next) {
-    
-    bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(this.getUpdate().$set.password, salt, (err, hash) => {
-            this.getUpdate().$set.password = hash;
-            this.saltSecret = salt;
-            next();
+    if(this.getUpdate().$set) {
+        bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(this.getUpdate().$set.password, salt, (err, hash) => {
+                this.getUpdate().$set.password = hash;
+                this.saltSecret = salt;
+                next();
+            });
         });
-    });
+    } else {
+        next();
+    }
 });
 
 // Methods
 
-studentSchema.methods.verifyPassword = function (password) {
+studentSchema.methods.verifyPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
 }; //Return true or false
 
-studentSchema.methods.generateJwt = function (req) {
+studentSchema.methods.generateJwt = function(req) {
     return jwt.sign({ _id: this._id, statut: req.body.statut },
-        process.env.JWT_SECRET,
-    {
-        expiresIn: process.env.JWT_EXP
-    }); //On utilise le JWT_SECRET et JWT_EXP définis dans config.json
-}
+        process.env.JWT_SECRET, {
+            expiresIn: process.env.JWT_EXP,
+        }
+    ); //On utilise le JWT_SECRET et JWT_EXP définis dans config.json
+};
 
-mongoose.model('Student', studentSchema);
+mongoose.model("Student", studentSchema);

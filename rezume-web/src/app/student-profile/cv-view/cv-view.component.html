@@ -4,7 +4,7 @@
       <mat-card class="cv-details" *ngIf="!noCv">
         <div class="card-head">
           <mat-card-subtitle>
-            <a class="mx-5" (click)="backToPage()">Revenir à votre profil</a>
+            <a class="mx-5" (click)="backToPage()" style="cursor: pointer;">Revenir</a>
           </mat-card-subtitle>
             <img src="assets/images/IconeRezume.png" alt="Photo de profil" class="img-top">
         </div>
@@ -14,6 +14,10 @@
           <mat-card-title class="text-center mt-3 cv-name">
             {{cvDetails[0].student[0].firstName}} {{cvDetails[0].student[0].lastName}}
           </mat-card-title>
+
+          <p class="cv-description text-center">
+            {{cvDetails[0].description}}
+          </p>
 
           <div class="cv-experiences">
             <p class="section-title">Experiences Professionnelles</p>

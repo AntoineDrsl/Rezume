@@ -7,32 +7,26 @@
     <div class="postSection" *ngIf="posts.length > 0">
 
 
-      <div class="post" *ngFor="let post of posts; index as i">
-        <div class="postHead">
-          <p class="postTitle">
-            {{ post.title }}
-          </p>
-          <hr>
-        </div>
-
-        <div class="postImage" >
-          <img src="http://localhost:3000/post/{{post.img_path}}" alt="PP" class="pictureProfile img-thumbnail" width="50%">
-        </div>
-
-        <div class="postContent">
-          <p class="postText">
+      <mat-card class="post-card" *ngFor="let post of posts; index as i">
+        <mat-card-header>
+          <img mat-card-avatar src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="{{post.img_path}}" class="cardImage">
+          <mat-card-title>{{post.title}}</mat-card-title>
+          <mat-card-subtitle>{{post.companyDetails[0].company_name}}</mat-card-subtitle>
+          <mat-card-subtitle>{{post.createdAt}}</mat-card-subtitle>
+          <button mat-fab color="accent" class="ml-auto" style="outline: none;">
+            <mat-icon>bookmark</mat-icon>
+          </button>
+        </mat-card-header>
+        <img mat-card-image src="http://localhost:3000/post/{{post.img_path}}" alt="{{post.img_path}}" class="cardImage">
+        <mat-card-content>
+          <p>
             {{post.content}}
           </p>
-          <p>
-            {{post.companyDetails[0].company_name}}
-          </p>
-          <p class="text-muted datePost">
-            {{post.createdAt}}
-          </p>
-        </div>
-      </div>
-
+        </mat-card-content>
+      </mat-card>
     </div>
+
+
 
     <div class="postSectionEmpty" *ngIf="posts.length === 0">
       Aucun post à afficher.

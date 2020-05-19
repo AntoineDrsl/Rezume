@@ -72,6 +72,10 @@ export class CvCreationComponent implements OnInit {
 
   ngOnInit() {
 
+    if(!(this.studentService.getStudentPayload().statut === 'student')) {
+      this.router.navigate(['/company']);
+    }
+
     this.cvService.getCV().subscribe(
       res => {
         this.isCvCreated = res["cv"]

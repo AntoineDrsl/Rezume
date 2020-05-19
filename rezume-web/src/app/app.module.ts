@@ -1,15 +1,16 @@
 
 // built-in imports
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { RouterModule } from "@angular/router";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import * as moment from "moment";
 
 // Angular Material
 import {
+
   MatCardModule,
   MatButtonModule,
   MatAutocompleteModule,
@@ -17,8 +18,14 @@ import {
   MatChipsModule,
   MatIconModule,
   MatFormFieldModule,
+  MatSnackBarModule,
+  MatSelectModule,
+  MatStepperModule,
   MatNativeDateModule,
-  MatSnackBarModule
+  MatTooltipModule,
+  MatMenuModule,
+  MatBadgeModule,
+
 } from '@angular/material';
 
 // Lottie
@@ -41,12 +48,9 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { CvCreationComponent } from './cv-creation/cv-creation.component';
 import { CvUpdateComponent } from './student-profile/cvUpdate/cv-update/cv-update.component';
 import { CvViewComponent } from './student-profile/cv-view/cv-view.component';
-import { GetAllCvComponent } from './get-all-cv/get-all-cv.component';
-import { SelectedCvComponent } from './get-all-cv/selected-cv/selected-cv.component';
 import { SignUpStudentComponent } from './sign-up/sign-up-student/sign-up-student.component';
 import { SignUpCompanyComponent } from './sign-up/sign-up-company/sign-up-company.component';
 import { CompanyProfileComponent } from './company-profile/company-profile.component';
-import { PostComponent } from './post/post.component';
 import { ProfileSideComponent } from './company-profile/profile-side/profile-side.component';
 import { PostSideComponent } from './company-profile/post-side/post-side.component';
 import { CompanyDetailComponent } from './company/company-detail/company-detail.component';
@@ -65,7 +69,6 @@ export function playerFactory() {
   return player;
 }
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,12 +78,9 @@ export function playerFactory() {
     CvCreationComponent,
     CvUpdateComponent,
     CvViewComponent,
-    GetAllCvComponent,
-    SelectedCvComponent,
     SignUpStudentComponent,
     SignUpCompanyComponent,
     CompanyProfileComponent,
-    PostComponent,
     ProfileSideComponent,
     PostSideComponent,
     CompanyDetailComponent,
@@ -90,7 +90,8 @@ export function playerFactory() {
     SearchStudentCompanyComponent,
     SelectedCvTwoComponent,
     StudentDetailsComponent,
-    ChatComponent
+    ChatComponent,
+
 
   ],
   imports: [
@@ -99,7 +100,7 @@ export function playerFactory() {
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    LottieModule.forRoot({ player: playerFactory, useCache: true, }),
+    LottieModule.forRoot({ player: playerFactory, useCache: true }),
     BrowserAnimationsModule,
 
 
@@ -118,15 +119,28 @@ export function playerFactory() {
   ],
   exports: [
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSelectModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatMenuModule,
+    MatBadgeModule,
+    MatTooltipModule,
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
-    multi: true
-  },
-  AuthGuard,
-  StudentService],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+    AuthGuard,
+    StudentService,
+    MatDatepickerModule,
+    MatTooltipModule,
+    MatMenuModule,
+
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

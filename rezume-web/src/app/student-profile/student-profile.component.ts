@@ -32,6 +32,11 @@ export class StudentProfileComponent implements OnInit {
   constructor(private studentService: StudentService, private router: Router, private cvService: CvService) { }
 
   ngOnInit() {
+
+    if(!(this.studentService.getStudentPayload().statut === 'student')) {
+      this.router.navigate(['/company']);
+    }
+
     this.studentService.getStudentProfile().subscribe(
       res => {
         this.studentDetails = res['student'];
@@ -42,12 +47,21 @@ export class StudentProfileComponent implements OnInit {
       }
     );
 
-
     this.cvService.getCV().subscribe(
       res => {
         this.cvDetails = res['cv'];
       },
       err => {}
+    );
+
+    this.studentService.getAllFavorites().subscribe(
+      res => {
+        this.favorites = res['favorites'];
+        console.log(this.favorites);
+      },
+      err => {
+        this.serverErrorMessage = "Aucun favoris n'a été trouvé";
+      }
     );
   }
 

@@ -76,3 +76,12 @@ form > input[type="submit"]{
   color: #fff;
   transition: 0.5s;
 }
+.buttonStudent{
+  background-color: #fff;
+  border-radius: 10px;
+  width: 20%;
+  float: right;
+  margin-right: 5%;
+  border: 1px #5F4AB3 solid !important;
+  color: #5F4AB3 !important;
+}

@@ -17,6 +17,7 @@ export class SignInComponent implements OnInit {
   valid = false;
   getToken;
 
+  selected= "test1";
   model = {
     statut : 'student',
     email : '',
@@ -30,7 +31,7 @@ export class SignInComponent implements OnInit {
       // this.location.back();
       this.getToken = this.studentService.getStudentPayload();
       if(this.getToken.statut === 'student') {
-        this.router.navigateByUrl('/studentprofile');
+        this.router.navigateByUrl('/student');
       }
       else {
         this.router.navigateByUrl('/company');
@@ -48,7 +49,7 @@ export class SignInComponent implements OnInit {
         // On stock le tocken renvoyé
         this.studentService.setToken(res['token']);
         if(this.model.statut == 'student') {
-          this.router.navigateByUrl('/studentprofile');
+          this.router.navigateByUrl('/student');
         } else if(this.model.statut == 'company') {
           this.router.navigateByUrl('/company');
         }

@@ -21,6 +21,7 @@ export class ProfileSideStudentComponent implements OnInit {
   constructor(private companyService: CompanyService, private router: Router, private cvService: CvService) { }
 
   ngOnInit() {
+    console.log(this.favorites);
     this.cvService.getCV().subscribe(
       res => {
         this.isCvCreated = res['cv'];

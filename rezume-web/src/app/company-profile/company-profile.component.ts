@@ -4,12 +4,15 @@ import { Router } from '@angular/router';
 
 import { AnimationItem } from 'lottie-web';
 import { AnimationOptions } from 'ngx-lottie';
+import { StudentService } from '../shared/student.service';
+
 
 @Component({
   selector: 'app-company-profile',
   templateUrl: './company-profile.component.html',
   styleUrls: ['./company-profile.component.css']
 })
+
 export class CompanyProfileComponent implements OnInit {
 
   companyDetails;
@@ -27,9 +30,14 @@ export class CompanyProfileComponent implements OnInit {
     animationItem.setSpeed(0.5);
   }
 
-  constructor(private companyService: CompanyService, private router: Router) { }
+  constructor(private companyService: CompanyService, private router: Router, private studentService: StudentService) { }
 
   ngOnInit() {
+
+    if(!(this.studentService.getStudentPayload().statut === 'company')) {
+      this.router.navigate(['/student']);
+    }
+
     this.companyService.getCompanyProfile().subscribe(
       res => {
         this.companyDetails = res['company'];

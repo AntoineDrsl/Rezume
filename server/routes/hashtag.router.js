@@ -5,7 +5,7 @@ const ctrlHashtag = require('../controllers/hashtag.controller');
 const jwtHelper = require('../config/jwtHelper');
 
 // GET
-router.get('/hashtag', jwtHelper.verifyJwtToken, ctrlHashtag.getAllHashtag);
+router.get('/hashtag', ctrlHashtag.getAllHashtag);
 
 // POST
 router.post('/addhashtag', jwtHelper.verifyJwtToken, ctrlHashtag.addHashtag);

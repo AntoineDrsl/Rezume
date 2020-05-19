@@ -1,16 +1,13 @@
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import { SignInComponent } from './sign-in/sign-in.component'
+import { SignInComponent } from './sign-in/sign-in.component';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
 import { CompanyProfileComponent } from './company-profile/company-profile.component';
 import { AuthGuard } from './auth/auth.guard';
 import { CvCreationComponent } from './cv-creation/cv-creation.component';
 import { CvUpdateComponent } from './student-profile/cvUpdate/cv-update/cv-update.component';
 import { CvViewComponent } from './student-profile/cv-view/cv-view.component';
-import { GetAllCvComponent } from './get-all-cv/get-all-cv.component';
-import { SelectedCvComponent } from './get-all-cv/selected-cv/selected-cv.component';
-import { PostComponent } from './post/post.component';
 import { CompanyDetailComponent } from './company/company-detail/company-detail.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SearchStudentCompanyComponent } from './company/search-student-company/search-student-company.component';
@@ -27,7 +24,7 @@ export const routes: Routes = [
     path: 'signup', component: SignUpComponent
   },
   {
-    path: 'studentprofile', component: StudentProfileComponent, canActivate: [AuthGuard]
+    path: 'student', component: StudentProfileComponent, canActivate: [AuthGuard]
   },
   {
     path: 'company', component: CompanyProfileComponent, canActivate: [AuthGuard]
@@ -42,16 +39,7 @@ export const routes: Routes = [
     path: 'cvview', component: CvViewComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'cv', component: GetAllCvComponent, canActivate: [AuthGuard]
-  },
-  {
-    path: 'cvview/:id', component: SelectedCvComponent, canActivate: [AuthGuard]
-  },
-  {
     path: '', redirectTo: '/login', pathMatch: 'full'
-  },
-  {
-    path: 'post', component: PostComponent
   },
   {
     path: 'companydetails', component: CompanyDetailComponent, canActivate: [AuthGuard]

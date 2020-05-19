@@ -6,6 +6,7 @@ import { AnimationItem } from 'lottie-web';
 import { AnimationOptions } from 'ngx-lottie';
 import { FormGroup, FormControl, Validators, MinLengthValidator} from '@angular/forms';
 import { CvService } from 'src/app/shared/cv.service';
+import { StudentService } from 'src/app/shared/student.service';
 
 @Component({
   selector: 'app-company-detail',
@@ -44,9 +45,13 @@ export class CompanyDetailComponent implements OnInit {
 
   }
 
-  constructor(private companyService: CompanyService, private cvService: CvService, private router: Router) { }
+  constructor(private companyService: CompanyService, private cvService: CvService, private router: Router, private studentService: StudentService) { }
 
   ngOnInit() {
+
+    if(!(this.studentService.getStudentPayload().statut === 'company')) {
+      this.router.navigate(['/student']);
+    }
 
     this.companyService.getCompanyProfile().subscribe(
       res => {

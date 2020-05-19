@@ -36,35 +36,55 @@ export class ChatComponent implements OnInit {
     this.socket.on('newUser', () => {
 
       if(this.userInfos.statut == "student") {
+
         this.studentService.getStudentProfile().subscribe(
           res => {
             this.user = res['student'];
           }
-        )
+        );
 
-        this.companyService.getCompanies().subscribe(
+        // this.companyService.getCompanies().subscribe(
+        //   res => {
+        //     this.companies = res['companies'];
+        //   }
+        // );
+
+        // RECUPERER LES COMPANIES EN FAVORIS
+
+        this.studentService.getAllFavorites().subscribe(
           res => {
-            this.companies = res['companies'];
+            this.companies = res['favorites'];
+            console.log(this.companies);
           }
-        )
+        );
+
 
       } else if(this.userInfos.statut == "company") {
+
         this.companyService.getCompany().subscribe(
           res => {
             this.user = res['company'];
           }
-        )
+        );
 
-        this.studentService.getStudents().subscribe(
+        // this.studentService.getStudents().subscribe(
+        //   res => {
+        //     this.students = res['students'];
+        //   }
+        // )
+
+        // RECUPERER LES STUDENTS EN FAVORIS
+        this.companyService.getAllFavorites().subscribe(
           res => {
-            this.students = res['students'];
+            this.students = res['favorites'];
           }
-        )
+        );
+
 
       } else {
         this.router.navigateByUrl('/login');
       }
-    })
+    });
 
     this.socket.on('emitChannel', (channel) => {
 
@@ -72,11 +92,11 @@ export class ChatComponent implements OnInit {
         document.getElementById(channel.previousChannel).classList.remove('inChannel');
       }
       document.getElementById(channel.newChannel).classList.add('inChannel');
-    })
+    });
 
     this.socket.on('newMessageAll', (content, sender) => {
       this.createMessage('newMessageAll', {message: content, sender: sender});
-    })
+    });
 
     this.socket.on('oldMessages', (messages) => {
       messages.forEach(message => {
@@ -86,7 +106,7 @@ export class ChatComponent implements OnInit {
           this.createMessage('oldMessages', {message: message.content, sender: message.sender_name});
         }
       });
-    })
+    });
 
     document.getElementById('chatForm').addEventListener('submit', (e) => {
 
@@ -103,7 +123,7 @@ export class ChatComponent implements OnInit {
         this.textContent = '';
       }
 
-    })
+    });
 
 
   }
@@ -157,6 +177,15 @@ export class ChatComponent implements OnInit {
         break;
 
     }
+  }
+
+
+  deleteChannel(elementId){
+    this.companyService.removeFavorite(elementId).subscribe(
+      res => {
+        window.location.reload();
+      }
+    )
   }
 
 }

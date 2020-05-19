@@ -50,6 +50,11 @@ export class SearchStudentCompanyComponent implements OnInit {
 
   ngOnInit() {
 
+    if (!(this.studentService.getStudentPayload().statut === 'company')) {
+      this.router.navigate(['/student']);
+    }
+
+
     this.hashtagService.getAllHashtag().subscribe(
       res => {
         const hashtagResponse = res['hashtag'];
@@ -127,7 +132,6 @@ export class SearchStudentCompanyComponent implements OnInit {
     this.studentService.searchProfile(listJson).subscribe(
       res => {
         this.studentList = res['cv'];
-        console.log(this.studentList);
       },
 
       err => {
@@ -143,7 +147,6 @@ export class SearchStudentCompanyComponent implements OnInit {
     this.cvService.getSelectedCvStudent(id).subscribe(
       res => {
         this.cvId = res["cv"];
-        console.log(this.cvId);
         this.router.navigate(['/cvstudent/' + this.cvId._id]);
       },
       err => {

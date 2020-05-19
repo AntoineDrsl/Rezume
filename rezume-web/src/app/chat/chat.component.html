@@ -11,7 +11,13 @@
     <div *ngIf="students" id="studentsList">
       <h1>Étudiants</h1>
       <ul class="list">
-          <li *ngFor="let student of students" id="{{student._id}}" class="elementList" (click)="joinRoom(student._id)">{{ student.firstName }} {{ student.lastName }}</li>
+          <li *ngFor="let student of students" id="{{student._id}}" class="elementList" (click)="joinRoom(student._id)">
+            {{ student.firstName }} {{ student.lastName }}
+
+              <button mat-raised-button (click)="deleteChannel(student._id)">Supprimer</button>
+
+          </li>
+
       </ul>
     </div>
   </div>
