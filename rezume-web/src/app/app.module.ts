@@ -116,6 +116,8 @@ export function playerFactory() {
     MatStepperModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatMenuModule,
+    MatBadgeModule,
   ],
   providers: [
     {
@@ -128,7 +130,7 @@ export function playerFactory() {
     MatDatepickerModule,
     MatTooltipModule,
     MatMenuModule,
-    MatBadgeModule,
+
 
   ],
   bootstrap: [AppComponent],

@@ -24,7 +24,7 @@ export class SignUpStudentComponent implements OnInit {
   showErrLname: boolean = false;
   showErrBday: boolean = false;
 
-  @ViewChild("stepper") stepper: MatStepper;
+  @ViewChild('stepper', {static: false}) stepper: MatStepper;
 
   constructor(
     private studentService: StudentService,
@@ -55,8 +55,8 @@ export class SignUpStudentComponent implements OnInit {
     if (
       this.studentService.selectedStudent.firstName == "" ||
       this.studentService.selectedStudent.lastName == ""
-      //||
-      //this.studentService.selectedStudent.birthDate == ""
+      ||
+      this.studentService.selectedStudent.birthDate == ""
     ) {
       if (this.studentService.selectedStudent.firstName == "") {
         this.showErrFname = true;

@@ -43,6 +43,7 @@ export class SignUpCompanyComponent implements OnInit {
   resetForm(form: NgForm) {
     this.companyService.selectedCompany = {
       company_name: '',
+      siret: '',
       email: '',
       description: '',
       password: '',

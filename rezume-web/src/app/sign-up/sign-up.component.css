@@ -11,11 +11,11 @@
     padding: 70px;
 }
 
-#signUpContainer{
+/* #signUpContainer{
   height: 92vh;
   background: url(../../assets/images/fond.jpg);
   background-size: cover;
-}
+} */
 
 .formContent {
     -webkit-border-radius: 10px 10px 10px 10px;
