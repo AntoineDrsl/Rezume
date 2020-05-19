@@ -102,8 +102,6 @@ export function playerFactory() {
     HttpClientModule,
     LottieModule.forRoot({ player: playerFactory, useCache: true }),
     BrowserAnimationsModule,
-
-
     MatAutocompleteModule,
     MatButtonModule,
     MatInputModule,
@@ -115,7 +113,10 @@ export function playerFactory() {
     MatMomentDateModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSelectModule,
+    MatStepperModule,
+    MatMenuModule
   ],
   exports: [
     MatDatepickerModule,

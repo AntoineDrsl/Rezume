@@ -83,7 +83,6 @@ export class SignUpStudentComponent implements OnInit {
 
     this.studentService.postStudent(form.value).subscribe(
       (res) => {
-        console.log(form.value);
         this.showSuccessMessage = true;
         setTimeout(() => (this.showSuccessMessage = false), 4000);
         this.resetForm(form);
