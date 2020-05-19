@@ -17,6 +17,7 @@ export class SignInComponent implements OnInit {
   valid = false;
   getToken;
 
+  selected= "test1";
   model = {
     statut : 'student',
     email : '',

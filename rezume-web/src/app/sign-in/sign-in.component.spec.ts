@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import {MatSelectModule} from '@angular/material/select';
+
 import { SignInComponent } from './sign-in.component';
 
 describe('SignInComponent', () => {

@@ -1,26 +1,26 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 var companySchema = new mongoose.Schema({
-
     company_name: {
         type: String,
-        required: 'Company name cannot be empty'
+        required: "Le nom de l'entreprise ne peut être vide",
     },
     email: {
         type: String,
-        required: 'Email cannot be empty',
-        unique: true
+        required: "L'adresse email ne peut être vide",
+        unique: true,
     },
     description: {
         type: String,
-        required: 'Description cannot be empty'
+        required: "La description ne peut être vide",
     },
     siret: {
         type: String,
-        // required: 'Siret field cannot be empty'
+        required: "Le siret ne peut être vide",
     },
+
     favorites: [
         { 
             type: String
@@ -28,27 +28,22 @@ var companySchema = new mongoose.Schema({
     ],
     password: {
         type: String,
-        required: 'Password cannot be empty',
-        minlength: [8, 'Password must be atleast 8 character long']
+        required: "Le mot de passe ne peut être vide",
+        minlength: [8, "Le mot de passe doit contenir au moins 8 caractères"],
     },
-    saltSecret: String
-
-
-},
-{
-    strict: true
-}
-);
+    saltSecret: String,
+}, {
+    strict: true,
+});
 
 // Custom validation for email
-companySchema.path('email').validate((value) => {
+companySchema.path("email").validate((value) => {
     emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return emailRegex.test(value);
-}, 'Invalid e-mail.');
-
+}, "Invalid e-mail.");
 
 // Events
-companySchema.pre('save', function (next) {
+companySchema.pre("save", function(next) {
     bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(this.password, salt, (err, hash) => {
             this.password = hash;
@@ -57,7 +52,6 @@ companySchema.pre('save', function (next) {
         });
     });
 });
-
 
 companySchema.pre('findOneAndUpdate', function (next) {
     if(this.getUpdate().$set) {
@@ -73,18 +67,17 @@ companySchema.pre('findOneAndUpdate', function (next) {
     }
 });
 
-
 // Methods
-companySchema.methods.verifyPassword = function (password) {
+companySchema.methods.verifyPassword = function(password) {
     return bcrypt.compareSync(password, this.password);
 }; //Return true or false
 
-companySchema.methods.generateJwt = function (req) {
+companySchema.methods.generateJwt = function(req) {
     return jwt.sign({ _id: this._id, statut: req.body.statut },
-        process.env.JWT_SECRET,
-    {
-        expiresIn: process.env.JWT_EXP
-    }); //On utilise le JWT_SECRET et JWT_EXP définis dans config.json
-}
+        process.env.JWT_SECRET, {
+            expiresIn: process.env.JWT_EXP,
+        }
+    ); //On utilise le JWT_SECRET et JWT_EXP définis dans config.json
+};
 
-mongoose.model('Company', companySchema);
+mongoose.model("Company", companySchema);
