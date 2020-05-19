@@ -43,15 +43,6 @@ export class StudentProfileComponent implements OnInit {
       }
     );
 
-    this.studentService.getAllFavorites().subscribe(
-      res => {
-        this.favorites = res['favorites'];
-      },
-      err => {
-        this.serverErrorMessage = "Aucun favoris n'a été trouvé";
-      }
-    );
-
     this.cvService.getCV().subscribe(
       res => {
         this.cvDetails = res['cv'];

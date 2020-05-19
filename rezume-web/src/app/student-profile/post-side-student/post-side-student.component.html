@@ -1,10 +1,10 @@
 
-<div class="postSide">
+<div class="postSide" *ngIf="student && posts">
 
     <p class="titlePost mt-3">
       Les derniers posts:
     </p>
-    <div class="postSection">
+    <div class="postSection" *ngIf="posts.length > 0">
 
 
       <div class="post" *ngFor="let post of posts; index as i">
@@ -23,12 +23,19 @@
           <p class="postText">
             {{post.content}}
           </p>
+          <p>
+            {{post.companyDetails[0].company_name}}
+          </p>
           <p class="text-muted datePost">
             {{post.createdAt}}
           </p>
         </div>
       </div>
 
+    </div>
+
+    <div class="postSectionEmpty" *ngIf="posts.length === 0">
+      Aucun post à afficher.
     </div>
 
   </div>

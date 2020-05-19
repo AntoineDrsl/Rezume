@@ -14,6 +14,9 @@
               {{company}}
             </p>
           </div>
+          <div *ngIf="studentDetails.favorites.length === 0">
+            Vous ne suivez aucune entreprise !
+          </div>
         </div>
       </div>
 
@@ -30,7 +33,7 @@
 
           <div class="topInfo">
             <div class="imgTop">
-              <img src="assets/images/maxresdefault.jpg" alt="dsqd">
+              <img src="assets/images/avatar.jpg" alt="dsqd">
             </div>
             <div class="infos">
 
@@ -56,9 +59,16 @@
             <div class="emailInfo">
               {{studentDetails.email}}
             </div>
-
-            <div class="passwordInfo">
-              Password
+            <div class="hashtagsInfo">
+              <mat-chip-list *ngIf="studentDetails.hashtag?.length > 0">
+                <mat-chip selected *ngFor="let competence of studentDetails.hashtag">
+                  {{competence}}
+                </mat-chip>
+              </mat-chip-list>
+              <p *ngIf="studentDetails.hashtag.length === 0">
+                Vous avez spécifié aucune compétence. <br>
+                Attention les entreprises ne peuvent pas vous trouver !
+              </p>
             </div>
           </div>
 

@@ -8,6 +8,7 @@ const ObjectId = mongoose.Types.ObjectId;
 
 mongoose.set('useFindAndModify', false);
 
+
 module.exports.getIdAndName = (req, res, next) => {
     
     Student.findOne({ _id: req._id },
@@ -73,21 +74,34 @@ module.exports.getSelectedCV = (req, res, next) => {
 
 
 module.exports.createCV = (req, res, next) => {
-    var cv = new CV();
-    cv._student = req._id;
-    cv.age = req.body.age;
-    cv.research = req.body.research;
-    cv.experiences = req.body.experiences;
-    cv.degrees = req.body.degrees;
-    cv.hashtag = req.body.hashtag;
-    cv.img_path = `server/uploads/cv/Photo_${req._id}`;
-    cv.save((err, doc) => {
-        if(!err){
-            res.send(doc);
-        } else {
-            return next(err);
+
+    CV.findOne({_student: req._id},
+        (err, cv) => {
+            if(!cv){
+                var cv = new CV();
+                cv._student = req._id;
+                cv.age = req.body.age;
+                cv.description = req.body.description;
+                cv.research = req.body.research;
+                cv.experiences = req.body.experiences;
+                cv.degrees = req.body.degrees;
+                cv.img_path = `server/uploads/cv/Photo_${req._id}`;
+                cv.save((err, doc) => {
+                    if(!err){
+                        // res.send(doc._id);
+                        res.status(200).json({ status: true, doc});
+                    } else {
+                        return next(err);
+                    }
+                });
+            }
+            else{
+                return res.status(409).json({status: false, message: 'Cv already on DB', cv});
+            }
         }
-    })
+    );
+
+    
 }
 
 module.exports.uploadImage = (req, res, next) => {
@@ -178,4 +192,5 @@ module.exports.getCvStudentId = (req, res, next) => {
         }
     });
 }
+
 
