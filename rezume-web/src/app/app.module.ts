@@ -17,7 +17,8 @@ import {
   MatChipsModule,
   MatIconModule,
   MatFormFieldModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatSnackBarModule
 } from '@angular/material';
 
 // Lottie
@@ -112,7 +113,8 @@ export function playerFactory() {
     MatFormFieldModule,
     MatMomentDateModule,
     MatNativeDateModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatSnackBarModule
   ],
   exports: [
     MatDatepickerModule,

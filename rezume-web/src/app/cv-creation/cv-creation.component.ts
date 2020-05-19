@@ -12,6 +12,7 @@ import {MatDatepicker} from '@angular/material/datepicker';
 
 import * as _moment from 'moment';
 import {default as _rollupMoment, Moment} from 'moment';
+import { MatSnackBar } from '@angular/material';
 
 const moment = _rollupMoment || _moment;
 
@@ -50,14 +51,24 @@ export class CvCreationComponent implements OnInit {
   isCvCreated;
   valid = false;
   getCvCreated;
+  errorMessage;
 
   cvForm: FormGroup;
 
   get research() {
     return this.cvForm.get('research');
   }
+  get description() {
+    return this.cvForm.get('description');
+  }
+  get experiences() {
+    return <FormArray>this.cvForm.get('experiences');
+  }
+  get degrees() {
+    return <FormArray>this.cvForm.get('degrees');
+  }
 
-  constructor(private cvService: CvService, private studentService: StudentService, private router: Router) { }
+  constructor(private cvService: CvService, private studentService: StudentService, private router: Router, private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
 
@@ -81,62 +92,54 @@ export class CvCreationComponent implements OnInit {
     )
 
     this.cvForm = new FormGroup({
-      description: new FormControl(''),
+      description: new FormControl('', Validators.required),
       research: new FormControl('', Validators.required),
       experiences: new FormArray([
         new FormGroup({
-          experienceName: new FormControl(''),
-          experienceCompany: new FormControl(''),
-          experienceStart: new FormControl(moment()),
-          experienceEnd: new FormControl(moment()),
-          experienceDescription: new FormControl('')
+          experienceName: new FormControl('', Validators.required),
+          experienceCompany: new FormControl('', Validators.required),
+          experienceStart: new FormControl(moment(), Validators.required),
+          experienceEnd: new FormControl(moment(), Validators.required),
+          experienceDescription: new FormControl('', Validators.required)
         })
       ]),
       degrees: new FormArray([
         new FormGroup({
-          degreeName: new FormControl(''),
-          degreeDate: new FormControl(moment()),
-          degreeSchool: new FormControl('')
+          degreeName: new FormControl('', Validators.required),
+          degreeDate: new FormControl(moment(), Validators.required),
+          degreeSchool: new FormControl('', Validators.required)
         })
       ]),
-      image: new FormControl('')
+      image: new FormControl('', Validators.required)
     });
-  }
-
-  getErrorMessage() {
   }
 
   addExperience() {
     if((<FormArray>this.cvForm.get('experiences')).length < 10) {
       (<FormArray>this.cvForm.get('experiences')).push(new FormGroup({
-        experienceName: new FormControl(''),
-        experienceCompany: new FormControl(''),
-        experienceStart: new FormControl(moment()),
-        experienceEnd: new FormControl(moment()),
-        experienceDescription: new FormControl('')
+        experienceName: new FormControl('', Validators.required),
+        experienceCompany: new FormControl('', Validators.required),
+        experienceStart: new FormControl(moment(), Validators.required),
+        experienceEnd: new FormControl(moment(), Validators.required),
+        experienceDescription: new FormControl('', Validators.required)
       }));
     }
   }
   addDegree() {
     if((<FormArray>this.cvForm.get('degrees')).length < 10) {
       (<FormArray>this.cvForm.get('degrees')).push(new FormGroup({
-        degreeName: new FormControl(''),
-        degreeDate: new FormControl(moment()),
-        degreeSchool: new FormControl('')
+        degreeName: new FormControl('', Validators.required),
+        degreeDate: new FormControl(moment(), Validators.required),
+        degreeSchool: new FormControl('', Validators.required)
       }));
     }
   }
 
   deleteExperience(index: number) {
-    if((<FormArray>this.cvForm.get('experiences')).length > 1) {
-      (<FormArray>this.cvForm.get('experiences')).removeAt(index);
-    }
+    (<FormArray>this.cvForm.get('experiences')).removeAt(index);
   }
   deleteDegree(index: number) {
-    console.log(<FormArray>this.cvForm.get('degrees'))
-    if((<FormArray>this.cvForm.get('degrees')).length > 1) {
-      (<FormArray>this.cvForm.get('degrees')).removeAt(index);
-    }
+    (<FormArray>this.cvForm.get('degrees')).removeAt(index);
   }
 
   //Degree Date
@@ -181,6 +184,12 @@ export class CvCreationComponent implements OnInit {
     datepicker.close();
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000
+    });
+  }
+
   onFileChange(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
@@ -190,35 +199,41 @@ export class CvCreationComponent implements OnInit {
 
   onSubmit(form) {
 
-    console.log(form.value)
+    if(form.valid) {
 
-    // Upload de l'image
-    const formData = new FormData();
-    formData.append('file', this.images);
+      // Upload de l'image
+      const formData = new FormData();
+      formData.append('file', this.images);
 
-    this.cvService.postFile(formData).subscribe(
-      res => {
-        this.showSuccessMessage = true;
-      },
-      err => {
-        this.serverErrorMessage = "Une erreur est survenue";
-      }
-    );
+      this.cvService.postFile(formData).subscribe(
+        res => {
+          this.showSuccessMessage = true;
+        },
+        err => {
+          this.serverErrorMessage = "Une erreur est survenue";
+        }
+      );
 
-    // Stockage des infos dans la bdd
+      // Stockage des infos dans la bdd
 
-    this.cvService.postCV(form.value).subscribe(
-      res => {
-        this.showSuccessMessage = true;
-        this.getCvCreated = res["doc"];
-        this.router.navigate(['/cvview']);
+      this.cvService.postCV(form.value).subscribe(
+        res => {
+          this.showSuccessMessage = true;
+          this.getCvCreated = res["doc"];
+          this.router.navigate(['/cvview']);
 
-        form.reset();
-      },
-      err => {
-        this.serverErrorMessage = "Une erreur est survenue";
-      }
-    )
+          form.reset();
+        },
+        err => {
+          this.serverErrorMessage = "Une erreur est survenue";
+        }
+      )
+
+    } else {
+      this.errorMessage = "Veuillez remplir tous les champs";
+      this.openSnackBar(this.errorMessage, 'Fermer');
+    }
+
   }
 
 }
