@@ -30,11 +30,8 @@ export class NavbarComponent implements OnInit {
         res => {
           this.isUnreadMessage = res['isUnread'];
         }
-      )
+      );
     }
-
-
-
   }
 
   reloadPage() {
