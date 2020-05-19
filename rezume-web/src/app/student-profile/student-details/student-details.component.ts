@@ -67,7 +67,6 @@ export class StudentDetailsComponent implements OnInit {
     const firstName = this.studentDetails.firstName;
     const lastName = this.studentDetails.lastName;
     const email = this.studentDetails.email;
-    console.log(firstName)
 
     this.studentUpdateForm = new FormGroup({
       firstName: new FormControl(firstName, Validators.required),
