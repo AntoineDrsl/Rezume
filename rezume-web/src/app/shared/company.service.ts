@@ -1,66 +1,73 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
-import { environment } from '../../environments/environment';
-import { Company } from './company.model';
+import { environment } from "../../environments/environment";
+import { Company } from "./company.model";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class CompanyService {
-
   selectedCompany: Company = {
-    company_name: '',
-    email: '',
-    description: '',
-    password: '',
-    confirmPassword: ''
+    company_name: "",
+    siret: "",
+    email: "",
+    description: "",
+    password: "",
+    confirmPassword: "",
   };
 
-
   //Attribut à ajouter pour les fonctions ne demandant pas de JWT
-  noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' }) };
+  noAuthHeader = { headers: new HttpHeaders({ NoAuth: "True" }) };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   postCompany(company: Company) {
-    return this.http.post(environment.apiBaseUrl + '/registercompany', company, this.noAuthHeader);
+    return this.http.post(
+      environment.apiBaseUrl + "/registercompany",
+      company,
+      this.noAuthHeader
+    );
   }
 
   //Fonction générant un token en fonction de Credentials
   login(authCredentials) {
-    return this.http.post(environment.apiBaseUrl + '/authenticate', authCredentials, this.noAuthHeader);
+    return this.http.post(
+      environment.apiBaseUrl + "/authenticate",
+      authCredentials,
+      this.noAuthHeader
+    );
   }
 
-   //Fonction récupérant le profil en fonction du token
-   getCompanyProfile() {
-    return this.http.get(environment.apiBaseUrl + '/companyprofile');
+  //Fonction récupérant le profil en fonction du token
+  getCompanyProfile() {
+    return this.http.get(environment.apiBaseUrl + "/companyprofile");
   }
 
-  getCompanyProfileId(id){
-    return this.http.get(environment.apiBaseUrl + '/companyprofile/' + id);
+  getCompanyProfileId(id) {
+    return this.http.get(environment.apiBaseUrl + "/companyprofile/" + id);
   }
 
   // Fonction stockant le token généré par le login
   setToken(token: string) {
-    localStorage.setItem('token', token);
+    localStorage.setItem("token", token);
   }
 
   //Fonction pour récupérer le token
   getToken() {
-    return localStorage.getItem('token');
+    return localStorage.getItem("token");
   }
 
   //Fonction pour supprimer le token
   deleteToken() {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
   }
 
   //Fonction pour récupérer le payload (les infos de l'entreprise) à partir du token
   getCompanyPayload() {
     var token = this.getToken();
-    if(token) {
-      var companyPayload = atob(token.split('.')[1]);
+    if (token) {
+      var companyPayload = atob(token.split(".")[1]);
       return JSON.parse(companyPayload);
     } else {
       return null;
@@ -77,21 +84,19 @@ export class CompanyService {
     }
   }
 
-
-  addFavorite(id){
-    return this.http.get(environment.apiBaseUrl + '/addfavorite/' + id);
+  addFavorite(id) {
+    return this.http.get(environment.apiBaseUrl + "/addfavorite/" + id);
   }
 
-  removeFavorite(id){
-    return this.http.get(environment.apiBaseUrl + '/removefavorite/' + id);
+  removeFavorite(id) {
+    return this.http.get(environment.apiBaseUrl + "/removefavorite/" + id);
   }
 
-  getAllFavorites(){
-    return this.http.get(environment.apiBaseUrl + '/getfavoritesstudents');
+  getAllFavorites() {
+    return this.http.get(environment.apiBaseUrl + "/getfavoritesstudents");
   }
 
-
-  updateCompany(form){
-    return this.http.post(environment.apiBaseUrl + '/updatecompany', form);
+  updateCompany(form) {
+    return this.http.post(environment.apiBaseUrl + "/updatecompany", form);
   }
 }

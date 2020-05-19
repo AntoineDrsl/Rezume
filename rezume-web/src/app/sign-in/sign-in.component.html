@@ -2,12 +2,13 @@
     <div class="formContent">
 
 
+
         <div>
             <img src="/assets/images/LogoRezume.svg" alt="icon" id="icon">
         </div>
         <form #signInForm="ngForm" (ngSubmit)="signInForm.valid && onSubmit(signInForm)">
             <div class="formfield-select">
-                <label>Vous êtes: </label>
+                <label>Vous êtes:</label>
                 <!-- <div class="formfield-select--container">
                     <select class="custom-select" name="statut" #statut="ngModel" [(ngModel)]="model.statut" required [ngClass]="{'invalid-textbox' :signInForm.submitted && !statut.valid }">
             <option value="student">un étudiant</option>
@@ -38,12 +39,18 @@
             <input type="submit" value="Sign In">
         </form>
 
-        <p>Pas encore de compte ? <a routerLink="/signup">Inscris-toi !</a></p>
+
+        <p>
+            Pas encore de compte ?
+            <a routerLink="/signup">Inscris-toi !</a>
+        </p>
+
 
         <!-- Error message -->
         <div class="alert" *ngIf="serverErrorMessages">
             {{serverErrorMessages}}
         </div>
+
 
 
     </div>
