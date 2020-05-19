@@ -9,7 +9,7 @@
   </button>
 
   <div class="collapse navbar-collapse" id="burgerNavbar">
-    <ul class="navbar-nav ml-auto" >
+    <ul class="navbar-nav ml-auto" *ngIf="this.studentService.getStudentPayload() !== null ">
       <li class="nav-item">
         <button class="btn-link" *ngIf="this.visitorInformation.statut === 'company'" routerLink="/company"><img src="assets/icons/companyProfile.svg" alt="companyProfile" width="28px" height="28px"></button>
         <button class="btn-link" *ngIf="this.visitorInformation.statut === 'student'" routerLink="/cvview" alt="CVstudent">CV</button>
