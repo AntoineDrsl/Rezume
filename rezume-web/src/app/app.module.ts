@@ -114,6 +114,7 @@ export function playerFactory() {
     MatStepperModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatMenuModule
   ],
   providers: [
     {
