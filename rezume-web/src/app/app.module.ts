@@ -18,6 +18,7 @@ import {
   MatFormFieldModule,
   MatTooltipModule,
   MatMenuModule,
+  MatBadgeModule
 
 } from '@angular/material';
 
@@ -113,6 +114,7 @@ export function playerFactory() {
     MatFormFieldModule,
     MatTooltipModule,
     MatMenuModule,
+    MatBadgeModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

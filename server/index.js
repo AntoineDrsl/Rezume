@@ -14,6 +14,7 @@ const rtsCompany = require('./routes/company.router');
 const rtsCv = require('./routes/cv.router');
 const rtsPost = require('./routes/post.router');
 const rtsHashtag = require('./routes/hashtag.router');
+const rtsMessage = require('./routes/message.router');
 
 var app = express();
 var server = require('http').createServer(app);
@@ -23,7 +24,7 @@ app.use(bodyParser.json());
 app.use(express.static('uploads'));
 app.use(cors());
 app.use(passport.initialize());
-app.use('/api', rtsRegistration, rtsStudent, rtsCompany, rtsCv, rtsPost, rtsHashtag); // define URL '/api' to call the router
+app.use('/api', rtsRegistration, rtsStudent, rtsCompany, rtsCv, rtsPost, rtsHashtag, rtsMessage); // define URL '/api' to call the router
 
 // error handler
 app.use((err, req, res, next) => {
@@ -61,11 +62,22 @@ io.on('connection', (socket) => {
                 _joinRoom(newRoom, infos);
             } else {
                 _joinRoom(room, infos);
-                Message.find({_id_room: socket.channel}, (err, messages) => {
-                    if(!messages) {
+                Message.updateMany({_id_room: socket.channel}, {$set: {status: 1}},
+                    (err, result) => {
+                    if(!result) {
                         return false;
                     } else {
-                        socket.emit('oldMessages', messages);
+
+                        Message.find({_id_room: socket.channel},
+                            (err, messages) => {
+
+                                if(!messages){
+                                    return false;
+
+                                } else {
+                                    socket.emit('oldMessages', messages);
+                                }
+                        });
                     }
                 })
             }
@@ -86,6 +98,7 @@ io.on('connection', (socket) => {
                                 message.receiver = room._id_users.company;
                                 message.sender_name = student.firstName + ' ' + student.lastName.toUpperCase();
                                 message.content = content;
+                                message.status = 0;
                                 message.save();
 
                                 socket.broadcast.to(socket.channel).emit('newMessageAll', content, message.sender_name);
@@ -94,9 +107,11 @@ io.on('connection', (socket) => {
                     } else if (status == "company") {
                         Company.findOne({_id: room._id_users.company}, (err, company) => {
                             if(company) {   
+
                                 message.receiver = room._id_users.student;
                                 message.sender_name = company.company_name;
                                 message.content = content;
+                                message.status = 0;
                                 message.save();
 
                                 socket.broadcast.to(socket.channel).emit('newMessageAll', content, message.sender_name);

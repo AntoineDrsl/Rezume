@@ -2,7 +2,7 @@
 
 
 
-<nav class="navbar navbar-expand-lg fixed-top">
+<nav class="navbar navbar-expand-lg fixed-top" *ngIf="this.visitorInformation">
   <a routerLink="/login" class="navbar-brand"><img src="assets/images/LogoRezumeDark(NAV).svg" alt="icone Rezume" width="110px"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#burgerNavbar" aria-controls="burgerNavbar" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -19,7 +19,11 @@
           CV
         </button>
 
-        <button class="btn-link" routerLink="/chat" matTooltip="Voir mes messages">
+        <button class="btn-link" routerLink="/chat" matTooltip="Voir mes messages" *ngIf="!isUnreadMessage">
+          <img src="assets/icons/messagerie.svg" alt="messagerie" width="28px" height="28px">
+        </button>
+
+        <button class="btn-link" routerLink="/chat" matTooltip="Voir mes messages" *ngIf="isUnreadMessage" matBadge="!" matBadgeColor="warn">
           <img src="assets/icons/messagerie.svg" alt="messagerie" width="28px" height="28px">
         </button>
 
