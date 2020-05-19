@@ -13,13 +13,12 @@ export class NavbarComponent implements OnInit {
   visitorInformation;
 
   constructor(private studentService: StudentService) { 
-    setInterval(()=>this.reloadPage(), 1500)
+    setInterval(()=>this.reloadPage(), 100)
   }
 
   ngOnInit() {
 
     this.visitorInformation = this.studentService.getStudentPayload();
-    console.log(this.studentService.getStudentPayload());
 
   }
 
