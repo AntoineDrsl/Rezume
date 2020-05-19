@@ -52,15 +52,7 @@ export class CvCreationComponent implements OnInit {
   getCvCreated;
 
   cvForm: FormGroup;
-  degreesGroup: FormGroup = new FormGroup({
-    degreeName: new FormControl(''),
-    degreeDate: new FormControl(moment()),
-    degreeSchool: new FormControl('')
-  })
 
-  get age() {
-    return this.cvForm.get('age');
-  }
   get research() {
     return this.cvForm.get('research');
   }
@@ -96,18 +88,17 @@ export class CvCreationComponent implements OnInit {
         new FormControl('')
       ]),
       degrees: new FormArray([
-        this.degreesGroup
+        new FormGroup({
+          degreeName: new FormControl(''),
+          degreeDate: new FormControl(moment()),
+          degreeSchool: new FormControl('')
+        })
       ]),
       image: new FormControl('')
     });
   }
 
-
-
   getErrorMessage() {
-    if (this.age.hasError('required')) {
-      return 'Veuillez entrer un âge';
-    }
   }
 
   addExperience() {
@@ -117,7 +108,11 @@ export class CvCreationComponent implements OnInit {
   }
   addDegree() {
     if((<FormArray>this.cvForm.get('degrees')).length < 10) {
-      (<FormArray>this.cvForm.get('degrees')).push(this.degreesGroup);
+      (<FormArray>this.cvForm.get('degrees')).push(new FormGroup({
+        degreeName: new FormControl(''),
+        degreeDate: new FormControl(moment()),
+        degreeSchool: new FormControl('')
+      }));
     }
   }
 
@@ -127,6 +122,7 @@ export class CvCreationComponent implements OnInit {
     }
   }
   deleteDegree(index: number) {
+    console.log(<FormArray>this.cvForm.get('degrees'))
     if((<FormArray>this.cvForm.get('degrees')).length > 1) {
       (<FormArray>this.cvForm.get('degrees')).removeAt(index);
     }
