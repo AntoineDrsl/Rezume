@@ -14,9 +14,11 @@ export class SelectedCvTwoComponent implements OnInit {
 
   cvDetails;
 
+  idUser;
+
   companyDetails;
 
-  buttonAdd: boolean;
+  buttonAdd: boolean = true;
 
   constructor(private route: ActivatedRoute,
               private cvService: CvService,
@@ -37,6 +39,7 @@ export class SelectedCvTwoComponent implements OnInit {
     this.cvService.getSelectedCV(id).subscribe(
       res => {
         this.cvDetails = res["cv"];
+        this.idUser = this.cvDetails[0].student[0]._id;
       },
       err => {
         console.log('Impossible de recup cv details');
@@ -52,7 +55,6 @@ export class SelectedCvTwoComponent implements OnInit {
 
 
   checkIfFavorite() {
-    const id = this.route.snapshot.paramMap.get('id');
 
     this.companyService.getCompanyProfile().subscribe(
       res => {
@@ -61,17 +63,16 @@ export class SelectedCvTwoComponent implements OnInit {
         if (this.companyDetails[0].favorites.length > 0) {
 
           this.companyDetails[0].favorites.forEach(element => {
-            console.log(element)
-            if (element === id) {
+            if (element === this.idUser) {
+              console.log('je passe par la')
               this.buttonAdd = false;
             }
           });
-        } else {
-          this.buttonAdd = true;
         }
 
       }
-    )
+    );
+
   }
 
 

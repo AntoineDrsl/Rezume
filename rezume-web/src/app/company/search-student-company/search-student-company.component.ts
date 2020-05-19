@@ -60,7 +60,6 @@ export class SearchStudentCompanyComponent implements OnInit {
         const hashtagResponse = res['hashtag'];
 
         hashtagResponse.forEach(hashtag => {
-          console.log('nom: ' + hashtag.name);
           this.allCompetences.push(hashtag.name);
         });
       },
