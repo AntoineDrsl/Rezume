@@ -15,20 +15,16 @@
       <div class="form-group fileInput">
         <input id="file" type="file" formControlName="image" class="input-file" (change)="onFileChange($event)">
         <label for="file" class="label-file ml-4"><img src="assets/icons/photo.svg" alt="icone" width="30px"></label><br>
+        <label for="file" class="label-file ml-4" *ngIf="images">{{ images.name }} a été ajouté.</label><br>
       </div>
       <input type="submit" value="Nouveau post">
 
     </form>
   </div>
 
-  <div class="alert alert-success" role="alert" *ngIf="showMessageSuccess">
-    Posté avec succès
+  <div class="publishSuccess" *ngIf="showMessageSuccess && showImgMessageSuccess">
+    Publication publié avec succès !
   </div>
-  <div class="alert alert-success" role="alert" *ngIf="showImgMessageSuccess">
-    img
-  </div>
-
-
 
   <!--POST SIDE-->
   <p class="titlePost">

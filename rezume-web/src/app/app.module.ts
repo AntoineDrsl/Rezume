@@ -17,6 +17,8 @@ import {
   MatIconModule,
   MatFormFieldModule,
   MatTooltipModule
+  MatMenuModule,
+
 } from '@angular/material';
 
 // Lottie
@@ -54,6 +56,7 @@ import { PostSideStudentComponent } from './student-profile/post-side-student/po
 import { SearchStudentCompanyComponent } from './company/search-student-company/search-student-company.component';
 import { SelectedCvTwoComponent } from './company/selected-cv-two/selected-cv-two.component';
 import { StudentDetailsComponent } from './student-profile/student-details/student-details.component';
+import { ChatComponent } from './chat/chat.component';
 
 
 
@@ -86,7 +89,8 @@ export function playerFactory() {
     PostSideStudentComponent,
     SearchStudentCompanyComponent,
     SelectedCvTwoComponent,
-    StudentDetailsComponent
+    StudentDetailsComponent,
+    ChatComponent
 
   ],
   imports: [
@@ -108,6 +112,7 @@ export function playerFactory() {
     MatIconModule,
     MatFormFieldModule,
     MatTooltipModule
+    MatMenuModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

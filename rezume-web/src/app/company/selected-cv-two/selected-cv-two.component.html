@@ -4,11 +4,21 @@
   <div class="row">
 
       <mat-card class="cv-details">
-        <div class="card-head">
+        <div class="card-head d-flex justify-content-between">
           <mat-card-subtitle>
-            <a class="mx-5" (click)="backToPage()">Revenir à la recherche</a>
+            <a class="w-20" (click)="backToPage()">Revenir</a>
           </mat-card-subtitle>
+
             <img src="assets/images/IconeRezume.png" alt="Photo de profil" class="img-top">
+
+            <button mat-icon-button [matMenuTriggerFor]="favorites" class="ml-auto">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+
+            <mat-menu #favorites="matMenu">
+              <button mat-menu-item (click)="addToFavorites()" *ngIf="buttonAdd">Ajouter au favoris</button>
+              <button mat-menu-item (click)="removeFromFavorites()" *ngIf="!buttonAdd">Retirer des favoris</button>
+            </mat-menu>
         </div>
 
         <mat-card-content *ngIf="cvDetails">

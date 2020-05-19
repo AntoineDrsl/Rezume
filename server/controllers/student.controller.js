@@ -27,6 +27,16 @@ module.exports.register = (req, res, next) => {
     });
 };
 
+module.exports.getStudents = (req, res) => {
+    Student.find((err, students) => {
+        if(!students) {
+            return res.status(409).json({status: false, message: 'Aucun étudiant trouvé'})
+        } else {
+            return res.status(200).json({ status: true, students })
+        }
+    })
+};
+
 module.exports.authenticate = (req, res, next) => {
     //On appelle la méthode d'authentification configurée dans passportConfig.js
     passport.authenticate('local', (err, user, info) => {
@@ -63,6 +73,21 @@ module.exports.getStudentProfile = (req, res, next) => {
         }
     );
 };
+
+
+module.exports.removeFavorite = (req, res, next) => {
+    Student.findOneAndUpdate({_id: req.params.id}, {$pull: {favorites: req.params.id}},
+        (err, user) => {
+            if(!user){
+                // Reponse status 409: Conflict (La requête ne peut être traitée en l’état actuel.)
+                return res.status(409).json({status: false, message: "L'utilisateur n'a pas été trouvé", erreur: err});
+            }
+            else{
+                return res.status(200).json({status: true, user});
+            }
+        }
+    );
+}
 
 module.exports.getAllFavorites = (req, res, next) => {
     Student.findOne({_id: req._id},

@@ -4,6 +4,7 @@ import { StudentService } from 'src/app/shared/student.service';
 import { AnimationItem } from 'lottie-web';
 import { AnimationOptions } from 'ngx-lottie';
 import { FormGroup, FormControl, Validators, MinLengthValidator} from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-student-details',
@@ -40,16 +41,18 @@ export class StudentDetailsComponent implements OnInit {
 
   }
 
-  constructor(private studentService: StudentService) { }
+  constructor(private studentService: StudentService, private router: Router) { }
 
   ngOnInit() {
 
     this.studentService.getStudentProfile().subscribe(
       res => {
         this.studentDetails = res['student'];
+
+        console.log(this.studentDetails);
       },
       err => {
-        console.log("nop");
+        this.router.navigate(['/company']);
       }
     )
 

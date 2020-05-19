@@ -36,17 +36,36 @@ module.exports.uploadImage = (req, res, next) => {
 
 
 module.exports.getAllPost = (req, res, next) => {
-    Post.find(
-        {},
-        (err, post) => {
-            if(!post) {
-                return res.status(500).json({status: false, message: 'Cannot load all posts'});
-            }
-            else{
-                return res.status(200).json({status: true, post});
-            }
+    // Post.find(
+    //     {},
+    //     (err, post) => {
+    //         if(!post) {
+    //             return res.status(500).json({status: false, message: 'Cannot load all posts'});
+    //         }
+    //         else{
+    //             return res.status(200).json({status: true, post});
+    //         }
+    //     }
+    // );
+
+    Post.aggregate([
+        {
+            $lookup: {
+                from: 'companies',
+                localField: '_company',
+                foreignField: '_id',
+                as: 'companyDetails'
+              }
         }
-    );
+    ],
+    (err, posts) => {
+        if(!posts) {
+            return res.status(409).json({ status: false, message: 'All posts cannot be loaded' });
+        }
+        else {
+            return res.status(200).json({status: true, posts});
+        }
+    });
 }
 
 

@@ -23,6 +23,10 @@ export class CompanyService {
 
   constructor(private http: HttpClient) { }
 
+  getCompanies() {
+    return this.http.get(environment.apiBaseUrl + '/getcompanies');
+  }
+
   postCompany(company: Company) {
     return this.http.post(environment.apiBaseUrl + '/registercompany', company, this.noAuthHeader);
   }
@@ -30,6 +34,11 @@ export class CompanyService {
   //Fonction générant un token en fonction de Credentials
   login(authCredentials) {
     return this.http.post(environment.apiBaseUrl + '/authenticate', authCredentials, this.noAuthHeader);
+  }
+
+  //Fonction récupérant le profil en fonction du token
+  getCompany() {
+    return this.http.get(environment.apiBaseUrl + '/getcompany');
   }
 
    //Fonction récupérant le profil en fonction du token

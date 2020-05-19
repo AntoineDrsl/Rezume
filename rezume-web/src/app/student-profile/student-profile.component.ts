@@ -39,16 +39,6 @@ export class StudentProfileComponent implements OnInit {
       },
       err => {
         this.serverErrorMessage = "L'étudiant n'a pas été trouvé";
-        setTimeout(() => this.router.navigate(['/companyprofile']), 1);
-      }
-    );
-
-    this.studentService.getAllFavorites().subscribe(
-      res => {
-        this.favorites = res['favorites'];
-      },
-      err => { 
-        this.serverErrorMessage = "Aucun favoris n'a été trouvé";
       }
     );
 
@@ -57,6 +47,16 @@ export class StudentProfileComponent implements OnInit {
         this.cvDetails = res['cv'];
       },
       err => {}
+    );
+
+    this.studentService.getAllFavorites().subscribe(
+      res => {
+        this.favorites = res['favorites'];
+        console.log(this.favorites);
+      },
+      err => {
+        this.serverErrorMessage = "Aucun favoris n'a été trouvé";
+      }
     );
   }
 

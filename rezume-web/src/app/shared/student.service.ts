@@ -24,6 +24,10 @@ export class StudentService {
 
   // HTTP methods
 
+  getStudents() {
+    return this.http.get(environment.apiBaseUrl + '/getstudents');
+  }
+
   postStudent(student: Student) {
     return this.http.post(environment.apiBaseUrl+'/register', student, this.noAuthHeader);
   }
@@ -81,11 +85,11 @@ export class StudentService {
 
 
   addFavorite(id) {
-    return this.http.get(environment.apiBaseUrl + '/addjobfavorite/' + id);
+    return this.http.get(environment.apiBaseUrl + '/addfavorite/' + id);
   }
 
   removeFavorite(id) {
-    return this.http.get(environment.apiBaseUrl + '/removejobfavorite/' + id);
+    return this.http.get(environment.apiBaseUrl + '/removefavorite/' + id);
   }
 
   getAllFavorites() {

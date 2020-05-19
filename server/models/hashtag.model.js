@@ -1,9 +1,7 @@
 const mongoose = require('mongoose');
 
 var hahstagSchema = new mongoose.Schema({
-    categorie: String,
-    name: String,
-    used_count: Number
+    name: String
 });
 
 mongoose.model('Hashtag', hahstagSchema);
