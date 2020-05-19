@@ -16,7 +16,9 @@ import {
   MatChipsModule,
   MatIconModule,
   MatFormFieldModule,
+  MatTooltipModule
   MatMenuModule,
+
 } from '@angular/material';
 
 // Lottie
@@ -109,6 +111,7 @@ export function playerFactory() {
     MatInputModule,
     MatIconModule,
     MatFormFieldModule,
+    MatTooltipModule
     MatMenuModule,
   ],
   providers: [{
