@@ -36,7 +36,7 @@
 
     <mat-card class="post-card" *ngFor="let post of company[0].posts; index as i">
       <mat-card-header>
-        <img mat-card-avatar src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="{{post.img_path}}" class="cardImage">
+        <img mat-card-avatar src="assets/images/avatar.png" alt="{{post.img_path}}" class="cardImage" *ngIf="post.img_path">
         <mat-card-title>{{post.title}}</mat-card-title>
         <mat-card-subtitle>{{post.createdAt}}</mat-card-subtitle>
         <button mat-fab color="accent" class="ml-auto" style="outline: none;">
