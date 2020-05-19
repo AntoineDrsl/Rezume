@@ -7,7 +7,8 @@ var messageSchema = new mongoose.Schema({
     sender: String,
     sender_name: String,
     receiver: String,
-    content: String
+    content: String,
+    status: Boolean
 
 });
 

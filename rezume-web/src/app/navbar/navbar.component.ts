@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from '../shared/student.service';
+import { MessageService } from '../shared/message.service';
 
 
 
@@ -12,13 +13,26 @@ export class NavbarComponent implements OnInit {
 
   visitorInformation;
 
-  constructor(private studentService: StudentService) { 
-    setInterval(()=>this.reloadPage(), 100)
+  isUnreadMessage: boolean;
+
+  constructor(private studentService: StudentService, private messageService: MessageService) {
+    setInterval(()=>this.reloadPage(), 1000);
   }
 
   ngOnInit() {
 
     this.visitorInformation = this.studentService.getStudentPayload();
+
+    if(this.studentService.getStudentPayload() !== null) {
+      this.messageService.getMessages().subscribe(
+        res => {
+          this.isUnreadMessage = res['isUnread'];
+          console.log(this.isUnreadMessage);
+        }
+      )
+    }
+
+
 
   }
 

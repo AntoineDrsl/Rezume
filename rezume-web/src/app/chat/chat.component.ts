@@ -84,7 +84,7 @@ export class ChatComponent implements OnInit {
       } else {
         this.router.navigateByUrl('/login');
       }
-    })
+    });
 
     this.socket.on('emitChannel', (channel) => {
 
@@ -92,11 +92,11 @@ export class ChatComponent implements OnInit {
         document.getElementById(channel.previousChannel).classList.remove('inChannel');
       }
       document.getElementById(channel.newChannel).classList.add('inChannel');
-    })
+    });
 
     this.socket.on('newMessageAll', (content, sender) => {
       this.createMessage('newMessageAll', {message: content, sender: sender});
-    })
+    });
 
     this.socket.on('oldMessages', (messages) => {
       messages.forEach(message => {
@@ -106,7 +106,7 @@ export class ChatComponent implements OnInit {
           this.createMessage('oldMessages', {message: message.content, sender: message.sender_name});
         }
       });
-    })
+    });
 
     document.getElementById('chatForm').addEventListener('submit', (e) => {
 
@@ -123,7 +123,7 @@ export class ChatComponent implements OnInit {
         this.textContent = '';
       }
 
-    })
+    });
 
 
   }
