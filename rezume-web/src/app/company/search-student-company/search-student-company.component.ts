@@ -127,7 +127,6 @@ export class SearchStudentCompanyComponent implements OnInit {
     this.studentService.searchProfile(listJson).subscribe(
       res => {
         this.studentList = res['cv'];
-        console.log(this.studentList);
       },
 
       err => {
@@ -143,7 +142,6 @@ export class SearchStudentCompanyComponent implements OnInit {
     this.cvService.getSelectedCvStudent(id).subscribe(
       res => {
         this.cvId = res["cv"];
-        console.log(this.cvId);
         this.router.navigate(['/cvstudent/' + this.cvId._id]);
       },
       err => {

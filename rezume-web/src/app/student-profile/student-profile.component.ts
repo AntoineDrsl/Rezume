@@ -36,12 +36,12 @@ export class StudentProfileComponent implements OnInit {
       res => {
         this.studentDetails = res['student'];
         this.valid = true;
+        console.log(this.studentDetails);
       },
       err => {
         this.serverErrorMessage = "L'étudiant n'a pas été trouvé";
       }
     );
-
 
     this.cvService.getCV().subscribe(
       res => {
