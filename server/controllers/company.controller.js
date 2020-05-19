@@ -84,7 +84,7 @@ module.exports.addFavorite = (req, res, next) => {
                 return res.status(409).json({status: false, message: "L'utilisateur n'a pas été trouvé", erreur: err});
             }
             else{
-                Student.findOneAndUpdate({_id: req.params.id},
+                Student.findByIdAndUpdate({_id: req.params.id},
                     {$push: {favorites: req._id}},
                     (err, student) => {
                         if(!student){

@@ -36,10 +36,10 @@ export class StudentProfileComponent implements OnInit {
       res => {
         this.studentDetails = res['student'];
         this.valid = true;
+        console.log(this.studentDetails);
       },
       err => {
         this.serverErrorMessage = "L'étudiant n'a pas été trouvé";
-        setTimeout(() => this.router.navigate(['/companyprofile']), 1);
       }
     );
 
@@ -47,7 +47,7 @@ export class StudentProfileComponent implements OnInit {
       res => {
         this.favorites = res['favorites'];
       },
-      err => { 
+      err => {
         this.serverErrorMessage = "Aucun favoris n'a été trouvé";
       }
     );
