@@ -25,16 +25,16 @@
     cursor: pointer;
 }
 
-.degreeGroup{
-  border-bottom: ;
+.degreesGroup{
+  width: 100%;
 }
 
 mat-form-field{
-  display: block;
   width: 100%;
 }
 .degreeDate, .degreeName{
   width: 45%;
+  margin-right: 0 !important;
 }
 .degreeDate{
   margin-left: 10%;
@@ -54,4 +54,9 @@ mat-icon{
 }
 .deleteDegree button{
   margin-bottom: 25px;
+}
+
+.submitCv {
+  margin: auto;
+  text-align: center;
 }

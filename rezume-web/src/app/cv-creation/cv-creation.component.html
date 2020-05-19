@@ -27,6 +27,7 @@
               </div>
             </legend>
           </div>
+
           <div class="input-group" *ngFor="let experienceControl of cvForm.get('experiences').controls; let i = index">
             <mat-form-field class="form-group experience" appearance="standard">
               <mat-label>Expérience</mat-label>
@@ -35,11 +36,12 @@
               <mat-icon (click)="deleteExperience(i)" matSuffix>delete</mat-icon>
             </mat-form-field>
           </div>
+
         </div>
 
         <hr class="separator-line">
 
-        <div formGroupName="degrees" class="degrees">
+        <div formArray="degrees" class="degrees">
           <div class="category">
             <legend>Tes diplômes
               <div (click)="addDegree()" class="plusContainer">
@@ -48,44 +50,50 @@
             </legend>
           </div>
           <!-- DEGREES -->
-          <div class="input-group degreeGroup" *ngFor="let degreeControl of cvForm.get('degrees').controls; let i = index">
+          <div class="input-group" *ngFor="let degreeGroup of cvForm.get('degrees').controls; let i = index">
 
+            <div [formGroup]="degreesGroup" class="degreesGroup">
               <mat-form-field class="form-group degreeName" appearance="standard">
                 <mat-label>Diplôme</mat-label>
-                <input matInput [formControlName]="i" required>
+                <input matInput formControlName="degreeName" required>
                 <mat-error *ngIf="i.invalid">{{getErrorMessage()}}</mat-error>
               </mat-form-field>
 
               <mat-form-field class="form-group degreeDate" appearance="standard">
                 <mat-label>Date d'obtention</mat-label>
-                <input matInput [matDatepicker]="dp" [formControl]="date">
-                <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-                <mat-datepicker #dp startView="multi-year" (yearSelected)="chosenYearHandler($event)" (monthSelected)="chosenMonthHandler($event, dp)" panelClass="example-month-picker">
+                <input matInput [matDatepicker]="degreeDate" formControlName="degreeDate">
+                <mat-datepicker-toggle matSuffix [for]="degreeDate"></mat-datepicker-toggle>
+                <mat-datepicker #degreeDate startView="multi-year" (yearSelected)="degreeYear($event)" (monthSelected)="degreeMonth($event, degreeDate)" panelClass="example-month-picker">
                 </mat-datepicker>
               </mat-form-field>
 
               <mat-form-field class="form-group degreeSchool" appearance="standard">
                 <mat-label>Établissement</mat-label>
-                <input matInput [formControlName]="i" required>
+                <input matInput formControlName="degreeSchool" required>
                 <mat-error *ngIf="i.invalid">{{getErrorMessage()}}</mat-error>
               </mat-form-field>
 
               <div class="deleteDegree">
-                <button type="button" mat-fab color="primary" (click)="deleteDegree(i)" *ngIf="i > 0">
+                <button type="button" mat-fab color="primary" (click)="deleteDegree(i)">
                   <mat-icon>delete</mat-icon>
                 </button>
               </div>
+            </div>
           </div>
         </div>
 
         <hr class="separator-line">
 
-        <div class="form-group button-cvSubmit">
-          <input id="file" type="file" class="input-file" formControlName="image" (change)="onFileChange($event)"
-                 #fileInput>
-          <label for="file" class="label-file">Choisir un fichier</label>
+        <mat-form-field class="form-group button-cvSubmit">
+          <ngx-mat-file-input #image id="image" type="file" class="input-file" formControlName="image" (change)="onFileChange($event)" #fileInput placeholder="Ta photo"></ngx-mat-file-input>
+          <button mat-icon-button matSuffix *ngIf="!image.empty" (click)="image.clear($event)">
+            <mat-icon>clear</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <div class="submitCv">
+          <input type="submit" value="Créer ton CV" class="button-submitCV">
         </div>
-        <input type="submit" value="Créer ton CV" class="button-submitCV">
       </form>
 
 

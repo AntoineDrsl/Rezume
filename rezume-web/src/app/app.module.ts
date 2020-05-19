@@ -58,8 +58,7 @@ import { StudentDetailsComponent } from './student-profile/student-details/stude
 import { ChatComponent } from './chat/chat.component';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatDatepickerModule} from '@angular/material';
-
-
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 // LOTTIE PLAYER
 export function playerFactory() {
@@ -114,7 +113,8 @@ export function playerFactory() {
     MatFormFieldModule,
     MatMomentDateModule,
     MatNativeDateModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MaterialFileInputModule
   ],
   exports: [
     MatDatepickerModule,

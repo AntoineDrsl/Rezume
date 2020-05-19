@@ -43,22 +43,6 @@ export const MY_FORMATS = {
 })
 export class CvCreationComponent implements OnInit {
 
-  //DATE
-  date = new FormControl(moment());
-
-  chosenYearHandler(normalizedYear: Moment) {
-    const ctrlValue = this.date.value;
-    ctrlValue.year(normalizedYear.year());
-    this.date.setValue(ctrlValue);
-  }
-
-  chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
-    const ctrlValue = this.date.value;
-    ctrlValue.month(normalizedMonth.month());
-    this.date.setValue(ctrlValue);
-    datepicker.close();
-  }
-
   images;
   showSuccessMessage: boolean;
   serverErrorMessage: string;
@@ -68,6 +52,12 @@ export class CvCreationComponent implements OnInit {
   getCvCreated;
 
   cvForm: FormGroup;
+  degreesGroup: FormGroup = new FormGroup({
+    degreeName: new FormControl(''),
+    degreeDate: new FormControl(moment()),
+    degreeSchool: new FormControl('')
+  })
+
   get age() {
     return this.cvForm.get('age');
   }
@@ -97,6 +87,7 @@ export class CvCreationComponent implements OnInit {
 
       }
     )
+
     this.cvForm = new FormGroup({
       age: new FormControl('', Validators.required),
       description: new FormControl(''),
@@ -105,7 +96,7 @@ export class CvCreationComponent implements OnInit {
         new FormControl('')
       ]),
       degrees: new FormArray([
-        new FormControl('')
+        this.degreesGroup
       ]),
       image: new FormControl('')
     });
@@ -126,7 +117,7 @@ export class CvCreationComponent implements OnInit {
   }
   addDegree() {
     if((<FormArray>this.cvForm.get('degrees')).length < 10) {
-      (<FormArray>this.cvForm.get('degrees')).push(new FormControl(''));
+      (<FormArray>this.cvForm.get('degrees')).push(this.degreesGroup);
     }
   }
 
@@ -139,6 +130,21 @@ export class CvCreationComponent implements OnInit {
     if((<FormArray>this.cvForm.get('degrees')).length > 1) {
       (<FormArray>this.cvForm.get('degrees')).removeAt(index);
     }
+  }
+
+  //DEGREEDATE
+  degreeYear(normalizedYear: Moment) {
+    console.log(this.cvForm.get('degrees').value[1]);
+    const ctrlValue = this.cvForm.get('degrees').value[1];
+    ctrlValue.year(normalizedYear.year());
+    this.cvForm.get('degrees').setValue(ctrlValue);
+  }
+
+  degreeMonth(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
+    const ctrlValue = this.cvForm.get('degrees').value;
+    ctrlValue.month(normalizedMonth.month());
+    this.cvForm.get('degrees').setValue(ctrlValue);
+    datepicker.close();
   }
 
   onFileChange(event) {
