@@ -124,10 +124,7 @@
         <hr class="separator-line">
 
         <mat-form-field class="form-group button-cvSubmit">
-          <ngx-mat-file-input #image id="image" type="file" class="input-file" formControlName="image" (change)="onFileChange($event)" #fileInput placeholder="Ta photo"></ngx-mat-file-input>
-          <button mat-icon-button matSuffix *ngIf="!image.empty" (click)="image.clear($event)">
-            <mat-icon>clear</mat-icon>
-          </button>
+          <input #image id="image" type="file" class="input-file" formControlName="image" (change)="onFileChange($event)" #fileInput placeholder="Ta photo">
         </mat-form-field>
 
         <div class="submitCv">

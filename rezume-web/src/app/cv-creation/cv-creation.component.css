@@ -27,6 +27,7 @@ hr{
 .plusContainer img{
     max-height: 100%;
     cursor: pointer;
+    color: #5F4AB3;
 }
 
 .degreesGroup{
