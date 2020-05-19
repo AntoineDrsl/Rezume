@@ -143,13 +143,13 @@ export class CvCreationComponent implements OnInit {
   degreeYear(normalizedYear: Moment, index) {
     const ctrlValue = this.cvForm.get('degrees').value[index].degreeDate;
     ctrlValue.year(normalizedYear.year());
-    this.cvForm.get('degrees').controls[index].controls.degreeDate.setValue(ctrlValue);
+    (<FormGroup>(<FormArray>this.cvForm.get('degrees')).at(index)).controls.degreeName.setValue(ctrlValue);
   }
 
   degreeMonth(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>, index) {
     const ctrlValue = this.cvForm.get('degrees').value[index].degreeDate;
     ctrlValue.month(normalizedMonth.month());
-    this.cvForm.get('degrees').controls[index].controls.degreeDate.setValue(ctrlValue);
+    (<FormGroup>(<FormArray>this.cvForm.get('degrees')).at(index)).controls.degreeName.setValue(ctrlValue);
     datepicker.close();
   }
 
@@ -157,13 +157,13 @@ export class CvCreationComponent implements OnInit {
   experienceStartYear(normalizedYear: Moment, index) {
     const ctrlValue = this.cvForm.get('experiences').value[index].experienceStart;
     ctrlValue.year(normalizedYear.year());
-    this.cvForm.get('experiences').controls[index].controls.experienceStart.setValue(ctrlValue);
+    (<FormGroup>(<FormArray>this.cvForm.get('experiences')).at(index)).controls.experienceStart.setValue(ctrlValue);
   }
 
   experienceStartMonth(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>, index) {
     const ctrlValue = this.cvForm.get('experiences').value[index].experienceStart;
     ctrlValue.month(normalizedMonth.month());
-    this.cvForm.get('experiences').controls[index].controls.experienceStart.setValue(ctrlValue);
+    (<FormGroup>(<FormArray>this.cvForm.get('experiences')).at(index)).controls.experienceStart.setValue(ctrlValue);
     datepicker.close();
   }
 
@@ -171,13 +171,13 @@ export class CvCreationComponent implements OnInit {
   experienceEndYear(normalizedYear: Moment, index) {
     const ctrlValue = this.cvForm.get('experiences').value[index].experienceEnd;
     ctrlValue.year(normalizedYear.year());
-    this.cvForm.get('experiences').controls[index].controls.experienceEnd.setValue(ctrlValue);
+    (<FormGroup>(<FormArray>this.cvForm.get('experiences')).at(index)).controls.experienceEnd.setValue(ctrlValue);
   }
 
   experienceEndMonth(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>, index) {
     const ctrlValue = this.cvForm.get('experiences').value[index].experienceEnd;
     ctrlValue.month(normalizedMonth.month());
-    this.cvForm.get('experiences').controls[index].controls.experienceEnd.setValue(ctrlValue);
+    (<FormGroup>(<FormArray>this.cvForm.get('experiences')).at(index)).controls.experienceEnd.setValue(ctrlValue);
     datepicker.close();
   }
 
