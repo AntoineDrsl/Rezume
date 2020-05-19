@@ -16,10 +16,10 @@
         Entreprises suivies
       </p>
 
-      <div class="selectCompany" *ngFor="let company of student.favorites">
+      <div class="selectCompany" *ngFor="let company of favorites">
         <img src="assets/images/star.svg" alt="star" width="25px" style="padding-left: 5px">
         <p class="studentName">
-          {{ company }}
+          {{ company.company_name }}
         </p>
       </div>
 
