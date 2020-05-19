@@ -1,7 +1,10 @@
 export class Student {
-    firstName: string;
-    lastName: string;
-    email: string;
-    password: string;
-    confirmPassword: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  birthDate: string;
+  competencies: string[];
+  password: string;
+  confirmPassword: string;
 }
