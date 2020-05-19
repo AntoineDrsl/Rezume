@@ -58,7 +58,6 @@ companySchema.pre('save', function (next) {
     });
 });
 
-// CETTE FONCTION ME PETE LES COUILLES
 
 companySchema.pre('findOneAndUpdate', function (next) {
     if(this.getUpdate().$set) {
