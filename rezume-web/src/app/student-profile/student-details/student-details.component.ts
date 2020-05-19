@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class StudentDetailsComponent implements OnInit {
 
   studentDetails;
+  favorites;
 
   editSelected = false;
 
@@ -48,13 +49,20 @@ export class StudentDetailsComponent implements OnInit {
     this.studentService.getStudentProfile().subscribe(
       res => {
         this.studentDetails = res['student'];
-
-        console.log(this.studentDetails);
       },
       err => {
         this.router.navigate(['/company']);
       }
-    )
+    );
+
+    this.studentService.getAllFavorites().subscribe(
+      res => {
+        this.favorites = res['favorites'];
+        console.log(this.favorites);
+      },
+      err => {
+      }
+    );
 
   }
 
@@ -67,7 +75,6 @@ export class StudentDetailsComponent implements OnInit {
     const firstName = this.studentDetails.firstName;
     const lastName = this.studentDetails.lastName;
     const email = this.studentDetails.email;
-    console.log(firstName)
 
     this.studentUpdateForm = new FormGroup({
       firstName: new FormControl(firstName, Validators.required),
