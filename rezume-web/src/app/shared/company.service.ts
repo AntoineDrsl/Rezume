@@ -22,6 +22,10 @@ export class CompanyService {
 
   constructor(private http: HttpClient) {}
 
+  getCompanies() {
+    return this.http.get(environment.apiBaseUrl + '/getcompanies');
+  }
+
   postCompany(company: Company) {
     return this.http.post(
       environment.apiBaseUrl + "/registercompany",
@@ -40,8 +44,15 @@ export class CompanyService {
   }
 
   //Fonction récupérant le profil en fonction du token
-  getCompanyProfile() {
-    return this.http.get(environment.apiBaseUrl + "/companyprofile");
+
+  getCompany() {
+    return this.http.get(environment.apiBaseUrl + '/getcompany');
+  }
+
+   //Fonction récupérant le profil en fonction du token
+   getCompanyProfile() {
+    return this.http.get(environment.apiBaseUrl + '/companyprofile');
+
   }
 
   getCompanyProfileId(id) {

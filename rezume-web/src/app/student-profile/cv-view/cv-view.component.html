@@ -1,22 +1,22 @@
 <div class="container">
   <div class="row">
 
-      <mat-card class="cv-details">
+      <mat-card class="cv-details" *ngIf="!noCv">
         <div class="card-head">
           <mat-card-subtitle>
-            <a class="mx-5" (click)="backToPage()">Revenir à votre profil</a>
+            <a class="mx-5" (click)="backToPage()" style="cursor: pointer;">Revenir</a>
           </mat-card-subtitle>
             <img src="assets/images/IconeRezume.png" alt="Photo de profil" class="img-top">
         </div>
 
-        <mat-card-content *ngIf="cvDetails">
+        <mat-card-content>
 
           <mat-card-title class="text-center mt-3 cv-name">
             {{cvDetails[0].student[0].firstName}} {{cvDetails[0].student[0].lastName}}
           </mat-card-title>
 
-          <p class="cv-description">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat, culpa facere quas ab voluptas quis odit explicabo animi autem porro ipsa, dolorum perferendis sint nulla non eaque cupiditate delectus sunt.
+          <p class="cv-description text-center">
+            {{cvDetails[0].description}}
           </p>
 
           <div class="cv-experiences">
@@ -40,5 +40,16 @@
         </mat-card-content>
       </mat-card>
 
-  </div>
+      <mat-card *ngIf="noCv">
+
+        <mat-card-title class="text-center mt-3 cv-name">
+          Vous n'avez pas encore créer de CV, <br>
+          vous allez être rediriger vers la page de création.
+        </mat-card-title>
+
+      </mat-card>
+
+
+
+    </div>
 </div>

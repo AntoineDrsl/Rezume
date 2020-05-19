@@ -15,49 +15,42 @@
       <div class="form-group fileInput">
         <input id="file" type="file" formControlName="image" class="input-file" (change)="onFileChange($event)">
         <label for="file" class="label-file ml-4"><img src="assets/icons/photo.svg" alt="icone" width="30px"></label><br>
+        <label for="file" class="label-file ml-4" *ngIf="images">{{ images.name }} a été ajouté.</label><br>
       </div>
       <input type="submit" value="Nouveau post">
 
     </form>
   </div>
 
-  <div class="alert alert-success" role="alert" *ngIf="showMessageSuccess">
-    Posté avec succès
+  <div class="publishSuccess" *ngIf="showMessageSuccess && showImgMessageSuccess">
+    Publication publié avec succès !
   </div>
-  <div class="alert alert-success" role="alert" *ngIf="showImgMessageSuccess">
-    img
-  </div>
-
-
 
   <!--POST SIDE-->
   <p class="titlePost">
     Vos derniers posts:
   </p>
+
   <div class="postSection">
 
 
-    <div class="post" *ngFor="let post of company[0].posts; index as i">
-      <div class="postHead">
-        <p class="postTitle">
-          {{post.title}}
-        </p>
-        <hr>
-      </div>
-
-      <div class="postImage" *ngIf="post.img_path">
-        <img src="http://localhost:3000/post/{{post.img_path}}" alt="PP" class="pictureProfile img-thumbnail" width="50%">
-      </div>
-
-      <div class="postContent">
-        <p class="postText">
+    <mat-card class="post-card" *ngFor="let post of company[0].posts; index as i">
+      <mat-card-header>
+        <img mat-card-avatar src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="{{post.img_path}}" class="cardImage">
+        <mat-card-title>{{post.title}}</mat-card-title>
+        <mat-card-subtitle>{{post.createdAt}}</mat-card-subtitle>
+        <button mat-fab color="accent" class="ml-auto" style="outline: none;">
+          <mat-icon>bookmark</mat-icon>
+        </button>
+      </mat-card-header>
+      <img mat-card-image src="http://localhost:3000/post/{{post.img_path}}" alt="{{post.img_path}}" class="cardImage">
+      <mat-card-content>
+        <p>
           {{post.content}}
         </p>
-        <p class="text-muted datePost">
-          {{post.createdAt}}
-        </p>
-      </div>
-    </div>
+      </mat-card-content>
+    </mat-card>
+
 
     <div *ngIf="company[0].posts.length == 0">
       Vous n'avez encore rien posté, alors allez y !

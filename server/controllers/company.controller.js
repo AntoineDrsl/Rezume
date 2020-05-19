@@ -19,7 +19,8 @@ module.exports.register = (req, res, next) => {
             res.send(doc);
         } else {
             if (err.code == 11000) {
-                res.status(422).send(["Duplicate email address found."]);
+
+                res.status(422).send(['Cette addresse mail existe déjà']);
             } else {
                 return next(err);
             }
@@ -27,87 +28,129 @@ module.exports.register = (req, res, next) => {
     });
 };
 
-module.exports.companyProfile = (req, res, next) => {
-    Company.aggregate(
-        [{
-                $match: { _id: ObjectId(req._id) },
-            },
-            {
-                $lookup: {
-                    from: "posts",
-                    localField: "_id",
-                    foreignField: "_company",
-                    as: "posts",
-                },
-            },
-        ],
+module.exports.getCompanies = (req, res) => {
+    Company.find((err, companies) => {
+        if(!companies) {
+            return res.status(409).json({status: false, message: 'Aucune entreprise trouvée'})
+        } else {
+            return res.status(200).json({ status: true, companies })
+        }
+    })
+};
+
+module.exports.getCompany = (req, res, next) => {
+    Company.findOne({ _id: req._id },
         (err, company) => {
             if (!company) {
-                return res
-                    .status(409)
-                    .json({ status: false, message: "Company record not found" });
+                return res.status(404).json({ status: false, message: 'Company record not found'});
             } else {
-                return res.status(200).json({ status: true, company });
+                return res.status(200).json({ status: true, company});
             }
         }
     );
 };
+
+module.exports.companyProfile = (req, res, next) => {
+    Company.aggregate([
+        {
+            $match: {_id: ObjectId(req._id)}
+        },
+        {
+            $lookup: {
+                from: "posts",
+                localField: "_id",
+                foreignField: "_company",
+                as: "posts"
+            }
+        }
+    ],
+    (err, company) => {
+        if(!company){
+            return res.status(409).json({ status: false, message: 'L\'entreprise n\'a pas été trouvée'});
+        }
+        else {
+            return res.status(200).json({ status: true, company});
+        }
+    }
+    )
+}
 
 module.exports.addFavorite = (req, res, next) => {
-    var companyFavorite = new Company();
-    companyFavorite.favorites = req.params.id;
 
-    Company.findOneAndUpdate({ _id: req._id }, { $push: { favorites: companyFavorite.favorites } },
-        (err, user) => {
-            if (!user) {
+
+    Company.findByIdAndUpdate({_id: req._id}, 
+        {$push: {favorites: req.params.id}},
+        (err, user) => { 
+            if(!user){
                 // Reponse status 409: Conflict (La requête ne peut être traitée en l’état actuel.)
-                return res
-                    .status(409)
-                    .json({ status: false, message: "User not found", erreur: err });
-            } else {
-                return res.status(200).json({ status: true, user });
+                return res.status(409).json({status: false, message: "L'utilisateur n'a pas été trouvé", erreur: err});
+            }
+            else{
+                Student.findByIdAndUpdate({_id: req.params.id},
+                    {$push: {favorites: req._id}},
+                    (err, student) => {
+                        if(!student){
+                            console.log('pas de student');
+                        }
+                        else{
+                            console.log('student');
+                        }
+                    }
+                );
+                return res.status(200).json({status: true, user});
             }
         }
     );
-};
+    
+}
+
 
 module.exports.removeFavorite = (req, res, next) => {
     Company.findOneAndUpdate({ _id: req._id }, { $pull: { favorites: req.params.id } },
         (err, user) => {
             if (!user) {
                 // Reponse status 409: Conflict (La requête ne peut être traitée en l’état actuel.)
-                return res
-                    .status(409)
-                    .json({ status: false, message: "User not found", erreur: err });
-            } else {
-                return res.status(200).json({ status: true, user });
+                return res.status(409).json({status: false, message: "L'utilisateur n'a pas été trouvé", erreur: err});
+            }
+            else{
+                Student.findOneAndUpdate({_id: req.params.id},
+                    {$pull: {favorites: req._id}},
+                    (err, student) => {
+                        
+                    }
+                )
+                return res.status(200).json({status: true, user});
             }
         }
     );
 };
 
 module.exports.getAllFavorites = (req, res, next) => {
-    Company.findOne({ _id: req._id }, (err, company) => {
-        if (!company) {
-            return res
-                .status(404)
-                .json({ status: false, message: "Company not found" });
-        } else {
-            Student.find({ _id: { $in: company.favorites } }, (err, favorites) => {
-                return res.status(200).json({ status: true, favorites });
-            });
+
+    Company.findOne({_id: req._id},
+        (err, company) => {
+            if (!company) {
+                return res.status(404).json({ status: false, message: "L'entreprise n'a pas été trouvée"});
+            } else {
+                Student.find({_id: {$in: company.favorites}},
+                    (err, favorites) => {
+                        return res.status(200).json({ status: true, favorites });
+                    }
+                );
+            }
         }
     });
 };
 
 module.exports.getCompanyProfileId = (req, res, next) => {
-    Company.findOne({ _id: req.params.id }, (err, company) => {
-        if (!company) {
-            return res
-                .status(409)
-                .json({ status: false, message: "Company not found", erreur: err });
-        } else {
-            return res.status(200).json({ status: true, company });
+    Company.findOne({_id: req.params.id},
+        (err, company) => {
+            if(!company){
+                return res.status(409).json({status: false, message: "L'entreprise n'a pas été trouvée", erreur: err});
+            }
+            else{
+                return res.status(200).json({status: true, company});
+            }
         }
     });
 };
@@ -132,15 +175,11 @@ module.exports.updateCompany = (req, res, next) => {
             },
         }, { omitUndefined: true, runValidators: true, context: "query" },
         (err, company) => {
-            if (err) {
-                return res
-                    .status(500)
-                    .json({
-                        status: false,
-                        message: "Company not found or update impossible",
-                    });
-            } else {
-                return res.status(200).json({ status: true, company });
+            if(err) {
+                return res.status(500).json({status: false, message: 'Modification impossible'});
+            }
+            else {
+                return res.status(200).json({status: true, company});
             }
         }
     );

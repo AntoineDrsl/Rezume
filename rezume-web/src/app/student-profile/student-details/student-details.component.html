@@ -14,6 +14,9 @@
               {{company}}
             </p>
           </div>
+          <div *ngIf="studentDetails.favorites.length === 0">
+            Vous ne suivez aucune entreprise !
+          </div>
         </div>
       </div>
 
@@ -30,7 +33,7 @@
 
           <div class="topInfo">
             <div class="imgTop">
-              <img src="assets/images/maxresdefault.jpg" alt="dsqd">
+              <img src="assets/images/avatar.jpg" alt="dsqd">
             </div>
             <div class="infos">
 
