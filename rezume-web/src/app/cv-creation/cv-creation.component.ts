@@ -143,13 +143,13 @@ export class CvCreationComponent implements OnInit {
   degreeYear(normalizedYear: Moment, index) {
     const ctrlValue = this.cvForm.get('degrees').value[index].degreeDate;
     ctrlValue.year(normalizedYear.year());
-    (<FormGroup>(<FormArray>this.cvForm.get('degrees')).at(index)).controls.degreeName.setValue(ctrlValue);
+    (<FormGroup>(<FormArray>this.cvForm.get('degrees')).at(index)).controls.degreeDate.setValue(ctrlValue);
   }
 
   degreeMonth(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>, index) {
     const ctrlValue = this.cvForm.get('degrees').value[index].degreeDate;
     ctrlValue.month(normalizedMonth.month());
-    (<FormGroup>(<FormArray>this.cvForm.get('degrees')).at(index)).controls.degreeName.setValue(ctrlValue);
+    (<FormGroup>(<FormArray>this.cvForm.get('degrees')).at(index)).controls.degreeDate.setValue(ctrlValue);
     datepicker.close();
   }
 

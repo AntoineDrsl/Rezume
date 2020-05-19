@@ -78,13 +78,29 @@ module.exports.createCV = (req, res, next) => {
     CV.findOne({_student: req._id},
         (err, cv) => {
             if(!cv){
-                console.log(req.body);
                 var cv = new CV();
                 cv._student = req._id;
                 cv.description = req.body.description;
                 cv.research = req.body.research;
-                cv.experiences = req.body.experiences;
-                cv.degrees = req.body.degrees;
+                for(var i=0; req.body.experiences.length > i; i++) {
+                    console.log(req.body.experiences);
+                    var newExperience = {
+                        name: req.body.experiences[i].experienceName,
+                        company: req.body.experiences[i].experienceCompany,
+                        start: req.body.experiences[i].experienceStart,
+                        end: req.body.experiences[i].experienceEnd,
+                        description: req.body.experiences[i].experienceDescription
+                    }
+                    cv.experiences.push(newExperience);
+                }
+                for(var i=0; req.body.degrees.length > i; i++) {
+                    var newDegree = {
+                        name: req.body.degrees[i].degreeName,
+                        date: req.body.degrees[i].degreeDate,
+                        school: req.body.degrees[i].degreeSchool
+                    }
+                    cv.degrees.push(newDegree);
+                }
                 cv.img_path = `server/uploads/cv/Photo_${req._id}`;
                 cv.save((err, doc) => {
                     if(!err){

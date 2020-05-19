@@ -24,11 +24,11 @@
       </tr>
       <tr *ngFor="let experience of cvDetails.experiences">
         <td>Vos expériences:</td>
-        <td> {{experience}} </td>
+        <td> {{experience.name}} </td>
       </tr>
       <tr *ngFor="let degree of cvDetails.degrees">
         <td>Vos Diplômes:</td>
-        <td> {{degree}} </td>
+        <td> {{degree.name}} </td>
       </tr>
       </tbody>
     </table>

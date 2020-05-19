@@ -6,18 +6,22 @@ var cvSchema = new mongoose.Schema({
     },
     research: String,
     description: String,
-    experiences: {
+    experiences: [
+        {
         "name": String,
         "company": String,
         "start": Date,
         "end": Date,
         "description": String
-    },
-    degrees: {
+        }
+    ],
+    degrees: [
+        {
         "name": String,
         "date": Date,
         "school": String
-    },
+        }
+    ],
     img_path: String
 }, {
     timestamps: true

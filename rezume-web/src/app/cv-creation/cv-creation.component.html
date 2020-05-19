@@ -123,9 +123,7 @@
 
         <hr class="separator-line">
 
-        <mat-form-field class="form-group button-cvSubmit">
-          <input #image id="image" type="file" class="input-file" formControlName="image" (change)="onFileChange($event)" #fileInput placeholder="Ta photo">
-        </mat-form-field>
+        <input #image id="image" type="file" class="input-file" formControlName="image" (change)="onFileChange($event)" #fileInput placeholder="Ta photo">
 
         <div class="submitCv">
           <input type="submit" value="Créer ton CV" class="button-submitCV">
