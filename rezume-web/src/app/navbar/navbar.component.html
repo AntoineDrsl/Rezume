@@ -11,14 +11,23 @@
   <div class="collapse navbar-collapse" id="burgerNavbar" *ngIf="this.studentService.getStudentPayload() !== null">
     <ul class="navbar-nav ml-auto" >
       <li class="nav-item">
-        <button class="btn-link" *ngIf="this.visitorInformation.statut === 'company'" routerLink="/company"><img src="assets/icons/companyProfile.svg" alt="companyProfile" width="28px" height="28px"></button>
-        <button class="btn-link" *ngIf="this.visitorInformation.statut === 'student'" routerLink="/cvview" alt="CVstudent">CV</button>
-        <button class="btn-link"><img src="assets/icons/messagerie.svg" alt="messagerie" width="28px" height="28px"></button>
-        <button class="btn-link" *ngIf="this.visitorInformation.statut === 'student'"  routerLink="/studentprofile" ><img src="assets/icons/studentProfil.svg"alt="studentProfil" width="28px" height="28px"></button>
-        <button class="btn-link" *ngIf="this.visitorInformation.statut === 'company'" routerLink="#" alt="CVcompany">CV</button>
-      </li>
-      <li class="nav-item" routerLink="/search">
-        <button class="btn-link">
+        <button class="btn-link" *ngIf="this.visitorInformation.statut === 'company'" routerLink="/company" matTooltip="Allez à mon profil">
+          <img src="assets/icons/companyProfile.svg" alt="companyProfile" width="28px" height="28px">
+        </button>
+
+        <button class="btn-link" *ngIf="this.visitorInformation.statut === 'student'" routerLink="/cvview" alt="CVstudent" matTooltip="Voir mon CV">
+          CV
+        </button>
+
+        <button class="btn-link" routerLink="/chat" matTooltip="Voir mes messages">
+          <img src="assets/icons/messagerie.svg" alt="messagerie" width="28px" height="28px">
+        </button>
+
+        <button class="btn-link" *ngIf="this.visitorInformation.statut === 'student'"  routerLink="/studentprofile" matTooltip="Allez à mon profil">
+          <img src="assets/icons/studentProfil.svg"alt="studentProfil" width="28px" height="28px">
+        </button>
+
+        <button class="btn-link" *ngIf="this.visitorInformation.statut === 'company'" routerLink="/search" matTooltip="Rechercher un étudiant">
             <svg xmlns="http://www.w3.org/2000/svg" id="Capa_1" enable-background="new 0 0 515.558 515.558" height="28px" viewBox="0 0 515.558 515.558" width="28px"><g><path d="m378.344 332.78c25.37-34.645 40.545-77.2 40.545-123.333 0-115.484-93.961-209.445-209.445-209.445s-209.444 93.961-209.444 209.445 93.961 209.445 209.445 209.445c46.133 0 88.692-15.177 123.337-40.547l137.212 137.212 45.564-45.564c0-.001-137.214-137.213-137.214-137.213zm-168.899 21.667c-79.958 0-145-65.042-145-145s65.042-145 145-145 145 65.042 145 145-65.043 145-145 145z" data-original="#000000" class="active-path" data-old_color="#000000"/></g> </svg>
         </button>
       </li>
