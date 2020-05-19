@@ -13,7 +13,7 @@
       <ul class="list">
           <li *ngFor="let student of students" id="{{student._id}}" class="elementList" (click)="joinRoom(student._id)">
             {{ student.firstName }} {{ student.lastName }}
-            <button mat-icon-button [matMenuTriggerFor]="favorites">
+            <button mat-icon-button [matMenuTriggerFor]="favorites" class="buttonStudent">
               Plus d'action
             </button>
 
