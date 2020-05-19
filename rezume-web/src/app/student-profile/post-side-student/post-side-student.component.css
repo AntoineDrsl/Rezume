@@ -44,8 +44,8 @@
   }
 
   .cardImage{
-    max-height: 300px;
-    overflow: hidden;
+    /* max-height: 300px;
+    overflow: hidden; */
   }
 
   .post-card p {

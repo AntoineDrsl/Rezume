@@ -54,6 +54,7 @@ export class SelectedCvTwoComponent implements OnInit {
         if (this.companyDetails[0].favorites.length > 0) {
 
           this.companyDetails[0].favorites.forEach(element => {
+            console.log(element)
             if (element === id) {
               this.buttonAdd = false;
             }

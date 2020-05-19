@@ -27,7 +27,6 @@ export class NavbarComponent implements OnInit {
       this.messageService.getMessages().subscribe(
         res => {
           this.isUnreadMessage = res['isUnread'];
-          console.log(this.isUnreadMessage);
         }
       )
     }

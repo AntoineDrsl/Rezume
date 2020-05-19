@@ -27,18 +27,18 @@ import {
 } from '@angular/material';
 
 // Lottie
-import { LottieModule } from "ngx-lottie";
-import player from "lottie-web";
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
 
 // component imports
-import { AppComponent } from "./app.component";
-import { SignUpComponent } from "./sign-up/sign-up.component";
+import { AppComponent } from './app.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 // routes
-import { AppRoutingModule } from "./app-routing.module";
-import { StudentProfileComponent } from "./student-profile/student-profile.component";
-import { SignInComponent } from "./sign-in/sign-in.component";
-import { StudentService } from "./shared/student.service";
+import { AppRoutingModule } from './app-routing.module';
+import { StudentProfileComponent } from './student-profile/student-profile.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { StudentService } from './shared/student.service';
 
 // other
 import { AuthGuard } from './auth/auth.guard';
@@ -46,12 +46,9 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { CvCreationComponent } from './cv-creation/cv-creation.component';
 import { CvUpdateComponent } from './student-profile/cvUpdate/cv-update/cv-update.component';
 import { CvViewComponent } from './student-profile/cv-view/cv-view.component';
-import { GetAllCvComponent } from './get-all-cv/get-all-cv.component';
-import { SelectedCvComponent } from './get-all-cv/selected-cv/selected-cv.component';
 import { SignUpStudentComponent } from './sign-up/sign-up-student/sign-up-student.component';
 import { SignUpCompanyComponent } from './sign-up/sign-up-company/sign-up-company.component';
 import { CompanyProfileComponent } from './company-profile/company-profile.component';
-import { PostComponent } from './post/post.component';
 import { ProfileSideComponent } from './company-profile/profile-side/profile-side.component';
 import { PostSideComponent } from './company-profile/post-side/post-side.component';
 import { CompanyDetailComponent } from './company/company-detail/company-detail.component';
@@ -77,12 +74,9 @@ export function playerFactory() {
     CvCreationComponent,
     CvUpdateComponent,
     CvViewComponent,
-    GetAllCvComponent,
-    SelectedCvComponent,
     SignUpStudentComponent,
     SignUpCompanyComponent,
     CompanyProfileComponent,
-    PostComponent,
     ProfileSideComponent,
     PostSideComponent,
     CompanyDetailComponent,
@@ -104,6 +98,8 @@ export function playerFactory() {
     HttpClientModule,
     LottieModule.forRoot({ player: playerFactory, useCache: true }),
     BrowserAnimationsModule,
+
+
     MatAutocompleteModule,
     MatButtonModule,
     MatInputModule,
@@ -118,6 +114,7 @@ export function playerFactory() {
     MatNativeDateModule,
     MatMenuModule,
     MatBadgeModule,
+    MatTooltipModule,
   ],
   providers: [
     {
