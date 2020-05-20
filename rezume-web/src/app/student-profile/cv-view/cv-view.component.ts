@@ -19,8 +19,8 @@ export class CvViewComponent implements OnInit {
 
   ngOnInit() {
 
-    if(!(this.studentService.getStudentPayload().statut === 'company')) {
-      this.router.navigate(['/student']);
+    if(!(this.studentService.getStudentPayload().statut === 'student')) {
+      this.router.navigate(['/company']);
     }
 
     this.cvService.getCV().subscribe(
