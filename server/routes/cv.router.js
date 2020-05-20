@@ -39,5 +39,4 @@ router.get('/addfavorite/:id', jwtHelper.verifyJwtTokenCompany, ctrlCompany.addF
 //Remove CV en favori
 router.get('/removefavorite/:id', jwtHelper.verifyJwtTokenCompany, ctrlCompany.removeFavorite);
 
-
 module.exports = router;

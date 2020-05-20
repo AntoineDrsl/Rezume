@@ -1,61 +1,59 @@
-
-
 <div class="container">
-  <div class="row">
+    <div class="row">
 
-      <mat-card class="cv-details">
-        <div class="card-head d-flex justify-content-between">
-          <mat-card-subtitle>
-            <a class="w-20" (click)="backToPage()" style="cursor: pointer;">Revenir</a>
-          </mat-card-subtitle>
+        <mat-card class="cv-details">
+            <div class="card-head d-flex justify-content-between">
+                <mat-card-subtitle>
+                    <a class="w-20" (click)="backToPage()" style="cursor: pointer;">Revenir</a>
+                </mat-card-subtitle>
 
-            <img src="assets/images/IconeRezume.png" alt="Photo de profil" class="img-top">
+                <img src="assets/images/IconeRezume.png" alt="Photo de profil" class="img-top">
 
-            <button mat-icon-button [matMenuTriggerFor]="favorites" class="ml-auto">
+                <button mat-icon-button [matMenuTriggerFor]="favorites" class="ml-auto">
               <mat-icon>more_vert</mat-icon>
             </button>
 
-            <mat-menu #favorites="matMenu">
-              <button mat-menu-item (click)="addToFavorites()" *ngIf="buttonAdd">Ajouter au favoris</button>
-              <button mat-menu-item (click)="removeFromFavorites()" *ngIf="!buttonAdd">Retirer des favoris</button>
-            </mat-menu>
-        </div>
+                <mat-menu #favorites="matMenu">
+                    <button mat-menu-item (click)="addToFavorites()" *ngIf="buttonAdd">Ajouter au favoris</button>
+                    <button mat-menu-item (click)="removeFromFavorites()" *ngIf="!buttonAdd">Retirer des favoris</button>
+                </mat-menu>
+            </div>
 
-        <mat-card-content *ngIf="cvDetails">
+            <mat-card-content *ngIf="cvDetails">
 
-          <mat-card-title class="text-center mt-3 cv-name">
-            {{cvDetails[0].student[0].firstName}} {{cvDetails[0].student[0].lastName}}
-          </mat-card-title>
+                <mat-card-title class="text-center mt-3 cv-name">
+                    {{cvDetails[0].student[0].firstName}} {{cvDetails[0].student[0].lastName}}
+                </mat-card-title>
 
-          <p class="cv-description text-center">
-            {{cvDetails[0].description}}
-          </p>
+                <p class="cv-description text-center">
+                    {{cvDetails[0].description}}
+                </p>
 
-          <div class="cv-experiences">
-            <p class="section-title">Experiences Professionnelles</p>
-            <p class="section-content" *ngFor="let experience of cvDetails[0].experiences">2018-2020 - {{experience}}</p>
-            <p class="section-content" *ngIf="cvDetails[0].experiences?.length <= 0">Vous n'avez renseignez aucune expériences</p>
-          </div>
+                <div class="cv-experiences">
+                    <p class="section-title">Experiences Professionnelles</p>
+                    <p class="section-content" *ngFor="let experience of cvDetails[0].experiences">{{experience.start}}-{{experience.end}} - {{experience.name}}</p>
+                    <p class="section-content" *ngIf="cvDetails[0].experiences?.length <= 0">Vous n'avez renseignez aucune expériences</p>
+                </div>
 
-          <div class="cv-degrees">
-            <p class="section-title">Diplômes</p>
-            <p class="section-content" *ngFor="let degree of cvDetails[0].degrees">2018-2020 - {{degree}}</p>
-            <p class="section-content" *ngIf="cvDetails[0].degrees?.length <= 0">Vous n'avez renseignez aucun diplômes</p>
-          </div>
+                <div class="cv-degrees">
+                    <p class="section-title">Diplômes</p>
+                    <p class="section-content" *ngFor="let degree of cvDetails[0].degrees">{{degree.date}} - {{degree.name}}</p>
+                    <p class="section-content" *ngIf="cvDetails[0].degrees?.length <= 0">Vous n'avez renseignez aucun diplômes</p>
+                </div>
 
-          <div class="cv-hashtag">
-            <p class="section-title">Compétences</p>
-            <mat-chip-list>
-              <mat-chip class="cv-chips" *ngFor="let hashtag of cvDetails[0].student[0].hashtag">
-                {{hashtag}}
-              </mat-chip>
-              <mat-chip class="cv-chips" *ngIf="cvDetails[0].student[0].hashtag?.length <= 0">
-                Aucune compétences
-              </mat-chip>
-            </mat-chip-list>
-          </div>
-        </mat-card-content>
-      </mat-card>
+                <div class="cv-hashtag">
+                    <p class="section-title">Compétences</p>
+                    <mat-chip-list>
+                        <mat-chip class="cv-chips" *ngFor="let hashtag of cvDetails[0].student[0].hashtag">
+                            {{hashtag}}
+                        </mat-chip>
+                        <mat-chip class="cv-chips" *ngIf="cvDetails[0].student[0].hashtag?.length <= 0">
+                            Aucune compétences
+                        </mat-chip>
+                    </mat-chip-list>
+                </div>
+            </mat-card-content>
+        </mat-card>
 
-  </div>
+    </div>
 </div>

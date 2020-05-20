@@ -1,62 +1,108 @@
-
-<!--FORM POST SIDE-->
+<!-- FORM POST SIDE -->
 <div class="postSide">
 
-  <div class="postForm">
-
-    <form [formGroup]="addPost" (ngSubmit)="addPost.valid && onSubmit(addPost)">
-      <div class="form-group">
-        <label for="postContent" class="labelTitle">Créer une publication</label>
-        <input type="text" formControlName="title" class="form-control" placeholder="Titre de la publication" id="titleContent" required>
-        <textarea formControlName="content" id="content" class="form-control" cols="30" placeholder="Dernières nouvelles de l'entreprise"
-        id="postContent" required></textarea>
-      </div>
-
-      <div class="form-group fileInput">
-        <input id="file" type="file" formControlName="image" class="input-file" (change)="onFileChange($event)">
-        <label for="file" class="label-file ml-4"><img src="assets/icons/photo.svg" alt="icone" width="30px"></label><br>
-        <label for="file" class="label-file ml-4" *ngIf="images">{{ images.name }} a été ajouté.</label><br>
-      </div>
-      <input type="submit" value="Nouveau post">
-
-    </form>
-  </div>
-
-  <div class="publishSuccess" *ngIf="showMessageSuccess && showImgMessageSuccess">
-    Publication publié avec succès !
-  </div>
-
-  <!--POST SIDE-->
-  <p class="titlePost">
-    Vos derniers posts:
-  </p>
-
-  <div class="postSection">
 
 
-    <mat-card class="post-card" *ngFor="let post of company[0].posts; index as i">
-      <mat-card-header>
-        <img mat-card-avatar src="assets/images/avatar.png" alt="{{post.img_path}}" class="cardImage">
-        <mat-card-title>{{post.title}}</mat-card-title>
-        <mat-card-subtitle>{{post.createdAt}}</mat-card-subtitle>
-        <button mat-fab color="accent" class="ml-auto" style="outline: none;">
-          <mat-icon>bookmark</mat-icon>
-        </button>
-      </mat-card-header>
-      <img mat-card-image src="http://localhost:3000/post/{{post.img_path}}" alt="{{post.img_path}}" class="cardImage" *ngIf="post.img_path">
-      <mat-card-content>
-        <p>
-          {{post.content}}
-        </p>
-      </mat-card-content>
+
+    <div class="postForm">
+
+
+
+
+        <form [formGroup]="addPost" (ngSubmit)="addPost.valid && onSubmit(addPost)">
+            <div class="form-group">
+                <label for="postContent" class="labelTitle">
+                    Créer une publication
+                </label>
+                <input type="text" formControlName="title" class="form-control" placeholder="Titre de la publication" id="titleContent" required>
+                <textarea formControlName="content" id="content" class="form-control" cols="30" placeholder="Dernières nouvelles de l'entreprise" id="postContent" required></textarea>
+            </div>
+
+
+
+
+            <div class="form-group fileInput">
+                <input id="file" type="file" formControlName="image" class="input-file" (change)="onFileChange($event)">
+                <label for="file" class="label-file ml-4">
+                    <img
+                        src="assets/icons/photo.svg"
+                        alt="icone"
+                        width="30px"
+                    >
+                </label>
+                <br>
+                <label for="file" class="label-file ml-4" *ngIf="images">
+                    {{ images.name }} a été ajouté.
+                </label>
+                <br>
+            </div>
+            <input type="submit" value="Nouveau post">
+
+
+
+
+        </form>
+    </div>
+
+
+
+
+    <div class="publishSuccess" *ngIf="showMessageSuccess && showImgMessageSuccess">
+        Publication publié avec succès !
+    </div>
+
+
+
+
+    <!-- POST SIDE -->
+    <mat-card class="post-card">
+        <h3>LES DERNIERS POSTS:</h3>
     </mat-card>
 
 
-    <div *ngIf="company[0].posts.length == 0">
-      Vous n'avez encore rien posté, alors allez y !
+
+
+    <div class="postSection">
+
+
+
+
+
+        <mat-card class="post-card" *ngFor="let post of company[0].posts; index as i">
+            <mat-card-header>
+                <img mat-card-avatar src="assets/images/avatar.png" alt="{{post.img_path}}" class="cardImage">
+                <mat-card-title>{{post.title}}</mat-card-title>
+                <mat-card-subtitle>{{post.createdAt}}</mat-card-subtitle>
+                <button mat-fab color="accent" class="ml-auto" style="outline: none;">
+                    <mat-icon>bookmark</mat-icon>
+                </button>
+            </mat-card-header>
+            <img mat-card-image src="http://localhost:3000/post/{{post.img_path}}" alt="{{post.img_path}}" class="cardImage" *ngIf="post.img_path">
+            <mat-card-content>
+                <p>{{post.content}}</p>
+            </mat-card-content>
+        </mat-card>
+
+
+
+
+
+        <div *ngIf="company[0].posts.length == 0">
+            <mat-card class="post-card">
+                <h3>
+                    Vous n'avez encore rien posté, alors allez y !
+                </h3>
+            </mat-card>
+
+
+        </div>
+
+
+
+
     </div>
 
-  </div>
+
+
 
 </div>
-
