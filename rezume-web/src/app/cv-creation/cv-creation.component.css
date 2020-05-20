@@ -2,8 +2,9 @@ hr {
     background-color: #5f4ab3;
 }
 
-body {
-    background: red;
+.fullContainer {
+    background: rgb(160, 112, 214);
+    width: 100%;
 }
 
 .wrapper {
