@@ -2,7 +2,6 @@
 
 @import url("https://fonts.googleapis.com/css?family=Poppins");
 
-
 /* BASIC */
 
 * {
@@ -15,9 +14,9 @@
 
 html,
 body {
-
     height: 100%;
     background: url("./assets/images/wave_top.svg") no-repeat top center, url("./assets/images/wave_bottom.svg") no-repeat bottom center, #a771c0;
+    overflow-x: hidden;
 }
 
 body {
@@ -260,35 +259,41 @@ input.back {
     padding: 15px 20px;
 }
 
-
 .wrapper-block h1 {
     font-size: 20px;
 }
 
+
 /* CHAT.CSS */
-.msgItemContainer{
-  margin-top: 25px;
-  margin-left: 15px;
-}
-.msgItemContainer span{
-  color: #5F4AB3;
-}
-.message{
-  border-radius: 10px;
-  font-size: 20px;
-  padding: 10px;
-  max-width: 45%;
-}
-.newMessageAll, .oldMessages{
-  border: 2px #5F4AB3 solid;
-  background-color: #fff;
-  color: #5F4AB3;
-}
-.newMessageMe, .oldMessagesMe{
-  border: none;
-  background-color: #5F4AB3;
-  color: #fff;
-  margin-top: 25px;
-  margin-left: 50%;
+
+.msgItemContainer {
+    margin-top: 25px;
+    margin-left: 15px;
 }
 
+.msgItemContainer span {
+    color: #5f4ab3;
+}
+
+.message {
+    border-radius: 10px;
+    font-size: 20px;
+    padding: 10px;
+    max-width: 45%;
+}
+
+.newMessageAll,
+.oldMessages {
+    border: 2px #5f4ab3 solid;
+    background-color: #fff;
+    color: #5f4ab3;
+}
+
+.newMessageMe,
+.oldMessagesMe {
+    border: none;
+    background-color: #5f4ab3;
+    color: #fff;
+    margin-top: 25px;
+    margin-left: 50%;
+}

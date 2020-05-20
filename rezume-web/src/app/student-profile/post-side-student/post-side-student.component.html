@@ -1,37 +1,44 @@
-
 <div class="postSide" *ngIf="student && posts">
+    <mat-card class="post-card">
+        <h3>LES DERNIERS POSTS:</h3>
+    </mat-card>
 
-    <p class="titlePost mt-3">
-      Les derniers posts:
-    </p>
+
+
+
     <div class="postSection" *ngIf="posts.length > 0">
 
 
-      <mat-card class="post-card" *ngFor="let post of posts; index as i">
-        <mat-card-header>
-          <img mat-card-avatar src="assets/images/avatar.png" alt="{{post.img_path}}" class="cardImage">
-          <mat-card-title>{{post.title}}</mat-card-title>
-          <mat-card-subtitle>{{post.companyDetails[0].company_name}}</mat-card-subtitle>
-          <mat-card-subtitle>{{post.createdAt}}</mat-card-subtitle>
-          <button mat-fab color="accent" class="ml-auto" style="outline: none;">
-            <mat-icon>bookmark</mat-icon>
-          </button>
-        </mat-card-header>
-        <img mat-card-image src="http://localhost:3000/post/{{post.img_path}}" alt="{{post.img_path}}" class="cardImage" *ngIf="post.img_path">
-        <mat-card-content>
-          <p>
-            {{post.content}}
-          </p>
-        </mat-card-content>
-      </mat-card>
+
+
+
+        <mat-card class="post-card" *ngFor="let post of posts; index as i">
+            <mat-card-header>
+                <img mat-card-avatar src="assets/images/avatar.png" alt="{{post.img_path}}" class="cardImage">
+                <mat-card-title>{{post.title}}</mat-card-title>
+                <mat-card-subtitle>{{post.companyDetails[0].company_name}}</mat-card-subtitle>
+                <mat-card-subtitle>{{post.createdAt}}</mat-card-subtitle>
+                <button mat-fab color="accent" class="ml-auto" style="outline: none;">
+                    <mat-icon>bookmark</mat-icon>
+                </button>
+            </mat-card-header>
+            <img mat-card-image src="http://localhost:3000/post/{{post.img_path}}" alt="{{post.img_path}}" class="cardImage" *ngIf="post.img_path">
+            <mat-card-content>
+                <p>{{post.content}}</p>
+            </mat-card-content>
+        </mat-card>
     </div>
+
+
+
 
 
 
     <div class="postSectionEmpty" *ngIf="posts.length === 0">
-      Aucun post à afficher.
+        Aucun post à afficher.
     </div>
 
-  </div>
 
 
+
+</div>

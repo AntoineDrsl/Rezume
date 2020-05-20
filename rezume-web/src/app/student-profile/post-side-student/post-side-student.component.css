@@ -1,53 +1,49 @@
-*{
+* {
     margin: 0;
-    padding:0;
-  }
+    padding: 0;
+}
 
-
-  .postSide{
+.postSide {
     width: 100%;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  }
+    margin-top: 2%;
+}
 
-  .postSection{
+.postSection {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
-
     width: 100%;
+}
 
-  }
-
-  .postSectionEmpty{
+.postSectionEmpty {
     font-size: 20px;
     text-align: center;
-    margin-top: 5%;
-  }
+    margin-top: 2%;
+}
 
-  .titlePost{
+.titlePost {
     font-size: 40px;
-    color: #6E58C6;
+    color: #6e58c6;
     text-align: center;
-  }
+}
 
-
-
-  .post-card {
+.post-card {
     margin: 3% 0;
     width: 70%;
     background-color: rgb(228, 228, 228);
     z-index: 1;
-  }
+    margin-top: 0;
+}
 
-  .cardImage{
+.cardImage {
     /* max-height: 300px;
     overflow: hidden; */
-  }
+}
 
-  .post-card p {
+.post-card p {
     font-size: 20px;
-  }
+}

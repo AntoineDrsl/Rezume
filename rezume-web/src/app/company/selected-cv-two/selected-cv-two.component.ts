@@ -4,6 +4,8 @@ import { CvService } from 'src/app/shared/cv.service';
 import {Location} from '@angular/common';
 import { CompanyService } from 'src/app/shared/company.service';
 import { StudentService } from 'src/app/shared/student.service';
+import { saveAs } from "file-saver"
+import * as moment from "moment";
 
 @Component({
   selector: 'app-selected-cv-two',
@@ -40,6 +42,16 @@ export class SelectedCvTwoComponent implements OnInit {
       res => {
         this.cvDetails = res["cv"];
         this.idUser = this.cvDetails[0].student[0]._id;
+
+        for(var i = 0; i < this.cvDetails[0].degrees.length; i++) {
+          this.cvDetails[0].degrees[i].date = moment(this.cvDetails[0].degrees[i].date).format("YYYY")
+        }
+        for(var i = 0; i < this.cvDetails[0].experiences.length; i++) {
+          this.cvDetails[0].experiences[i].start = moment(this.cvDetails[0].experiences[i].start).format("YYYY")
+          this.cvDetails[0].experiences[i].end = moment(this.cvDetails[0].experiences[i].end).format("YYYY")
+        }
+        console.log(this.cvDetails)
+
       },
       err => {
         console.log('Impossible de recup cv details');
@@ -53,6 +65,23 @@ export class SelectedCvTwoComponent implements OnInit {
     this._location.back();
   }
 
+  buildDownloadPdf() {
+    const filename = this.cvDetails[0].student[0].firstName + '_' + this.cvDetails[0].student[0].lastName + '.pdf'
+    this.cvService.buildCvPdf(this.cvDetails).subscribe(
+      res => {
+        console.log(res)
+      }
+    )
+    // .subscribe(
+    //   data => {
+    //     saveAs(data, filename);
+    //   },
+    //   err => {
+    //     alert("Problem while downloading the file.");
+    //     console.error(err);
+    //   }
+    // )
+  }
 
   checkIfFavorite() {
 

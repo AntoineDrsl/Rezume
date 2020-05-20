@@ -1,66 +1,80 @@
-hr{
-  background-color: #5F4AB3;
+hr {
+    background-color: #5f4ab3;
 }
 
-.wrapper{
+body {
+    background: red;
+}
+
+.wrapper {
     width: 50%;
     margin: auto;
 }
 
-.formContent{
-  display: flex;
-  flex-direction: column;
+.formContent {
+    display: flex;
+    flex-direction: column;
 }
 
-.title-cv{
-  text-align: center;
-  margin: 50px 0;
-  font-size: 2em;
+.title-cv {
+    text-align: center;
+    margin: 50px 0;
+    font-size: 2em;
 }
 
-.plusContainer{
+.plusContainer {
     display: inline-block;
     width: 50px;
     height: 25px;
 }
 
-.plusContainer img{
+.plusContainer img {
     max-height: 100%;
     cursor: pointer;
 }
 
-.degreesGroup{
-  width: 100%;
+.degreesGroup {
+    width: 100%;
 }
 
-mat-form-field{
-  width: 100%;
-}
-.degreeDate, .degreeName, .experienceName, .experienceCompany, .experienceStart, .experienceEnd{
-  width: 45%;
-  margin-right: 0 !important;
-}
-.degreeDate, .experienceCompany, .experienceEnd{
-  margin-left: 10%;
+mat-form-field {
+    width: 100%;
 }
 
-mat-icon{
-  cursor: pointer;
+.degreeDate,
+.degreeName,
+.experienceName,
+.experienceCompany,
+.experienceStart,
+.experienceEnd {
+    width: 45%;
+    margin-right: 0 !important;
 }
 
-.deleteDegree{
-  display: flex;
-  justify-content: center;
-  margin: auto;
-  width: 25%;
-  border-bottom: 3px solid #5F4AB3;
-  margin-bottom: 40px;
+.degreeDate,
+.experienceCompany,
+.experienceEnd {
+    margin-left: 10%;
 }
-.deleteDegree button{
-  margin-bottom: 25px;
+
+mat-icon {
+    cursor: pointer;
+}
+
+.deleteDegree {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    width: 25%;
+    border-bottom: 3px solid #5f4ab3;
+    margin-bottom: 40px;
+}
+
+.deleteDegree button {
+    margin-bottom: 25px;
 }
 
 .submitCv {
-  margin: auto;
-  text-align: center;
+    margin: auto;
+    text-align: center;
 }

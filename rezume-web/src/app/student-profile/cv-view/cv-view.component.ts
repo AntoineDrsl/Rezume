@@ -1,21 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import {Location} from '@angular/common';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { Location } from "@angular/common";
 // Importation cvService
-import { CvService } from '../../shared/cv.service';
-import { StudentService } from 'src/app/shared/student.service';
+import { CvService } from "../../shared/cv.service";
+import { StudentService } from "src/app/shared/student.service";
 
 @Component({
-  selector: 'app-cv-view',
-  templateUrl: './cv-view.component.html',
-  styleUrls: ['./cv-view.component.css']
+  selector: "app-cv-view",
+  templateUrl: "./cv-view.component.html",
+  styleUrls: ["./cv-view.component.css"],
 })
 export class CvViewComponent implements OnInit {
-
   cvDetails;
   noCv: boolean = true;
 
-  constructor(private cvService: CvService, private router: Router, private _location: Location, private studentService: StudentService) { }
+  constructor(
+    private cvService: CvService,
+    private router: Router,
+    private _location: Location,
+    private studentService: StudentService
+  ) {}
 
   ngOnInit() {
 
@@ -24,27 +28,23 @@ export class CvViewComponent implements OnInit {
     }
 
     this.cvService.getCV().subscribe(
-      res => {
-        if(res["cv"].length === 0 ) {
+      (res) => {
+        if (res["cv"].length === 0) {
           this.noCv = true;
           setTimeout(() => {
-            this.router.navigateByUrl('/cvcreation');
+            this.router.navigateByUrl("/cvcreation");
           }, 4000);
         } else {
           this.noCv = false;
           this.cvDetails = res["cv"];
+          console.log(this.cvDetails)
         }
       },
-      err => {
-
-      }
+      (err) => {}
     );
-
   }
 
   backToPage() {
     this._location.back();
   }
-
-
 }

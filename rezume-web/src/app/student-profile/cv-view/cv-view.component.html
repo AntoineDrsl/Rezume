@@ -1,53 +1,52 @@
 <div class="container">
-  <div class="row">
+    <div class="row">
 
-      <mat-card class="cv-details" *ngIf="!noCv">
-        <div class="card-head">
-          <mat-card-subtitle>
-            <a class="mx-5" (click)="backToPage()" style="cursor: pointer;">Revenir</a>
-          </mat-card-subtitle>
-            <img src="assets/images/IconeRezume.png" alt="Photo de profil" class="img-top">
-        </div>
+        <mat-card class="cv-details" *ngIf="!noCv">
+            <div class="card-head">
+                <mat-card-subtitle>
+                    <a class="mx-5" (click)="backToPage()" style="cursor: pointer;">Revenir</a>
+                </mat-card-subtitle>
+                <img src="assets/images/IconeRezume.png" alt="Photo de profil" class="img-top">
+            </div>
 
-        <mat-card-content>
+            <mat-card-content>
 
-          <mat-card-title class="text-center mt-3 cv-name">
-            {{cvDetails[0].student[0].firstName}} {{cvDetails[0].student[0].lastName}}
-          </mat-card-title>
+                <mat-card-title class="text-center mt-3 cv-name">
+                    {{cvDetails[0].student[0].firstName}} {{cvDetails[0].student[0].lastName}}
+                </mat-card-title>
 
-          <p class="cv-description text-center">
-            {{cvDetails[0].description}}
-          </p>
+                <p class="cv-description text-center">
+                    {{cvDetails[0].description}}
+                </p>
 
-          <div class="cv-experiences">
-            <p class="section-title">Experiences Professionnelles</p>
-            <p class="section-content" *ngFor="let experience of cvDetails[0].experiences">2018-2020 - {{experience.name}}</p>
-          </div>
+                <div class="cv-experiences">
+                    <p class="section-title">Experiences Professionnelles</p>
+                    <p class="section-content" *ngFor="let experience of cvDetails[0].experiences">2018-2020 - {{experience.name}}</p>
+                </div>
 
-          <div class="cv-degrees">
-            <p class="section-title">Diplômes</p>
-            <p class="section-content" *ngFor="let degree of cvDetails[0].degrees">2018-2020 - {{degree.name}}</p>
-          </div>
+                <div class="cv-degrees">
+                    <p class="section-title">Diplômes</p>
+                    <p class="section-content" *ngFor="let degree of cvDetails[0].degrees">2018-2020 - {{degree.name}}</p>
+                </div>
 
-          <div class="cv-hashtag">
-            <p class="section-title">Compétences</p>
-            <mat-chip-list>
-              <mat-chip class="cv-chips" *ngFor="let hashtag of cvDetails[0].hashtag">
-                {{hashtag}}
-              </mat-chip>
-            </mat-chip-list>
-          </div>
-        </mat-card-content>
-      </mat-card>
+                <div class="cv-hashtag">
+                    <p class="section-title">Compétences</p>
+                    <mat-chip-list>
+                        <mat-chip class="cv-chips" *ngFor="let hashtag of cvDetails[0].student[0].hashtag">
+                            {{hashtag}}
+                        </mat-chip>
+                    </mat-chip-list>
+                </div>
+            </mat-card-content>
+        </mat-card>
 
-      <mat-card *ngIf="noCv">
+        <mat-card *ngIf="noCv">
 
-        <mat-card-title class="text-center mt-3 cv-name">
-          Vous n'avez pas encore créer de CV, <br>
-          vous allez être rediriger vers la page de création.
-        </mat-card-title>
+            <mat-card-title class="text-center mt-3 cv-name">
+                Vous n'avez pas encore créer de CV, <br> vous allez être rediriger vers la page de création.
+            </mat-card-title>
 
-      </mat-card>
+        </mat-card>
 
 
 

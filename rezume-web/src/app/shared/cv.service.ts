@@ -53,4 +53,8 @@ export class CvService {
     updateCV(cv: CV) {
       return this.http.post(environment.apiBaseUrl + '/updatecv', cv);
     }
+
+    buildCvPdf(studentData) {
+      return this.http.post(environment.apiBaseUrl + '/buildpdf', studentData)
+    }
 }
