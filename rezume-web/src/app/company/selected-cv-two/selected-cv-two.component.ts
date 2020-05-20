@@ -4,7 +4,6 @@ import { CvService } from 'src/app/shared/cv.service';
 import {Location} from '@angular/common';
 import { CompanyService } from 'src/app/shared/company.service';
 import { StudentService } from 'src/app/shared/student.service';
-import { saveAs } from "file-saver"
 import * as moment from "moment";
 
 @Component({
