@@ -47,7 +47,10 @@ messages
 ```bash
 hashtags
 ```
-You have to implement some hashtags directly in the Database with MongoDB Compass. 
+You have to implement some hashtags directly in the Database with MongoDB Compass.
+You will find below the syntax :
+
+![Capture](https://user-images.githubusercontent.com/43929308/82474410-4e3ed280-9acb-11ea-9239-16cf60d8a8b9.PNG)
 
 ```bash
 
